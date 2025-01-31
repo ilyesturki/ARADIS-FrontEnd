@@ -1,0 +1,62 @@
+"use client";
+import ComboBox from "@/components/Common/ComboBox";
+
+const CustomSelect = <T,>({
+  label,
+  value,
+  onChange,
+  data = [],
+  name,
+  children,
+  disabled,
+}: {
+  label: string;
+  value?: string;
+  onChange?: (currentValue: T, name?: string) => void;
+  // onChange?: (currentValue: string, name?: string) => void;
+  name?: string;
+  data?: { value: string; label: string }[];
+  children?: React.ReactNode;
+  disabled?: boolean;
+}) => {
+  return (
+    <div className=" flex gap-4 items-center">
+      <div className=" bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
+        <span className=" text-[10px] font-semibold text-greenAccent-900 ">
+          {label}
+        </span>
+        <ComboBox
+          label={label}
+          data={data}
+          selectedValue={value}
+          onChange={(e: string, name?: string) => {
+            // e is now of type T
+            if (onChange) {
+              if (name) {
+                onChange(e as T, name);
+              } else {
+                onChange(e as T);
+              }
+            }
+          }}
+          // onChange={(e: string, name?: string) => {
+          //   if (onChange) {
+          //     if (name) {
+          //       onChange(e as T, name);
+          //     } else {
+          //       onChange(e as T);
+          //     }
+          //   }
+          // }}
+
+          name={name}
+          disabled={disabled}
+          className=" bg-transparent shadow-none text-greenAccent-900 opacity-70 "
+        />
+      </div>
+      {children}
+    </div>
+  );
+};
+
+export default CustomSelect;
