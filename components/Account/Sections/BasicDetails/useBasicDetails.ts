@@ -1,6 +1,6 @@
 import { UserType } from "@/redux/users/usersSlice";
 import { updateUser } from "@/redux/user/userThunk";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { urlToFile } from "@/utils/UrlToFile";
 import { customHandleChange, customImagesChange } from "@/utils/handlers";

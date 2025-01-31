@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DashboardCollapsible from "../Collapsible/DashboardCollapsible";
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-import Image from "next/image";
 import WebSiteLogo from "../Common/WebSiteLogo";
 
 const links = [

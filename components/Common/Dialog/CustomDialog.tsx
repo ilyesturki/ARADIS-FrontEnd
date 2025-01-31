@@ -12,14 +12,12 @@ import {
 
 const CustomDialog = ({
   label,
-  id,
   isOpen,
   setIsOpen,
   handelDelete,
   isLoading,
 }: {
   label: string;
-  id: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handelDelete: () => void;

@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import EditButton from "./EditButton";
+// import EditButton from "./EditButton";
 
 const CustomSelectIcon = ({
   image,

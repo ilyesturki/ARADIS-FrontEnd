@@ -1,8 +1,5 @@
 import DataTable from "@/components/Common/DataTable/DataTable";
-import {
-  columns,
-  Users,
-} from "@/components/Common/DataTable/Columns/UsersColumn";
+import { columns } from "@/components/Common/DataTable/Columns/UsersColumn";
 import { fetchUsers } from "@/utils/Api/userApi";
 
 // const users: Users[] = [

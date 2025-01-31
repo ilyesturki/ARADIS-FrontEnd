@@ -31,7 +31,6 @@ declare module "next-auth" {
 export const signInCallback = async ({
   user,
   account,
-  profile,
 }: {
   user: User | AdapterUser;
   account: Account | null;

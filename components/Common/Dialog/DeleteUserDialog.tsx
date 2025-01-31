@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { deleteUser } from "@/redux/users/usersThunk";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 import { useRouter } from "next/navigation";
@@ -41,7 +41,6 @@ const DeleteUserDialog = ({ id }: { id: string }) => {
   return (
     <CustomDialog
       label="User"
-      id={id}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       handelDelete={executeDeleteAccount}
