@@ -11,7 +11,8 @@ import { verifyBasicDetailsValidationRules } from "@/utils/validationRules";
 
 type BasicDetailsType = {
   image: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
 };
 
@@ -21,7 +22,8 @@ const useBasicDetails = (user: UserType | null) => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [data, setData] = useState<BasicDetailsType>({
     image: user?.image || "",
-    name: user?.name || "",
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
     email: user?.email || "",
   });
 

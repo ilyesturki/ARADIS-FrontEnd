@@ -10,26 +10,19 @@ import {
 } from "./usersThunk";
 
 export interface UserType {
-  _id: string;
-  name: string;
+  id: number;
+  mat: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone?: string;
-  password?: string;
-  provider?: string;
-  providerId?: string;
+  phone: string;
   image?: string;
-  address?: {
-    details: string;
-    governorate: string;
-    city: string;
-    postalCode: string;
-  };
-  wishList?: string[];
-  basketList?: string[];
+  password?: string;
+  role: "user" | "admin";
   status: "active" | "inactive";
 }
 
-export type UserTypeWithoutId = Omit<UserType, "_id">;
+export type UserTypeWithoutId = Omit<UserType, "id">;
 
 export type flexibleUserType = Partial<UserType>;
 
@@ -106,7 +99,7 @@ const usersSlice = createSlice({
           state.loading = false;
           state.updateSuccess = true;
           const index = state.users.findIndex(
-            (user) => user._id === action.payload._id
+            (user) => user.id === action.payload.id
           );
           state.users[index] = action.payload;
         }
@@ -123,7 +116,7 @@ const usersSlice = createSlice({
       .addCase(deleteUser.fulfilled, (state, action: PayloadAction<string>) => {
         state.loading = false;
         state.deleteSuccess = true;
-        state.users = state.users.filter((user) => user._id !== action.payload);
+        state.users = state.users.filter((user) => user.id !== +action.payload);
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.loading = false;

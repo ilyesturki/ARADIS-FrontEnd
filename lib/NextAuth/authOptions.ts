@@ -1,5 +1,5 @@
 import providers from "./providers";
-import { signInCallback, jwtCallback, sessionCallback } from "./callbacks";
+import { jwtCallback, sessionCallback } from "./callbacks";
 import { AuthOptions } from "next-auth";
 
 const authOptions: AuthOptions = {
@@ -14,7 +14,6 @@ const authOptions: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    signIn: signInCallback,
     jwt: jwtCallback,
     session: sessionCallback,
   },

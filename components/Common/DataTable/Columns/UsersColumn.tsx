@@ -10,12 +10,14 @@ import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheck
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 export type Users = {
-  _id: string;
+  id: string;
+  mat: string;
   image?: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone?: string;
-  status: "active" | "inactive";
+  phone: string;
+  status: "pending" | "active" | "inactive";
 };
 
 export const columns: ColumnDef<Users>[] = [
@@ -26,7 +28,7 @@ export const columns: ColumnDef<Users>[] = [
     cell: ({ row }) => <DataTableContentCheckBox row={row} />,
   },
   {
-    accessorKey: "name",
+    accessorKey: "firstName",
     header: ({ column }) => (
       <DataTableColumnHeader
         className="flex justify-center"
@@ -78,7 +80,7 @@ export const columns: ColumnDef<Users>[] = [
     ),
     cell: ({ row }) => (
       <DataTableRowMenu<Users> row={row} label={"user"}>
-        <DeleteUserDialog id={row.original._id} />
+        <DeleteUserDialog id={row.original.id} />
       </DataTableRowMenu>
     ),
   },

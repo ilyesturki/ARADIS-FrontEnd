@@ -37,6 +37,38 @@ export const verifySignUpCode = createAsyncThunk(
   }
 );
 
+export const activate = createAsyncThunk(
+  "auth/activate",
+  async ({ data }: { data: FormData }) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify-token`,
+        data
+      );
+      toast.success("Account activated successfully!");
+      return response.data;
+    } catch (error) {
+      handleError(error);
+    }
+  }
+);
+
+export const setPassword = createAsyncThunk(
+  "auth/setPassword",
+  async ({ data }: { data: FormData }) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/set-password`,
+        data
+      );
+      toast.success("Account activated successfully!");
+      return response.data;
+    } catch (error) {
+      handleError(error);
+    }
+  }
+);
+
 export const forgetPassword = createAsyncThunk(
   "auth/forgetPassword",
   async ({ data }: { data: FormData }) => {

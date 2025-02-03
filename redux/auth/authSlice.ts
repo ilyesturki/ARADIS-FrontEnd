@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   signUp,
+  activate,
+  setPassword,
   verifySignUpCode,
   forgetPassword,
   verifyResetCode,
@@ -82,6 +84,28 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = "An error occurred during verification";
         state.verifySuccess = false;
+      })
+      .addCase(activate.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(activate.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(activate.rejected, (state) => {
+        state.loading = false;
+        state.error = "An error occurred during activation";
+      })
+      .addCase(setPassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(setPassword.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setPassword.rejected, (state) => {
+        state.loading = false;
+        state.error = "An error occurred during password setting";
       })
       .addCase(forgetPassword.pending, (state) => {
         state.loading = true;

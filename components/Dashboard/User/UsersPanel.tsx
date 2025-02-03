@@ -4,7 +4,7 @@ import { fetchUsers } from "@/utils/Api/userApi";
 
 // const users: Users[] = [
 //   {
-//     _id: "1",
+//     id: "1",
 //     image: "/images/user1.png",
 //     name: "John Doe",
 //     email: "john.doe@example.com",
@@ -12,7 +12,7 @@ import { fetchUsers } from "@/utils/Api/userApi";
 //     status: "active",
 //   },
 //   {
-//     _id: "2",
+//     id: "2",
 //     image: "/images/user2.png",
 //     name: "Jane Smith",
 //     email: "jane.smith@example.com",
@@ -20,7 +20,7 @@ import { fetchUsers } from "@/utils/Api/userApi";
 //     status: "inactive",
 //   },
 //   {
-//     _id: "3",
+//     id: "3",
 //     image: "/images/user3.png",
 //     name: "Alice Johnson",
 //     email: "alice.johnson@example.com",

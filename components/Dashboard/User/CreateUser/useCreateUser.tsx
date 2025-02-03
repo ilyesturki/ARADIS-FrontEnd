@@ -12,24 +12,26 @@ import { verifyUserValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createUser } from "@/redux/users/usersThunk";
 
-const statusData = [
+const roleData = [
   {
-    value: "active",
-    label: "Active",
+    value: "user",
+    label: "User",
   },
   {
-    value: "inactive",
-    label: "Inactive",
+    value: "admin",
+    label: "Admin",
   },
 ];
 
 const initialUserState: flexibleUserType = {
-  name: "",
+  mat: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
-  password: "",
+  role: "user",
   image: "",
-  status: "active",
+  // status: "inactive",
 };
 const useCreateUser = () => {
   const dispatch = useAppDispatch();
@@ -48,19 +50,20 @@ const useCreateUser = () => {
     customImagesChange<flexibleUserType>(e, setUserData, "image", setImageFile);
   };
 
-  const handleStatusChange = (status: flexibleUserType["status"]) => {
+  const handleRoleChange = (role: flexibleUserType["role"]) => {
     setUserData((prevData) => ({
       ...prevData,
-      status,
+      role,
     }));
   };
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      name: userData.name || "",
+      mat: userData.mat || "",
+      firstName: userData.firstName || "",
+      lastName: userData.lastName || "",
       email: userData.email || "",
       phone: userData.phone || "",
-      status: userData.status || "",
-      password: userData.password || "",
+      role: userData.role || "",
       image: imageFile ? imageFile.type : "",
     };
     const newErrors = validateFormFields(
@@ -76,11 +79,13 @@ const useCreateUser = () => {
       e,
       { image: imageFile },
       {
-        name: userData.name,
+        mat: userData.mat,
+        role: userData.role,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
         email: userData.email,
-        password: userData.password,
         phone: userData.phone,
-        status: userData.status,
+        // status: userData.status,
       },
       (formData) => dispatch(createUser(formData)),
       handleReset
@@ -95,13 +100,13 @@ const useCreateUser = () => {
   };
 
   return {
-    statusData,
+    roleData,
 
     userData,
 
     handleChange,
     handleImageChange,
-    handleStatusChange,
+    handleRoleChange,
 
     handleSubmit,
     handleReset,

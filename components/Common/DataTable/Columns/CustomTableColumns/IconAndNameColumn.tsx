@@ -4,7 +4,7 @@ import { Users } from "../UsersColumn";
 
 const IconAndNameColumn = ({ row }: { row: Row<Users> }) => {
   const image = row.original.image as string;
-  const title = row.getValue("name") as string;
+  const title = row.getValue("firstName") as string;
   return (
     <div className=" flex items-center gap-6 pl-4">
       <Avatar className=" w-14 h-14 border-4 outline-2 outline-dotted outline-greenAccent-900">

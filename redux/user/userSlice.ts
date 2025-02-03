@@ -15,7 +15,7 @@ export interface AddressType {
 }
 
 export interface UserType {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   phone?: string;
@@ -32,7 +32,7 @@ export interface UserType {
   phoneSecurityNotifications: boolean;
 }
 
-export type UserTypeWithoutId = Omit<UserType, "_id">;
+export type UserTypeWithoutId = Omit<UserType, "id">;
 
 interface UsersState {
   user: UserType | null;

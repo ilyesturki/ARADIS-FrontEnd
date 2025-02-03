@@ -26,14 +26,27 @@ const BasicDetails = ({ user }: { user: UserType | null }) => {
       <CustomInput
         label="First Name"
         placeholder="First Name"
-        value={data.name}
+        value={data.firstName}
         onChange={handleChange}
-        name="name"
-        disabled={editField !== "name"}
+        name="firstName"
+        disabled={editField !== "firstName"}
       >
         <EditButton
-          title={editField === "name" ? "Save" : "Edit"}
-          onClick={() => handleEdit("name")}
+          title={editField === "firstName" ? "Save" : "Edit"}
+          onClick={() => handleEdit("firstName")}
+        />
+      </CustomInput>
+      <CustomInput
+        label="Last Name"
+        placeholder="Last Name"
+        value={data.lastName}
+        onChange={handleChange}
+        name="lastName"
+        disabled={editField !== "lastName"}
+      >
+        <EditButton
+          title={editField === "lastName" ? "Save" : "Edit"}
+          onClick={() => handleEdit("lastName")}
         />
       </CustomInput>
       <CustomInput
@@ -47,7 +60,6 @@ const BasicDetails = ({ user }: { user: UserType | null }) => {
         <EditButton
           title={editField === "email" ? "Save" : "Edit"}
           onClick={() => handleEdit("email")}
-          disabled={!!user?.provider && !!user?.providerId}
         />
       </CustomInput>
     </div>

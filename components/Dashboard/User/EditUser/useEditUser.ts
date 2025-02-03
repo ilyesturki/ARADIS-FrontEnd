@@ -13,23 +13,24 @@ import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyUserValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 
-const statusData = [
+const roleData = [
   {
-    value: "active",
-    label: "Active",
+    value: "user",
+    label: "User",
   },
   {
-    value: "inactive",
-    label: "Inactive",
+    value: "admin",
+    label: "Admin",
   },
 ];
 const initialUserState: flexibleUserType = {
-  name: "",
+  mat: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
-  password: "",
+  role: "user",
   image: "",
-  status: "active",
 };
 const useEditUser = (id: string) => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,7 @@ const useEditUser = (id: string) => {
 
   useEffect(() => {
     if (user) {
-      const { _id, ...rest } = user;
+      const { id, ...rest } = user;
       setUserData(rest);
     }
   }, [user]);
@@ -68,10 +69,10 @@ const useEditUser = (id: string) => {
     customImagesChange<flexibleUserType>(e, setUserData, "image", setImageFile);
   };
 
-  const handleStatusChange = (status: flexibleUserType["status"]) => {
+  const handleRoleChange = (role: flexibleUserType["role"]) => {
     setUserData((prevData) => ({
       ...prevData,
-      status,
+      role,
     }));
   };
 
@@ -81,11 +82,12 @@ const useEditUser = (id: string) => {
       : await urlToFile(userData.image as string, "image.png", "image/png");
 
     const dataToValidate: Record<string, string> = {
-      name: userData.name || "",
+      mat: userData.mat || "",
+      firstName: userData.firstName || "",
+      lastName: userData.lastName || "",
       email: userData.email || "",
       phone: userData.phone || "",
-      status: userData.status || "",
-      password: userData.password || "",
+      role: userData.role || "",
       image: formImage ? formImage.type : "",
     };
     const newErrors = validateFormFields(
@@ -103,11 +105,12 @@ const useEditUser = (id: string) => {
         image: formImage,
       },
       {
-        name: userData.name,
+        mat: userData.mat,
+        role: userData.role,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
         email: userData.email,
-        password: userData.password,
         phone: userData.phone,
-        status: userData.status,
       },
       (formData) => dispatch(updateUser({ id, user: formData })),
       handleReset
@@ -121,12 +124,12 @@ const useEditUser = (id: string) => {
     setUserData(initialUserState);
   };
   return {
-    statusData,
+    roleData,
     userData,
 
     handleChange,
     handleImageChange,
-    handleStatusChange,
+    handleRoleChange,
 
     handleSubmit,
     handleReset,

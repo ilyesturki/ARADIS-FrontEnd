@@ -9,17 +9,15 @@ export const credentialsSignInValidationRules = {
 };
 
 export const verifyUserValidationRules = {
-  name: { required: true },
+  mat: { required: true },
+  firstName: { required: true },
+  lastName: { required: true },
   email: {
     required: true,
     pattern: /\S+@\S+\.\S+/,
   },
   phone: { required: false },
   status: { required: false },
-  password: {
-    required: true,
-    minLength: 8,
-  },
   image: {
     required: false,
     customValidator: (value: string) =>
@@ -27,6 +25,17 @@ export const verifyUserValidationRules = {
         ? "Please select a valid image file (JPEG, PNG, or GIF)."
         : null,
   },
+};
+
+export const activateValidationRules = {
+  mat: { required: true },
+  token: { required: true },
+};
+
+export const setPasswordValidationRules = {
+  mat: { required: true },
+  token: { required: true },
+  password: { required: true },
 };
 
 export const verifyBasicDetailsValidationRules = {

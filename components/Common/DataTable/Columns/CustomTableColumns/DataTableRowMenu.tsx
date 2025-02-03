@@ -12,7 +12,7 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const DataTableRowMenu = <T extends { _id: string }>({
+const DataTableRowMenu = <T extends { id: string }>({
   row,
   label,
   children,
@@ -37,13 +37,13 @@ const DataTableRowMenu = <T extends { _id: string }>({
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(row.original._id)}
+          onClick={() => navigator.clipboard.writeText(row.original.id)}
           className=" cursor-pointer"
         >
           Copy {label} ID
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <Link href={`${paths}/edit-${label}/${row.original._id}`}>
+        <Link href={`${paths}/edit-${label}/${row.original.id}`}>
           <DropdownMenuItem className=" cursor-pointer">
             Edit {label}
           </DropdownMenuItem>

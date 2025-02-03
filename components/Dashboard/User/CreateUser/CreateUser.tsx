@@ -8,13 +8,13 @@ import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage
 
 const CreateUser = () => {
   const {
-    statusData,
+    roleData,
 
     userData,
 
     handleChange,
     handleImageChange,
-    handleStatusChange,
+    handleRoleChange,
 
     handleSubmit,
     handleReset,
@@ -23,13 +23,26 @@ const CreateUser = () => {
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomInput
-          value={userData.name}
+          value={userData.firstName}
           onChange={handleChange}
-          label="User Name"
-          placeholder="Enter User name"
-          name="name"
+          label="User First Name"
+          placeholder="Enter User First Name"
+          name="firstName"
         />
-
+        <CustomInput
+          value={userData.lastName}
+          onChange={handleChange}
+          label="User Last Name"
+          placeholder="Enter User Last Name"
+          name="lastName"
+        />
+        <CustomInput
+          value={userData.mat}
+          onChange={handleChange}
+          label="User Matricule"
+          placeholder="Enter User Matricule"
+          name="mat"
+        />
         <CustomInput
           value={userData.phone}
           onChange={handleChange}
@@ -37,11 +50,11 @@ const CreateUser = () => {
           placeholder="Enter User phone"
           name="phone"
         />
-        <CustomSelect<"active" | "inactive">
-          label="Status"
-          value={userData.status}
-          onChange={handleStatusChange}
-          data={statusData}
+        <CustomSelect<"user" | "admin">
+          label="Role"
+          value={userData.role}
+          onChange={handleRoleChange}
+          data={roleData}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -57,13 +70,6 @@ const CreateUser = () => {
             label="User Email"
             placeholder="Enter User email"
             name="email"
-          />
-          <CustomInput
-            value={userData.password}
-            onChange={handleChange}
-            label="User Password"
-            placeholder="Enter User Password"
-            name="password"
           />
         </div>
         <CustomButtons
