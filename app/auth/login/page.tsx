@@ -4,7 +4,7 @@ import SignInForm from "@/components/Auth/Form/SignIn/SignIn";
 const page = () => {
   return (
     <CustomAuthPage
-      title="Log In"
+      title="Login Account"
       subTitle="Welcome back!"
       >
       <SignInForm AuthButtonTitle="Log In" />

@@ -11,10 +11,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="  min-h-[500px] relative ">
-      <div className="container flex justify-center items-center py-10">
-        <div className="w-fit">{children}</div>
-      </div>
+    <div className="grid grid-cols-2 min-h-screen  ">
+      <div className="bg-greenAccent-900"></div>
+      <div className="flex justify-center items-center">{children}</div>
     </div>
   );
 }

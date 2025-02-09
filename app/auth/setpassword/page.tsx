@@ -3,8 +3,11 @@ import SetPasswordForm from "@/components/Auth/Form/SetPassword/SetPassword";
 
 const page = () => {
   return (
-    <CustomAuthPage title="SetPassword" subTitle="Welcome!">
-      <SetPasswordForm AuthButtonTitle="SetPassword" />
+    <CustomAuthPage
+      title="Set Password"
+      subTitle="Please enter your new password"
+    >
+      <SetPasswordForm AuthButtonTitle="Set Password" />
     </CustomAuthPage>
   );
 };

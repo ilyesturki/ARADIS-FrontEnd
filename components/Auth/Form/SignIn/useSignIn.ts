@@ -17,6 +17,13 @@ const useSignIn = () => {
   const [email, setEmail] = useState<string>(authEmail || "");
   const [password, setPassword] = useState<string>("");
 
+  const [keepSignedIn, setKeepSignedIn] = useState(false);
+
+  const handleKeepSignedIn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setKeepSignedIn(!keepSignedIn);
+  };
+
   const router = useRouter();
   const params = useSearchParams();
 
@@ -60,6 +67,8 @@ const useSignIn = () => {
     setEmail,
     password,
     setPassword,
+    keepSignedIn,
+    handleKeepSignedIn,
     handleSubmit,
   };
 };

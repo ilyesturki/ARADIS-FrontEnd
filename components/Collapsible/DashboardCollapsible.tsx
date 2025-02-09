@@ -27,13 +27,13 @@ const DashboardCollapsible = ({
     <Collapsible>
       <CollapsibleTrigger
         onClick={() => setOpen(!open)}
-        className={` flex justify-between items-center w-full py-3 px-4 bg-opacity-80 hover:bg-greenAccent-900 rounded-3xl
+        className={` flex justify-between items-center w-full py-3 px-4 rounded-2xl
         ${
           content?.some((e) => {
             return e.link === path;
           })
-            ? " bg-greenAccent-900 text-grayscale-100 hover:bg-opacity-70 shadow-[0_0_2px] shadow-greenAccent-900 "
-            : " text-text-secondary hover:bg-opacity-10 "
+            ? " bg-greenAccent-900 text-grayscale-100 bg-opacity-70 shadow-[0_0_2px] shadow-grayscale-300 "
+            : " text-text-secondary bg-grayscale-300 bg-opacity-50 "
         }
         `}
       >
@@ -55,7 +55,7 @@ const DashboardCollapsible = ({
           open ? (
             <FontAwesomeIcon
               icon={faAngleDown}
-              className={` w-2 h-2 ${
+              className={` w-3 h-3 ${
                 content?.some((e) => {
                   return e.link === path;
                 })
@@ -83,11 +83,11 @@ const DashboardCollapsible = ({
             <Link
               href={e.link}
               key={i}
-              className={` w-[90%] mx-auto my-2 flex gap-3 items-center py-2 px-4 rounded-lg hover:bg-greenAccent-900 
+              className={` w-[90%] mx-auto my-2 flex gap-3 items-center py-2 px-4 rounded-xl hover:bg-greenAccent-900 
               ${
                 path === e.link
-                  ? " bg-greenAccent-900 bg-opacity-80 text-grayscale-100 hover:bg-opacity-70 shadow-[0_0_2px] shadow-greenAccent-900 "
-                  : " text-text-secondary hover:bg-opacity-10 "
+                  ? " bg-greenAccent-900  text-grayscale-100 bg-opacity-70 shadow-[0_0_2px] shadow-grayscale-300 "
+                  : " text-text-secondary bg-grayscale-300 bg-opacity-50 "
               } `}
             >
               {e.icon && (

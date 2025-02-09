@@ -65,8 +65,7 @@ const links = [
 ];
 const DashboardSideBar = () => {
   return (
-    <div className=" sticky top-0 hidden lg:flex lg:flex-col lg:gap-12 w-[250px] h-full pr-6 py-6">
-      <WebSiteLogo />
+    <div className=" sticky top-[90px] hidden lg:flex w-[250px] h-[calc(100vh-90px)] pr-5 py-6 border-r-[2px] border-grayscale-300 ">
       <div className=" h-full w-full flex flex-col gap-4 pl-6 ">
         {links.map((e, i) => {
           return (

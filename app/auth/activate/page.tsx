@@ -3,7 +3,10 @@ import ActivateForm from "@/components/Auth/Form/Activate/Activate";
 
 const page = () => {
   return (
-    <CustomAuthPage title="Activate" subTitle="Welcome!">
+    <CustomAuthPage
+      title="Activate Account"
+      subTitle="Please activate your account"
+    >
       <ActivateForm AuthButtonTitle="Activate" />
     </CustomAuthPage>
   );
