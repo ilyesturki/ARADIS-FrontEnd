@@ -24,14 +24,15 @@ const roleData = [
 ];
 
 const initialQrapState: flexibleQrapType = {
-  mat: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  role: "qrap",
+  quoi: "",
+  ref: "",
+  quand: "",
+  ou: "",
+  qui: "",
+  comment: "",
+  combien: "",
+  pourqoui: "",
   image: "",
-  // status: "inactive",
 };
 const useCreateQrap = () => {
   const dispatch = useAppDispatch();
@@ -50,20 +51,23 @@ const useCreateQrap = () => {
     customImagesChange<flexibleQrapType>(e, setQrapData, "image", setImageFile);
   };
 
-  const handleRoleChange = (role: flexibleQrapType["role"]) => {
-    setQrapData((prevData) => ({
-      ...prevData,
-      role,
-    }));
-  };
+  // const handleRoleChange = (role: flexibleQrapType["role"]) => {
+  //   setQrapData((prevData) => ({
+  //     ...prevData,
+  //     role,
+  //   }));
+  // };
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      mat: qrapData.mat || "",
-      firstName: qrapData.firstName || "",
-      lastName: qrapData.lastName || "",
-      email: qrapData.email || "",
-      phone: qrapData.phone || "",
-      role: qrapData.role || "",
+      quoi: qrapData.quoi || "",
+      ref: qrapData.ref || "",
+      quand: qrapData.quand || "",
+      ou: qrapData.ou || "",
+      qui: qrapData.qui || "",
+      comment: qrapData.comment || "",
+      combien: qrapData.combien || "",
+      pourqoui: qrapData.pourqoui || "",
+
       image: imageFile ? imageFile.type : "",
     };
     const newErrors = validateFormFields(
@@ -79,13 +83,14 @@ const useCreateQrap = () => {
       e,
       { image: imageFile },
       {
-        mat: qrapData.mat,
-        role: qrapData.role,
-        firstName: qrapData.firstName,
-        lastName: qrapData.lastName,
-        email: qrapData.email,
-        phone: qrapData.phone,
-        // status: qrapData.status,
+        quoi: qrapData.quoi,
+        ref: qrapData.ref,
+        quand: qrapData.quand,
+        ou: qrapData.ou,
+        qui: qrapData.qui,
+        comment: qrapData.comment,
+        combien: qrapData.combien,
+        pourqoui: qrapData.pourqoui,
       },
       (formData) => dispatch(createQrap(formData)),
       handleReset
@@ -106,7 +111,6 @@ const useCreateQrap = () => {
 
     handleChange,
     handleImageChange,
-    handleRoleChange,
 
     handleSubmit,
     handleReset,

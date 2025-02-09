@@ -29,7 +29,7 @@ const links: DashboardCollapsibleProps[] = [
     content: [
       {
         title: "QRAPs Panel",
-        link: "/dashboard/users",
+        link: "/dashboard/qraps",
         icon: faGears,
       },
       {

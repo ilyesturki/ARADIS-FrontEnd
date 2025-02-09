@@ -1,7 +1,7 @@
-import CreateUser from "@/components/Dashboard/User/CreateUser/CreateUser";
+import CreateQrap from "@/components/Dashboard/Qrap/CreateQrap/CreateQrap";
 
 const Page = () => {
-  return <CreateUser />;
+  return <CreateQrap />;
 };
 
 export default Page;

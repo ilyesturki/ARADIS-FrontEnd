@@ -14,8 +14,6 @@ const CreateQrap = () => {
 
     handleChange,
     handleImageChange,
-    handleRoleChange,
-
     handleSubmit,
     handleReset,
   } = useCreateQrap();
@@ -23,38 +21,60 @@ const CreateQrap = () => {
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomInput
-          value={qrapData.firstName}
+          value={qrapData.quoi}
           onChange={handleChange}
-          label="Qrap First Name"
-          placeholder="Enter Qrap First Name"
-          name="firstName"
+          label="quoi"
+          placeholder="Quel est le probleme ?"
+          name="quoi"
         />
         <CustomInput
-          value={qrapData.lastName}
+          value={qrapData.ref}
           onChange={handleChange}
-          label="Qrap Last Name"
-          placeholder="Enter Qrap Last Name"
-          name="lastName"
+          label="ref"
+          placeholder="Quelle reference ?"
+          name="ref"
         />
         <CustomInput
-          value={qrapData.mat}
+          value={qrapData.quand}
           onChange={handleChange}
-          label="Qrap Matricule"
-          placeholder="Enter Qrap Matricule"
-          name="mat"
+          label="quand"
+          placeholder="Date et heure ?"
+          name="quand"
         />
         <CustomInput
-          value={qrapData.phone}
+          value={qrapData.ou}
           onChange={handleChange}
-          label="Qrap Phone"
-          placeholder="Enter Qrap phone"
-          name="phone"
+          label="ou"
+          placeholder="A-t-il detecte ?"
+          name="ou"
         />
-        <CustomSelect<"qrap" | "admin">
-          label="Role"
-          value={qrapData.role}
-          onChange={handleRoleChange}
-          data={roleData}
+        <CustomInput
+          value={qrapData.qui}
+          onChange={handleChange}
+          label="qui"
+          placeholder="La detecté"
+          name="qui"
+        />
+        <CustomInput
+          value={qrapData.comment}
+          onChange={handleChange}
+          label="comment"
+          placeholder="A-t-il detecte ?"
+          name="comment"
+        />
+        <CustomInput
+          value={qrapData.combien}
+          onChange={handleChange}
+          label="combien"
+          placeholder="De pieces ? Pertes ?"
+          name="combien"
+        />
+        <CustomInput
+          value={qrapData.pourqoui}
+          onChange={handleChange}
+          label="pourqoui"
+          placeholder="Est-ce un probleme ?"
+          name="pourqoui"
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -63,13 +83,6 @@ const CreateQrap = () => {
             label="Qrap Image"
             image={qrapData.image || ""}
             handleImageChange={handleImageChange}
-          />
-          <CustomInput
-            value={qrapData.email}
-            onChange={handleChange}
-            label="Qrap Email"
-            placeholder="Enter Qrap email"
-            name="email"
           />
         </div>
         <CustomButtons

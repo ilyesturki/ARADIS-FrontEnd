@@ -11,15 +11,15 @@ import {
 
 export interface QrapType {
   id: number;
-  mat: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  quoi: string;
+  ref: string;
+  quand: string;
+  ou: string;
+  qui: string;
+  comment: string;
+  combien: string;
+  pourqoui: string;
   image?: string;
-  password?: string;
-  role: "qrap" | "admin";
-  status: "active" | "inactive";
 }
 
 export type QrapTypeWithoutId = Omit<QrapType, "id">;
