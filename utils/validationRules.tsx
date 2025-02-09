@@ -51,3 +51,23 @@ export const verifyBasicDetailsValidationRules = {
         : null,
   },
 };
+
+
+export const verifyQrapValidationRules = {
+  mat: { required: true },
+  firstName: { required: true },
+  lastName: { required: true },
+  email: {
+    required: true,
+    pattern: /\S+@\S+\.\S+/,
+  },
+  phone: { required: false },
+  status: { required: false },
+  image: {
+    required: false,
+    customValidator: (value: string) =>
+      !["image/jpeg", "image/png", "image/gif"].includes(value)
+        ? "Please select a valid image file (JPEG, PNG, or GIF)."
+        : null,
+  },
+};

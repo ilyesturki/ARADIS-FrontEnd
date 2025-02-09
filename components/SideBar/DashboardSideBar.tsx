@@ -8,11 +8,36 @@ import {
 import DashboardCollapsible from "../Collapsible/DashboardCollapsible";
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import WebSiteLogo from "../Common/WebSiteLogo";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+interface CollapsibleItem {
+  title: string;
+  link: string;
+  icon?: IconProp;
+}
 
-const links = [
+interface DashboardCollapsibleProps {
+  icon: IconProp;
+  title: string;
+  link?: string;
+  content?: CollapsibleItem[];
+}
+
+const links: DashboardCollapsibleProps[] = [
   {
-    icon: faSquarePlus,
-    title: "Add QRAP",
+    title: "QRAPs",
+    icon: faLayerGroup,
+    content: [
+      {
+        title: "QRAPs Panel",
+        link: "/dashboard/users",
+        icon: faGears,
+      },
+      {
+        title: "Add QRAP",
+        link: "/dashboard/qraps/create-qrap",
+        icon: faSquarePlus,
+      },
+    ],
   },
   {
     icon: faBoxesStacked,
@@ -72,6 +97,7 @@ const DashboardSideBar = () => {
             <DashboardCollapsible
               key={i}
               icon={e.icon}
+              link={e.link}
               title={e.title}
               content={e.content}
             />

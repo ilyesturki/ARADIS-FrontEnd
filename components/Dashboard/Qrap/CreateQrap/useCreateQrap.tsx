@@ -1,5 +1,5 @@
 "use client";
-import { flexibleQrapType } from "@/redux/qraps/qrapsSlice";
+import { flexibleQrapType } from "@/redux/qrap/qrapSlice";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
@@ -10,7 +10,7 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyQrapValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createQrap } from "@/redux/qraps/qrapsThunk";
+import { createQrap } from "@/redux/qrap/qrapThunk";
 
 const roleData = [
   {
