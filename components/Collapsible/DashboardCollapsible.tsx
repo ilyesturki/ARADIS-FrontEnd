@@ -27,22 +27,22 @@ const DashboardCollapsible = ({
     <Collapsible>
       <CollapsibleTrigger
         onClick={() => setOpen(!open)}
-        className={` flex justify-between items-center w-full py-3 px-4 rounded-2xl
+        className={`group flex justify-between items-center w-full py-3 px-4 rounded-xl hover:bg-greenAccent-900 hover:text-grayscale-100 hover:bg-opacity-80 shadow-[0_0_2px] shadow-grayscale-400
         ${
           content?.some((e) => {
-            return e.link === path;
+            return e.link === path.split("/").slice(0,3).join("/");
           })
-            ? " bg-greenAccent-900 text-grayscale-100 bg-opacity-70 shadow-[0_0_2px] shadow-grayscale-300 "
-            : " text-text-secondary bg-grayscale-300 bg-opacity-50 "
+            ? " bg-greenAccent-900 text-grayscale-100 bg-opacity-70 hover:bg-opacity-80 "
+            : " text-text-secondary bg-grayscale-300 bg-opacity-50"
         }
         `}
       >
         <div className="flex items-center gap-4 ">
           <FontAwesomeIcon
             icon={icon}
-            className={` text-xl ${
+            className={` text-xl group-hover:text-grayscale-100 ${
               content?.some((e) => {
-                return e.link === path;
+                return e.link === path.split("/").slice(0,3).join("/");
               })
                 ? "text-grayscale-100"
                 : "text-greenAccent-900 text-opacity-80 "
@@ -55,9 +55,9 @@ const DashboardCollapsible = ({
           open ? (
             <FontAwesomeIcon
               icon={faAngleDown}
-              className={` w-3 h-3 ${
+              className={` w-3 h-3 group-hover:text-grayscale-100 ${
                 content?.some((e) => {
-                  return e.link === path;
+                  return e.link === path.split("/").slice(0,3).join("/");
                 })
                   ? "text-grayscale-100"
                   : "text-greenAccent-900"
@@ -66,9 +66,9 @@ const DashboardCollapsible = ({
           ) : (
             <FontAwesomeIcon
               icon={faAngleRight}
-              className={` w-2 h-2 ${
+              className={` w-2 h-2 group-hover:text-grayscale-100 ${
                 content?.some((e) => {
-                  return e.link === path;
+                  return e.link === path.split("/").slice(0,3).join("/");
                 })
                   ? "text-grayscale-100"
                   : "text-greenAccent-900"
@@ -83,17 +83,17 @@ const DashboardCollapsible = ({
             <Link
               href={e.link}
               key={i}
-              className={` w-[90%] mx-auto my-2 flex gap-3 items-center py-2 px-4 rounded-xl hover:bg-greenAccent-900 
+              className={`group w-[90%] mx-auto my-2 flex gap-3 items-center py-2 px-4 rounded-xl  hover:bg-greenAccent-900 hover:text-grayscale-100 hover:bg-opacity-80 shadow-[0_0_2px] shadow-grayscale-400
               ${
                 path === e.link
-                  ? " bg-greenAccent-900  text-grayscale-100 bg-opacity-70 shadow-[0_0_2px] shadow-grayscale-300 "
+                  ? " bg-greenAccent-900  text-grayscale-100 bg-opacity-70"
                   : " text-text-secondary bg-grayscale-300 bg-opacity-50 "
               } `}
             >
               {e.icon && (
                 <FontAwesomeIcon
                   icon={e.icon}
-                  className={` w-4 h-4 ${
+                  className={` w-4 h-4 group-hover:text-grayscale-100 ${
                     path === e.link
                       ? "text-grayscale-100"
                       : "text-greenAccent-900"

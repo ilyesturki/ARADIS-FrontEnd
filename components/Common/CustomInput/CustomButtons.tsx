@@ -15,7 +15,7 @@ const CustomButtons = ({
       </button>
       <button
         onClick={secondaryButtonOnCLick}
-        className=" py-2 px-6 bg-transparent rounded-md text-base font-medium text-greenAccent-900 border-[1px] border-greenAccent-900 "
+        className=" py-2 px-6 bg-transparent rounded-md text-base font-medium text-greenAccent-900 shadow-[0_0_4px] shadow-greenAccent-900 hover:bg-greenAccent-900 hover:bg-opacity-10 hover:text-opacity-90"
       >
         Reset
       </button>

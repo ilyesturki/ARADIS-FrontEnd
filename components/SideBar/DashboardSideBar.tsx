@@ -11,8 +11,8 @@ import WebSiteLogo from "../Common/WebSiteLogo";
 
 const links = [
   {
-    icon: faBox,
-    title: "Orders",
+    icon: faSquarePlus,
+    title: "Add QRAP",
   },
   {
     icon: faBoxesStacked,

@@ -32,9 +32,9 @@ const CustomSelectImage = ({
             <>
               <FontAwesomeIcon
                 icon={faImage}
-                className="text-5xl text-greenAccent-900 opacity-60"
+                className="text-5xl text-greenAccent-900 opacity-50"
               />
-              <p className="text-sm font-medium text-greenAccent-900 opacity-60">
+              <p className="text-sm font-medium text-greenAccent-900 opacity-50">
                 Drop your image here, or browse
               </p>
             </>
