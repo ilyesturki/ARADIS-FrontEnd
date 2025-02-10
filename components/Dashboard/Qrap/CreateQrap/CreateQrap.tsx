@@ -29,6 +29,7 @@ const CreateQrap = () => {
           label="qid"
           placeholder="qid"
           name="qid"
+          copy
           disabled
         />
         <CustomSelect<
