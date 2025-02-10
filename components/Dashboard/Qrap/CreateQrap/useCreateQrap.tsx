@@ -16,31 +16,46 @@ const typeData = [
   {
     value: "Securite",
     label: "Securite",
+    textColor: "text-red-500",
+    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
   },
   {
     value: "Environnement",
     label: "Environnement",
+    textColor: "text-greenAccent-800",
+    className:
+      "shadow-greenAccent-800 shadow-[0_0_4px] bg-greenAccent-800 bg-opacity-10 ",
   },
   {
     value: "Qualite",
     label: "Qualite",
+    textColor: "text-pinkAccent",
+    className:
+      "shadow-pinkAccent shadow-[0_0_4px] bg-pinkAccent bg-opacity-10 ",
   },
 
   {
     value: "TRS/Efficience",
     label: "TRS/Efficience",
+    textColor: "text-greenAccent-700",
+    className:
+      "shadow-greenAccent-700 shadow-[0_0_4px] bg-greenAccent-700 bg-opacity-10 ",
   },
   {
     value: "Maintenence",
     label: "Maintenence",
+    textColor: "text-red-500",
+    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
   },
   {
     value: "Autre",
     label: "Autre",
+    textColor: "text-red-500",
+    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
   },
 ];
 const initialQrapState: flexibleQrapType = {
-  type: "Autre", 
+  type: "Autre",
   quoi: "",
   ref: "",
   quand: "",
@@ -57,6 +72,11 @@ const useCreateQrap = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
   const [qrapData, setQrapData] = useState<flexibleQrapType>(initialQrapState);
+
+  const [typeColors, setTypeColors] = useState<{
+    textColor: string | undefined;
+    className: string | undefined;
+  }>({ textColor: "", className: "" });
 
   const handleChange = (
     e:
@@ -84,11 +104,24 @@ const useCreateQrap = () => {
     );
   };
 
-  const handleTypeChange = (role: flexibleQrapType["type"]) => {
+  const handleTypeChange = (type: flexibleQrapType["type"]) => {
     setQrapData((prevData) => ({
       ...prevData,
-      role,
+      type,
     }));
+
+    const selectedType = typeData.find((e) => e.value === type);
+    if (selectedType) {
+      setTypeColors({
+        textColor: selectedType.textColor,
+        className: selectedType.className,
+      });
+    } else {
+      setTypeColors({
+        textColor: undefined,
+        className: undefined,
+      });
+    }
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -143,6 +176,7 @@ const useCreateQrap = () => {
 
   return {
     typeData,
+    typeColors,
     handleTypeChange,
     qrapData,
 

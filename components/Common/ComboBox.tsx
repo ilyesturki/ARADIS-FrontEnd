@@ -27,15 +27,17 @@ const ComboBox = ({
   className,
   name,
   disabled,
+  textColor
 }: {
   label: string;
   selectedValue?: string;
   onChange?: (currentValue: string, name?: string) => void;
   // onChange?: (currentValue: string, name?: string) => void;
-  data: { value: string; label: string }[];
+  data: { value: string; label: string;color?:string }[];
   className?: string;
   name?: string;
   disabled?: boolean;
+  textColor?:string;
 }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(selectedValue || "");
@@ -48,12 +50,12 @@ const ComboBox = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`py-6 w-full justify-between text-sm font-normal text-grayscale-800 shadow-[0px_0px_2px] shadow-grayscale-800 border-none rounded-md ${className}`}
+          className={`py-6 w-full justify-between text-sm font-normal text-grayscale-500 shadow-[0px_0px_2px] shadow-grayscale-500 border-none rounded-md ${className} ${textColor}`}
         >
           {value
             ? data.find((e) => e.value === value)?.label
             : `Select ${label}...`}
-          <ChevronsUpDown className="ml-2 h-5 w-4 shrink-0 opacity-60" />
+          <ChevronsUpDown className="ml-2 h-5 w-4 shrink-0 opacity-70" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className=" w-[200px] p-0">

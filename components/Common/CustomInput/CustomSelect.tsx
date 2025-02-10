@@ -9,6 +9,8 @@ const CustomSelect = <T,>({
   name,
   children,
   disabled,
+  textColor,
+  className,
 }: {
   label: string;
   value?: string;
@@ -18,11 +20,19 @@ const CustomSelect = <T,>({
   data?: { value: string; label: string }[];
   children?: React.ReactNode;
   disabled?: boolean;
+  textColor?: string;
+  className?: string;
 }) => {
+  console.log(textColor);
+  console.log(className);
   return (
     <div className=" flex gap-4 items-center">
-      <div className=" bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
-        <span className=" text-[10px] font-semibold text-greenAccent-900 ">
+      <div
+        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] rounded-md shadow-greenAccent-900 ${className}`}
+      >
+        <span
+          className={`text-[10px] font-semibold text-greenAccent-900 ${textColor}`}
+        >
           {label}
         </span>
         <ComboBox
@@ -39,16 +49,7 @@ const CustomSelect = <T,>({
               }
             }
           }}
-          // onChange={(e: string, name?: string) => {
-          //   if (onChange) {
-          //     if (name) {
-          //       onChange(e as T, name);
-          //     } else {
-          //       onChange(e as T);
-          //     }
-          //   }
-          // }}
-
+          textColor={textColor}
           name={name}
           disabled={disabled}
           className=" bg-transparent shadow-none text-greenAccent-900 opacity-70 "
