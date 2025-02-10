@@ -54,6 +54,7 @@ export const verifyBasicDetailsValidationRules = {
 
 
 export const verifyQrapValidationRules = {
+  qid: { required: true },
   type: { required: true },
   quoi: { required: true },
   ref: { required: true },

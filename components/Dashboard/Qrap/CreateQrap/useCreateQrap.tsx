@@ -1,6 +1,6 @@
 "use client";
 import { flexibleQrapType } from "@/redux/qrap/qrapSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   customHandleChange,
@@ -11,6 +11,7 @@ import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyQrapValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createQrap } from "@/redux/qrap/qrapThunk";
+import { generateQRAPId } from "@/utils/generateQRAPId";
 
 const typeData = [
   {
@@ -55,6 +56,7 @@ const typeData = [
   },
 ];
 const initialQrapState: flexibleQrapType = {
+  qid: "",
   type: "Autre",
   quoi: "",
   ref: "",
@@ -89,6 +91,14 @@ const useCreateQrap = () => {
   // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   customImagesChange<flexibleQrapType>(e, setQrapData, "image", setImageFile);
   // };
+
+  useEffect(() => {
+    const uid = generateQRAPId("QRAP", 8);
+    setQrapData((prevData) => ({
+      ...prevData,
+      qid: uid,
+    }));
+  }, []);
 
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -126,6 +136,7 @@ const useCreateQrap = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
+      qid: qrapData.qid || "",
       type: qrapData.type || "",
       quoi: qrapData.quoi || "",
       ref: qrapData.ref || "",
@@ -152,6 +163,7 @@ const useCreateQrap = () => {
       e,
       { image: imageFile, images: imagesFiles },
       {
+        qid: qrapData.qid,
         type: qrapData.type,
         quoi: qrapData.quoi,
         ref: qrapData.ref,

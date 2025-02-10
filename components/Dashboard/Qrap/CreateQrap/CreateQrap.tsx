@@ -23,6 +23,14 @@ const CreateQrap = () => {
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
+        <CustomInput
+          value={qrapData.qid}
+          onChange={handleChange}
+          label="qid"
+          placeholder="qid"
+          name="qid"
+          disabled
+        />
         <CustomSelect<
           | "Securite"
           | "Environnement"

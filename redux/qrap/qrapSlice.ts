@@ -11,6 +11,7 @@ import {
 
 export interface QrapType {
   id: number;
+  qid:string;
   type: "Securite" | "Environnement" | "Qualite" | "TRS/Efficience" | "Maintenence"| "Autre";
   quoi: string;
   ref: string;
