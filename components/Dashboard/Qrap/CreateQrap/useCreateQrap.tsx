@@ -12,18 +12,35 @@ import { verifyQrapValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createQrap } from "@/redux/qrap/qrapThunk";
 
-const roleData = [
+const typeData = [
   {
-    value: "qrap",
-    label: "Qrap",
+    value: "Securite",
+    label: "Securite",
   },
   {
-    value: "admin",
-    label: "Admin",
+    value: "Environnement",
+    label: "Environnement",
+  },
+  {
+    value: "Qualite",
+    label: "Qualite",
+  },
+
+  {
+    value: "TRS/Efficience",
+    label: "TRS/Efficience",
+  },
+  {
+    value: "Maintenence",
+    label: "Maintenence",
+  },
+  {
+    value: "Autre",
+    label: "Autre",
   },
 ];
-
 const initialQrapState: flexibleQrapType = {
+  type: "Autre", 
   quoi: "",
   ref: "",
   quand: "",
@@ -33,10 +50,12 @@ const initialQrapState: flexibleQrapType = {
   combien: "",
   pourqoui: "",
   image: "",
+  images: [],
 };
 const useCreateQrap = () => {
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagesFiles, setImagesFiles] = useState<File[]>([]);
   const [qrapData, setQrapData] = useState<flexibleQrapType>(initialQrapState);
 
   const handleChange = (
@@ -47,18 +66,34 @@ const useCreateQrap = () => {
     customHandleChange(e, setQrapData);
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    customImagesChange<flexibleQrapType>(e, setQrapData, "image", setImageFile);
+  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   customImagesChange<flexibleQrapType>(e, setQrapData, "image", setImageFile);
+  // };
+
+  const handleImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index?: number
+  ) => {
+    customImagesChange<flexibleQrapType>(
+      e,
+      setQrapData,
+      "image",
+      setImageFile,
+      setImagesFiles,
+      index
+    );
   };
 
-  // const handleRoleChange = (role: flexibleQrapType["role"]) => {
-  //   setQrapData((prevData) => ({
-  //     ...prevData,
-  //     role,
-  //   }));
-  // };
+  const handleTypeChange = (role: flexibleQrapType["type"]) => {
+    setQrapData((prevData) => ({
+      ...prevData,
+      role,
+    }));
+  };
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
+      type: qrapData.type || "",
       quoi: qrapData.quoi || "",
       ref: qrapData.ref || "",
       quand: qrapData.quand || "",
@@ -69,6 +104,7 @@ const useCreateQrap = () => {
       pourqoui: qrapData.pourqoui || "",
 
       image: imageFile ? imageFile.type : "",
+      images: imagesFiles.map((file) => file.type).join(", "),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -81,8 +117,9 @@ const useCreateQrap = () => {
 
     customHandleSubmit(
       e,
-      { image: imageFile },
+      { image: imageFile, images: imagesFiles },
       {
+        type: qrapData.type,
         quoi: qrapData.quoi,
         ref: qrapData.ref,
         quand: qrapData.quand,
@@ -105,8 +142,8 @@ const useCreateQrap = () => {
   };
 
   return {
-    roleData,
-
+    typeData,
+    handleTypeChange,
     qrapData,
 
     handleChange,

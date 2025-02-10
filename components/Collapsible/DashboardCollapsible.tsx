@@ -37,11 +37,11 @@ const DashboardCollapsible: React.FC<DashboardCollapsibleProps> = ({
   const isActive = content?.some((item) => item.link === currentPath);
 
   const baseClass =
-    "group flex justify-between items-center w-full py-3 px-4 rounded-xl shadow-[0_0_2px] shadow-grayscale-400";
+    "group flex justify-between items-center w-full py-[10px] px-4 rounded-lg shadow-[0_0_2px] shadow-grayscale-400";
   const activeClass =
     "bg-greenAccent-900 text-grayscale-100 bg-opacity-70 hover:bg-opacity-80";
   const inactiveClass =
-    "text-text-secondary bg-grayscale-300 bg-opacity-50 hover:bg-greenAccent-900 hover:text-grayscale-100 hover:bg-opacity-80";
+    "text-text-secondary text-opacity-90 bg-grayscale-300 bg-opacity-50 hover:bg-greenAccent-900 hover:text-grayscale-100 hover:bg-opacity-80";
 
   const renderTrigger = () => (
     <CollapsibleTrigger
@@ -51,7 +51,7 @@ const DashboardCollapsible: React.FC<DashboardCollapsibleProps> = ({
       <div className="flex items-center gap-4">
         <FontAwesomeIcon
           icon={icon}
-          className={`text-xl group-hover:text-grayscale-100 ${
+          className={`text-[19px] group-hover:text-grayscale-100 ${
             isActive
               ? "text-grayscale-100"
               : "text-greenAccent-900 text-opacity-80"
@@ -78,20 +78,20 @@ const DashboardCollapsible: React.FC<DashboardCollapsibleProps> = ({
           <Link
             key={index}
             href={item.link}
-            className={`group w-[90%] mx-auto my-2 flex gap-3 items-center py-2 px-4 rounded-xl shadow-[0_0_2px] shadow-grayscale-400
+            className={`group w-[90%] mx-auto my-2 flex gap-3 items-center py-[8px] px-4 rounded-lg shadow-[0_0_2px] shadow-grayscale-400
               ${path === item.link ? activeClass : inactiveClass}`}
           >
             {item.icon && (
               <FontAwesomeIcon
                 icon={item.icon}
-                className={`w-4 h-4 group-hover:text-grayscale-100 ${
+                className={`w-4 h-4 text-[14px] group-hover:text-grayscale-100 ${
                   path === item.link
                     ? "text-grayscale-100"
                     : "text-greenAccent-900"
                 }`}
               />
             )}
-            <span className="text-sm font-semibold">{item.title}</span>
+            <span className="text-[13px] font-semibold">{item.title}</span>
           </Link>
         ))}
       </CollapsibleContent>

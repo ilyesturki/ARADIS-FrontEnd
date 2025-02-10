@@ -54,20 +54,36 @@ export const verifyBasicDetailsValidationRules = {
 
 
 export const verifyQrapValidationRules = {
-  mat: { required: true },
-  firstName: { required: true },
-  lastName: { required: true },
-  email: {
-    required: true,
-    pattern: /\S+@\S+\.\S+/,
-  },
-  phone: { required: false },
-  status: { required: false },
+  type: { required: true },
+  quoi: { required: true },
+  ref: { required: true },
+  quand: { required: true },
+  ou: { required: true },
+  qui: { required: true },
+  comment: { required: true },
+  combien: { required: true },
+  pourqoui: { required: true },
   image: {
-    required: false,
     customValidator: (value: string) =>
       !["image/jpeg", "image/png", "image/gif"].includes(value)
         ? "Please select a valid image file (JPEG, PNG, or GIF)."
         : null,
+  },
+  images: {
+    customValidator: (value: string) => {
+      if (value) {
+        const imagesFiles = value.split(",");
+        console.log(value);
+        console.log(imagesFiles);
+        for (let i = 0; i < imagesFiles.length; i++) {
+          if (
+            !["image/jpeg", "image/png", "image/gif"].includes(imagesFiles[i])
+          ) {
+            return "Please select a valid image file (JPEG, PNG, or GIF).";
+          }
+        }
+      }
+      return null;
+    },
   },
 };

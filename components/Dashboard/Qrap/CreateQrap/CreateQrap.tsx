@@ -6,10 +6,12 @@ import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useCreateQrap from "./useCreateQrap";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
+import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
+
 const CreateQrap = () => {
   const {
-    roleData,
-
+    typeData,
+    handleTypeChange,
     qrapData,
 
     handleChange,
@@ -20,20 +22,30 @@ const CreateQrap = () => {
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
-        <CustomInput
+      <CustomSelect<"Securite" | "Environnement" | "Qualite" | "TRS/Efficience" | "Maintenence"| "Autre">
+          label="Type"
+          value={qrapData.type}
+          onChange={handleTypeChange}
+          data={typeData}
+        
+        />
+        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
+        <CustomTextArea
           value={qrapData.quoi}
           onChange={handleChange}
           label="quoi"
           placeholder="Quel est le probleme ?"
           name="quoi"
         />
-        <CustomInput
+        <CustomTextArea
           value={qrapData.ref}
           onChange={handleChange}
           label="ref"
           placeholder="Quelle reference ?"
           name="ref"
         />
+        </div>
+        
         <CustomInput
           value={qrapData.quand}
           onChange={handleChange}
@@ -41,6 +53,7 @@ const CreateQrap = () => {
           placeholder="Date et heure ?"
           name="quand"
         />
+        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomInput
           value={qrapData.ou}
           onChange={handleChange}
@@ -54,7 +67,7 @@ const CreateQrap = () => {
           label="qui"
           placeholder="La detecté"
           name="qui"
-        />
+        /></div><div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomInput
           value={qrapData.comment}
           onChange={handleChange}
@@ -68,8 +81,8 @@ const CreateQrap = () => {
           label="combien"
           placeholder="De pieces ? Pertes ?"
           name="combien"
-        />
-        <CustomInput
+        /></div>
+        <CustomTextArea
           value={qrapData.pourqoui}
           onChange={handleChange}
           label="pourqoui"
@@ -79,11 +92,12 @@ const CreateQrap = () => {
       </div>
       <div className=" flex flex-col gap-10">
         <div className=" flex flex-col gap-6">
-          <CustomSelectImage
-            label="Qrap Image"
-            image={qrapData.image || ""}
-            handleImageChange={handleImageChange}
-          />
+          <CustomSelectImages
+          label="Qrap Gallery"
+          imageCover={qrapData.image || ""}
+          images={qrapData.images || []}
+          handleImageChange={handleImageChange}
+        />
         </div>
         <CustomButtons
           mainButtonOnCLick={handleSubmit}

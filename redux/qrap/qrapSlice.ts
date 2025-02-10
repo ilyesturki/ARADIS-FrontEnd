@@ -11,6 +11,7 @@ import {
 
 export interface QrapType {
   id: number;
+  type: "Securite" | "Environnement" | "Qualite" | "TRS/Efficience" | "Maintenence"| "Autre";
   quoi: string;
   ref: string;
   quand: string;
@@ -20,6 +21,7 @@ export interface QrapType {
   combien: string;
   pourqoui: string;
   image?: string;
+  images?: string[];
 }
 
 export type QrapTypeWithoutId = Omit<QrapType, "id">;

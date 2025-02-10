@@ -17,9 +17,9 @@ const CustomInput = ({
   disabled?: boolean;
 }) => {
   return (
-    <div className=" w-full flex gap-4 items-center">
+    <div className=" w-full flex gap-4 items-center"> 
       <div className=" w-full px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
-        <span className=" text-[10px] font-semibold text-greenAccent-900 capitalize ">
+        <span className="text-[10px] font-semibold text-greenAccent-900 capitalize ">
           {label}
         </span>
         <input
