@@ -7,6 +7,7 @@ import useCreateQrap from "./useCreateQrap";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
+import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 
 const CreateQrap = () => {
   const {
@@ -109,6 +110,17 @@ const CreateQrap = () => {
           label="pourqoui"
           placeholder="Est-ce un probleme ?"
           name="pourqoui"
+        />
+
+        <CustomSwitch
+          title="Y a-t-il un risque client ?"
+          checked={false}
+          onChange={() => {
+            // customHandleChangeSwitch(
+            //   "emailProductsNotifications",
+            //   !data.emailProductsNotifications
+            // )
+          }}
         />
       </div>
       <div className=" flex flex-col gap-10">
