@@ -8,6 +8,7 @@ import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
+import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 
 const CreateQrap = () => {
   const {
@@ -64,7 +65,7 @@ const CreateQrap = () => {
             name="ref"
           />
         </div>
-
+        <CustomDateTimePicker label="Quand" value={qrapData.quand}  />
         <CustomInput
           value={qrapData.quand}
           onChange={handleChange}
