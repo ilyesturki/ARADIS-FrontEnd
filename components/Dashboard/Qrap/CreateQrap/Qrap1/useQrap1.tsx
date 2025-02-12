@@ -69,7 +69,7 @@ const initialQrapState: flexibleQrapType = {
   image: "",
   images: [],
 };
-const useCreateQrap = () => {
+const useQrap1 = () => {
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
@@ -200,4 +200,4 @@ const useCreateQrap = () => {
   };
 };
 
-export default useCreateQrap;
+export default useQrap1;

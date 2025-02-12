@@ -23,6 +23,7 @@ export interface QrapType {
   pourqoui: string;
   image?: string;
   images?: string[];
+  users?: string[];
 }
 
 export type QrapTypeWithoutId = Omit<QrapType, "id">;

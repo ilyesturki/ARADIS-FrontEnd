@@ -134,3 +134,34 @@ export const customHandleChange = (
       reader.readAsDataURL(file);
     }
   };
+
+
+  
+export const customHandleSizeChange = (
+  data: string,
+  setProductData: (prevState: any) => any,
+  i?: number
+) => {
+  setProductData((prevData: any) => {
+    const users = [...(prevData.users || [])] as string[];
+    if (i !== undefined) {
+      if (
+        data === "" ||
+        users.some((e, k) => e === data && k !== i)
+      ) {
+        users.splice(i, 1);
+      } else {
+        users[i] = data;
+      }
+    } else {
+      if (data === "") {
+        return prevData;
+      }
+      users.push(data);
+    }
+    return {
+      ...prevData,
+      users,
+    };
+  });
+};

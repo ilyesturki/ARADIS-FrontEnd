@@ -3,14 +3,14 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import useCreateQrap from "./useCreateQrap";
+import useCreateQrap from "./useQrap1";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 
-const CreateQrap = () => {
+const Qrap1 = () => {
   const {
     typeData,
     typeColors,
@@ -142,4 +142,4 @@ const CreateQrap = () => {
   );
 };
 
-export default CreateQrap;
+export default Qrap1;

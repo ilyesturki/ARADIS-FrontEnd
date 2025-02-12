@@ -34,7 +34,7 @@ const links: DashboardCollapsibleProps[] = [
       },
       {
         title: "Add QRAP",
-        link: "/dashboard/qraps/create-qrap",
+        link: "/dashboard/qraps/create-qrap/qrap1",
         icon: faSquarePlus,
       },
     ],
