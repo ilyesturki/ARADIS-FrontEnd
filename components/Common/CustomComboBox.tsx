@@ -46,7 +46,7 @@ const CustomComboBox = ({
       <PopoverTrigger asChild>
         <button
           aria-expanded={open}
-          className={`flex items-center justify-center w-full aspect-1 bg-greenAccent-900 shadow-[0_0_4px] shadow-greenAccent-900 rounded-full border-2 border-white outline-1 hover:bg-greenAccent-800 ${className}`}
+          className={`flex items-center justify-center w-full aspect-1 bg-greenAccent-900 shadow-[0_0_2px] shadow-greenAccent-900 rounded-lg border-2 border-white outline-1 hover:bg-greenAccent-800 ${className}`}
           style={style}
         >
           {value ? (
@@ -56,7 +56,7 @@ const CustomComboBox = ({
               </span>
             ) : null
           ) : (
-            <FontAwesomeIcon icon={faPlus} className=" w-4 h-4 text-white " />
+            <FontAwesomeIcon icon={faPlus} className=" w-3 h-3 text-white " />
           )}
         </button>
       </PopoverTrigger>

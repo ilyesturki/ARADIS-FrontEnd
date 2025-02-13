@@ -39,7 +39,7 @@ const CustomPicker = ({
             el={e}
           />
         ))}
-        <div className="w-10">
+        <div className="w-8">
           <CustomComboBox
             label={label}
             data={data}
