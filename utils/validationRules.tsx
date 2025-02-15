@@ -52,7 +52,6 @@ export const verifyBasicDetailsValidationRules = {
   },
 };
 
-
 export const verifyQrapValidationRules = {
   qid: { required: true },
   type: { required: true },
@@ -81,6 +80,29 @@ export const verifyQrapValidationRules = {
             !["image/jpeg", "image/png", "image/gif"].includes(imagesFiles[i])
           ) {
             return "Please select a valid image file (JPEG, PNG, or GIF).";
+          }
+        }
+      }
+      return null;
+    },
+  },
+};
+
+export const FpsDefensiveActionsRules = {
+  qid: { required: true },
+  qrapData: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const qrapData = JSON.parse(value);
+        for (let i = 0; i < qrapData.length; i++) {
+          if (
+            !qrapData[i].procedure ||
+            !qrapData[i].userCategory ||
+            !qrapData[i].userService ||
+            !qrapData[i].quand
+          ) {
+            return "Please fill in all required fields.";
           }
         }
       }

@@ -9,10 +9,23 @@ import {
   deleteQrap,
 } from "./qrapThunk";
 
+export type fpsDefensiveActionType = {
+  procedure: string;
+  userCategory: string;
+  userService: string;
+  quand: string;
+};
+
 export interface QrapType {
   id: number;
-  qid:string;
-  type: "Securite" | "Environnement" | "Qualite" | "TRS/Efficience" | "Maintenence"| "Autre";
+  qid: string;
+  type:
+    | "Securite"
+    | "Environnement"
+    | "Qualite"
+    | "TRS/Efficience"
+    | "Maintenence"
+    | "Autre";
   quoi: string;
   ref: string;
   quand: string;
@@ -24,11 +37,14 @@ export interface QrapType {
   image?: string;
   images?: string[];
   users?: string[];
+  defensiveActions?: fpsDefensiveActionType[];
 }
 
 export type QrapTypeWithoutId = Omit<QrapType, "id">;
 
 export type flexibleQrapType = Partial<QrapType>;
+
+export type fpsDefensiveActionsType = fpsDefensiveActionType[];
 
 interface QrapsState {
   qraps: QrapType[];
