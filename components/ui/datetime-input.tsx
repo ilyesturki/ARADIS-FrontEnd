@@ -347,7 +347,7 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
       <div
         ref={ref}
         className={cn(
-          "flex h-10 items-center justify-start rounded-md border border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-10 w-full items-center justify-start rounded-md bg-transparent text-sm text-greenAccent-900  ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50",
           isFocused ? "outline-none ring-2 ring-ring ring-offset-2" : "",
           options.hideCalendarIcon && "ps-2",
           options.className

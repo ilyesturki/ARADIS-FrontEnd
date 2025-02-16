@@ -17,7 +17,7 @@ const CustomDateTimePicker = ({
   children?: React.ReactNode;
   disabled?: boolean;
 }) => {
-  const [value1, setValue] = useState<Date | undefined>(undefined);
+  const [data, setData] = useState<Date | undefined>(undefined);
   return (
     <div className=" flex gap-4 items-center">
       <div className="w-full pl-4 pr-2 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
@@ -26,17 +26,18 @@ const CustomDateTimePicker = ({
         </span>
         <div className="w-full flex flex-row gap-4">
           <DateTimePicker
-            value={value1}
-            onChange={setValue}
+            value={data}
+            onChange={setData}
             use12HourFormat
             timePicker={{ hour: true, minute: true }}
-            renderTrigger={({ open, value: value1, setOpen }) => (
+            renderTrigger={({ open, value: data, setOpen }) => (
               <DateTimeInput
-                value={value1}
-                onChange={(x) => !open && setValue(x)}
+                value={data}
+                onChange={(x) => !open && setData(x)}
                 format="dd/MM/yyyy hh:mm aa"
                 disabled={open}
                 onCalendarClick={() => setOpen(!open)}
+                
               />
             )}
           />

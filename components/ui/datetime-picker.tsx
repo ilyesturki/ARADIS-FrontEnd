@@ -260,8 +260,7 @@ export function DateTimePicker({
               !displayValue && "text-muted-foreground",
               (!clearable || !value) && "pe-3",
               disabled && "opacity-50 cursor-not-allowed",
-              classNames?.trigger,
-              "bg-red-500"
+              classNames?.trigger
             )}
             tabIndex={0}
           >
@@ -293,7 +292,7 @@ export function DateTimePicker({
       <PopoverContent className="w-auto p-2">
         <div className="flex items-center justify-between">
           <div className="text-md font-bold ms-2 flex items-center cursor-pointer">
-            <div>
+            <div className="text-greenAccent-900">
               <span
                 onClick={() =>
                   setMonthYearPicker(
@@ -394,7 +393,7 @@ export function DateTimePicker({
             minDate={minDate}
             maxDate={maxDate}
             className={cn(
-              "absolute top-0 left-0 bottom-0 right-0",
+              "absolute top-0 left-0 bottom-0 right-0 bg-grayscale-100",
               monthYearPicker ? "" : "hidden"
             )}
           />
@@ -411,7 +410,10 @@ export function DateTimePicker({
             />
           )}
           <div className="flex flex-row-reverse items-center justify-between">
-            <Button className="ms-2 h-7 px-2" onClick={onSubmit}>
+            <Button
+              className="ms-2 h-7 px-2 bg-greenAccent-900"
+              onClick={onSubmit}
+            >
               Done
             </Button>
             {timezone && (
