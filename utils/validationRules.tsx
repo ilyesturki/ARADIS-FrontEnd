@@ -52,7 +52,7 @@ export const verifyBasicDetailsValidationRules = {
   },
 };
 
-export const verifyQrapValidationRules = {
+export const verifyFpsValidationRules = {
   qid: { required: true },
   type: { required: true },
   quoi: { required: true },
@@ -90,17 +90,17 @@ export const verifyQrapValidationRules = {
 
 export const FpsDefensiveActionsRules = {
   qid: { required: true },
-  qrapData: {
+  fpsData: {
     required: true,
     customValidator: (value: string) => {
       if (value) {
-        const qrapData = JSON.parse(value);
-        for (let i = 0; i < qrapData.length; i++) {
+        const fpsData = JSON.parse(value);
+        for (let i = 0; i < fpsData.length; i++) {
           if (
-            !qrapData[i].procedure ||
-            !qrapData[i].userCategory ||
-            !qrapData[i].userService ||
-            !qrapData[i].quand
+            !fpsData[i].procedure ||
+            !fpsData[i].userCategory ||
+            !fpsData[i].userService ||
+            !fpsData[i].quand
           ) {
             return "Please fill in all required fields.";
           }

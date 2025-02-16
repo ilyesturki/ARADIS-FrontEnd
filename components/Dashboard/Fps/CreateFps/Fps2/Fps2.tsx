@@ -3,7 +3,7 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import useCreateQrap from "./useQrap2";
+import useCreateFps from "./useFps2";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
@@ -14,7 +14,7 @@ import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const Qrap2 = () => {
+const Fps2 = () => {
   const {
     usersData,
     handleUsersChange,
@@ -22,18 +22,18 @@ const Qrap2 = () => {
     typeData,
     typeColors,
     handleTypeChange,
-    qrapData,
+    fpsData,
 
     handleChange,
     handleImageChange,
     handleSubmit,
     handleReset,
-  } = useCreateQrap();
+  } = useCreateFps();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomInput
-          value={qrapData.qid}
+          value={fpsData.qid}
           onChange={handleChange}
           label="qid"
           placeholder="qid"
@@ -49,14 +49,14 @@ const Qrap2 = () => {
         />
         <CustomPicker
           label="Users"
-          selectedData={qrapData.users || []}
+          selectedData={fpsData.users || []}
           handleChange={handleUsersChange}
           data={usersData || []}
         />
         <hr className="w-full border-greenAccent-900 opacity-60" />
         <>
           <CustomInput
-            value={qrapData.ou}
+            value={fpsData.ou}
             onChange={handleChange}
             label="produit"
             placeholder="produit"
@@ -64,14 +64,14 @@ const Qrap2 = () => {
           />
           <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
             <CustomInput
-              value={qrapData.qui}
+              value={fpsData.qui}
               onChange={handleChange}
               label="quantité triee"
               placeholder="quantité triee"
               name="triee"
             />
             <CustomInput
-              value={qrapData.comment}
+              value={fpsData.comment}
               onChange={handleChange}
               label="quantité NOK"
               placeholder="quantité NOK"
@@ -86,7 +86,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="departement"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -101,7 +101,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="categorie"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -112,7 +112,7 @@ const Qrap2 = () => {
         <hr className="w-full border-greenAccent-900 opacity-60" />
         <>
           <CustomInput
-            value={qrapData.ou}
+            value={fpsData.ou}
             onChange={handleChange}
             label="produit"
             placeholder="produit"
@@ -120,14 +120,14 @@ const Qrap2 = () => {
           />
           <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
             <CustomInput
-              value={qrapData.qui}
+              value={fpsData.qui}
               onChange={handleChange}
               label="quantité triee"
               placeholder="quantité triee"
               name="triee"
             />
             <CustomInput
-              value={qrapData.comment}
+              value={fpsData.comment}
               onChange={handleChange}
               label="quantité NOK"
               placeholder="quantité NOK"
@@ -142,7 +142,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="departement"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -157,7 +157,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="categorie"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -177,7 +177,7 @@ const Qrap2 = () => {
           <hr className=" w-5/12 border-greenAccent-900 opacity-60" />
         </div>
         <CustomTextArea
-          value={qrapData.pourqoui}
+          value={fpsData.pourqoui}
           onChange={handleChange}
           label="pourqoui"
           placeholder="Qu'est ce qu'on a appris du tri ?"
@@ -187,7 +187,7 @@ const Qrap2 = () => {
       <div className=" flex flex-col gap-10">
         <>
           <CustomTextArea
-            value={qrapData.pourqoui}
+            value={fpsData.pourqoui}
             onChange={handleChange}
             label="pourqoui"
             placeholder="Qu'est ce qu'on a appris du tri ?"
@@ -203,7 +203,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="departement"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -218,7 +218,7 @@ const Qrap2 = () => {
               | "Autre"
             >
               label="categorie"
-              value={qrapData.type}
+              value={fpsData.type}
               onChange={handleTypeChange}
               data={typeData}
               textColor={typeColors.textColor}
@@ -235,4 +235,4 @@ const Qrap2 = () => {
   );
 };
 
-export default Qrap2;
+export default Fps2;

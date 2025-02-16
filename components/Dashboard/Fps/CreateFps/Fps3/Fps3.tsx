@@ -3,7 +3,7 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import useQrap3 from "./useQrap3";
+import useFps3 from "./useFps3";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
@@ -14,7 +14,7 @@ import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const Qrap3 = () => {
+const Fps3 = () => {
   const {
     usersData,
     handleUsersChange,
@@ -22,18 +22,18 @@ const Qrap3 = () => {
     typeData,
     typeColors,
     handleTypeChange,
-    qrapData,
+    fpsData,
 
     handleChange,
     handleImageChange,
     handleSubmit,
     handleReset,
-  } = useQrap3();
+  } = useFps3();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomInput
-          value={qrapData.qid}
+          value={fpsData.qid}
           onChange={handleChange}
           label="qid"
           placeholder="qid"
@@ -43,7 +43,7 @@ const Qrap3 = () => {
         />
 
         <CustomTextArea
-          value={qrapData.pourqoui}
+          value={fpsData.pourqoui}
           onChange={handleChange}
           label="pourqoui"
           placeholder="Qu'est ce qu'on a appris du tri ?"
@@ -51,7 +51,7 @@ const Qrap3 = () => {
         />
         <hr className="w-full border-greenAccent-900 opacity-60" />
         <CustomTextArea
-          value={qrapData.pourqoui}
+          value={fpsData.pourqoui}
           onChange={handleChange}
           label="pourqoui"
           placeholder="Qu'est ce qu'on a appris du tri ?"
@@ -72,7 +72,7 @@ const Qrap3 = () => {
       <div className=" flex flex-col gap-10">
         <CustomPicker
           label="Users"
-          selectedData={qrapData.users || []}
+          selectedData={fpsData.users || []}
           handleChange={handleUsersChange}
           data={usersData || []}
         />
@@ -85,4 +85,4 @@ const Qrap3 = () => {
   );
 };
 
-export default Qrap3;
+export default Fps3;

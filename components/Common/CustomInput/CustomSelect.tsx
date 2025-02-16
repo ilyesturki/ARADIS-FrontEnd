@@ -31,7 +31,7 @@ const CustomSelect = <T,>({
         className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] rounded-md shadow-greenAccent-900 ${className}`}
       >
         <span
-          className={`text-[10px] font-semibold text-greenAccent-900 ${textColor}`}
+          className={`text-[10px] font-semibold capitalize text-greenAccent-900 ${textColor}`}
         >
           {label}
         </span>

@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import {
-  getQraps,
-  getQrap,
-  createQrap,
-  updateQrap,
-  deleteQrap,
-} from "./qrapThunk";
+  getFpss,
+  getFps,
+  createFps,
+  updateFps,
+  deleteFps,
+} from "./fpsThunk";
 
 export type fpsDefensiveActionType = {
   procedure: string;
@@ -16,7 +16,7 @@ export type fpsDefensiveActionType = {
   quand: string;
 };
 
-export interface QrapType {
+export interface FpsType {
   id: number;
   qid: string;
   type:
@@ -40,105 +40,105 @@ export interface QrapType {
   defensiveActions?: fpsDefensiveActionType[];
 }
 
-export type QrapTypeWithoutId = Omit<QrapType, "id">;
+export type FpsTypeWithoutId = Omit<FpsType, "id">;
 
-export type flexibleQrapType = Partial<QrapType>;
+export type flexibleFpsType = Partial<FpsType>;
 
 export type fpsDefensiveActionsType = fpsDefensiveActionType[];
 
-interface QrapsState {
-  qraps: QrapType[];
-  qrap: QrapType | null;
+interface FpssState {
+  fpss: FpsType[];
+  fps: FpsType | null;
   loading: boolean;
   updateSuccess: boolean;
   deleteSuccess: boolean;
   error: string | null;
 }
 
-const initialState: QrapsState = {
-  qraps: [],
-  qrap: null,
+const initialState: FpssState = {
+  fpss: [],
+  fps: null,
   loading: false,
   updateSuccess: false,
   deleteSuccess: false,
   error: null,
 };
 
-const qrapsSlice = createSlice({
-  name: "qraps",
+const fpssSlice = createSlice({
+  name: "fpss",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getQraps.pending, (state) => {
+      .addCase(getFpss.pending, (state) => {
         state.loading = true;
       })
       .addCase(
-        getQraps.fulfilled,
-        (state, action: PayloadAction<QrapType[]>) => {
+        getFpss.fulfilled,
+        (state, action: PayloadAction<FpsType[]>) => {
           state.loading = false;
-          state.qraps = action.payload;
+          state.fpss = action.payload;
         }
       )
-      .addCase(getQraps.rejected, (state, action) => {
+      .addCase(getFpss.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
       })
-      .addCase(getQrap.pending, (state) => {
+      .addCase(getFps.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getQrap.fulfilled, (state, action: PayloadAction<QrapType>) => {
+      .addCase(getFps.fulfilled, (state, action: PayloadAction<FpsType>) => {
         state.loading = false;
-        state.qrap = action.payload;
+        state.fps = action.payload;
       })
-      .addCase(getQrap.rejected, (state, action) => {
+      .addCase(getFps.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
       })
-      .addCase(createQrap.pending, (state) => {
+      .addCase(createFps.pending, (state) => {
         state.loading = true;
       })
       .addCase(
-        createQrap.fulfilled,
-        (state, action: PayloadAction<QrapType>) => {
+        createFps.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
-          state.qraps.push(action.payload as QrapType);
+          state.fpss.push(action.payload as FpsType);
         }
       )
-      .addCase(createQrap.rejected, (state, action) => {
+      .addCase(createFps.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
       })
-      .addCase(updateQrap.pending, (state) => {
+      .addCase(updateFps.pending, (state) => {
         state.loading = true;
         state.updateSuccess = false;
       })
       .addCase(
-        updateQrap.fulfilled,
-        (state, action: PayloadAction<QrapType>) => {
+        updateFps.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
           state.updateSuccess = true;
-          const index = state.qraps.findIndex(
-            (qrap) => qrap.id === action.payload.id
+          const index = state.fpss.findIndex(
+            (fps) => fps.id === action.payload.id
           );
-          state.qraps[index] = action.payload;
+          state.fpss[index] = action.payload;
         }
       )
-      .addCase(updateQrap.rejected, (state, action) => {
+      .addCase(updateFps.rejected, (state, action) => {
         state.loading = false;
         state.updateSuccess = false;
         state.error = action.error.message as string;
       })
-      .addCase(deleteQrap.pending, (state) => {
+      .addCase(deleteFps.pending, (state) => {
         state.loading = true;
         state.deleteSuccess = false;
       })
-      .addCase(deleteQrap.fulfilled, (state, action: PayloadAction<string>) => {
+      .addCase(deleteFps.fulfilled, (state, action: PayloadAction<string>) => {
         state.loading = false;
         state.deleteSuccess = true;
-        state.qraps = state.qraps.filter((qrap) => qrap.id !== +action.payload);
+        state.fpss = state.fpss.filter((fps) => fps.id !== +action.payload);
       })
-      .addCase(deleteQrap.rejected, (state, action) => {
+      .addCase(deleteFps.rejected, (state, action) => {
         state.loading = false;
         state.deleteSuccess = false;
         state.error = action.error.message as string;
@@ -146,6 +146,6 @@ const qrapsSlice = createSlice({
   },
 });
 
-export default qrapsSlice.reducer;
+export default fpssSlice.reducer;
 
-export const {} = qrapsSlice.actions;
+export const {} = fpssSlice.actions;

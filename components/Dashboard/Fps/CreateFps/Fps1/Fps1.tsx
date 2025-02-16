@@ -3,30 +3,30 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import useCreateQrap from "./useQrap1";
+import useCreateFps from "./useFps1";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 
-const Qrap1 = () => {
+const Fps1 = () => {
   const {
     typeData,
     typeColors,
     handleTypeChange,
-    qrapData,
+    fpsData,
 
     handleChange,
     handleImageChange,
     handleSubmit,
     handleReset,
-  } = useCreateQrap();
+  } = useCreateFps();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomInput
-          value={qrapData.qid}
+          value={fpsData.qid}
           onChange={handleChange}
           label="qid"
           placeholder="qid"
@@ -43,7 +43,7 @@ const Qrap1 = () => {
           | "Autre"
         >
           label="Type"
-          value={qrapData.type}
+          value={fpsData.type}
           onChange={handleTypeChange}
           data={typeData}
           textColor={typeColors.textColor}
@@ -51,23 +51,23 @@ const Qrap1 = () => {
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomTextArea
-            value={qrapData.quoi}
+            value={fpsData.quoi}
             onChange={handleChange}
             label="quoi"
             placeholder="Quel est le probleme ?"
             name="quoi"
           />
           <CustomTextArea
-            value={qrapData.ref}
+            value={fpsData.ref}
             onChange={handleChange}
             label="ref"
             placeholder="Quelle reference ?"
             name="ref"
           />
         </div>
-        <CustomDateTimePicker label="Quand" value={qrapData.quand}  />
+        <CustomDateTimePicker label="Quand" value={fpsData.quand}  />
         <CustomInput
-          value={qrapData.quand}
+          value={fpsData.quand}
           onChange={handleChange}
           label="quand"
           placeholder="Date et heure ?"
@@ -75,14 +75,14 @@ const Qrap1 = () => {
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomInput
-            value={qrapData.ou}
+            value={fpsData.ou}
             onChange={handleChange}
             label="ou"
             placeholder="A-t-il detecte ?"
             name="ou"
           />
           <CustomInput
-            value={qrapData.qui}
+            value={fpsData.qui}
             onChange={handleChange}
             label="qui"
             placeholder="La detecté"
@@ -91,14 +91,14 @@ const Qrap1 = () => {
         </div>
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomInput
-            value={qrapData.comment}
+            value={fpsData.comment}
             onChange={handleChange}
             label="comment"
             placeholder="A-t-il detecte ?"
             name="comment"
           />
           <CustomInput
-            value={qrapData.combien}
+            value={fpsData.combien}
             onChange={handleChange}
             label="combien"
             placeholder="De pieces ? Pertes ?"
@@ -106,7 +106,7 @@ const Qrap1 = () => {
           />
         </div>
         <CustomTextArea
-          value={qrapData.pourqoui}
+          value={fpsData.pourqoui}
           onChange={handleChange}
           label="pourqoui"
           placeholder="Est-ce un probleme ?"
@@ -127,9 +127,9 @@ const Qrap1 = () => {
       <div className=" flex flex-col gap-10">
         <div className=" flex flex-col gap-6">
           <CustomSelectImages
-            label="Qrap Gallery"
-            imageCover={qrapData.image || ""}
-            images={qrapData.images || []}
+            label="Fps Gallery"
+            imageCover={fpsData.image || ""}
+            images={fpsData.images || []}
             handleImageChange={handleImageChange}
           />
         </div>
@@ -142,4 +142,4 @@ const Qrap1 = () => {
   );
 };
 
-export default Qrap1;
+export default Fps1;

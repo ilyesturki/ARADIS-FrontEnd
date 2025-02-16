@@ -3,20 +3,12 @@
 import SectionsSeperator from "../SectionsSeperator";
 import DefensiveAction from "./DefensiveAction";
 import AddSectionButton from "../AddSectionButton";
-import { fpsDefensiveActionsType } from "@/redux/qrap/qrapSlice";
+import { fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../RemoveSectionButton";
+import DefensiveActionHeader from "./DefensiveActionHeader";
 
-const DefensiveActions = ({
-  qrapData,
-  handleChange,
-  categoryData,
-  serviceData,
-  handleCategoryChange,
-  handleServiceChange,
-  addNewDefensiveAction,
-  removeDefensiveAction,
-}: {
-  qrapData: fpsDefensiveActionsType;
+interface Props {
+  fpsData: fpsDefensiveActionsType;
   handleChange: (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -28,22 +20,29 @@ const DefensiveActions = ({
   handleServiceChange: (userService: string, i: number) => void;
   addNewDefensiveAction: () => void;
   removeDefensiveAction: (index: number) => void;
-}) => {
+}
+
+const DefensiveActions = ({
+  fpsData,
+  handleChange,
+  categoryData,
+  serviceData,
+  handleCategoryChange,
+  handleServiceChange,
+  addNewDefensiveAction,
+  removeDefensiveAction,
+}: Props) => {
   return (
     <>
-      {qrapData.map((e, i) => {
+      {fpsData.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold capitalize text-greenAccent-900">
-                procedure N°{i + 1}
-              </span>
-              <RemoveSectionButton
-                removeDefensiveAction={() => removeDefensiveAction(i)}
-              />
-            </div>
+            <DefensiveActionHeader
+              i={i}
+              removeDefensiveAction={() => removeDefensiveAction(i)}
+            />
             <DefensiveAction
-              qrapData={e}
+              fpsData={e}
               handleChange={handleChange}
               categoryData={categoryData}
               serviceData={serviceData}
@@ -54,7 +53,7 @@ const DefensiveActions = ({
                 handleServiceChange(userService, i)
               }
             />
-            {qrapData.length - 1 !== i ? (
+            {fpsData.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
               <AddSectionButton addNewDefensiveAction={addNewDefensiveAction} />

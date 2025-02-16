@@ -1,17 +1,16 @@
 "use client";
-import { flexibleQrapType } from "@/redux/qrap/qrapSlice";
+import { flexibleFpsType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   customHandleChange,
   customImagesChange,
   customHandleSubmit,
-  customHandleSizeChange,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
-import { verifyQrapValidationRules } from "@/utils/validationRules";
+import { verifyFpsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createQrap } from "@/redux/qrap/qrapThunk";
+import { createFps } from "@/redux/fps/fpsThunk";
 import { generateQRAPId } from "@/utils/generateQRAPId";
 
 const typeData = [
@@ -56,15 +55,7 @@ const typeData = [
     className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
   },
 ];
-
-const usersData = [
-  { value: "S", label: "qualité" },
-  { value: "M", label: "securité" },
-  { value: "L", label: "man" },
-  { value: "Ls", label: "mansss" },
-];
-
-const initialQrapState: flexibleQrapType = {
+const initialFpsState: flexibleFpsType = {
   qid: "",
   type: "Autre",
   quoi: "",
@@ -77,13 +68,12 @@ const initialQrapState: flexibleQrapType = {
   pourqoui: "",
   image: "",
   images: [],
-  users: [],
 };
-const useQrap2 = () => {
+const useFps1 = () => {
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
-  const [qrapData, setQrapData] = useState<flexibleQrapType>(initialQrapState);
+  const [fpsData, setFpsData] = useState<flexibleFpsType>(initialFpsState);
 
   const [typeColors, setTypeColors] = useState<{
     textColor: string | undefined;
@@ -95,24 +85,16 @@ const useQrap2 = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    customHandleChange(e, setQrapData);
-  };
-
-
-  const handleUsersChange = (
-    data: string,
-    i?: number
-  ) => {
-    customHandleSizeChange(data, setQrapData, i);
+    customHandleChange(e, setFpsData);
   };
 
   // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   customImagesChange<flexibleQrapType>(e, setQrapData, "image", setImageFile);
+  //   customImagesChange<flexibleFpsType>(e, setFpsData, "image", setImageFile);
   // };
 
   useEffect(() => {
     const uid = generateQRAPId("QRAP", 8);
-    setQrapData((prevData) => ({
+    setFpsData((prevData) => ({
       ...prevData,
       qid: uid,
     }));
@@ -122,9 +104,9 @@ const useQrap2 = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index?: number
   ) => {
-    customImagesChange<flexibleQrapType>(
+    customImagesChange<flexibleFpsType>(
       e,
-      setQrapData,
+      setFpsData,
       "image",
       setImageFile,
       setImagesFiles,
@@ -132,8 +114,8 @@ const useQrap2 = () => {
     );
   };
 
-  const handleTypeChange = (type: flexibleQrapType["type"]) => {
-    setQrapData((prevData) => ({
+  const handleTypeChange = (type: flexibleFpsType["type"]) => {
+    setFpsData((prevData) => ({
       ...prevData,
       type,
     }));
@@ -154,23 +136,23 @@ const useQrap2 = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: qrapData.qid || "",
-      type: qrapData.type || "",
-      quoi: qrapData.quoi || "",
-      ref: qrapData.ref || "",
-      quand: qrapData.quand || "",
-      ou: qrapData.ou || "",
-      qui: qrapData.qui || "",
-      comment: qrapData.comment || "",
-      combien: qrapData.combien || "",
-      pourqoui: qrapData.pourqoui || "",
+      qid: fpsData.qid || "",
+      type: fpsData.type || "",
+      quoi: fpsData.quoi || "",
+      ref: fpsData.ref || "",
+      quand: fpsData.quand || "",
+      ou: fpsData.ou || "",
+      qui: fpsData.qui || "",
+      comment: fpsData.comment || "",
+      combien: fpsData.combien || "",
+      pourqoui: fpsData.pourqoui || "",
 
       image: imageFile ? imageFile.type : "",
       images: imagesFiles.map((file) => file.type).join(", "),
     };
     const newErrors = validateFormFields(
       dataToValidate,
-      verifyQrapValidationRules
+      verifyFpsValidationRules
     );
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
@@ -181,18 +163,18 @@ const useQrap2 = () => {
       e,
       { image: imageFile, images: imagesFiles },
       {
-        qid: qrapData.qid,
-        type: qrapData.type,
-        quoi: qrapData.quoi,
-        ref: qrapData.ref,
-        quand: qrapData.quand,
-        ou: qrapData.ou,
-        qui: qrapData.qui,
-        comment: qrapData.comment,
-        combien: qrapData.combien,
-        pourqoui: qrapData.pourqoui,
+        qid: fpsData.qid,
+        type: fpsData.type,
+        quoi: fpsData.quoi,
+        ref: fpsData.ref,
+        quand: fpsData.quand,
+        ou: fpsData.ou,
+        qui: fpsData.qui,
+        comment: fpsData.comment,
+        combien: fpsData.combien,
+        pourqoui: fpsData.pourqoui,
       },
-      (formData) => dispatch(createQrap(formData)),
+      (formData) => dispatch(createFps(formData)),
       handleReset
     );
   };
@@ -201,18 +183,14 @@ const useQrap2 = () => {
       e.preventDefault();
     }
     setImageFile(null);
-    setQrapData(initialQrapState);
+    setFpsData(initialFpsState);
   };
 
   return {
-    usersData,
-    handleUsersChange,
-
-
     typeData,
     typeColors,
     handleTypeChange,
-    qrapData,
+    fpsData,
 
     handleChange,
     handleImageChange,
@@ -222,4 +200,4 @@ const useQrap2 = () => {
   };
 };
 
-export default useQrap2;
+export default useFps1;

@@ -24,17 +24,17 @@ interface DashboardCollapsibleProps {
 
 const links: DashboardCollapsibleProps[] = [
   {
-    title: "QRAPs",
+    title: "Fps",
     icon: faLayerGroup,
     content: [
       {
-        title: "QRAPs Panel",
-        link: "/dashboard/qraps",
+        title: "Fps Panel",
+        link: "/dashboard/fps",
         icon: faGears,
       },
       {
-        title: "Add QRAP",
-        link: "/dashboard/qraps/create-qrap/qrap1",
+        title: "Add Fps",
+        link: "/dashboard/fps/create-fps/fps1",
         icon: faSquarePlus,
       },
     ],

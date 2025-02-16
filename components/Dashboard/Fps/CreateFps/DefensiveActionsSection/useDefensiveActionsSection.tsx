@@ -1,9 +1,9 @@
 "use client";
 import {
-  QrapType,
+  FpsType,
   fpsDefensiveActionsType,
   fpsDefensiveActionType,
-} from "@/redux/qrap/qrapSlice";
+} from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
@@ -14,15 +14,15 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
   FpsDefensiveActionsRules,
-  verifyQrapValidationRules,
+  verifyFpsValidationRules,
 } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createQrap } from "@/redux/qrap/qrapThunk";
+import { createFps } from "@/redux/fps/fpsThunk";
 import { generateQRAPId } from "@/utils/generateQRAPId";
 
 import { categoryData, serviceData } from "@/data/fps";
 
-const initialQrapState: fpsDefensiveActionsType = [
+const initialFpsState: fpsDefensiveActionsType = [
   {
     procedure: "",
     userCategory: "",
@@ -30,22 +30,22 @@ const initialQrapState: fpsDefensiveActionsType = [
     quand: "",
   },
 ];
-const useQrap4 = () => {
+const useDefensiveActionsSection = () => {
   const dispatch = useAppDispatch();
-  const [qrapData, setQrapData] =
-    useState<fpsDefensiveActionsType>(initialQrapState);
-  const [qrapQid, setQrapQid] = useState<QrapType["qid"]>("");
+  const [fpsData, setFpsData] =
+    useState<fpsDefensiveActionsType>(initialFpsState);
+  const [fpsQid, setFpsQid] = useState<FpsType["qid"]>("");
 
   const addNewDefensiveAction = () => {
-    setQrapData((prevData) => [
+    setFpsData((prevData) => [
       ...prevData,
       { procedure: "", userCategory: "", userService: "", quand: "" },
     ]);
   };
 
   const removeDefensiveAction = (index: number) => {
-    if (qrapData.length > 1) {
-      setQrapData((prevData) => prevData.filter((_, i) => i !== index));
+    if (fpsData.length > 1) {
+      setFpsData((prevData) => prevData.filter((_, i) => i !== index));
     }
   };
 
@@ -54,32 +54,32 @@ const useQrap4 = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    customHandleChange(e, setQrapData);
+    customHandleChange(e, setFpsData);
   };
 
   useEffect(() => {
     const qid = generateQRAPId("QRAP", 8);
-    setQrapQid(qid);
+    setFpsQid(qid);
   }, []);
 
   const handleCategoryChange = (
     userCategory: fpsDefensiveActionType["userCategory"],
     i: number
   ) => {
-    handleChangeSelectInArray(setQrapData, userCategory, "userCategory", i);
+    handleChangeSelectInArray(setFpsData, userCategory, "userCategory", i);
   };
 
   const handleServiceChange = (
     userService: fpsDefensiveActionType["userService"],
     i: number
   ) => {
-    handleChangeSelectInArray(setQrapData, userService, "userService", i);
+    handleChangeSelectInArray(setFpsData, userService, "userService", i);
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: qrapQid,
-      qrapData: JSON.stringify(qrapData),
+      qid: fpsQid,
+      fpsData: JSON.stringify(fpsData),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -94,10 +94,10 @@ const useQrap4 = () => {
       e,
       {},
       {
-        qid: qrapQid,
-        qrapData: JSON.stringify(qrapData),
+        qid: fpsQid,
+        fpsData: JSON.stringify(fpsData),
       },
-      (formData) => dispatch(createQrap(formData)),
+      (formData) => dispatch(createFps(formData)),
       handleReset
     );
   };
@@ -105,12 +105,12 @@ const useQrap4 = () => {
     if (e) {
       e.preventDefault();
     }
-    setQrapData(initialQrapState);
+    setFpsData(initialFpsState);
   };
 
   return {
-    qrapData,
-    qrapQid,
+    fpsData,
+    fpsQid,
     handleChange,
     categoryData,
     serviceData,
@@ -124,4 +124,4 @@ const useQrap4 = () => {
   };
 };
 
-export default useQrap4;
+export default useDefensiveActionsSection;
