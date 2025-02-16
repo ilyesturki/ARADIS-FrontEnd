@@ -3,6 +3,27 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { getFpss, getFps, createFps, updateFps, deleteFps } from "./fpsThunk";
 
+export type fpsProblemType = {
+  type:
+    | "Securite"
+    | "Environnement"
+    | "Qualite"
+    | "TRS/Efficience"
+    | "Maintenence"
+    | "Autre";
+  quoi: string;
+  ref: string;
+  quand: string;
+  ou: string;
+  qui: string;
+  comment: string;
+  combien: string;
+  pourqoui: string;
+  image?: string;
+  images?: string[];
+  users?: string[];
+};
+
 export type fpsDefensiveActionType = {
   procedure: string;
   userCategory: string;
@@ -40,24 +61,7 @@ export type fpsImmediateActionsType = {
 export interface FpsType {
   id: number;
   qid: string;
-  type:
-    | "Securite"
-    | "Environnement"
-    | "Qualite"
-    | "TRS/Efficience"
-    | "Maintenence"
-    | "Autre";
-  quoi: string;
-  ref: string;
-  quand: string;
-  ou: string;
-  qui: string;
-  comment: string;
-  combien: string;
-  pourqoui: string;
-  image?: string;
-  images?: string[];
-  users?: string[];
+  problem: fpsProblemType;
   defensiveActions?: fpsDefensiveActionType[];
   cause?: fpsCauseType;
   immediatActions?: fpsImmediateActionsType;

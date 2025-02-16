@@ -9,9 +9,9 @@ import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImag
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
-import { sortingResultsType } from "@/redux/fps/fpsSlice";
+import { immediatActionsType } from "@/redux/fps/fpsSlice";
 
-const SortingResult = ({
+const ImmediateAction = ({
   fpsData,
   handleChange,
   categoryData,
@@ -19,7 +19,7 @@ const SortingResult = ({
   customCategoryChange,
   customServiceChange,
 }: {
-  fpsData: sortingResultsType;
+  fpsData: immediatActionsType;
   handleChange: (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -32,28 +32,14 @@ const SortingResult = ({
 }) => {
   return (
     <div className=" flex flex-col gap-4">
-      <CustomInput
-        value={fpsData.product}
+      <CustomTextArea
+        value={fpsData.description}
         onChange={handleChange}
-        label="produit"
-        placeholder="produit"
-        name="produit"
+        label="pourqoui"
+        placeholder="Qu'est ce qu'on a appris du tri ?"
+        name="pourqoui"
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
-        <CustomInput
-          value={fpsData.sortedQuantity}
-          onChange={handleChange}
-          label="quantité triee"
-          placeholder="quantité triee"
-          name="triee"
-        />
-        <CustomInput
-          value={fpsData.quantityNOK}
-          onChange={handleChange}
-          label="quantité NOK"
-          placeholder="quantité NOK"
-          name="NOK"
-        />
         <CustomSelect
           label="departement"
           value={fpsData.userService}
@@ -71,4 +57,4 @@ const SortingResult = ({
   );
 };
 
-export default SortingResult;
+export default ImmediateAction;

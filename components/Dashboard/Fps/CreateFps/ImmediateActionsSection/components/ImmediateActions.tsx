@@ -2,32 +2,33 @@
 
 import SectionsSeperator from "../../../Common/SectionsSeperator";
 import AddSectionButton from "../../../Common/AddSectionButton";
-import { sortingResultsType } from "@/redux/fps/fpsSlice";
+import { immediatActionsType, sortingResultsType } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 import SortingResult from "./SortingResult";
+import ImmediateAction from "./ImmediateAction";
 
 interface Props {
-  sortingResults: sortingResultsType[];
+  immediatActions: immediatActionsType[];
   handleChange: (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
-  addNewSortingResult: () => void;
-  removeSortingResult: (index: number) => void;
+  addNewImmediateAction: () => void;
+  removeImmediateAction: (index: number) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
   handleCategoryChange: (userCategory: string, i: number) => void;
   handleServiceChange: (userService: string, i: number) => void;
 }
 
-const SortingResults = ({
-  sortingResults,
+const ImmediateActions = ({
+  immediatActions,
   handleChange,
-  addNewSortingResult,
-  removeSortingResult,
+  addNewImmediateAction,
+  removeImmediateAction,
   categoryData,
   serviceData,
   handleCategoryChange,
@@ -35,15 +36,15 @@ const SortingResults = ({
 }: Props) => {
   return (
     <>
-      {sortingResults.map((e, i) => {
+      {immediatActions.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2">
             <CustomSectionHeader
-              title="result"
+              title="action"
               i={i}
-              removeDefensiveAction={() => removeSortingResult(i)}
+              removeDefensiveAction={() => removeImmediateAction(i)}
             />
-            <SortingResult
+            <ImmediateAction
               fpsData={e}
               handleChange={handleChange}
               categoryData={categoryData}
@@ -55,10 +56,10 @@ const SortingResults = ({
                 handleServiceChange(userService, i)
               }
             />
-            {sortingResults.length - 1 !== i ? (
+            {immediatActions.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewSortingResult} />
+              <AddSectionButton addNewSection={addNewImmediateAction} />
             )}
           </div>
         );
@@ -67,4 +68,4 @@ const SortingResults = ({
   );
 };
 
-export default SortingResults;
+export default ImmediateActions;

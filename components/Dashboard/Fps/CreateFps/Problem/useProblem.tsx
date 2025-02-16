@@ -1,5 +1,5 @@
 "use client";
-import { flexibleFpsType } from "@/redux/fps/fpsSlice";
+import { FpsType, fpsProblemType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
@@ -12,51 +12,9 @@ import { verifyFpsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFps } from "@/redux/fps/fpsThunk";
 import { generateQRAPId } from "@/utils/generateQRAPId";
+import { problemTypesData } from "@/data/fps";
 
-const typeData = [
-  {
-    value: "Securite",
-    label: "Securite",
-    textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
-  },
-  {
-    value: "Environnement",
-    label: "Environnement",
-    textColor: "text-greenAccent-800",
-    className:
-      "shadow-greenAccent-800 shadow-[0_0_4px] bg-greenAccent-800 bg-opacity-10 ",
-  },
-  {
-    value: "Qualite",
-    label: "Qualite",
-    textColor: "text-pinkAccent",
-    className:
-      "shadow-pinkAccent shadow-[0_0_4px] bg-pinkAccent bg-opacity-10 ",
-  },
-
-  {
-    value: "TRS/Efficience",
-    label: "TRS/Efficience",
-    textColor: "text-greenAccent-700",
-    className:
-      "shadow-greenAccent-700 shadow-[0_0_4px] bg-greenAccent-700 bg-opacity-10 ",
-  },
-  {
-    value: "Maintenence",
-    label: "Maintenence",
-    textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
-  },
-  {
-    value: "Autre",
-    label: "Autre",
-    textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
-  },
-];
-const initialFpsState: flexibleFpsType = {
-  qid: "",
+const initialFpsState: fpsProblemType = {
   type: "Autre",
   quoi: "",
   ref: "",
@@ -69,11 +27,12 @@ const initialFpsState: flexibleFpsType = {
   image: "",
   images: [],
 };
-const useFps1 = () => {
+const useProblem = () => {
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
-  const [fpsData, setFpsData] = useState<flexibleFpsType>(initialFpsState);
+  const [fpsData, setFpsData] = useState<fpsProblemType>(initialFpsState);
+  const [fpsQid, setFpsQid] = useState<FpsType["qid"]>("");
 
   const [typeColors, setTypeColors] = useState<{
     textColor: string | undefined;
@@ -88,8 +47,13 @@ const useFps1 = () => {
     customHandleChange(e, setFpsData);
   };
 
+  useEffect(() => {
+    const qid = generateQRAPId("QRAP", 8);
+    setFpsQid(qid);
+  }, []);
+
   // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   customImagesChange<flexibleFpsType>(e, setFpsData, "image", setImageFile);
+  //   customImagesChange<fpsProblemType>(e, setFpsData, "image", setImageFile);
   // };
 
   useEffect(() => {
@@ -104,7 +68,7 @@ const useFps1 = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index?: number
   ) => {
-    customImagesChange<flexibleFpsType>(
+    customImagesChange<fpsProblemType>(
       e,
       setFpsData,
       "image",
@@ -114,13 +78,13 @@ const useFps1 = () => {
     );
   };
 
-  const handleTypeChange = (type: flexibleFpsType["type"]) => {
+  const handleTypeChange = (type: fpsProblemType["type"]) => {
     setFpsData((prevData) => ({
       ...prevData,
       type,
     }));
 
-    const selectedType = typeData.find((e) => e.value === type);
+    const selectedType = problemTypesData.find((e) => e.value === type);
     if (selectedType) {
       setTypeColors({
         textColor: selectedType.textColor,
@@ -136,7 +100,6 @@ const useFps1 = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsData.qid || "",
       type: fpsData.type || "",
       quoi: fpsData.quoi || "",
       ref: fpsData.ref || "",
@@ -163,7 +126,6 @@ const useFps1 = () => {
       e,
       { image: imageFile, images: imagesFiles },
       {
-        qid: fpsData.qid,
         type: fpsData.type,
         quoi: fpsData.quoi,
         ref: fpsData.ref,
@@ -187,11 +149,11 @@ const useFps1 = () => {
   };
 
   return {
-    typeData,
+    problemTypesData,
     typeColors,
     handleTypeChange,
     fpsData,
-
+    fpsQid,
     handleChange,
     handleImageChange,
 
@@ -200,4 +162,4 @@ const useFps1 = () => {
   };
 };
 
-export default useFps1;
+export default useProblem;

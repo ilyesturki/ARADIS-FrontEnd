@@ -43,7 +43,7 @@ const initialFpsState: fpsImmediateActionsType = {
     },
   ],
 };
-const useImmediateActions = () => {
+const useImmediateActionsSection = () => {
   const dispatch = useAppDispatch();
 
   const [fpsData, setFpsData] =
@@ -184,4 +184,4 @@ const useImmediateActions = () => {
   };
 };
 
-export default useImmediateActions;
+export default useImmediateActionsSection;
