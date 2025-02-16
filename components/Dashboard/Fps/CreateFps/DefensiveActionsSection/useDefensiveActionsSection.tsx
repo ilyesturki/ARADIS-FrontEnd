@@ -24,7 +24,7 @@ import { categoryData, serviceData } from "@/data/fps";
 
 const initialFpsState: fpsDefensiveActionsType = [
   {
-    procedure: "",
+    procedure: "", 
     userCategory: "",
     userService: "",
     quand: "",
@@ -41,7 +41,7 @@ const useDefensiveActionsSection = () => {
       ...prevData,
       { procedure: "", userCategory: "", userService: "", quand: "" },
     ]);
-  };
+  }; 
 
   const removeDefensiveAction = (index: number) => {
     if (fpsData.length > 1) {

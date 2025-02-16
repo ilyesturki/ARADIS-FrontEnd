@@ -1,19 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import {
-  getFpss,
-  getFps,
-  createFps,
-  updateFps,
-  deleteFps,
-} from "./fpsThunk";
+import { getFpss, getFps, createFps, updateFps, deleteFps } from "./fpsThunk";
 
 export type fpsDefensiveActionType = {
   procedure: string;
   userCategory: string;
   userService: string;
   quand: string;
+};
+
+export type fpsCauseType = {
+  causeList: string[];
+  whyList: string[];
+};
+
+export type sortingResultsType = {
+  product: string;
+  sortedQuantity: string;
+  quantityNOK: string;
+  userCategory: string;
+  userService: string;
+};
+
+export type immediatActionsType = {
+  description: string;
+  userCategory: string;
+  userService: string;
+};
+
+export type fpsImmediateActionsType = {
+  alert?: string[];
+  startSorting?: boolean;
+  sortingResults?: sortingResultsType[];
+  concludeFromSorting?: string;
+  immediatActions?: immediatActionsType[];
 };
 
 export interface FpsType {
@@ -38,6 +59,8 @@ export interface FpsType {
   images?: string[];
   users?: string[];
   defensiveActions?: fpsDefensiveActionType[];
+  cause?: fpsCauseType;
+  immediatActions?: fpsImmediateActionsType;
 }
 
 export type FpsTypeWithoutId = Omit<FpsType, "id">;
@@ -65,7 +88,7 @@ const initialState: FpssState = {
 };
 
 const fpssSlice = createSlice({
-  name: "fpss",
+  name: "fps",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -73,13 +96,10 @@ const fpssSlice = createSlice({
       .addCase(getFpss.pending, (state) => {
         state.loading = true;
       })
-      .addCase(
-        getFpss.fulfilled,
-        (state, action: PayloadAction<FpsType[]>) => {
-          state.loading = false;
-          state.fpss = action.payload;
-        }
-      )
+      .addCase(getFpss.fulfilled, (state, action: PayloadAction<FpsType[]>) => {
+        state.loading = false;
+        state.fpss = action.payload;
+      })
       .addCase(getFpss.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
@@ -98,13 +118,10 @@ const fpssSlice = createSlice({
       .addCase(createFps.pending, (state) => {
         state.loading = true;
       })
-      .addCase(
-        createFps.fulfilled,
-        (state, action: PayloadAction<FpsType>) => {
-          state.loading = false;
-          state.fpss.push(action.payload as FpsType);
-        }
-      )
+      .addCase(createFps.fulfilled, (state, action: PayloadAction<FpsType>) => {
+        state.loading = false;
+        state.fpss.push(action.payload as FpsType);
+      })
       .addCase(createFps.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
@@ -113,17 +130,14 @@ const fpssSlice = createSlice({
         state.loading = true;
         state.updateSuccess = false;
       })
-      .addCase(
-        updateFps.fulfilled,
-        (state, action: PayloadAction<FpsType>) => {
-          state.loading = false;
-          state.updateSuccess = true;
-          const index = state.fpss.findIndex(
-            (fps) => fps.id === action.payload.id
-          );
-          state.fpss[index] = action.payload;
-        }
-      )
+      .addCase(updateFps.fulfilled, (state, action: PayloadAction<FpsType>) => {
+        state.loading = false;
+        state.updateSuccess = true;
+        const index = state.fpss.findIndex(
+          (fps) => fps.id === action.payload.id
+        );
+        state.fpss[index] = action.payload;
+      })
       .addCase(updateFps.rejected, (state, action) => {
         state.loading = false;
         state.updateSuccess = false;

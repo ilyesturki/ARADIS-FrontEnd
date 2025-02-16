@@ -1,14 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const AddSectionButton = ({
-  addNewDefensiveAction,
-}: {
-  addNewDefensiveAction: () => void;
-}) => {
+const AddSectionButton = ({ addNewSection }: { addNewSection: () => void }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addNewDefensiveAction();
+    addNewSection();
   };
 
   return (

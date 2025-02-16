@@ -24,7 +24,6 @@ const CustomInput = ({
   return (
     <div className=" w-full flex gap-4 items-center">
       <div className=" w-full px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
-        {/* <div className="flex justify-between items-center"> */}
         <span className=" w-full text-[10px] font-semibold text-greenAccent-900 capitalize ">
           {label}
           {copy && <CopyButton data={value || ""} />}

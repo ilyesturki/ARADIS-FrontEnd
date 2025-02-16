@@ -1,11 +1,11 @@
 "use client";
 
-import SectionsSeperator from "../SectionsSeperator";
+import SectionsSeperator from "../../../Common/SectionsSeperator";
 import DefensiveAction from "./DefensiveAction";
-import AddSectionButton from "../AddSectionButton";
+import AddSectionButton from "../../../Common/AddSectionButton";
 import { fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
-import RemoveSectionButton from "../RemoveSectionButton";
-import DefensiveActionHeader from "./DefensiveActionHeader";
+import RemoveSectionButton from "../../../Common/RemoveSectionButton";
+import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 
 interface Props {
   fpsData: fpsDefensiveActionsType;
@@ -37,7 +37,8 @@ const DefensiveActions = ({
       {fpsData.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2">
-            <DefensiveActionHeader
+            <CustomSectionHeader
+              title="procedure"
               i={i}
               removeDefensiveAction={() => removeDefensiveAction(i)}
             />
@@ -56,7 +57,7 @@ const DefensiveActions = ({
             {fpsData.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewDefensiveAction={addNewDefensiveAction} />
+              <AddSectionButton addNewSection={addNewDefensiveAction} />
             )}
           </div>
         );

@@ -161,6 +161,58 @@ export const customHandleSizeChange = (
   });
 };
 
+export const customHandleCauseChange = (
+  data: string,
+  setProductData: (prevState: any) => any,
+  i?: number
+) => {
+  setProductData((prevData: any) => {
+    const causeList = [...(prevData.causeList || [])] as string[];
+    if (i !== undefined) {
+      if (data === "" || causeList.some((e, k) => e === data && k !== i)) {
+        causeList.splice(i, 1);
+      } else {
+        causeList[i] = data;
+      }
+    } else {
+      if (data === "") {
+        return prevData;
+      }
+      causeList.push(data);
+    }
+    return {
+      ...prevData,
+      causeList,
+    };
+  });
+};
+
+export const customHandleAlertChange = (
+  data: string,
+  setProductData: (prevState: any) => any,
+  i?: number
+) => {
+  setProductData((prevData: any) => {
+    const alert = [...(prevData.alert || [])] as string[];
+    if (i !== undefined) {
+      if (data === "" || alert.some((e, k) => e === data && k !== i)) {
+        alert.splice(i, 1);
+      } else {
+        alert[i] = data;
+      }
+    } else {
+      if (data === "") {
+        return prevData;
+      }
+      alert.push(data);
+    }
+    return {
+      ...prevData,
+      alert,
+    };
+  });
+};
+
 export const handleChangeSelectInArray = (
   setState: (updater: (prevState: any) => any) => void,
   value: any,

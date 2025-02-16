@@ -3,7 +3,7 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import useDefensiveActionsSection from "./useDefensiveActionsSection";
 
-import DefensiveActions from "../../Common/DefensiveActions/DefensiveActions";
+import DefensiveActions from "./DefensiveActions/DefensiveActions";
 
 const DefensiveActionsSection = () => {
   const {

@@ -36,3 +36,23 @@ export const serviceData = [
     label: "autre",
   },
 ];
+
+export const causeData = [
+  {
+    value: "Workforce",
+    label: "Main d’œuvre",
+  },
+  {
+    value: "method",
+    label: "Méthode",
+  },
+  {
+    value: "matter",
+    label: "Matière",
+  },
+
+  {
+    value: "machine",
+    label: "Machine",
+  },
+];
