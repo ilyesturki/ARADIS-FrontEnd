@@ -3,7 +3,7 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import useCreateFps from "./useProblem";
+import useProblem from "./useProblem";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
@@ -19,20 +19,19 @@ const Problem = () => {
     fpsQid,
     handleChange,
     handleImageChange,
+    customHandleChangeSelect,
+    customHandleChangeDate,
+    categoryData,
+    serviceData,
+    handleClientRisk,
+
     handleSubmit,
     handleReset,
-  } = useCreateFps();
+  } = useProblem();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
-        <CustomSelect<
-          | "Securite"
-          | "Environnement"
-          | "Qualite"
-          | "TRS/Efficience"
-          | "Maintenence"
-          | "Autre"
-        >
+        <CustomSelect
           label="Type"
           value={fpsData.type}
           onChange={handleTypeChange}
@@ -56,13 +55,11 @@ const Problem = () => {
             name="ref"
           />
         </div>
-        <CustomDateTimePicker label="Quand" value={fpsData.quand} />
-        <CustomInput
+        <CustomDateTimePicker
+          label="Quand"
           value={fpsData.quand}
-          onChange={handleChange}
-          label="quand"
-          placeholder="Date et heure ?"
           name="quand"
+          onChange={customHandleChangeDate}
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomInput
@@ -73,29 +70,35 @@ const Problem = () => {
             name="ou"
           />
           <CustomInput
-            value={fpsData.qui}
-            onChange={handleChange}
-            label="qui"
-            placeholder="La detecté"
-            name="qui"
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
-          <CustomInput
-            value={fpsData.comment}
-            onChange={handleChange}
-            label="comment"
-            placeholder="A-t-il detecte ?"
-            name="comment"
-          />
-          <CustomInput
             value={fpsData.combien}
             onChange={handleChange}
             label="combien"
             placeholder="De pieces ? Pertes ?"
             name="combien"
           />
+          <CustomSelect
+            label="departement"
+            value={fpsData.userService}
+            onChange={customHandleChangeSelect}
+            data={serviceData}
+            name="userService"
+          />
+          <CustomSelect
+            label="categorie"
+            value={fpsData.userService}
+            onChange={customHandleChangeSelect}
+            data={categoryData}
+            name="userCategory"
+          />
         </div>
+        <CustomTextArea
+          value={fpsData.comment}
+          onChange={handleChange}
+          label="comment"
+          placeholder="A-t-il detecte ?"
+          name="comment"
+        />
+
         <CustomTextArea
           value={fpsData.pourqoui}
           onChange={handleChange}
@@ -106,13 +109,8 @@ const Problem = () => {
 
         <CustomSwitch
           title="Y a-t-il un risque client ?"
-          checked={false}
-          onChange={() => {
-            // customHandleChangeSwitch(
-            //   "emailProductsNotifications",
-            //   !data.emailProductsNotifications
-            // )
-          }}
+          checked={fpsData.clientRisck}
+          onChange={handleClientRisk}
         />
       </div>
       <div className=" flex flex-col gap-10">

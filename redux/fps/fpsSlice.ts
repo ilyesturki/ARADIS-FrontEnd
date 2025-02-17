@@ -15,13 +15,14 @@ export type fpsProblemType = {
   ref: string;
   quand: string;
   ou: string;
-  qui: string;
+  userCategory: string;
+  userService: string;
   comment: string;
   combien: string;
   pourqoui: string;
   image?: string;
   images?: string[];
-  users?: string[];
+  clientRisck: boolean;
 };
 
 export type fpsDefensiveActionType = {
@@ -60,7 +61,7 @@ export type fpsImmediateActionsType = {
 
 export interface FpsType {
   id: number;
-  qid: string;
+  fpsId: string;
   problem: fpsProblemType;
   defensiveActions?: fpsDefensiveActionType[];
   cause?: fpsCauseType;

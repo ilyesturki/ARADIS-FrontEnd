@@ -1,3 +1,5 @@
+import { fpsProblemType } from "@/redux/fps/fpsSlice";
+
 export const problemTypesData = [
   {
     value: "Securite",
@@ -99,3 +101,19 @@ export const causeData = [
     label: "Machine",
   },
 ];
+
+export const initialFpsProblem: fpsProblemType = {
+  type: "Autre",
+  quoi: "",
+  ref: "",
+  quand: "",
+  ou: "",
+  userCategory: "",
+  userService: "",
+  comment: "",
+  combien: "",
+  pourqoui: "",
+  image: "",
+  images: [],
+  clientRisck: false,
+};

@@ -52,22 +52,29 @@ export const verifyBasicDetailsValidationRules = {
   },
 };
 
-export const verifyFpsValidationRules = {
+export const fpsProblemValidationRules = {
   qid: { required: true },
   type: { required: true },
   quoi: { required: true },
   ref: { required: true },
   quand: { required: true },
   ou: { required: true },
-  qui: { required: true },
   comment: { required: true },
   combien: { required: true },
   pourqoui: { required: true },
+  clientRisck: { required: true },
+  userCategory: { required: true },
+  userService: { required: true },
   image: {
-    customValidator: (value: string) =>
-      !["image/jpeg", "image/png", "image/gif"].includes(value)
-        ? "Please select a valid image file (JPEG, PNG, or GIF)."
-        : null,
+    customValidator: (value: string) => {
+      console.log(value);
+      if (value) {
+        return !["image/jpeg", "image/png", "image/gif"].includes(value)
+          ? "Please select a valid image file (JPEG, PNG, or GIF)."
+          : null;
+      }
+      return null;
+    },
   },
   images: {
     customValidator: (value: string) => {
