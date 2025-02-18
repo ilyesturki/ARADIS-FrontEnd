@@ -1,3 +1,4 @@
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +32,7 @@ const tabs = [
 ];
 
 const CreateFps = () => {
-  const { currentTab, handleTabChange, validTabs } = useCreateFps();
+  const { currentTab, validTabs, handleTabChange } = useCreateFps();
   return (
     <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
       <TabsList className="grid w-full grid-cols-4">
@@ -55,7 +56,7 @@ const CreateFps = () => {
       <TabsContent value="problem">
         <ProblemTab />
       </TabsContent>
-      <TabsContent value="ImmediateActions">
+      <TabsContent value="immediateActions">
         <ImmediateActionsTab />
       </TabsContent>
       <TabsContent value="cause">
