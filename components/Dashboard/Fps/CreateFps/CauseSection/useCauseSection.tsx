@@ -10,10 +10,10 @@ import {
   customHandleCauseChange,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
-import { verifyFpsValidationRules } from "@/utils/validationRules";
+import { fpsProblemValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFps } from "@/redux/fps/fpsThunk";
-import { generateQRAPId } from "@/utils/generateFPSId";
+import { generateFPSId } from "@/utils/generateFPSId";
 
 import { causeData } from "@/data/fps";
 
@@ -24,7 +24,7 @@ const initialFpsState: fpsCauseType = {
 const useCauseSection = () => {
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<fpsCauseType>(initialFpsState);
-  const [fpsQid, setFpsQid] = useState<FpsType["qid"]>("");
+  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   const handleChange = (
     e:
@@ -54,8 +54,6 @@ const useCauseSection = () => {
     customHandleCauseChange(data, setFpsData, i);
   };
 
-  
-
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       qid: fpsQid,
@@ -64,7 +62,7 @@ const useCauseSection = () => {
     };
     const newErrors = validateFormFields(
       dataToValidate,
-      verifyFpsValidationRules
+      fpsProblemValidationRules
     );
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
@@ -79,7 +77,7 @@ const useCauseSection = () => {
         causeList: JSON.stringify(fpsData.causeList),
         whyList: JSON.stringify(fpsData.whyList),
       },
-      (formData) => dispatch(createFps(formData)),
+      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
       handleReset
     );
   };

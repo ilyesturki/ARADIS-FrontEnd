@@ -14,17 +14,17 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
   FpsDefensiveActionsRules,
-  verifyFpsValidationRules,
+  fpsProblemValidationRules,
 } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFps } from "@/redux/fps/fpsThunk";
-import { generateQRAPId } from "@/utils/generateFPSId";
+import { generateFPSId } from "@/utils/generateFPSId";
 
 import { categoryData, serviceData } from "@/data/fps";
 
 const initialFpsState: fpsDefensiveActionsType = [
   {
-    procedure: "", 
+    procedure: "",
     userCategory: "",
     userService: "",
     quand: "",
@@ -34,14 +34,14 @@ const useDefensiveActionsSection = () => {
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] =
     useState<fpsDefensiveActionsType>(initialFpsState);
-  const [fpsQid, setFpsQid] = useState<FpsType["qid"]>("");
+  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   const addNewDefensiveAction = () => {
     setFpsData((prevData) => [
       ...prevData,
       { procedure: "", userCategory: "", userService: "", quand: "" },
     ]);
-  }; 
+  };
 
   const removeDefensiveAction = (index: number) => {
     if (fpsData.length > 1) {
@@ -58,7 +58,7 @@ const useDefensiveActionsSection = () => {
   };
 
   useEffect(() => {
-    const qid = generateQRAPId("QRAP", 8);
+    const qid = generateFPSId("QRAP", 8);
     setFpsQid(qid);
   }, []);
 
@@ -97,7 +97,7 @@ const useDefensiveActionsSection = () => {
         qid: fpsQid,
         fpsData: JSON.stringify(fpsData),
       },
-      (formData) => dispatch(createFps(formData)),
+      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
       handleReset
     );
   };
