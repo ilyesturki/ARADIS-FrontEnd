@@ -13,7 +13,7 @@ import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsProblemValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFps } from "@/redux/fps/fpsThunk";
-import { generateQRAPId } from "@/utils/generateQRAPId";
+import { generateFPSId } from "@/utils/generateFPSId";
 import {
   problemTypesData,
   categoryData,
@@ -49,8 +49,8 @@ const useProblem = () => {
   };
 
   useEffect(() => {
-    const qid = generateQRAPId("QRAP", 8);
-    setFpsQid(qid);
+    const fpsId = generateFPSId("FPS", 8);
+    setFpsQid(fpsId);
   }, []);
 
   const customHandleChangeSelect = (value: string, name?: string) => {
@@ -128,7 +128,6 @@ const useProblem = () => {
       e,
       { image: imageFile, images: imagesFiles },
       {
-        qid: fpsQid,
         type: fpsData.type,
         quoi: fpsData.quoi,
         ref: fpsData.ref,
@@ -141,7 +140,7 @@ const useProblem = () => {
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
       },
-      (formData) => dispatch(createFps(formData)),
+      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
       handleReset
     );
   };
@@ -150,7 +149,7 @@ const useProblem = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsProblem);
-    setFpsQid(generateQRAPId("QRAP", 8));
+    setFpsQid(generateFPSId("FPS", 8));
     setTypeColors({ textColor: "", className: "" });
     setImageFile(null);
     setImagesFiles([]);

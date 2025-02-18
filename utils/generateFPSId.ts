@@ -1,5 +1,5 @@
-export const generateQRAPId = (
-  prefix: string = "QRAP",
+export const generateFPSId = (
+  prefix: string = "FPS",
   length: number = 8
 ): string => {
   const timestamp = Date.now().toString(36).toUpperCase(); // Base36 timestamp (shorter & unique)

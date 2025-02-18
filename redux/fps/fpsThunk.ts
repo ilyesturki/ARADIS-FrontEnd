@@ -19,9 +19,9 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
 
 export const createFps = createAsyncThunk(
   "fpss/createFps",
-  async (fps: FormData) => {
+  async ({ id, fps }: { id: string; fps: FormData }) => {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fpss`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/problem/${id}`,
       fps,
       {
         headers: {

@@ -13,7 +13,7 @@ import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyFpsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFps } from "@/redux/fps/fpsThunk";
-import { generateQRAPId } from "@/utils/generateQRAPId";
+import { generateQRAPId } from "@/utils/generateFPSId";
 
 import { causeData } from "@/data/fps";
 
