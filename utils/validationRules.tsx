@@ -61,8 +61,8 @@ export const fpsProblemValidationRules = {
   ou: { required: true },
   comment: { required: true },
   combien: { required: true },
-  pourqoui: { required: true },
-  clientRisck: { required: true },
+  pourquoi: { required: true },
+  clientRisk: { required: true },
   userCategory: { required: true },
   userService: { required: true },
   image: {
@@ -95,21 +95,77 @@ export const fpsProblemValidationRules = {
   },
 };
 
-export const FpsDefensiveActionsRules = {
+export const fpsImmediateActionsValidationRules = {
   qid: { required: true },
-  fpsData: {
+  alert: { required: true },
+  startSorting: { required: true },
+  sortingResults: {
     required: true,
     customValidator: (value: string) => {
       if (value) {
-        const fpsData = JSON.parse(value);
-        for (let i = 0; i < fpsData.length; i++) {
+        const sortingResults = JSON.parse(value);
+        for (let i = 0; i < sortingResults.length; i++) {
           if (
-            !fpsData[i].procedure ||
-            !fpsData[i].userCategory ||
-            !fpsData[i].userService ||
-            !fpsData[i].quand
+            !sortingResults[i].product ||
+            !sortingResults[i].sortedQuantity ||
+            !sortingResults[i].quantityNOK ||
+            !sortingResults[i].userCategory ||
+            !sortingResults[i].userService
           ) {
-            return "Please fill in all required fields.";
+            return "Please fill in all required fields for all sorting results.";
+          }
+          console.log(sortingResults[i]);
+        }
+      }
+      return null;
+    },
+  },
+  concludeFromSorting: { required: true },
+  immediatActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const immediatActions = JSON.parse(value);
+        for (let i = 0; i < immediatActions.length; i++) {
+          if (
+            !immediatActions[i].description ||
+            !immediatActions[i].userCategory ||
+            !immediatActions[i].userService
+          ) {
+            return "Please fill in all required fields for all immediate actions.";
+          }
+        }
+      }
+      return null;
+    },
+  },
+};
+
+export const fpsCauseValidationRules = {
+  qid: { required: true },
+  whyList: {
+    required: true,
+  },
+  causeList: {
+    required: true,
+  },
+};
+
+export const FpsDefensiveActionsRules = {
+  qid: { required: true },
+  defensiveActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const defensiveActions = JSON.parse(value);
+        for (let i = 0; i < defensiveActions.length; i++) {
+          if (
+            !defensiveActions[i].procedure ||
+            !defensiveActions[i].userCategory ||
+            !defensiveActions[i].userService ||
+            !defensiveActions[i].quand
+          ) {
+            return "Please fill in all required fields for all defensive actions.";
           }
         }
       }

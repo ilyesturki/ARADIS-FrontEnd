@@ -9,21 +9,25 @@ import CustomSectionHeader from "../../Common/CustomSectionHeader";
 
 interface Props {
   whyList: fpsCauseType["whyList"];
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+  handleChangeWhyList: (
+    value: any,
+    index: number
   ) => void;
   addNewWhy: () => void;
   removeWhy: (index: number) => void;
 }
 
-const WhyList = ({ whyList, handleChange, addNewWhy, removeWhy }: Props) => {
+const WhyList = ({
+  whyList,
+  handleChangeWhyList,
+  addNewWhy,
+  removeWhy,
+}: Props) => {
   return (
     <>
       {whyList.map((e, i) => {
         return (
-          <div className=" flex flex-col gap-2">
+          <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
               title="why"
               i={i}
@@ -31,7 +35,9 @@ const WhyList = ({ whyList, handleChange, addNewWhy, removeWhy }: Props) => {
             />
             <CustomTextArea
               value={e}
-              onChange={handleChange}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                handleChangeWhyList( e.target.value, i)
+              }
               label="procedure"
               placeholder="Mesures finales que nous avons prises"
               name="procedure"

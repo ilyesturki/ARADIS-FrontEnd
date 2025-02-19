@@ -20,8 +20,14 @@ interface Props {
   removeImmediateAction: (index: number) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
-  handleCategoryChange: (userCategory: string, i: number) => void;
-  handleServiceChange: (userService: string, i: number) => void;
+  handleChangeInArrayObject: (
+    setState: (updater: (prevState: any) => any) => void,
+    value: any,
+    arrayName: string,
+    name: string,
+    index: number
+  ) => void;
+  setFpsData: (updater: (prevState: any) => any) => void;
 }
 
 const ImmediateActions = ({
@@ -31,14 +37,14 @@ const ImmediateActions = ({
   removeImmediateAction,
   categoryData,
   serviceData,
-  handleCategoryChange,
-  handleServiceChange,
+  handleChangeInArrayObject,
+  setFpsData,
 }: Props) => {
   return (
     <>
       {immediatActions.map((e, i) => {
         return (
-          <div className=" flex flex-col gap-2">
+          <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
               title="action"
               i={i}
@@ -46,14 +52,34 @@ const ImmediateActions = ({
             />
             <ImmediateAction
               fpsData={e}
-              handleChange={handleChange}
               categoryData={categoryData}
               serviceData={serviceData}
+              customWhyChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                handleChangeInArrayObject(
+                  setFpsData,
+                  e.target.value,
+                  "immediatActions",
+                  "description",
+                  i
+                )
+              }
               customCategoryChange={(userCategory: string) =>
-                handleCategoryChange(userCategory, i)
+                handleChangeInArrayObject(
+                  setFpsData,
+                  userCategory,
+                  "immediatActions",
+                  "userCategory",
+                  i
+                )
               }
               customServiceChange={(userService: string) =>
-                handleServiceChange(userService, i)
+                handleChangeInArrayObject(
+                  setFpsData,
+                  userService,
+                  "immediatActions",
+                  "userService",
+                  i
+                )
               }
             />
             {immediatActions.length - 1 !== i ? (

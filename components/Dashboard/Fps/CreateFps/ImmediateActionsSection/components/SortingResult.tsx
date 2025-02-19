@@ -13,20 +13,20 @@ import { sortingResultsType } from "@/redux/fps/fpsSlice";
 
 const SortingResult = ({
   fpsData,
-  handleChange,
   categoryData,
   serviceData,
+  handleProductChange,
+  customSortedQuantityChange,
+  customQuantityNOKChange,
   customCategoryChange,
   customServiceChange,
 }: {
   fpsData: sortingResultsType;
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
+  handleProductChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  customSortedQuantityChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  customQuantityNOKChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
 }) => {
@@ -34,25 +34,22 @@ const SortingResult = ({
     <div className=" flex flex-col gap-4">
       <CustomInput
         value={fpsData.product}
-        onChange={handleChange}
+        onChange={handleProductChange}
         label="produit"
         placeholder="produit"
-        name="produit"
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomInput
           value={fpsData.sortedQuantity}
-          onChange={handleChange}
+          onChange={customSortedQuantityChange}
           label="quantité triee"
           placeholder="quantité triee"
-          name="triee"
         />
         <CustomInput
           value={fpsData.quantityNOK}
-          onChange={handleChange}
+          onChange={customQuantityNOKChange}
           label="quantité NOK"
           placeholder="quantité NOK"
-          name="NOK"
         />
         <CustomSelect
           label="departement"

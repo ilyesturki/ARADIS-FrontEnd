@@ -13,20 +13,16 @@ import { immediatActionsType } from "@/redux/fps/fpsSlice";
 
 const ImmediateAction = ({
   fpsData,
-  handleChange,
   categoryData,
   serviceData,
+  customWhyChange,
   customCategoryChange,
   customServiceChange,
 }: {
   fpsData: immediatActionsType;
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
+  customWhyChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
 }) => {
@@ -34,10 +30,9 @@ const ImmediateAction = ({
     <div className=" flex flex-col gap-4">
       <CustomTextArea
         value={fpsData.description}
-        onChange={handleChange}
-        label="pourqoui"
+        onChange={customWhyChange}
+        label="pourquoi"
         placeholder="Qu'est ce qu'on a appris du tri ?"
-        name="pourqoui"
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomSelect

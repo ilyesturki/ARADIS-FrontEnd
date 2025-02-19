@@ -17,11 +17,59 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
   return response.data.data as FpsType;
 });
 
-export const createFps = createAsyncThunk(
-  "fpss/createFps",
+export const createFpsProblem = createAsyncThunk(
+  "fpss/createFpsProblem",
   async ({ id, fps }: { id: string; fps: FormData }) => {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/problem/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
+export const createFpsImmediateActions = createAsyncThunk(
+  "fpss/createFpsImmediateActions",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/immediate-actions/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
+export const createFpsCause = createAsyncThunk(
+  "fpss/createFpsCause",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/cause/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
+export const createFpsDefensiveActions = createAsyncThunk(
+  "fpss/createFpsDefensiveActions",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/defensive-actions/${id}`,
       fps,
       {
         headers: {

@@ -9,26 +9,25 @@ import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 
 interface Props {
   fpsData: fpsDefensiveActionsType;
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
-  handleCategoryChange: (userCategory: string, i: number) => void;
-  handleServiceChange: (userService: string, i: number) => void;
+  handleChangeInArray: (
+    setState: (updater: (prevState: any) => any) => void,
+    value: any,
+    name: string,
+    index: number
+  ) => void;
+  setFpsData: (updater: (prevState: any) => any) => void;
   addNewDefensiveAction: () => void;
   removeDefensiveAction: (index: number) => void;
 }
 
 const DefensiveActions = ({
   fpsData,
-  handleChange,
   categoryData,
   serviceData,
-  handleCategoryChange,
-  handleServiceChange,
+  handleChangeInArray,
+  setFpsData,
   addNewDefensiveAction,
   removeDefensiveAction,
 }: Props) => {
@@ -36,7 +35,7 @@ const DefensiveActions = ({
     <>
       {fpsData.map((e, i) => {
         return (
-          <div className=" flex flex-col gap-2">
+          <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
               title="procedure"
               i={i}
@@ -44,14 +43,29 @@ const DefensiveActions = ({
             />
             <DefensiveAction
               fpsData={e}
-              handleChange={handleChange}
               categoryData={categoryData}
               serviceData={serviceData}
+              customProcedureChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement>
+              ) =>
+                handleChangeInArray(setFpsData, e.target.value, "procedure", i)
+              }
               customCategoryChange={(userCategory: string) =>
-                handleCategoryChange(userCategory, i)
+                handleChangeInArray(setFpsData, userCategory, "userCategory", i)
               }
               customServiceChange={(userService: string) =>
-                handleServiceChange(userService, i)
+                handleChangeInArray(setFpsData, userService, "userService", i)
+              }
+              customQuandChange={(
+                value: Date | undefined,
+                name?: string | undefined
+              ) =>
+                handleChangeInArray(
+                  setFpsData,
+                  value ? value.toISOString() : "",
+                  "quand",
+                  i
+                )
               }
             />
             {fpsData.length - 1 !== i ? (

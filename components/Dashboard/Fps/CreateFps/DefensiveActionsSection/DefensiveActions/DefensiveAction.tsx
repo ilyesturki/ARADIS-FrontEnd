@@ -16,31 +16,28 @@ import {
 
 const DefensiveAction = ({
   fpsData,
-  handleChange,
   categoryData,
   serviceData,
+  customProcedureChange,
   customCategoryChange,
   customServiceChange,
+  customQuandChange,
 }: {
   fpsData: fpsDefensiveActionType;
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
   categoryData: { value: string; label: string }[];
   serviceData: { value: string; label: string }[];
+  customProcedureChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
+  customQuandChange: (date: Date | undefined, name?: string | undefined) => void;
 }) => {
   return (
     <div className=" flex flex-col gap-4">
       <CustomTextArea
         value={fpsData.procedure}
-        onChange={handleChange}
+        onChange={customProcedureChange}
         label="procedure"
         placeholder="Mesures finales que nous avons prises"
-        name="procedure"
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomSelect
@@ -56,7 +53,7 @@ const DefensiveAction = ({
           data={serviceData}
         />
       </div>
-      <CustomDateTimePicker label="Quand" value={fpsData.quand} />
+      <CustomDateTimePicker label="Quand" value={fpsData.quand} onChange={customQuandChange} />
     </div>
   );
 };

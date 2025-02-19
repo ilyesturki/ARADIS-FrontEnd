@@ -9,11 +9,11 @@ const DefensiveActionsSection = () => {
   const {
     fpsData,
     fpsQid,
-    handleChange,
     categoryData,
     serviceData,
-    handleCategoryChange,
-    handleServiceChange,
+    handleChangeInArray,
+    setFpsData,
+    
     addNewDefensiveAction,
     removeDefensiveAction,
 
@@ -25,11 +25,10 @@ const DefensiveActionsSection = () => {
       <div className=" flex flex-col gap-2">
         <DefensiveActions
           fpsData={fpsData}
-          handleChange={handleChange}
           categoryData={categoryData}
           serviceData={serviceData}
-          handleCategoryChange={handleCategoryChange}
-          handleServiceChange={handleServiceChange}
+          handleChangeInArray={handleChangeInArray}
+          setFpsData={setFpsData}
           addNewDefensiveAction={addNewDefensiveAction}
           removeDefensiveAction={removeDefensiveAction}
         />
@@ -37,7 +36,6 @@ const DefensiveActionsSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsQid}
-          onChange={handleChange}
           label="qid"
           placeholder="qid"
           name="qid"

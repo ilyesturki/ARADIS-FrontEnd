@@ -100,16 +100,16 @@ const Problem = () => {
         />
 
         <CustomTextArea
-          value={fpsData.pourqoui}
+          value={fpsData.pourquoi}
           onChange={handleChange}
-          label="pourqoui"
+          label="pourquoi"
           placeholder="Est-ce un probleme ?"
-          name="pourqoui"
+          name="pourquoi"
         />
 
         <CustomSwitch
           title="Y a-t-il un risque client ?"
-          checked={fpsData.clientRisck}
+          checked={fpsData.clientRisk}
           onChange={handleClientRisk}
         />
       </div>
@@ -117,7 +117,6 @@ const Problem = () => {
         <div className=" flex flex-col gap-6">
           <CustomInput
             value={fpsQid}
-            onChange={handleChange}
             label="qid"
             placeholder="qid"
             name="qid"

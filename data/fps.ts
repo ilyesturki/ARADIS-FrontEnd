@@ -1,4 +1,9 @@
-import { fpsProblemType } from "@/redux/fps/fpsSlice";
+import {
+  fpsCauseType,
+  fpsDefensiveActionsType,
+  fpsImmediateActionsType,
+  fpsProblemType,
+} from "@/redux/fps/fpsSlice";
 
 export const problemTypesData = [
   {
@@ -112,8 +117,44 @@ export const initialFpsProblem: fpsProblemType = {
   userService: "",
   comment: "",
   combien: "",
-  pourqoui: "",
+  pourquoi: "",
   image: "",
   images: [],
-  clientRisck: false,
+  clientRisk: false, 
 };
+
+export const initialFpsImmediateActions: fpsImmediateActionsType = {
+  alert: [],
+  startSorting: false,
+  sortingResults: [
+    {
+      product: "",
+      sortedQuantity: "",
+      quantityNOK: "",
+      userCategory: "",
+      userService: "",
+    },
+  ],
+  concludeFromSorting: "",
+  immediatActions: [
+    {
+      description: "",
+      userCategory: "",
+      userService: "",
+    },
+  ],
+};
+
+export const initialFpsCause: fpsCauseType = {
+  causeList: [],
+  whyList: [""],
+};
+
+export const initialFpsDefensiveActions: fpsDefensiveActionsType = [
+  {
+    procedure: "",
+    userCategory: "",
+    userService: "",
+    quand: "",
+  },
+];

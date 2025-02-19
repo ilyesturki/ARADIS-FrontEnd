@@ -1,7 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { getFpss, getFps, createFps, updateFps, deleteFps } from "./fpsThunk";
+import {
+  getFpss,
+  getFps,
+  createFpsProblem,
+  createFpsImmediateActions,
+  createFpsCause,
+  createFpsDefensiveActions,
+  updateFps,
+  deleteFps,
+} from "./fpsThunk";
 
 export type fpsProblemType = {
   type:
@@ -19,10 +28,10 @@ export type fpsProblemType = {
   userService: string;
   comment: string;
   combien: string;
-  pourqoui: string;
+  pourquoi: string;
   image?: string;
   images?: string[];
-  clientRisck: boolean;
+  clientRisk: boolean;
 };
 
 export type fpsDefensiveActionType = {
@@ -53,7 +62,7 @@ export type immediatActionsType = {
 
 export type fpsImmediateActionsType = {
   alert?: string[];
-  startSorting?: boolean;
+  startSorting: boolean;
   sortingResults?: sortingResultsType[];
   concludeFromSorting?: string;
   immediatActions?: immediatActionsType[];
@@ -120,14 +129,59 @@ const fpssSlice = createSlice({
         state.loading = false;
         state.error = action.error.message as string;
       })
-      .addCase(createFps.pending, (state) => {
+      .addCase(createFpsProblem.pending, (state) => {
         state.loading = true;
       })
-      .addCase(createFps.fulfilled, (state, action: PayloadAction<FpsType>) => {
+      .addCase(
+        createFpsProblem.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+        }
+      )
+      .addCase(createFpsProblem.rejected, (state, action) => {
         state.loading = false;
-        state.fpss.push(action.payload as FpsType);
+        state.error = action.error.message as string;
       })
-      .addCase(createFps.rejected, (state, action) => {
+      .addCase(createFpsImmediateActions.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        createFpsImmediateActions.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+        }
+      )
+      .addCase(createFpsImmediateActions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+      })
+      .addCase(createFpsCause.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        createFpsCause.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+        }
+      )
+      .addCase(createFpsCause.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+      })
+      .addCase(createFpsDefensiveActions.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        createFpsDefensiveActions.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+        }
+      )
+      .addCase(createFpsDefensiveActions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
       })

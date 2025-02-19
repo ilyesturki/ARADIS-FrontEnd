@@ -21,9 +21,9 @@ const CauseSection = () => {
     fpsQid,
     addNewWhy,
     removeWhy,
-    handleChange,
     causeData,
     handleCauseChange,
+    handleChangeWhyList,
     handleSubmit,
     handleReset,
   } = useCauseSection();
@@ -32,15 +32,14 @@ const CauseSection = () => {
       <div className="flex flex-col gap-2">
         <WhyList
           whyList={fpsData.whyList}
-          handleChange={handleChange}
           addNewWhy={addNewWhy}
           removeWhy={removeWhy}
+          handleChangeWhyList={handleChangeWhyList}
         />
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsQid}
-          onChange={handleChange}
           label="qid"
           placeholder="qid"
           name="qid"

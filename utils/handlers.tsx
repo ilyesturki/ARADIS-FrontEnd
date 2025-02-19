@@ -213,7 +213,7 @@ export const customHandleAlertChange = (
   });
 };
 
-export const handleChangeSelectInArray = (
+export const handleChangeInArray = (
   setState: (updater: (prevState: any) => any) => void,
   value: any,
   name: string,
@@ -227,6 +227,24 @@ export const handleChangeSelectInArray = (
         [name]: value,
       };
     }
+    return newData;
+  });
+};
+
+export const handleChangeInArrayObject = (
+  setState: (updater: (prevState: any) => any) => void,
+  value: any,
+  arrayName: string,
+  name: string,
+  index: number
+) => {
+  setState((prevData: any) => {
+    const newData = { ...prevData };
+    if (newData[arrayName])
+      newData[arrayName][index] = {
+        ...newData[arrayName][index],
+        [name]: value,
+      };
     return newData;
   });
 };

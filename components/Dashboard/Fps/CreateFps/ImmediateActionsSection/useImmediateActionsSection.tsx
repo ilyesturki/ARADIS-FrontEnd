@@ -13,42 +13,41 @@ import {
   customHandleSubmit,
   customHandleSizeChange,
   customHandleAlertChange,
-  handleChangeSelectInArray,
+  handleChangeInArray,
+  handleChangeInArrayObject,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
-import { fpsProblemValidationRules } from "@/utils/validationRules";
+import { fpsImmediateActionsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFps } from "@/redux/fps/fpsThunk";
-import { generateFPSId } from "@/utils/generateFPSId";
-import { categoryData, serviceData } from "@/data/fps";
+import { createFpsImmediateActions } from "@/redux/fps/fpsThunk";
+import {
+  initialFpsImmediateActions,
+  categoryData,
+  serviceData,
+} from "@/data/fps";
 
-const initialFpsState: fpsImmediateActionsType = {
-  alert: [],
-  startSorting: false,
-  sortingResults: [
-    {
-      product: "",
-      sortedQuantity: "",
-      quantityNOK: "",
-      userCategory: "",
-      userService: "",
-    },
-  ],
-  concludeFromSorting: "",
-  immediatActions: [
-    {
-      description: "",
-      userCategory: "",
-      userService: "",
-    },
-  ],
-};
+import { useRouter, useSearchParams } from "next/navigation";
+
 const useImmediateActionsSection = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
 
-  const [fpsData, setFpsData] =
-    useState<fpsImmediateActionsType>(initialFpsState);
+  const [fpsData, setFpsData] = useState<fpsImmediateActionsType>(
+    initialFpsImmediateActions
+  );
   const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+
+    if (fpsId) {
+      setFpsQid(fpsId);
+      return;
+    }
+  }, []);
 
   const handleChange = (
     e:
@@ -56,6 +55,13 @@ const useImmediateActionsSection = () => {
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     customHandleChange(e, setFpsData);
+  };
+
+  const handleStartSorting = () => {
+    setFpsData((prevData) => ({
+      ...prevData,
+      startSorting: !prevData.startSorting,
+    }));
   };
 
   const addNewSortingResult = () => {
@@ -112,36 +118,36 @@ const useImmediateActionsSection = () => {
     }
   };
 
-  const handleCategoryChange = (
-    userCategory: fpsDefensiveActionType["userCategory"],
-    i: number
-  ) => {
-    handleChangeSelectInArray(setFpsData, userCategory, "userCategory", i);
-  };
+  // const handleCategoryChange = (
+  //   userCategory: fpsDefensiveActionType["userCategory"],
+  //   i: number
+  // ) => {
+  //   handleChangeInArray(setFpsData, userCategory, "userCategory", i);
+  // };
 
-  const handleServiceChange = (
-    userService: fpsDefensiveActionType["userService"],
-    i: number
-  ) => {
-    handleChangeSelectInArray(setFpsData, userService, "userService", i);
-  };
+  // const handleServiceChange = (
+  //   userService: fpsDefensiveActionType["userService"],
+  //   i: number
+  // ) => {
+  //   handleChangeInArray(setFpsData, userService, "userService", i);
+  // };
 
   const handleAlertChange = (data: string, i?: number) => {
     customHandleAlertChange(data, setFpsData, i);
   };
 
-  useEffect(() => {
-    const qid = generateFPSId("FPS", 8);
-    setFpsQid(qid);
-  }, []);
-
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       qid: fpsQid,
+      alert: JSON.stringify(fpsData.alert || []),
+      startSorting: fpsData.startSorting.toString() || "",
+      sortingResults: JSON.stringify(fpsData.sortingResults || []),
+      concludeFromSorting: fpsData.concludeFromSorting || "",
+      immediatActions: JSON.stringify(fpsData.immediatActions || []),
     };
     const newErrors = validateFormFields(
       dataToValidate,
-      fpsProblemValidationRules
+      fpsImmediateActionsValidationRules
     );
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
@@ -153,8 +159,14 @@ const useImmediateActionsSection = () => {
       {},
       {
         qid: fpsQid,
+        alert: JSON.stringify(fpsData.alert || []),
+        startSorting: fpsData.startSorting.toString() || "",
+        sortingResults: JSON.stringify(fpsData.sortingResults || []),
+        concludeFromSorting: fpsData.concludeFromSorting || "",
+        immediatActions: JSON.stringify(fpsData.immediatActions || []),
       },
-      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
+      (formData) =>
+        dispatch(createFpsImmediateActions({ id: fpsQid, fps: formData })),
       handleReset
     );
   };
@@ -162,7 +174,7 @@ const useImmediateActionsSection = () => {
     if (e) {
       e.preventDefault();
     }
-    setFpsData(initialFpsState);
+    setFpsData(initialFpsImmediateActions);
   };
 
   return {
@@ -176,8 +188,10 @@ const useImmediateActionsSection = () => {
     handleAlertChange,
     categoryData,
     serviceData,
-    handleCategoryChange,
-    handleServiceChange,
+    handleChangeInArray,
+    handleChangeInArrayObject,
+    setFpsData,
+    handleStartSorting,
 
     handleSubmit,
     handleReset,

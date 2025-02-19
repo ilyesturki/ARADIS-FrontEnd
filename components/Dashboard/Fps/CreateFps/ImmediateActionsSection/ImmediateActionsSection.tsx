@@ -28,8 +28,10 @@ const ImmediateActionsSection = () => {
     handleAlertChange,
     categoryData,
     serviceData,
-    handleCategoryChange,
-    handleServiceChange,
+    handleChangeInArray,
+    handleChangeInArrayObject,
+    setFpsData,
+    handleStartSorting,
 
     handleSubmit,
     handleReset,
@@ -38,26 +40,25 @@ const ImmediateActionsSection = () => {
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomSwitch
-          title="Y a-t-il un risque client ?"
-          checked={false}
-          onChange={() => {}}
+          title="Faut-il lancer un tri ?"
+          checked={fpsData.startSorting}
+          onChange={handleStartSorting}
         />
         <SortingResults
           sortingResults={fpsData.sortingResults || []}
-          handleChange={handleChange}
           addNewSortingResult={addNewSortingResult}
           removeSortingResult={removeSortingResult}
           categoryData={categoryData}
           serviceData={serviceData}
-          handleCategoryChange={handleCategoryChange}
-          handleServiceChange={handleServiceChange}
+          handleChangeInArrayObject={handleChangeInArrayObject}
+          setFpsData={setFpsData}
         />
         <CustomTextArea
           value={fpsData.concludeFromSorting}
           onChange={handleChange}
-          label="pourqoui"
+          label="Conclusion"
           placeholder="Qu'est ce qu'on a appris du tri ?"
-          name="pourqoui"
+          name="concludeFromSorting"
         />
 
         <ImmediateActions
@@ -67,14 +68,13 @@ const ImmediateActionsSection = () => {
           removeImmediateAction={removeImmediateAction}
           categoryData={categoryData}
           serviceData={serviceData}
-          handleCategoryChange={handleCategoryChange}
-          handleServiceChange={handleServiceChange}
+          handleChangeInArrayObject={handleChangeInArrayObject}
+          setFpsData={setFpsData}
         />
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsQid}
-          onChange={handleChange}
           label="qid"
           placeholder="qid"
           name="qid"

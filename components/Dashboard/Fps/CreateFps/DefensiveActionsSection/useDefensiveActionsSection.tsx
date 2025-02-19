@@ -9,7 +9,8 @@ import { useAppDispatch } from "@/redux/hooks";
 import {
   customHandleChange,
   customHandleSubmit,
-  handleChangeSelectInArray,
+  handleChangeInArray,
+  handleChangeInArrayObject,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
@@ -17,24 +18,36 @@ import {
   fpsProblemValidationRules,
 } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFps } from "@/redux/fps/fpsThunk";
+import { createFpsDefensiveActions } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 
-import { categoryData, serviceData } from "@/data/fps";
+import {
+  initialFpsDefensiveActions,
+  categoryData,
+  serviceData,
+} from "@/data/fps";
 
-const initialFpsState: fpsDefensiveActionsType = [
-  {
-    procedure: "",
-    userCategory: "",
-    userService: "",
-    quand: "",
-  },
-];
+import { useRouter, useSearchParams } from "next/navigation";
+
 const useDefensiveActionsSection = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
-  const [fpsData, setFpsData] =
-    useState<fpsDefensiveActionsType>(initialFpsState);
+  const [fpsData, setFpsData] = useState<fpsDefensiveActionsType>(
+    initialFpsDefensiveActions
+  );
   const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+
+    if (fpsId) {
+      setFpsQid(fpsId);
+      return;
+    }
+  }, []);
 
   const addNewDefensiveAction = () => {
     setFpsData((prevData) => [
@@ -49,37 +62,11 @@ const useDefensiveActionsSection = () => {
     }
   };
 
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    customHandleChange(e, setFpsData);
-  };
-
-  useEffect(() => {
-    const qid = generateFPSId("QRAP", 8);
-    setFpsQid(qid);
-  }, []);
-
-  const handleCategoryChange = (
-    userCategory: fpsDefensiveActionType["userCategory"],
-    i: number
-  ) => {
-    handleChangeSelectInArray(setFpsData, userCategory, "userCategory", i);
-  };
-
-  const handleServiceChange = (
-    userService: fpsDefensiveActionType["userService"],
-    i: number
-  ) => {
-    handleChangeSelectInArray(setFpsData, userService, "userService", i);
-  };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       qid: fpsQid,
-      fpsData: JSON.stringify(fpsData),
+      defensiveActions: JSON.stringify(fpsData),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -95,9 +82,10 @@ const useDefensiveActionsSection = () => {
       {},
       {
         qid: fpsQid,
-        fpsData: JSON.stringify(fpsData),
+        defensiveActions: JSON.stringify(fpsData),
       },
-      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
+      (formData) =>
+        dispatch(createFpsDefensiveActions({ id: fpsQid, fps: formData })),
       handleReset
     );
   };
@@ -105,17 +93,16 @@ const useDefensiveActionsSection = () => {
     if (e) {
       e.preventDefault();
     }
-    setFpsData(initialFpsState);
+    setFpsData(initialFpsDefensiveActions);
   };
 
   return {
     fpsData,
     fpsQid,
-    handleChange,
     categoryData,
     serviceData,
-    handleCategoryChange,
-    handleServiceChange,
+    handleChangeInArray,
+    setFpsData,
     addNewDefensiveAction,
     removeDefensiveAction,
 

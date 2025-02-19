@@ -6,13 +6,13 @@ import {
   customHandleChange,
   customImagesChange,
   customHandleSubmit,
-  handleChangeSelectInArray,
+  handleChangeInArray,
   handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsProblemValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFps } from "@/redux/fps/fpsThunk";
+import { createFpsProblem } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 import {
   problemTypesData,
@@ -20,8 +20,12 @@ import {
   serviceData,
   initialFpsProblem,
 } from "@/data/fps";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const useProblem = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
@@ -32,6 +36,25 @@ const useProblem = () => {
     textColor: string | undefined;
     className: string | undefined;
   }>({ textColor: "", className: "" });
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+
+    if (fpsId) {
+      setFpsQid(fpsId);
+      return;
+    }
+
+    fpsId = generateFPSId("FPS", 8);
+    params.set("fpsId", fpsId);
+
+    router.replace(`/dashboard/fps/create-fps?${params.toString()}`, {
+      scroll: false,
+    });
+
+    setFpsQid(fpsId);
+  }, []);
 
   const handleChange = (
     e:
@@ -44,14 +67,9 @@ const useProblem = () => {
   const handleClientRisk = () => {
     setFpsData((prevData) => ({
       ...prevData,
-      clientRisck: !prevData.clientRisck,
+      clientRisk: !prevData.clientRisk,
     }));
   };
-
-  useEffect(() => {
-    const fpsId = generateFPSId("FPS", 8);
-    setFpsQid(fpsId);
-  }, []);
 
   const customHandleChangeSelect = (value: string, name?: string) => {
     handleChangeSelect(setFpsData, value, name || "");
@@ -106,13 +124,13 @@ const useProblem = () => {
       ou: fpsData.ou || "",
       comment: fpsData.comment || "",
       combien: fpsData.combien || "",
-      pourqoui: fpsData.pourqoui || "",
-      clientRisck: fpsData.clientRisck.toString(),
+      pourquoi: fpsData.pourquoi || "",
+      clientRisk: fpsData.clientRisk.toString(),
       userCategory: fpsData.userCategory || "",
       userService: fpsData.userService || "",
 
       image: imageFile ? imageFile.type : "",
-      images: imagesFiles.map((file) => file.type).join(", "),
+      images: imagesFiles.map((file) => file.type).join(","),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -135,13 +153,12 @@ const useProblem = () => {
         ou: fpsData.ou,
         comment: fpsData.comment,
         combien: fpsData.combien,
-        pourqoui: fpsData.pourqoui,
-        clientRisck: fpsData.clientRisck.toString(),
+        pourquoi: fpsData.pourquoi,
+        clientRisk: fpsData.clientRisk.toString(),
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
       },
-      (formData) => dispatch(createFps({ id: fpsQid, fps: formData })),
-      handleReset
+      (formData) => dispatch(createFpsProblem({ id: fpsQid, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -149,7 +166,6 @@ const useProblem = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsProblem);
-    setFpsQid(generateFPSId("FPS", 8));
     setTypeColors({ textColor: "", className: "" });
     setImageFile(null);
     setImagesFiles([]);
