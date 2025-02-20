@@ -13,7 +13,7 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsCauseValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsCause } from "@/redux/fps/fpsThunk";
+import { createFpsCause, getFps } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 
 import { initialFpsCause, causeData } from "@/data/fps";
@@ -26,7 +26,7 @@ const useCauseSection = () => {
 
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<fpsCauseType>(initialFpsCause);
-  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -69,7 +69,7 @@ const useCauseSection = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsQid,
+      qid: fpsId,
       causeList: JSON.stringify(fpsData.causeList),
       whyList: JSON.stringify(fpsData.whyList),
     };
@@ -86,11 +86,11 @@ const useCauseSection = () => {
       e,
       {},
       {
-        qid: fpsQid,
+        qid: fpsId,
         causeList: JSON.stringify(fpsData.causeList),
         whyList: JSON.stringify(fpsData.whyList),
       },
-      (formData) => dispatch(createFpsCause({ id: fpsQid, fps: formData })),
+      (formData) => dispatch(createFpsCause({ id: fpsId, fps: formData })),
       handleReset
     );
   };
@@ -99,11 +99,12 @@ const useCauseSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsCause);
+    dispatch(getFps(fpsId));
   };
 
   return {
     fpsData,
-    fpsQid,
+    fpsId,
     addNewWhy,
     removeWhy,
     causeData,

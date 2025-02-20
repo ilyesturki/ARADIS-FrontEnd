@@ -18,7 +18,7 @@ import WhyList from "./WhyList";
 const CauseSection = () => {
   const {
     fpsData,
-    fpsQid,
+    fpsId,
     addNewWhy,
     removeWhy,
     causeData,
@@ -39,7 +39,7 @@ const CauseSection = () => {
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
-          value={fpsQid}
+          value={fpsId}
           label="qid"
           placeholder="qid"
           name="qid"

@@ -19,7 +19,7 @@ import ImmediateActions from "./components/ImmediateActions";
 const ImmediateActionsSection = () => {
   const {
     fpsData,
-    fpsQid,
+    fpsId,
     handleChange,
     addNewSortingResult,
     removeSortingResult,
@@ -74,7 +74,7 @@ const ImmediateActionsSection = () => {
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
-          value={fpsQid}
+          value={fpsId}
           label="qid"
           placeholder="qid"
           name="qid"

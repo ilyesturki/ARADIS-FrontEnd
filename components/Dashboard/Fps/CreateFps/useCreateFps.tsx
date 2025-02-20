@@ -1,19 +1,55 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { getFps } from "@/redux/fps/fpsThunk";
 
 const useCreateFps = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   //   const router = useRouter();
   const [currentTab, setCurrentTab] = useState("problem");
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
   const [validTabs, setValidTabs] = useState<string[]>([]);
 
-  //   const dispatch = useAppDispatch();
-  //   useEffect(() => {
-  //     dispatch(getUser());
-  //   }, [dispatch]);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+    if (fpsId) {
+      dispatch(getFps(fpsId));
+    }
+  }, [dispatch]);
 
-  //   const user = useAppSelector((state) => state.users.user);
+  const fps = useAppSelector((state) => state.fpss.fps);
+
+  // Update currentStep when fps changes
+  useEffect(() => {
+    if (fps) {
+      setCurrentStep(fps.currentStep);
+    }
+  }, [fps]);
+
+  // Handle tab change after currentStep is updated
+  useEffect(() => {
+    if (currentStep) {
+      const tabsOrder = [
+        "problem",
+        "immediateActions",
+        "cause",
+        "defensiveActions",
+      ];
+
+      const nextTabIndex =
+        currentStep === "defensiveActions"
+          ? tabsOrder.indexOf(currentStep)
+          : tabsOrder.indexOf(currentStep) + 1;
+
+      handleTabChange(tabsOrder[nextTabIndex]);
+    }
+  }, [currentStep]);
+
   //   const basketItems = useAppSelector((state) => state.basket.basket?.items);
 
   //   const [isLoading, executeCreateOrder] = useApiCallWithToast({
@@ -31,29 +67,34 @@ const useCreateFps = () => {
   const validateTab = (tab: string = currentTab) => {
     switch (tab) {
       case "problem":
-        if (
-          false
-          //   !user?.address?.details ||
-          //   !user?.address?.governorate ||
-          //   !user?.address?.city ||
-          //   !user?.address?.postalCode
-        ) {
-          setValidTabs([]);
-          return false;
+        console.log("valid problem");
+        if (currentStep) {
+          return true;
         }
-        return true;
+        setValidTabs([]);
+        return false;
       case "immediateActions":
-        if (false) {
-          setValidTabs(["problem"]);
-          return false;
+        if (
+          currentStep &&
+          ["immediateActions", "cause", "defensiveActions"].includes(
+            currentStep
+          )
+        ) {
+          return true;
         }
-        return true;
+        setValidTabs(["problem"]);
+        return false;
+
       case "cause":
-        if (false) {
-          setValidTabs(["problem", "immediateActions"]);
-          return false;
+        if (
+          currentStep &&
+          ["cause", "defensiveActions"].includes(currentStep)
+        ) {
+          return true;
         }
-        return true;
+        setValidTabs(["problem", "immediateActions"]);
+        return false;
+
       case "defensiveActions":
         return true;
       default:

@@ -19,7 +19,7 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsImmediateActionsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsImmediateActions } from "@/redux/fps/fpsThunk";
+import { createFpsImmediateActions, getFps } from "@/redux/fps/fpsThunk";
 import {
   initialFpsImmediateActions,
   categoryData,
@@ -37,7 +37,7 @@ const useImmediateActionsSection = () => {
   const [fpsData, setFpsData] = useState<fpsImmediateActionsType>(
     initialFpsImmediateActions
   );
-  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -138,7 +138,7 @@ const useImmediateActionsSection = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsQid,
+      qid: fpsId,
       alert: JSON.stringify(fpsData.alert || []),
       startSorting: fpsData.startSorting.toString() || "",
       sortingResults: JSON.stringify(fpsData.sortingResults || []),
@@ -158,7 +158,7 @@ const useImmediateActionsSection = () => {
       e,
       {},
       {
-        qid: fpsQid,
+        qid: fpsId,
         alert: JSON.stringify(fpsData.alert || []),
         startSorting: fpsData.startSorting.toString() || "",
         sortingResults: JSON.stringify(fpsData.sortingResults || []),
@@ -166,7 +166,7 @@ const useImmediateActionsSection = () => {
         immediatActions: JSON.stringify(fpsData.immediatActions || []),
       },
       (formData) =>
-        dispatch(createFpsImmediateActions({ id: fpsQid, fps: formData })),
+        dispatch(createFpsImmediateActions({ id: fpsId, fps: formData })),
       handleReset
     );
   };
@@ -175,11 +175,12 @@ const useImmediateActionsSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsImmediateActions);
+    dispatch(getFps(fpsId));
   };
 
   return {
     fpsData,
-    fpsQid,
+    fpsId,
     handleChange,
     addNewSortingResult,
     removeSortingResult,

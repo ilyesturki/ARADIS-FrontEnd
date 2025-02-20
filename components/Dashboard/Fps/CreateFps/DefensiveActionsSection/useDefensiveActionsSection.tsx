@@ -18,7 +18,7 @@ import {
   fpsProblemValidationRules,
 } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsDefensiveActions } from "@/redux/fps/fpsThunk";
+import { createFpsDefensiveActions, getFps } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 
 import {
@@ -37,7 +37,7 @@ const useDefensiveActionsSection = () => {
   const [fpsData, setFpsData] = useState<fpsDefensiveActionsType>(
     initialFpsDefensiveActions
   );
-  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -62,10 +62,9 @@ const useDefensiveActionsSection = () => {
     }
   };
 
-
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsQid,
+      qid: fpsId,
       defensiveActions: JSON.stringify(fpsData),
     };
     const newErrors = validateFormFields(
@@ -81,11 +80,11 @@ const useDefensiveActionsSection = () => {
       e,
       {},
       {
-        qid: fpsQid,
+        qid: fpsId,
         defensiveActions: JSON.stringify(fpsData),
       },
       (formData) =>
-        dispatch(createFpsDefensiveActions({ id: fpsQid, fps: formData })),
+        dispatch(createFpsDefensiveActions({ id: fpsId, fps: formData })),
       handleReset
     );
   };
@@ -94,11 +93,12 @@ const useDefensiveActionsSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsDefensiveActions);
+    dispatch(getFps(fpsId));
   };
 
   return {
     fpsData,
-    fpsQid,
+    fpsId,
     categoryData,
     serviceData,
     handleChangeInArray,

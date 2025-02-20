@@ -12,7 +12,7 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsProblemValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsProblem } from "@/redux/fps/fpsThunk";
+import { createFpsProblem, getFps } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 import {
   problemTypesData,
@@ -30,7 +30,7 @@ const useProblem = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagesFiles, setImagesFiles] = useState<File[]>([]);
   const [fpsData, setFpsData] = useState<fpsProblemType>(initialFpsProblem);
-  const [fpsQid, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
 
   const [typeColors, setTypeColors] = useState<{
     textColor: string | undefined;
@@ -116,7 +116,7 @@ const useProblem = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsQid || "",
+      qid: fpsId || "",
       type: fpsData.type || "",
       quoi: fpsData.quoi || "",
       ref: fpsData.ref || "",
@@ -141,7 +141,7 @@ const useProblem = () => {
       return;
     }
     console.log(fpsData);
-    console.log(fpsQid);
+    console.log(fpsId);
     customHandleSubmit(
       e,
       { image: imageFile, images: imagesFiles },
@@ -158,7 +158,7 @@ const useProblem = () => {
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
       },
-      (formData) => dispatch(createFpsProblem({ id: fpsQid, fps: formData }))
+      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -169,6 +169,7 @@ const useProblem = () => {
     setTypeColors({ textColor: "", className: "" });
     setImageFile(null);
     setImagesFiles([]);
+    dispatch(getFps(fpsId));
   };
 
   return {
@@ -176,7 +177,7 @@ const useProblem = () => {
     typeColors,
     handleTypeChange,
     fpsData,
-    fpsQid,
+    fpsId,
     handleChange,
     handleImageChange,
     customHandleChangeSelect,

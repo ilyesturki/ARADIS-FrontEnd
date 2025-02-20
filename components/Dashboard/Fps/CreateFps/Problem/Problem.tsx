@@ -16,7 +16,7 @@ const Problem = () => {
     typeColors,
     handleTypeChange,
     fpsData,
-    fpsQid,
+    fpsId,
     handleChange,
     handleImageChange,
     customHandleChangeSelect,
@@ -116,7 +116,7 @@ const Problem = () => {
       <div className=" flex flex-col gap-10">
         <div className=" flex flex-col gap-6">
           <CustomInput
-            value={fpsQid}
+            value={fpsId}
             label="qid"
             placeholder="qid"
             name="qid"

@@ -4,6 +4,7 @@ import { createWrapper } from "next-redux-wrapper";
 import authReducer from "./auth/authSlice";
 import userReducer from "./user/userSlice";
 import usersReducer from "./users/usersSlice";
+import fpssReducer from "./fps/fpsSlice";
 
 export const makeStore = () =>
   configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () =>
       auth: authReducer,
       user: userReducer,
       users: usersReducer,
+      fpss: fpssReducer,
     },
   });
 

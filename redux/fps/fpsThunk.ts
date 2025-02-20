@@ -12,8 +12,11 @@ export const getFpss = createAsyncThunk("fpss/getFpss", async () => {
 
 export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
   const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/fpss/${id}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/${id}`
   );
+  console.log("getFps");
+  console.log(response.data.data);
+  console.log("getFps");
   return response.data.data as FpsType;
 });
 

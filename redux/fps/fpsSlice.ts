@@ -71,6 +71,7 @@ export type fpsImmediateActionsType = {
 export interface FpsType {
   id: number;
   fpsId: string;
+  currentStep: "problem" | "immediateActions" | "cause" | "defensiveActions";
   problem: fpsProblemType;
   defensiveActions?: fpsDefensiveActionType[];
   cause?: fpsCauseType;

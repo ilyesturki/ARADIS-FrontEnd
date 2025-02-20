@@ -8,7 +8,7 @@ import DefensiveActions from "./DefensiveActions/DefensiveActions";
 const DefensiveActionsSection = () => {
   const {
     fpsData,
-    fpsQid,
+    fpsId,
     categoryData,
     serviceData,
     handleChangeInArray,
@@ -35,7 +35,7 @@ const DefensiveActionsSection = () => {
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
-          value={fpsQid}
+          value={fpsId}
           label="qid"
           placeholder="qid"
           name="qid"
