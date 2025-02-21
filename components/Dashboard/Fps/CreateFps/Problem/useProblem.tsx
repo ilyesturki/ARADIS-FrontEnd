@@ -105,7 +105,8 @@ const useProblem = () => {
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
-
+    console.log("fpsId");
+    console.log(fpsId);
     if (fpsId) {
       setFpsQid(fpsId);
       return;

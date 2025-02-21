@@ -16,10 +16,12 @@ const DataTableRowMenu = <T extends { id: string }>({
   row,
   label,
   children,
+  id,
 }: {
   row: Row<T>;
   label: string;
   children?: React.ReactNode;
+  id?: string;
 }) => {
   const paths = usePathname();
 
@@ -37,13 +39,19 @@ const DataTableRowMenu = <T extends { id: string }>({
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(row.original.id)}
+          onClick={() =>
+            navigator.clipboard.writeText(id ? id : row.original.id)
+          }
           className=" cursor-pointer"
         >
           Copy {label} ID
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <Link href={`${paths}/edit-${label}/${row.original.id}`}>
+        <Link
+          href={`${paths}/edit-${label}${
+            id ? `?${label}Id=${id}` : `/${row.original.id}`
+          }`}
+        >
           <DropdownMenuItem className=" cursor-pointer">
             Edit {label}
           </DropdownMenuItem>

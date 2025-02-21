@@ -4,7 +4,7 @@ import { fetchFpss } from "@/utils/Api/fpsApi";
 
 const FpssPanel = async () => {
   const fpss = await fetchFpss();
-
+  console.log(fpss);
   return <DataTable columns={columns} data={fpss} />;
 };
 

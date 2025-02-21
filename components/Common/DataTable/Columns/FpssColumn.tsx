@@ -11,8 +11,10 @@ import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 import ClientRiskColumn from "./CustomTableColumns/ClientRiskColumn";
 import FpsDateColumn from "./CustomTableColumns/FpsDateColumn";
+import ImageAndTitleColumn from "./CustomTableColumns/ImageAndTitleColumn";
 export type Fpss = {
   id: string;
+  fpsId: string;
   currentStep: "problem" | "immediateActions" | "cause" | "defensiveActions";
   problem: {
     type: string;
@@ -33,11 +35,13 @@ export const columns: ColumnDef<Fpss>[] = [
     accessorKey: "problem.type",
     header: ({ column }) => (
       <DataTableColumnHeader
+        className="flex justify-center"
         column={column}
-        title="type"
-        options={{ up: true, down: true, hide: true }}
+        title="Type"
+        options={{ hide: true }}
       />
     ),
+    cell: ({ row }) => <ImageAndTitleColumn data={row.getValue("problem")} />,
   },
   {
     accessorKey: "currentStep",
@@ -62,7 +66,7 @@ export const columns: ColumnDef<Fpss>[] = [
     cell: ({ row }) => <ClientRiskColumn row={row} />,
   },
   {
-    accessorKey: "problem.quand",
+    accessorKey: "problem",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -70,7 +74,7 @@ export const columns: ColumnDef<Fpss>[] = [
         options={{ up: true, down: true, hide: true }}
       />
     ),
-    cell: ({ row }) => <FpsDateColumn row={row} />,
+    cell: ({ row }) => <FpsDateColumn data={row.getValue("problem")} />,
   },
   {
     accessorKey: "actions",
@@ -82,8 +86,8 @@ export const columns: ColumnDef<Fpss>[] = [
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<Fpss> row={row} label={"fps"}>
-        <DeleteUserDialog id={row.original.id} />
+      <DataTableRowMenu<Fpss> row={row} label={"fps"} id={row.original.fpsId}>
+        <DeleteUserDialog id={row.original.fpsId} />
       </DataTableRowMenu>
     ),
   },

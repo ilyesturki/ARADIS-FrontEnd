@@ -34,7 +34,7 @@ const links: DashboardCollapsibleProps[] = [
       },
       {
         title: "Add Fps",
-        link: "/dashboard/fps/create-fps/fps1",
+        link: "/dashboard/fps/create-fps",
         icon: faSquarePlus,
       },
     ],

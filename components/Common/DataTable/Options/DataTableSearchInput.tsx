@@ -15,22 +15,20 @@ const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
         value={
           table.getColumn("email")
             ? (table.getColumn("email")?.getFilterValue() as string)
-            : table.getColumn("name")
-            ? (table.getColumn("name")?.getFilterValue() as string)
-            : table.getColumn("customerName")
-            ? (table.getColumn("customerName")?.getFilterValue() as string)
+            : table.getColumn("mat")
+            ? (table.getColumn("mat")?.getFilterValue() as string)
+            : table.getColumn("fpsId")
+            ? (table.getColumn("fpsId")?.getFilterValue() as string)
             : ""
         }
         onChange={
           (event) =>
             table.getColumn("email")
               ? table.getColumn("email")?.setFilterValue(event.target.value)
-              : table.getColumn("name")
-              ? table.getColumn("name")?.setFilterValue(event.target.value)
-              : table.getColumn("customerName")
-              ? table
-                  .getColumn("customerName")
-                  ?.setFilterValue(event.target.value)
+              : table.getColumn("mat")
+              ? table.getColumn("mat")?.setFilterValue(event.target.value)
+              : table.getColumn("fpsId")
+              ? table.getColumn("fpsId")?.setFilterValue(event.target.value)
               : ""
           // table.getColumn("email")?.setFilterValue(event.target.value)
         }
