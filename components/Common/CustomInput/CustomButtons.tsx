@@ -1,7 +1,9 @@
 const CustomButtons = ({
+  value,
   mainButtonOnCLick,
   secondaryButtonOnCLick,
 }: {
+  value?: string;
   mainButtonOnCLick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   secondaryButtonOnCLick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
@@ -11,7 +13,7 @@ const CustomButtons = ({
         onClick={mainButtonOnCLick}
         className=" py-2 px-6 bg-greenAccent-900 rounded-md text-base font-medium text-white "
       >
-        Create
+        {value || "Save"}
       </button>
       <button
         onClick={secondaryButtonOnCLick}

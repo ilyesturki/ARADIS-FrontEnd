@@ -24,9 +24,11 @@ const Problem = () => {
     categoryData,
     serviceData,
     handleClientRisk,
+    handleDeleteImages,
 
     handleSubmit,
     handleReset,
+    submitBtnValue,
   } = useProblem();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
@@ -38,6 +40,7 @@ const Problem = () => {
           data={problemTypesData}
           textColor={typeColors.textColor}
           className={typeColors.className}
+          name="type"
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomTextArea
@@ -85,7 +88,7 @@ const Problem = () => {
           />
           <CustomSelect
             label="categorie"
-            value={fpsData.userService}
+            value={fpsData.userCategory}
             onChange={customHandleChangeSelect}
             data={categoryData}
             name="userCategory"
@@ -128,9 +131,11 @@ const Problem = () => {
             imageCover={fpsData.image || ""}
             images={fpsData.images || []}
             handleImageChange={handleImageChange}
+            handleDeleteImages={handleDeleteImages}
           />
         </div>
         <CustomButtons
+          value={submitBtnValue}
           mainButtonOnCLick={handleSubmit}
           secondaryButtonOnCLick={handleReset}
         />

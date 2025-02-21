@@ -1,7 +1,7 @@
 "use client";
 import { FpsType, fpsProblemType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
   customImagesChange,
@@ -21,6 +21,7 @@ import {
   initialFpsProblem,
 } from "@/data/fps";
 import { useRouter, useSearchParams } from "next/navigation";
+import { urlToFile } from "@/utils/UrlToFile";
 
 const useProblem = () => {
   const router = useRouter();
@@ -28,14 +29,78 @@ const useProblem = () => {
 
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagesFiles, setImagesFiles] = useState<File[]>([]);
+  const [imagesFiles, setImagesFiles] = useState<(File | string | null)[]>(
+    Array(5).fill(null)
+  );
   const [fpsData, setFpsData] = useState<fpsProblemType>(initialFpsProblem);
   const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
+    "Save"
+  );
 
   const [typeColors, setTypeColors] = useState<{
     textColor: string | undefined;
     className: string | undefined;
   }>({ textColor: "", className: "" });
+
+  const fps = useAppSelector((state) => state.fpss.fps);
+
+  // Update currentStep when fps changes
+  useEffect(() => {
+    if (fps?.problem) {
+      setFpsData(fps.problem);
+
+      const loadedImages = Array(5).fill(null);
+      if (fps?.problem.images !== undefined) {
+        fps?.problem.images.forEach((img: string, i: number) => {
+          loadedImages[i] = img;
+        });
+      }
+      setImagesFiles(loadedImages);
+
+      const selectedType = problemTypesData.find(
+        (e) => e.value === fps.problem.type
+      );
+      if (selectedType) {
+        setTypeColors({
+          textColor: selectedType.textColor,
+          className: selectedType.className,
+        });
+      } else {
+        setTypeColors({
+          textColor: undefined,
+          className: undefined,
+        });
+      }
+      setSubmitBtnValue(fps.currentStep === "problem" ? "Update" : "Save");
+    }
+  }, [fps]);
+
+  const handleDeleteImages = (i?: number) => {
+    console.log("iii");
+    console.log(i);
+    if (i !== undefined) {
+      setImagesFiles((prevImages) => {
+        const updatedImages = [...prevImages];
+        updatedImages[i] = null;
+        return updatedImages;
+      });
+
+      if (fpsData.images) {
+        const updatedImages = fpsData.images.filter((_, index) => index !== i);
+        setFpsData((prevData) => ({
+          ...prevData,
+          images: updatedImages,
+        }));
+      }
+    } else {
+      setImageFile(null);
+      setFpsData((prevData) => ({
+        ...prevData,
+        image: "",
+      }));
+    }
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -89,7 +154,7 @@ const useProblem = () => {
       setFpsData,
       "image",
       setImageFile,
-      setImagesFiles,
+      setImagesFiles as any,
       index
     );
   };
@@ -114,7 +179,24 @@ const useProblem = () => {
     }
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const formImage = imageFile
+      ? imageFile
+      : fpsData.image
+      ? await urlToFile(fpsData.image as string, "image.png", "image/png")
+      : null;
+    let formImages: File[] = [];
+    for (const image of imagesFiles) {
+      if (image instanceof File) {
+        formImages.push(image);
+      } else if (typeof image === "string") {
+        formImages.push(await urlToFile(image, `image.png`, "image/jpeg"));
+      }
+    }
+    console.log("formImage");
+    console.log(imageFile);
+    console.log(fpsData.image);
+    console.log("formImage");
     const dataToValidate: Record<string, string> = {
       qid: fpsId || "",
       type: fpsData.type || "",
@@ -129,8 +211,8 @@ const useProblem = () => {
       userCategory: fpsData.userCategory || "",
       userService: fpsData.userService || "",
 
-      image: imageFile ? imageFile.type : "",
-      images: imagesFiles.map((file) => file.type).join(","),
+      image: formImage ? formImage.type : "",
+      images: formImages.map((file) => file.type).join(","),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -144,7 +226,7 @@ const useProblem = () => {
     console.log(fpsId);
     customHandleSubmit(
       e,
-      { image: imageFile, images: imagesFiles },
+      { image: formImage, images: formImages },
       {
         type: fpsData.type,
         quoi: fpsData.quoi,
@@ -185,9 +267,11 @@ const useProblem = () => {
     categoryData,
     serviceData,
     handleClientRisk,
+    handleDeleteImages,
 
     handleSubmit,
     handleReset,
+    submitBtnValue,
   };
 };
 

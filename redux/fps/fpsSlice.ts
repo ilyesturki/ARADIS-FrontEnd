@@ -69,7 +69,6 @@ export type fpsImmediateActionsType = {
 };
 
 export interface FpsType {
-  id: number;
   fpsId: string;
   currentStep: "problem" | "immediateActions" | "cause" | "defensiveActions";
   problem: fpsProblemType;
@@ -78,7 +77,7 @@ export interface FpsType {
   immediatActions?: fpsImmediateActionsType;
 }
 
-export type FpsTypeWithoutId = Omit<FpsType, "id">;
+export type FpsTypeWithoutId = Omit<FpsType, "fpsId">;
 
 export type flexibleFpsType = Partial<FpsType>;
 
@@ -194,7 +193,7 @@ const fpssSlice = createSlice({
         state.loading = false;
         state.updateSuccess = true;
         const index = state.fpss.findIndex(
-          (fps) => fps.id === action.payload.id
+          (fps) => fps.fpsId === action.payload.fpsId
         );
         state.fpss[index] = action.payload;
       })
@@ -210,7 +209,7 @@ const fpssSlice = createSlice({
       .addCase(deleteFps.fulfilled, (state, action: PayloadAction<string>) => {
         state.loading = false;
         state.deleteSuccess = true;
-        state.fpss = state.fpss.filter((fps) => fps.id !== +action.payload);
+        state.fpss = state.fpss.filter((fps) => fps.fpsId !== action.payload);
       })
       .addCase(deleteFps.rejected, (state, action) => {
         state.loading = false;

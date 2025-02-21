@@ -10,41 +10,38 @@ export const problemTypesData = [
     value: "Securite",
     label: "Securite",
     textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
+    className: "bg-red-500 shadow-red-500 bg-opacity-10",
   },
   {
     value: "Environnement",
     label: "Environnement",
     textColor: "text-greenAccent-800",
-    className:
-      "shadow-greenAccent-800 shadow-[0_0_4px] bg-greenAccent-800 bg-opacity-10 ",
+    className: "shadow-greenAccent-800 bg-greenAccent-800 bg-opacity-10",
   },
   {
     value: "Qualite",
     label: "Qualite",
     textColor: "text-pinkAccent",
-    className:
-      "shadow-pinkAccent shadow-[0_0_4px] bg-pinkAccent bg-opacity-10 ",
+    className: "shadow-pinkAccent bg-pinkAccent bg-opacity-10",
   },
 
   {
     value: "TRS/Efficience",
     label: "TRS/Efficience",
     textColor: "text-greenAccent-700",
-    className:
-      "shadow-greenAccent-700 shadow-[0_0_4px] bg-greenAccent-700 bg-opacity-10 ",
+    className: "shadow-greenAccent-700 bg-greenAccent-700 bg-opacity-10",
   },
   {
     value: "Maintenence",
     label: "Maintenence",
     textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
+    className: "shadow-red-500 bg-red-500 bg-opacity-10",
   },
   {
     value: "Autre",
     label: "Autre",
     textColor: "text-red-500",
-    className: "shadow-red-500 shadow-[0_0_4px] bg-red-500 bg-opacity-10 ",
+    className: "shadow-red-500 bg-red-500 bg-opacity-10",
   },
 ];
 
@@ -120,7 +117,7 @@ export const initialFpsProblem: fpsProblemType = {
   pourquoi: "",
   image: "",
   images: [],
-  clientRisk: false, 
+  clientRisk: false,
 };
 
 export const initialFpsImmediateActions: fpsImmediateActionsType = {

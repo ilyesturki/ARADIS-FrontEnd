@@ -2,12 +2,14 @@
 import { useState } from "react";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RemoveImageButton from "./RemoveImageButton";
 
 const CustomSelectImages = ({
   label,
   imageCover,
   images,
   handleImageChange,
+  handleDeleteImages,
 }: {
   label: string;
   imageCover: string;
@@ -15,7 +17,8 @@ const CustomSelectImages = ({
   handleImageChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     index?: number
-  ) => void; 
+  ) => void;
+  handleDeleteImages?: (i?: number) => void;
 }) => {
   return (
     <div className="w-full flex gap-4 items-center">
@@ -32,11 +35,16 @@ const CustomSelectImages = ({
               onChange={(e) => handleImageChange(e)}
             />
             {imageCover ? (
-              <img
-                src={imageCover}
-                alt="Cover"
-                className="w-full h-full object-cover rounded-sm"
-              />
+              <>
+                <img
+                  src={imageCover}
+                  alt="Cover"
+                  className="w-full h-full object-cover rounded-sm"
+                />
+                {handleDeleteImages && (
+                  <RemoveImageButton handleDelete={handleDeleteImages} />
+                )}
+              </>
             ) : (
               <>
                 <FontAwesomeIcon
@@ -53,18 +61,28 @@ const CustomSelectImages = ({
             {new Array(5).fill("").map((_, i) => (
               <div
                 key={i}
-                className="relative flex justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-greenAccent-900 shadow-[0px_0px_1px] shadow-greenAccent-900 rounded-sm">
+                className="relative flex justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-greenAccent-900 shadow-[0px_0px_1px] shadow-greenAccent-900 rounded-sm"
+              >
                 <input
                   type="file"
                   className="absolute w-full h-full z-10 opacity-0 cursor-pointer"
                   onChange={(e) => handleImageChange(e, i)}
                 />
                 {images[i] ? (
-                  <img
-                    src={images[i]}
-                    alt={`Image ${i}`}
-                    className="w-full h-full object-cover rounded-sm"
-                  />
+                  <>
+                    <img
+                      src={images[i]}
+                      alt={`Image ${i}`}
+                      className="w-full h-full object-cover rounded-sm"
+                    />
+                    {handleDeleteImages && (
+                      <RemoveImageButton
+                        handleDelete={() => handleDeleteImages(i)}
+                        className="!top-0.5 !right-0.5 !w-4 !h-4"
+                        fontClassName=" !text-[8px]"
+                      />
+                    )}
+                  </>
                 ) : (
                   <FontAwesomeIcon
                     icon={faImage}

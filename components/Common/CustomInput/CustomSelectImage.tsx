@@ -1,17 +1,20 @@
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RemoveImageButton from "./RemoveImageButton";
 
 const CustomSelectImage = ({
   label,
   image,
   handleImageChange,
+  handleDelete,
 }: {
   label: string;
   image: string;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDelete?: (i?: number) => void;
 }) => {
   return (
-    <div className=" w-full flex gap-4 items-center"> 
+    <div className=" w-full flex gap-4 items-center">
       <div className="flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
         <span className=" text-[10px] font-semibold text-greenAccent-900 ">
           {label}
@@ -23,11 +26,14 @@ const CustomSelectImage = ({
             onChange={(e) => handleImageChange(e)}
           />
           {image ? (
-            <img
-              src={image}
-              alt="image"
-              className="w-full h-full object-cover rounded-sm"
-            />
+            <>
+              <img
+                src={image}
+                alt="image"
+                className="w-full h-full object-cover rounded-sm"
+              />
+              {handleDelete && <RemoveImageButton handleDelete={handleDelete} />}
+            </>
           ) : (
             <>
               <FontAwesomeIcon

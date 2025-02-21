@@ -23,6 +23,7 @@ const CustomSelect = <T,>({
   textColor?: string;
   className?: string;
 }) => {
+  console.log(value);
   console.log(textColor);
   console.log(className);
   return (

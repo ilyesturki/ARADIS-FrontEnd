@@ -17,7 +17,13 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
   console.log("getFps");
   console.log(response.data.data);
   console.log("getFps");
-  return response.data.data as FpsType;
+  const images = response.data.data.problem.images
+    ? response.data.data.problem.images.split(",")
+    : [];
+  return {
+    ...response.data.data,
+    problem: { ...response.data.data.problem, images },
+  } as FpsType;
 });
 
 export const createFpsProblem = createAsyncThunk(

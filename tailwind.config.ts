@@ -7,6 +7,22 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-opacity-10",
+    
+    "text-red-500",
+    "text-greenAccent-800",
+    "text-pinkAccent",
+    "text-greenAccent-700",
+    "bg-red-500",
+    "bg-greenAccent-800",
+    "bg-pinkAccent",
+    "bg-greenAccent-700",
+    "shadow-red-500",
+    "shadow-greenAccent-800",
+    "shadow-pinkAccent",
+    "shadow-greenAccent-700",
+  ],
   theme: {
     container: {
       center: true,
@@ -49,10 +65,10 @@ export default {
           700: "#FF7474",
         },
         error: "#B80000",
-        text:{
-          primary:"#0F626B",
-          secondary:"#61767F",
-          disabled:"#"
+        text: {
+          primary: "#0F626B",
+          secondary: "#61767F",
+          disabled: "#",
         },
         orangeAccent: "#F9AB72",
         purpleAccent: "#EEA8FD",

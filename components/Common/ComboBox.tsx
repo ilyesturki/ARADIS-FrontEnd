@@ -27,20 +27,26 @@ const ComboBox = ({
   className,
   name,
   disabled,
-  textColor
+  textColor,
 }: {
   label: string;
   selectedValue?: string;
   onChange?: (currentValue: string, name?: string) => void;
   // onChange?: (currentValue: string, name?: string) => void;
-  data: { value: string; label: string;color?:string }[];
+  data: { value: string; label: string; color?: string }[];
   className?: string;
   name?: string;
   disabled?: boolean;
-  textColor?:string;
+  textColor?: string;
 }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(selectedValue || "");
+
+  React.useEffect(() => {
+    if (selectedValue) {
+      setValue(selectedValue);
+    }
+  }, [selectedValue]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
