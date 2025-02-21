@@ -54,7 +54,7 @@ export type sortingResultsType = {
   userService: string;
 };
 
-export type immediatActionsType = {
+export type immediatActionsType = { 
   description: string;
   userCategory: string;
   userService: string;

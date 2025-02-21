@@ -9,18 +9,20 @@ import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheck
 // import IconAndLabelColumn from "./CustomTableColumns/IconAndLabelColumn";
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
-export type Users = {
+import ClientRiskColumn from "./CustomTableColumns/ClientRiskColumn";
+import FpsDateColumn from "./CustomTableColumns/FpsDateColumn";
+export type Fpss = {
   id: string;
-  mat: string;
-  image?: string; 
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  status: "pending" | "active" | "inactive";
+  currentStep: "problem" | "immediateActions" | "cause" | "defensiveActions";
+  problem: {
+    type: string;
+    quand: string;
+    clientRisk: boolean;
+    image?: string;
+  };
 };
 
-export const columns: ColumnDef<Users>[] = [
+export const columns: ColumnDef<Fpss>[] = [
   {
     accessorKey: "select",
     id: "select",
@@ -28,46 +30,47 @@ export const columns: ColumnDef<Users>[] = [
     cell: ({ row }) => <DataTableContentCheckBox row={row} />,
   },
   {
-    accessorKey: "firstName",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        className="flex justify-center"
-        column={column}
-        title="Name"
-        options={{ hide: true }}
-      />
-    ),
-    cell: ({ row }) => <IconAndNameColumn row={row} />,
-  },
-  {
-    accessorKey: "email",
+    accessorKey: "problem.type",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Email"
+        title="type"
         options={{ up: true, down: true, hide: true }}
       />
     ),
   },
   {
-    accessorKey: "phone",
+    accessorKey: "currentStep",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Phone"
+        title="currentStep"
         options={{ up: true, down: true, hide: true }}
       />
     ),
   },
+
   {
-    accessorKey: "status",
+    accessorKey: "clientRisk",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Status"
+        title="clientRisk"
         options={{ up: true, down: true, hide: true }}
       />
     ),
+    cell: ({ row }) => <ClientRiskColumn row={row} />,
+  },
+  {
+    accessorKey: "problem.quand",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Quand"
+        options={{ up: true, down: true, hide: true }}
+      />
+    ),
+    cell: ({ row }) => <FpsDateColumn row={row} />,
   },
   {
     accessorKey: "actions",
@@ -79,7 +82,7 @@ export const columns: ColumnDef<Users>[] = [
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<Users> row={row} label={"user"}>
+      <DataTableRowMenu<Fpss> row={row} label={"fps"}>
         <DeleteUserDialog id={row.original.id} />
       </DataTableRowMenu>
     ),
