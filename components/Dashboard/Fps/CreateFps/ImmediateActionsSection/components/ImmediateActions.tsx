@@ -10,7 +10,7 @@ import SortingResult from "./SortingResult";
 import ImmediateAction from "./ImmediateAction";
 
 interface Props {
-  immediatActions: immediatActionsType[];
+  immediateActions: immediatActionsType[];
   handleChange: (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -31,7 +31,7 @@ interface Props {
 }
 
 const ImmediateActions = ({
-  immediatActions,
+  immediateActions,
   handleChange,
   addNewImmediateAction,
   removeImmediateAction,
@@ -42,7 +42,7 @@ const ImmediateActions = ({
 }: Props) => {
   return (
     <>
-      {immediatActions.map((e, i) => {
+      {immediateActions.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
@@ -58,7 +58,7 @@ const ImmediateActions = ({
                 handleChangeInArrayObject(
                   setFpsData,
                   e.target.value,
-                  "immediatActions",
+                  "immediateActions",
                   "description",
                   i
                 )
@@ -67,7 +67,7 @@ const ImmediateActions = ({
                 handleChangeInArrayObject(
                   setFpsData,
                   userCategory,
-                  "immediatActions",
+                  "immediateActions",
                   "userCategory",
                   i
                 )
@@ -76,13 +76,13 @@ const ImmediateActions = ({
                 handleChangeInArrayObject(
                   setFpsData,
                   userService,
-                  "immediatActions",
+                  "immediateActions",
                   "userService",
                   i
                 )
               }
             />
-            {immediatActions.length - 1 !== i ? (
+            {immediateActions.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
               <AddSectionButton addNewSection={addNewImmediateAction} />

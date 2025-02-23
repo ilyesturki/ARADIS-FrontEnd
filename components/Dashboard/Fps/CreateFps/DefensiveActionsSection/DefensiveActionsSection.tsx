@@ -36,9 +36,9 @@ const DefensiveActionsSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
-          label="qid"
-          placeholder="qid"
-          name="qid"
+          label="fpsId"
+          placeholder="fpsId"
+          name="fpsId"
           copy
           disabled
         />

@@ -53,7 +53,7 @@ export const verifyBasicDetailsValidationRules = {
 };
 
 export const fpsProblemValidationRules = {
-  qid: { required: true },
+  fpsId: { required: true },
   type: { required: true },
   quoi: { required: true },
   ref: { required: true },
@@ -96,7 +96,7 @@ export const fpsProblemValidationRules = {
 };
 
 export const fpsImmediateActionsValidationRules = {
-  qid: { required: true },
+  fpsId: { required: true },
   alert: { required: true },
   startSorting: { required: true },
   sortingResults: {
@@ -121,16 +121,16 @@ export const fpsImmediateActionsValidationRules = {
     },
   },
   concludeFromSorting: { required: true },
-  immediatActions: {
+  immediateActions: {
     required: true,
     customValidator: (value: string) => {
       if (value) {
-        const immediatActions = JSON.parse(value);
-        for (let i = 0; i < immediatActions.length; i++) {
+        const immediateActions = JSON.parse(value);
+        for (let i = 0; i < immediateActions.length; i++) {
           if (
-            !immediatActions[i].description ||
-            !immediatActions[i].userCategory ||
-            !immediatActions[i].userService
+            !immediateActions[i].description ||
+            !immediateActions[i].userCategory ||
+            !immediateActions[i].userService
           ) {
             return "Please fill in all required fields for all immediate actions.";
           }
@@ -142,7 +142,7 @@ export const fpsImmediateActionsValidationRules = {
 };
 
 export const fpsCauseValidationRules = {
-  qid: { required: true },
+  fpsId: { required: true },
   whyList: {
     required: true,
   },
@@ -152,7 +152,7 @@ export const fpsCauseValidationRules = {
 };
 
 export const FpsDefensiveActionsRules = {
-  qid: { required: true },
+  fpsId: { required: true },
   defensiveActions: {
     required: true,
     customValidator: (value: string) => {

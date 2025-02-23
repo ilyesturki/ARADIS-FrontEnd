@@ -199,7 +199,7 @@ const useProblem = () => {
     console.log(fpsData.image);
     console.log("formImage");
     const dataToValidate: Record<string, string> = {
-      qid: fpsId || "",
+      fpsId: fpsId || "",
       type: fpsData.type || "",
       quoi: fpsData.quoi || "",
       ref: fpsData.ref || "",
@@ -241,7 +241,8 @@ const useProblem = () => {
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
       },
-      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData }))
+      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData })),
+      handleReset
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {

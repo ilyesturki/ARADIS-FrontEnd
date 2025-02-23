@@ -92,8 +92,8 @@ const useImmediateActionsSection = () => {
   };
 
   const addNewImmediateAction = () => {
-    const immediatActions = [...(fpsData?.immediatActions || [])];
-    immediatActions.push({
+    const immediateActions = [...(fpsData?.immediateActions || [])];
+    immediateActions.push({
       description: "",
       userCategory: "",
       userService: "",
@@ -101,19 +101,19 @@ const useImmediateActionsSection = () => {
 
     setFpsData((prevData) => ({
       ...prevData,
-      immediatActions,
+      immediateActions,
     }));
   };
 
   const removeImmediateAction = (index: number) => {
-    if (fpsData.immediatActions && fpsData.immediatActions.length > 1) {
-      const immediatActions = [
-        ...fpsData.immediatActions.slice(0, index),
-        ...fpsData.immediatActions.slice(index + 1),
+    if (fpsData.immediateActions && fpsData.immediateActions.length > 1) {
+      const immediateActions = [
+        ...fpsData.immediateActions.slice(0, index),
+        ...fpsData.immediateActions.slice(index + 1),
       ];
       setFpsData((prevData) => ({
         ...prevData,
-        immediatActions,
+        immediateActions,
       }));
     }
   };
@@ -138,12 +138,12 @@ const useImmediateActionsSection = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsId,
+      fpsId: fpsId,
       alert: JSON.stringify(fpsData.alert || []),
       startSorting: fpsData.startSorting.toString() || "",
       sortingResults: JSON.stringify(fpsData.sortingResults || []),
       concludeFromSorting: fpsData.concludeFromSorting || "",
-      immediatActions: JSON.stringify(fpsData.immediatActions || []),
+      immediateActions: JSON.stringify(fpsData.immediateActions || []),
     };
     const newErrors = validateFormFields(
       dataToValidate,
@@ -158,12 +158,12 @@ const useImmediateActionsSection = () => {
       e,
       {},
       {
-        qid: fpsId,
+        fpsId: fpsId,
         alert: JSON.stringify(fpsData.alert || []),
         startSorting: fpsData.startSorting.toString() || "",
         sortingResults: JSON.stringify(fpsData.sortingResults || []),
         concludeFromSorting: fpsData.concludeFromSorting || "",
-        immediatActions: JSON.stringify(fpsData.immediatActions || []),
+        immediateActions: JSON.stringify(fpsData.immediateActions || []),
       },
       (formData) =>
         dispatch(createFpsImmediateActions({ id: fpsId, fps: formData })),

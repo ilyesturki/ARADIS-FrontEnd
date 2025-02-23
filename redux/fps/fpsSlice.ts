@@ -65,7 +65,7 @@ export type fpsImmediateActionsType = {
   startSorting: boolean;
   sortingResults?: sortingResultsType[];
   concludeFromSorting?: string;
-  immediatActions?: immediatActionsType[];
+  immediateActions?: immediatActionsType[];
 };
 
 export interface FpsType {
@@ -74,7 +74,7 @@ export interface FpsType {
   problem: fpsProblemType;
   defensiveActions?: fpsDefensiveActionType[];
   cause?: fpsCauseType;
-  immediatActions?: fpsImmediateActionsType;
+  immediateActions?: fpsImmediateActionsType;
 }
 
 export type FpsTypeWithoutId = Omit<FpsType, "fpsId">;

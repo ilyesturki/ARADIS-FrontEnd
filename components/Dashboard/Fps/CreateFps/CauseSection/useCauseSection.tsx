@@ -69,7 +69,7 @@ const useCauseSection = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsId,
+      fpsId: fpsId,
       causeList: JSON.stringify(fpsData.causeList),
       whyList: JSON.stringify(fpsData.whyList),
     };
@@ -86,7 +86,7 @@ const useCauseSection = () => {
       e,
       {},
       {
-        qid: fpsId,
+        fpsId: fpsId,
         causeList: JSON.stringify(fpsData.causeList),
         whyList: JSON.stringify(fpsData.whyList),
       },

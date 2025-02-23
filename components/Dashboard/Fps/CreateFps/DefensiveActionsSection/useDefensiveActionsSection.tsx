@@ -64,7 +64,7 @@ const useDefensiveActionsSection = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
-      qid: fpsId,
+      fpsId: fpsId,
       defensiveActions: JSON.stringify(fpsData),
     };
     const newErrors = validateFormFields(
@@ -80,7 +80,7 @@ const useDefensiveActionsSection = () => {
       e,
       {},
       {
-        qid: fpsId,
+        fpsId: fpsId,
         defensiveActions: JSON.stringify(fpsData),
       },
       (formData) =>

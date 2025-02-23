@@ -28,12 +28,14 @@ const useCreateFps = () => {
   useEffect(() => {
     if (fps) {
       setCurrentStep(fps.currentStep);
+      console.log(fps);
     }
   }, [fps]);
 
   // Handle tab change after currentStep is updated
   useEffect(() => {
     if (currentStep) {
+      console.log(currentStep);
       const tabsOrder = [
         "problem",
         "immediateActions",

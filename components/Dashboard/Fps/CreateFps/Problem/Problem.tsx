@@ -120,9 +120,9 @@ const Problem = () => {
         <div className=" flex flex-col gap-6">
           <CustomInput
             value={fpsId}
-            label="qid"
-            placeholder="qid"
-            name="qid"
+            label="fpsId"
+            placeholder="fpsId"
+            name="fpsId"
             copy
             disabled
           />

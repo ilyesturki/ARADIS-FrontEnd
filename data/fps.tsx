@@ -133,7 +133,7 @@ export const initialFpsImmediateActions: fpsImmediateActionsType = {
     },
   ],
   concludeFromSorting: "",
-  immediatActions: [
+  immediateActions: [
     {
       description: "",
       userCategory: "",
