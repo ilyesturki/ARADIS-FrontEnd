@@ -5,7 +5,7 @@ import {
   fpsDefensiveActionType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
   customHandleSubmit,
@@ -39,6 +39,10 @@ const useDefensiveActionsSection = () => {
   );
   const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
 
+  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
+    "Save"
+  );
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
@@ -48,6 +52,23 @@ const useDefensiveActionsSection = () => {
       return;
     }
   }, []);
+
+  const fps = useAppSelector((state) => state.fpss.fps);
+
+  useEffect(() => {
+    if (
+      fps?.defensiveActions &&
+      Object.keys(fps?.defensiveActions).length > 0
+    ) {
+      console.log("fps?.defensiveActions");
+      console.log(fps?.defensiveActions);
+      console.log("fps?.defensiveActions");
+      setFpsData(fps?.defensiveActions);
+      setSubmitBtnValue(
+        fps.currentStep === "defensiveActions" ? "Update" : "Save"
+      );
+    }
+  }, [fps]);
 
   const addNewDefensiveAction = () => {
     setFpsData((prevData) => [
@@ -108,6 +129,7 @@ const useDefensiveActionsSection = () => {
 
     handleSubmit,
     handleReset,
+    submitBtnValue,
   };
 };
 

@@ -29,7 +29,10 @@ const DefensiveAction = ({
   customProcedureChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
-  customQuandChange: (date: Date | undefined, name?: string | undefined) => void;
+  customQuandChange: (
+    date: Date | undefined,
+    name?: string | undefined
+  ) => void;
 }) => {
   return (
     <div className=" flex flex-col gap-4">
@@ -44,16 +47,20 @@ const DefensiveAction = ({
           label="departement"
           value={fpsData.userService}
           onChange={customServiceChange}
-          data={categoryData}
+          data={serviceData}
         />
         <CustomSelect
           label="categorie"
-          value={fpsData.userService}
+          value={fpsData.userCategory}
           onChange={customCategoryChange}
-          data={serviceData}
+          data={categoryData}
         />
       </div>
-      <CustomDateTimePicker label="Quand" value={fpsData.quand} onChange={customQuandChange} />
+      <CustomDateTimePicker
+        label="Quand"
+        value={fpsData.quand}
+        onChange={customQuandChange}
+      />
     </div>
   );
 };
