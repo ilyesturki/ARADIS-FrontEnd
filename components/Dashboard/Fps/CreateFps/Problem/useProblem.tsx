@@ -33,7 +33,7 @@ const useProblem = () => {
     Array(5).fill(null)
   );
   const [fpsData, setFpsData] = useState<fpsProblemType>(initialFpsProblem);
-  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
   const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
     "Save"
   );
@@ -108,7 +108,7 @@ const useProblem = () => {
     console.log("fpsId");
     console.log(fpsId);
     if (fpsId) {
-      setFpsQid(fpsId);
+      setFpsId(fpsId);
       return;
     }
 
@@ -119,7 +119,7 @@ const useProblem = () => {
       scroll: false,
     });
 
-    setFpsQid(fpsId);
+    setFpsId(fpsId);
   }, []);
 
   const handleChange = (

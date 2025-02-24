@@ -6,7 +6,7 @@ import {
   fpsImmediateActionsType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
   customImagesChange,
@@ -37,17 +37,51 @@ const useImmediateActionsSection = () => {
   const [fpsData, setFpsData] = useState<fpsImmediateActionsType>(
     initialFpsImmediateActions
   );
-  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
+
+  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
+    "Save"
+  );
+
+  const fps = useAppSelector((state) => state.fpss.fps);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
 
     if (fpsId) {
-      setFpsQid(fpsId);
+      setFpsId(fpsId);
       return;
     }
   }, []);
+
+  useEffect(() => {
+    if (fps?.immediateActions && Object.keys(fps.immediateActions).length > 0) {
+      const newAlert = [...(fps.immediateActions?.alert || [])];
+      const newSortingResult = [...(fps.immediateActions.sortingResults || [])];
+      const newImmediateActions = [
+        ...(fps.immediateActions.immediateActions || []),
+      ];
+      console.log("fps?.immediateActions");
+      console.log(fps?.immediateActions);
+      console.log("fps?.immediateActions");
+      setFpsData({
+        ...fps.immediateActions,
+        alert: newAlert,
+        sortingResults: newSortingResult,
+        immediateActions: newImmediateActions,
+      });
+      setSubmitBtnValue(
+        fps.currentStep === "immediateActions" ? "Update" : "Save"
+      );
+    }
+  }, [fps]);
+
+  useEffect(() => {
+    console.log("fpsData");
+    console.log(fpsData);
+    console.log("fpsData");
+  }, [fpsData]);
 
   const handleChange = (
     e:
@@ -196,6 +230,7 @@ const useImmediateActionsSection = () => {
 
     handleSubmit,
     handleReset,
+    submitBtnValue
   };
 };
 

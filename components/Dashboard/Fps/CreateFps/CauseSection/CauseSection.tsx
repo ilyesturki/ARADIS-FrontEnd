@@ -26,6 +26,7 @@ const CauseSection = () => {
     handleChangeWhyList,
     handleSubmit,
     handleReset,
+    submitBtnValue,
   } = useCauseSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
@@ -53,6 +54,7 @@ const CauseSection = () => {
           data={causeData || []}
         />
         <CustomButtons
+          value={submitBtnValue}
           mainButtonOnCLick={handleSubmit}
           secondaryButtonOnCLick={handleReset}
         />

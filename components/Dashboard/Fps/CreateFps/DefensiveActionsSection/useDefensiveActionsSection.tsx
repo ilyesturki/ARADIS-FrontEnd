@@ -37,14 +37,14 @@ const useDefensiveActionsSection = () => {
   const [fpsData, setFpsData] = useState<fpsDefensiveActionsType>(
     initialFpsDefensiveActions
   );
-  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
 
     if (fpsId) {
-      setFpsQid(fpsId);
+      setFpsId(fpsId);
       return;
     }
   }, []);

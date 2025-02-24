@@ -20,9 +20,13 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
   const images = response.data.data.problem.images
     ? response.data.data.problem.images.split(",")
     : [];
+  const whyList = JSON.parse(response.data.data.cause.whyList);
+  const causeList = JSON.parse(response.data.data.cause.causeList);
+
   return {
     ...response.data.data,
     problem: { ...response.data.data.problem, images },
+    cause: { ...response.data.data.cause, whyList, causeList },
   } as FpsType;
 });
 

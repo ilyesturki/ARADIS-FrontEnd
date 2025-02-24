@@ -14,6 +14,7 @@ const useCreateFps = () => {
   const [validTabs, setValidTabs] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
@@ -26,7 +27,7 @@ const useCreateFps = () => {
 
   // Update currentStep when fps changes
   useEffect(() => {
-    if (fps) {
+    if (fps?.currentStep) {
       setCurrentStep(fps.currentStep);
       console.log(fps);
     }

@@ -1,7 +1,7 @@
 "use client";
 import { FpsType, flexibleFpsType, fpsCauseType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
   customImagesChange,
@@ -26,17 +26,38 @@ const useCauseSection = () => {
 
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<fpsCauseType>(initialFpsCause);
-  const [fpsId, setFpsQid] = useState<FpsType["fpsId"]>("");
+  const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
 
     if (fpsId) {
-      setFpsQid(fpsId);
+      setFpsId(fpsId);
       return;
     }
   }, []);
+
+  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
+    "Save"
+  );
+
+  const fps = useAppSelector((state) => state.fpss.fps);
+
+  useEffect(() => {
+    if (fps?.cause && Object.keys(fps?.cause).length > 0) {
+      const causeList = [...(fps?.cause.causeList || [])];
+      const whyList = [...(fps?.cause.whyList || [])];
+      console.log("fps?.cause");
+      console.log(fps?.cause);
+      console.log("fps?.cause");
+      setFpsData({
+        causeList,
+        whyList,
+      });
+      setSubmitBtnValue(fps.currentStep === "cause" ? "Update" : "Save");
+    }
+  }, [fps]);
 
   const addNewWhy = () => {
     setFpsData((prevData) => ({
@@ -112,6 +133,7 @@ const useCauseSection = () => {
     handleChangeWhyList,
     handleSubmit,
     handleReset,
+    submitBtnValue,
   };
 };
 

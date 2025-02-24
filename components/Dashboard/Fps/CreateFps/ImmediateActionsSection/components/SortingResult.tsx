@@ -55,13 +55,13 @@ const SortingResult = ({
           label="departement"
           value={fpsData.userService}
           onChange={customServiceChange}
-          data={categoryData}
+          data={serviceData}
         />
         <CustomSelect
           label="categorie"
-          value={fpsData.userService}
+          value={fpsData.userCategory}
           onChange={customCategoryChange}
-          data={serviceData}
+          data={categoryData}
         />
       </div>
     </div>
