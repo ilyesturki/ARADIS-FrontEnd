@@ -7,6 +7,10 @@ declare module "next-auth" {
     id?: string;
     token?: string;
     role?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    image?: string;
   }
   interface Session {
     user: {
@@ -32,6 +36,9 @@ export const jwtCallback = async ({
     token.id = user.id;
     token.token = user.token;
     token.role = user.role;
+    token.firstName = user.firstName;
+    token.lastName = user.lastName;
+    token.email = user.email;
   }
   return token;
 };
@@ -47,6 +54,10 @@ export const sessionCallback = async ({
     session.user.id = token.id as string;
     session.user.role = token.role as string;
     session.user.token = token.token as string;
+    session.user.firstName = token.firstName as string;
+    session.user.lastName = token.lastName as string;
+    session.user.email = token.email as string;
+    session.user.image = token.picture as string;
   }
   return session;
 };

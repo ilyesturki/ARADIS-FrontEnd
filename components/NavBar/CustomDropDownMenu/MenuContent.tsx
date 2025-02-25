@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import Link from "next/link";
-import SignOutButton from "./SignOutButton";
+import SignOutButton from "../../SideBar/SignOutButton";
 const mainAccountMenuContent = [
   {
     title: "Profile",

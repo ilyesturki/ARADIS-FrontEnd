@@ -21,7 +21,14 @@ const credentialsProvider = CredentialsProvider({
     const user = await res.json();
     console.log(user);
     if (res.ok && user) {
-      return { ...user.data, token: user.token, role: user.role };
+      return {
+        ...user.data,
+        token: user.token,
+        role: user.data.role,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
+        image: user.data.image,
+      };
     }
     return null;
   },
