@@ -64,9 +64,11 @@ const useDefensiveActionsSection = () => {
       console.log(fps?.defensiveActions);
       console.log("fps?.defensiveActions");
       setFpsData(fps?.defensiveActions);
-      setSubmitBtnValue(
-        fps.currentStep === "defensiveActions" ? "Update" : "Save"
-      );
+      // setSubmitBtnValue(
+      //   ["defensiveActions"].includes(
+      //     fps.currentStep
+      //   ) ? "Update" : "Save"
+      // );
     }
   }, [fps]);
 
@@ -105,8 +107,7 @@ const useDefensiveActionsSection = () => {
         defensiveActions: JSON.stringify(fpsData),
       },
       (formData) =>
-        dispatch(createFpsDefensiveActions({ id: fpsId, fps: formData })),
-      handleReset
+        dispatch(createFpsDefensiveActions({ id: fpsId, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -114,7 +115,6 @@ const useDefensiveActionsSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsDefensiveActions);
-    dispatch(getFps(fpsId));
   };
 
   return {

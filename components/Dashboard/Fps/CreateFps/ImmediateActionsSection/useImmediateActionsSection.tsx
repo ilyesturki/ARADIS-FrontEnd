@@ -72,7 +72,9 @@ const useImmediateActionsSection = () => {
         immediateActions: newImmediateActions,
       });
       setSubmitBtnValue(
-        fps.currentStep === "immediateActions" ? "Update" : "Save"
+        ["cause", "defensiveActions"].includes(fps.currentStep)
+          ? "Update"
+          : "Save"
       );
     }
   }, [fps]);
@@ -200,8 +202,7 @@ const useImmediateActionsSection = () => {
         immediateActions: JSON.stringify(fpsData.immediateActions || []),
       },
       (formData) =>
-        dispatch(createFpsImmediateActions({ id: fpsId, fps: formData })),
-      handleReset
+        dispatch(createFpsImmediateActions({ id: fpsId, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -209,7 +210,6 @@ const useImmediateActionsSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsImmediateActions);
-    dispatch(getFps(fpsId));
   };
 
   return {
@@ -230,7 +230,7 @@ const useImmediateActionsSection = () => {
 
     handleSubmit,
     handleReset,
-    submitBtnValue
+    submitBtnValue,
   };
 };
 

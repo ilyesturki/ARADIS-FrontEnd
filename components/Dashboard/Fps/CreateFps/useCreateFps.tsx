@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getFps } from "@/redux/fps/fpsThunk";
+import { resetFps } from "@/redux/fps/fpsSlice";
 
 const useCreateFps = () => {
   const router = useRouter();
@@ -20,18 +21,47 @@ const useCreateFps = () => {
     let fpsId = params.get("fpsId");
     if (fpsId) {
       dispatch(getFps(fpsId));
+    } else {
+      dispatch(resetFps());
+      setCurrentStep("problem");
+      handleTabChange("problem");
     }
-  }, [dispatch]);
+  }, [dispatch, searchParams]);
 
   const fps = useAppSelector((state) => state.fpss.fps);
 
   // Update currentStep when fps changes
   useEffect(() => {
-    if (fps?.currentStep) {
+    if (fps?.currentStep === currentStep) {
+      console.log(currentStep);
+      const tabsOrder = [
+        "problem",
+        "immediateActions",
+        "cause",
+        "defensiveActions",
+      ];
+
+      const nextTabIndex =
+        currentStep === "defensiveActions"
+          ? tabsOrder.indexOf(currentStep)
+          : tabsOrder.indexOf(currentStep) + 1;
+
+      handleTabChange(tabsOrder[nextTabIndex]);
+    } else if (fps?.currentStep) {
       setCurrentStep(fps.currentStep);
       console.log(fps);
     }
   }, [fps]);
+
+  const fpsUpdateSuccess = useAppSelector((state) => state.fpss.updateSuccess);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+    if (fpsId) {
+      dispatch(getFps(fpsId));
+    }
+  }, [fpsUpdateSuccess]);
 
   // Handle tab change after currentStep is updated
   useEffect(() => {

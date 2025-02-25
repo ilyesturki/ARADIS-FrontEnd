@@ -45,9 +45,30 @@ const useProblem = () => {
 
   const fps = useAppSelector((state) => state.fpss.fps);
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    let fpsId = params.get("fpsId");
+    console.log("fpsId");
+    console.log(fpsId);
+    if (fpsId) {
+      setFpsId(fpsId);
+      return;
+    }
+
+    fpsId = generateFPSId("FPS", 8);
+    params.set("fpsId", fpsId);
+
+    router.replace(`/dashboard/fps/create-fps?${params.toString()}`, {
+      scroll: false,
+    });
+
+    setFpsId(fpsId);
+  }, []);
+
   // Update currentStep when fps changes
   useEffect(() => {
-    if (fps?.problem) {
+    if (fps?.problem && Object.keys(fps.problem).length > 0) {
+      console.log(fps.problem);
       setFpsData(fps.problem);
 
       const loadedImages = Array(5).fill(null);
@@ -72,7 +93,13 @@ const useProblem = () => {
           className: undefined,
         });
       }
-      setSubmitBtnValue(fps.currentStep === "problem" ? "Update" : "Save");
+      setSubmitBtnValue(
+        ["problem", "immediateActions", "cause", "defensiveActions"].includes(
+          fps.currentStep
+        )
+          ? "Update"
+          : "Save"
+      );
     }
   }, [fps]);
 
@@ -101,26 +128,6 @@ const useProblem = () => {
       }));
     }
   };
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
-    console.log("fpsId");
-    console.log(fpsId);
-    if (fpsId) {
-      setFpsId(fpsId);
-      return;
-    }
-
-    fpsId = generateFPSId("FPS", 8);
-    params.set("fpsId", fpsId);
-
-    router.replace(`/dashboard/fps/create-fps?${params.toString()}`, {
-      scroll: false,
-    });
-
-    setFpsId(fpsId);
-  }, []);
 
   const handleChange = (
     e:
@@ -241,8 +248,7 @@ const useProblem = () => {
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
       },
-      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData })),
-      handleReset
+      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -253,7 +259,7 @@ const useProblem = () => {
     setTypeColors({ textColor: "", className: "" });
     setImageFile(null);
     setImagesFiles([]);
-    dispatch(getFps(fpsId));
+    // dispatch(getFps(fpsId));
   };
 
   return {

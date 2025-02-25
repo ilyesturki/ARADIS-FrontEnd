@@ -55,7 +55,9 @@ const useCauseSection = () => {
         causeList,
         whyList,
       });
-      setSubmitBtnValue(fps.currentStep === "cause" ? "Update" : "Save");
+      setSubmitBtnValue(
+        ["defensiveActions"].includes(fps.currentStep) ? "Update" : "Save"
+      );
     }
   }, [fps]);
 
@@ -111,8 +113,7 @@ const useCauseSection = () => {
         causeList: JSON.stringify(fpsData.causeList),
         whyList: JSON.stringify(fpsData.whyList),
       },
-      (formData) => dispatch(createFpsCause({ id: fpsId, fps: formData })),
-      handleReset
+      (formData) => dispatch(createFpsCause({ id: fpsId, fps: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -120,7 +121,6 @@ const useCauseSection = () => {
       e.preventDefault();
     }
     setFpsData(initialFpsCause);
-    dispatch(getFps(fpsId));
   };
 
   return {

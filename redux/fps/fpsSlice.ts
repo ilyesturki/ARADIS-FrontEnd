@@ -54,7 +54,7 @@ export type sortingResultsType = {
   userService: string;
 };
 
-export type immediatActionsType = { 
+export type immediatActionsType = {
   description: string;
   userCategory: string;
   userService: string;
@@ -104,7 +104,11 @@ const initialState: FpssState = {
 const fpssSlice = createSlice({
   name: "fps",
   initialState,
-  reducers: {},
+  reducers: {
+    resetFps: (state) => {
+      state.fps = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getFpss.pending, (state) => {
@@ -120,6 +124,7 @@ const fpssSlice = createSlice({
       })
       .addCase(getFps.pending, (state) => {
         state.loading = true;
+        state.updateSuccess = false;
       })
       .addCase(getFps.fulfilled, (state, action: PayloadAction<FpsType>) => {
         state.loading = false;
@@ -131,59 +136,71 @@ const fpssSlice = createSlice({
       })
       .addCase(createFpsProblem.pending, (state) => {
         state.loading = true;
+        state.updateSuccess = false;
       })
       .addCase(
         createFpsProblem.fulfilled,
         (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
           state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
         }
       )
       .addCase(createFpsProblem.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
+        state.updateSuccess = false;
       })
       .addCase(createFpsImmediateActions.pending, (state) => {
         state.loading = true;
+        state.updateSuccess = false;
       })
       .addCase(
         createFpsImmediateActions.fulfilled,
         (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
           state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
         }
       )
       .addCase(createFpsImmediateActions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
+        state.updateSuccess = false;
       })
       .addCase(createFpsCause.pending, (state) => {
         state.loading = true;
+        state.updateSuccess = false;
       })
       .addCase(
         createFpsCause.fulfilled,
         (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
           state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
         }
       )
       .addCase(createFpsCause.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
+        state.updateSuccess = false;
       })
       .addCase(createFpsDefensiveActions.pending, (state) => {
         state.loading = true;
+        state.updateSuccess = false;
       })
       .addCase(
         createFpsDefensiveActions.fulfilled,
         (state, action: PayloadAction<FpsType>) => {
           state.loading = false;
           state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
         }
       )
       .addCase(createFpsDefensiveActions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
+        state.updateSuccess = false;
       })
       .addCase(updateFps.pending, (state) => {
         state.loading = true;
@@ -221,4 +238,4 @@ const fpssSlice = createSlice({
 
 export default fpssSlice.reducer;
 
-export const {} = fpssSlice.actions;
+export const { resetFps } = fpssSlice.actions;
