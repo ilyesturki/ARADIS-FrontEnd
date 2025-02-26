@@ -7,9 +7,9 @@ const ImageAndTitleColumn = ({ data }: { data: any }) => {
   const title = data.type as string;
   return (
     <div className=" flex items-center gap-6 pl-4">
-      <Avatar className=" w-10 h-10 border-4 outline-2 outline-dotted outline-greenAccent-900">
+      <Avatar className=" w-12 h-12 border-4 outline-2 outline-dotted outline-grayscale-500">
         <AvatarImage src={image} />
-        <AvatarFallback className=" text-xl font-medium text-greenAccent-900 text-opacity-50 capitalize">
+        <AvatarFallback className=" text-xl font-medium text-grayscale-500 text-opacity-50 capitalize">
           {title?.charAt(0)}
         </AvatarFallback>
       </Avatar>

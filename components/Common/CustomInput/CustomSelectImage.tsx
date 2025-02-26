@@ -15,11 +15,11 @@ const CustomSelectImage = ({
 }) => {
   return (
     <div className=" w-full flex gap-4 items-center">
-      <div className="flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
-        <span className=" text-[10px] font-semibold text-greenAccent-900 ">
+      <div className="flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
+        <span className=" text-[10px] font-semibold text-grayscale-500 ">
           {label}
         </span>
-        <div className="relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-greenAccent-900 shadow-[0px_0px_1px] shadow-greenAccent-900 rounded-sm">
+        <div className="relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm">
           <input
             type="file"
             className="absolute w-full h-full z-10 opacity-0 cursor-pointer"
@@ -38,9 +38,9 @@ const CustomSelectImage = ({
             <>
               <FontAwesomeIcon
                 icon={faImage}
-                className="text-5xl text-greenAccent-900 opacity-50"
+                className="text-5xl text-grayscale-500 opacity-50"
               />
-              <p className="text-sm font-medium text-greenAccent-900 opacity-50">
+              <p className="text-sm font-medium text-grayscale-500 opacity-50">
                 Drop your image here, or browse
               </p>
             </>

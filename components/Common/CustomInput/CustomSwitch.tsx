@@ -12,8 +12,8 @@ const CustomSwitch = ({
   onChange: () => void;
 }) => {
   return (
-    <div className="w-full px-4 py-3 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md flex items-center">
-      <h2 className=" text-sm font-medium text-greenAccent-900">{title}</h2>
+    <div className="w-full px-4 py-3 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md flex items-center">
+      <h2 className=" text-sm font-medium text-grayscale-500">{title}</h2>
       <Switch
         checked={checked}
         onClick={(e) => {

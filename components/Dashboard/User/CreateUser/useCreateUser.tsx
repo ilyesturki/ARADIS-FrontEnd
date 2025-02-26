@@ -6,11 +6,14 @@ import {
   customHandleChange,
   customImagesChange,
   customHandleSubmit,
+  handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyUserValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createUser } from "@/redux/users/usersThunk";
+
+import { categoryData, serviceData } from "@/data/fps";
 
 const roleData = [
   {
@@ -31,6 +34,8 @@ const initialUserState: flexibleUserType = {
   phone: "",
   role: "user",
   image: "",
+  userCategory: "",
+  userService: "",
   // status: "inactive",
 };
 const useCreateUser = () => {
@@ -56,6 +61,11 @@ const useCreateUser = () => {
       role,
     }));
   };
+
+  const customHandleChangeSelect = (value: string, name?: string) => {
+    handleChangeSelect(setUserData, value, name || "");
+  };
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       mat: userData.mat || "",
@@ -64,6 +74,8 @@ const useCreateUser = () => {
       email: userData.email || "",
       phone: userData.phone || "",
       role: userData.role || "",
+      userCategory: userData.userCategory || "",
+      userService: userData.userService || "",
       image: imageFile ? imageFile.type : "",
     };
     const newErrors = validateFormFields(
@@ -85,6 +97,8 @@ const useCreateUser = () => {
         lastName: userData.lastName,
         email: userData.email,
         phone: userData.phone,
+        userCategory: userData.userCategory,
+        userService: userData.userService,
         // status: userData.status,
       },
       (formData) => dispatch(createUser(formData)),
@@ -107,6 +121,10 @@ const useCreateUser = () => {
     handleChange,
     handleImageChange,
     handleRoleChange,
+
+    categoryData,
+    serviceData,
+    customHandleChangeSelect,
 
     handleSubmit,
     handleReset,

@@ -4,10 +4,10 @@ import { Table } from "@tanstack/react-table";
 
 const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
   return (
-    <div className=" flex items-center relative flex-1 bg-grayscale-200 border-[1px] border-grayscale-300 shadow-[0px_0px_2px] shadow-grayscale-400 rounded-sm">
+    <div className=" flex items-center relative flex-1 bg-sidebar-accent border-[1px] border-grayscale-300 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm">
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
-        className="absolute left-4 w-4 h-4 text-slate-400"
+        className="absolute left-4 w-4 h-4 text-grayscale-500"
       />
       <input
         type="text"
@@ -32,7 +32,7 @@ const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
               : ""
           // table.getColumn("email")?.setFilterValue(event.target.value)
         }
-        className=" w-full h-full px-10 py-2.5 text-sm font-normal placeholder-slate-400 bg-transparent outline-none rounded-sm"
+        className=" w-full h-full px-10 py-2.5 text-sm font-normal placeholder-grayscale-500 placeholder-opacity-80 bg-transparent outline-none rounded-sm"
       />
     </div>
   );

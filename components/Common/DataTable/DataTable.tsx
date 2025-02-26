@@ -21,7 +21,7 @@ const DataTable = <TData, TValue>({
   const [table] = useDataTable({ columns, data });
 
   return (
-    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 rounded-lg shadow-[0_0_2px] shadow-grayscale-400 ">
+    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 rounded-[7px] shadow-[0_0_2px] shadow-grayscale-400 ">
       <div className="flex items-center justify-between gap-6 px-4">
         <DataTableSearchInput table={table} />
         <DataTableViewOptions table={table} />

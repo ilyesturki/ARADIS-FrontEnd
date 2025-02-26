@@ -24,7 +24,7 @@ export function DataTableViewOptions<TData>({
       <DropdownMenuTrigger asChild>
         <button
           className=" hidden lg:flex items-center px-2.5 py-2.5
-         text-sm text-grayscale-100 font-semibold outline-none bg-greenAccent-900 bg-opacity-80 rounded-sm shadow-[0_0_2px] shadow-grayscale-400 
+         text-sm text-grayscale-100 font-semibold outline-none bg-grayscale-500 bg-opacity-90 rounded-sm shadow-[0_0_2px] shadow-grayscale-400 
         "
         >
           <FontAwesomeIcon icon={faSliders} className="mr-2 h-4 w-4 text-sm" />

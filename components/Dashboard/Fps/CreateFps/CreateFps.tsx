@@ -41,7 +41,7 @@ const CreateFps = () => {
             <TabsTrigger
               value={e.value}
               key={i}
-              className=" flex items-center gap-2"
+              className=" flex items-center gap-1.5"
             >
               {validTabs.includes(e.value) ? (
                 <FontAwesomeIcon icon={solidCircleCheck} size="lg" />

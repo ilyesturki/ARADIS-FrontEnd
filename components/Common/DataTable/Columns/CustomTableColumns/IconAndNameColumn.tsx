@@ -7,9 +7,9 @@ const IconAndNameColumn = ({ row }: { row: Row<Users> }) => {
   const title = row.getValue("firstName") as string;
   return (
     <div className=" flex items-center gap-6 pl-4">
-      <Avatar className=" w-14 h-14 border-4 outline-2 outline-dotted outline-greenAccent-900">
+      <Avatar className=" w-14 h-14 border-4 outline-2 outline-dotted outline-grayscale-500">
         <AvatarImage src={image} />
-        <AvatarFallback className=" text-xl font-medium text-greenAccent-900 text-opacity-50 capitalize">
+        <AvatarFallback className=" text-xl font-medium text-grayscale-500 text-opacity-50 capitalize">
           {title?.charAt(0)}
         </AvatarFallback>
       </Avatar>
@@ -19,5 +19,5 @@ const IconAndNameColumn = ({ row }: { row: Row<Users> }) => {
     </div>
   );
 };
- 
+
 export default IconAndNameColumn;

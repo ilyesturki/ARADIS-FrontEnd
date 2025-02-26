@@ -19,6 +19,8 @@ export interface UserType {
   image?: string;
   password?: string;
   role: "user" | "admin";
+  userCategory: string;
+  userService: string;
   status: "active" | "inactive";
 }
 

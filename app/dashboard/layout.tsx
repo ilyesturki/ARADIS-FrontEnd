@@ -26,6 +26,8 @@ export const metadata: Metadata = {
 
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
+import BreadCrumb from "@/components/Common/BreadCrumb";
+import PageTitle from "@/components/Common/PageTitle";
 
 export default async function RootLayout({
   children,
@@ -44,7 +46,8 @@ export default async function RootLayout({
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
+            <BreadCrumb />
+            {/* <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
@@ -56,12 +59,12 @@ export default async function RootLayout({
                   <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
-            </Breadcrumb>
+            </Breadcrumb> */}
           </div>
         </header>
         <main className="px-8 pb-4">
-          <div className=" flex flex-col gap-10 bg-sidebar-accent py-6 px-8 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
-            <CustomBreadCrumb />
+          <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-6 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
+            <PageTitle />
             {children}
           </div>
         </main>

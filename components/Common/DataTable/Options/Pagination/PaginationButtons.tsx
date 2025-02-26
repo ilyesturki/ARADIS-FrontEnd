@@ -40,7 +40,7 @@ const PaginationButtons = <TData,>({ table }: { table: Table<TData> }) => {
       {buttons.map((e, i) => {
         return (
           <button
-            className={` flex justify-center items-center h-8 w-8 p-0 bg-greenAccent-900 text-grayscale-100 rounded-md  ${
+            className={` flex justify-center items-center h-8 w-8 p-0 bg-grayscale-500 text-grayscale-100 rounded-md  ${
               e.icon === faAnglesLeft ||
               (e.icon === faAnglesRight && " max-sm:hidden")
             }

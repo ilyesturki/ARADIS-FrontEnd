@@ -18,8 +18,8 @@ const CustomTextArea = ({
 }) => {
   return (
     <div className=" flex gap-4 items-center">
-      <div className="w-full pl-4 pr-2 bg-grayscale-100 shadow-[0px_0px_2px] shadow-greenAccent-900  rounded-md">
-        <span className="text-[10px] font-semibold text-greenAccent-900 capitalize ">
+      <div className="w-full pl-4 pr-2 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
+        <span className="text-[10px] font-semibold text-grayscale-500 capitalize ">
           {label}
         </span>
         <textarea
@@ -29,7 +29,7 @@ const CustomTextArea = ({
           onChange={onChange}
           placeholder={placeholder}
           disabled={disabled}
-          className=" w-full h-16 min-h-12 py-2 text-sm font-normal placeholder-greenAccent-900 placeholder-opacity-70 bg-transparent outline-none"
+          className=" w-full h-16 min-h-12 py-2 text-sm font-normal placeholder-grayscale-500 placeholder-opacity-70 bg-transparent outline-none"
         ></textarea>
       </div>
       {children}

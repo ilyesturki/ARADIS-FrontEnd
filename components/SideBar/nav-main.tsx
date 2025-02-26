@@ -36,7 +36,7 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupLabel className="text-grayscale-100">
-        Platform
+        Dashboard
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (

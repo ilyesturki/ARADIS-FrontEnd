@@ -16,7 +16,7 @@ import {
 
 import { NavMain } from "./nav-main";
 import { UserNav } from "./UserNav";
-import { TeamSwitcher } from "./team-switcher";
+import WebsiteCustomLogo from "./WebsiteCustomLogo";
 import {
   Sidebar,
   SidebarContent,
@@ -109,7 +109,7 @@ export function CustomSideBar({
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <WebsiteCustomLogo />
         <UserNav
           image={session?.user?.image}
           firstName={session?.user?.firstName}
