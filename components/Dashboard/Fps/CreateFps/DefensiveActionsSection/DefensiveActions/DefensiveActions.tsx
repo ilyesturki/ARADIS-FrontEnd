@@ -40,6 +40,7 @@ const DefensiveActions = ({
               title="procedure"
               i={i}
               removeDefensiveAction={() => removeDefensiveAction(i)}
+              handleDelete={() => removeDefensiveAction(i)}
             />
             <DefensiveAction
               fpsData={e}

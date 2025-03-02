@@ -2,19 +2,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const RemoveSectionButton = ({
-  removeDefensiveAction,
+  handleDelete,
+  className,
 }: {
-  removeDefensiveAction: () => void;
+  handleDelete: () => void;
+  className?: string;
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    removeDefensiveAction();
+    handleDelete();
   };
 
   return (
     <button
       onClick={handleClick}
-      className="flex justify-center items-center w-5 aspect-1 rounded-full bg-greenAccent-900 opacity-80 shadow-[0_0_5px] shadow-greenAccent-900"
+      className={`flex justify-center items-center w-5 aspect-1 rounded-full bg-redAccent-900 bg-opacity-90 shadow-[0_0_3px] shadow-grayscale-500 ${className}`}
     >
       <FontAwesomeIcon
         icon={faTrash}

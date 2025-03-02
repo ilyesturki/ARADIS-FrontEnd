@@ -44,17 +44,20 @@ export function UserNav({
       <SidebarMenuItem>
         <SidebarMenuButton
           size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground bg-sidebar-accent"
+          tooltip={`${firstName} ${lastName}`}
+          className="data-[state=open]:bg-greenAccent-900 data-[state=open]:text-sidebar-accent-foreground bg-greenAccent-900 hover:bg-greenAccent-900 rounded-[5px] shadow-[0_0_1px] shadow-greenAccent-800"
         >
-          <Avatar className="h-8 w-8 rounded-lg">
+          <Avatar className="h-8 w-8 rounded-lg shadow-[0_0_2px] shadow-greenAccent-800">
             <AvatarImage src={image} alt={firstName} />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
           </Avatar>
-          <div className="grid flex-1 text-left text-sm leading-tight text-grayscale-500">
-            <span className="truncate font-semibold">
+          <div className="grid flex-1 text-left text-sm leading-tight ">
+            <span className="truncate font-semibold text-grayscale-100">
               {firstName} {lastName}
             </span>
-            <span className="truncate text-xs">{email}</span>
+            <span className="truncate text-xs font-medium text-grayscale-100 text-opacity-60">
+              {email}
+            </span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>

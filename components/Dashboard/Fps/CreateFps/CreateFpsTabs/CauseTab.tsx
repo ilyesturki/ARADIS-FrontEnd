@@ -1,11 +1,11 @@
 import CauseSection from "../CauseSection/CauseSection";
-import CauseTabCard from "./CustomTabCard";
+import CustomTabCard from "./CustomTabCard";
 
 const CauseTab = () => {
   return (
-    <CauseTabCard title="Cause">
+    <CustomTabCard title="Cause">
       <CauseSection />
-    </CauseTabCard>
+    </CustomTabCard>
   );
 };
 

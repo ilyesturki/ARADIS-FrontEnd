@@ -10,6 +10,7 @@ import {
   createFpsDefensiveActions,
   updateFps,
   deleteFps,
+  createFpsValidation,
 } from "./fpsThunk";
 
 export type fpsProblemType = {
@@ -68,13 +69,33 @@ export type fpsImmediateActionsType = {
   immediateActions?: immediatActionsType[];
 };
 
+export type FpsCommentType = {
+  comment: string;
+  date: string;
+  rating: number;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+    image: string;
+  };
+};
+
 export interface FpsType {
   fpsId: string;
-  currentStep: "problem" | "immediateActions" | "cause" | "defensiveActions";
+  currentStep:
+    | "problem"
+    | "immediateActions"
+    | "cause"
+    | "defensiveActions"
+    | "validation";
   problem: fpsProblemType;
   defensiveActions?: fpsDefensiveActionType[];
   cause?: fpsCauseType;
   immediateActions?: fpsImmediateActionsType;
+  status: "inProgress" | "completed" | "failed";
+  comments: FpsCommentType[];
 }
 
 export type FpsTypeWithoutId = Omit<FpsType, "fpsId">;
@@ -198,6 +219,23 @@ const fpssSlice = createSlice({
         }
       )
       .addCase(createFpsDefensiveActions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+        state.updateSuccess = false;
+      })
+      .addCase(createFpsValidation.pending, (state) => {
+        state.loading = true;
+        state.updateSuccess = false;
+      })
+      .addCase(
+        createFpsValidation.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
+        }
+      )
+      .addCase(createFpsValidation.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
         state.updateSuccess = false;

@@ -13,11 +13,11 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 
 const PageTitle = () => {
-//   const dispatch = useAppDispatch();
+  //   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.users.user);
   const pathname = usePathname();
   const paths = useMemo(() => pathname.split("/").slice(1), [pathname]);
-//   const [pathList, setPathList] = useState([""]);
+  //   const [pathList, setPathList] = useState([""]);
   const [pathName, setPathName] = useState(
     paths[paths.length - 1]?.split("-").join(" ") || ""
   );
@@ -25,25 +25,25 @@ const PageTitle = () => {
   useEffect(() => {
     if (user) {
       setPathName(`${user.firstName} ${user.lastName}`);
-    //   setPathList((prev) => [
-    //     ...prev.slice(0, prev.length - 1),
-    //     `${user.firstName} ${user.lastName}`,
-    //   ]);
+      //   setPathList((prev) => [
+      //     ...prev.slice(0, prev.length - 1),
+      //     `${user.firstName} ${user.lastName}`,
+      //   ]);
     }
   }, [user]);
 
-//   useEffect(() => {
-//     if (paths.length > 0) {
-//       if (paths[2] === "edit-user") {
-//         const userId = paths[3];
-//         if (userId) dispatch(getUser(userId));
-//       }
-//       setPathList(paths);
-//     }
-//   }, [paths, dispatch]);
+  //   useEffect(() => {
+  //     if (paths.length > 0) {
+  //       if (paths[2] === "edit-user") {
+  //         const userId = paths[3];
+  //         if (userId) dispatch(getUser(userId));
+  //       }
+  //       setPathList(paths);
+  //     }
+  //   }, [paths, dispatch]);
 
   return (
-    <h1 className=" capitalize text-3xl font-medium text-grayscale-500">
+    <h1 className=" capitalize text-3xl font-medium text-greenAccent-900">
       {pathName}
     </h1>
   );

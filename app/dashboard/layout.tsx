@@ -62,8 +62,8 @@ export default async function RootLayout({
             </Breadcrumb> */}
           </div>
         </header>
-        <main className="px-8 pb-4">
-          <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-6 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
+        <main className="px-9 pb-4">
+          <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-7 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
             <PageTitle />
             {children}
           </div>

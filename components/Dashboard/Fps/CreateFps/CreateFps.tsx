@@ -10,6 +10,7 @@ import CauseTab from "./CreateFpsTabs/CauseTab";
 import DefensiveActionsTab from "./CreateFpsTabs/DefensiveActionsTab";
 import { use } from "react";
 import useCreateFps from "./useCreateFps";
+import ValidationTab from "./CreateFpsTabs/ValidationTab";
 // defaultValue="problem"
 
 const tabs = [
@@ -29,13 +30,17 @@ const tabs = [
     value: "defensiveActions",
     label: "Defensive Actions",
   },
+  {
+    value: "validation",
+    label: "Validation",
+  },
 ];
 
 const CreateFps = () => {
   const { currentTab, validTabs, handleTabChange } = useCreateFps();
   return (
     <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
-      <TabsList className="grid w-full grid-cols-4">
+      <TabsList className="grid w-full grid-cols-5">
         {tabs.map((e, i) => {
           return (
             <TabsTrigger
@@ -64,6 +69,9 @@ const CreateFps = () => {
       </TabsContent>
       <TabsContent value="defensiveActions">
         <DefensiveActionsTab />
+      </TabsContent>
+      <TabsContent value="validation">
+        <ValidationTab />
       </TabsContent>
     </Tabs>
   );

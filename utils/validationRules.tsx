@@ -173,3 +173,8 @@ export const FpsDefensiveActionsRules = {
     },
   },
 };
+
+export const fpsValidationValidationRules = {
+  fpsId: { required: true },
+  status: { required: true },
+};

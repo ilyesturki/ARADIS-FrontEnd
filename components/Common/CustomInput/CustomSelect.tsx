@@ -32,7 +32,7 @@ const CustomSelect = <T,>({
         className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] rounded-md shadow-grayscale-500 ${className}`}
       >
         <span
-          className={`text-[10px] font-semibold capitalize text-grayscale-500 ${textColor}`}
+          className={`text-[10px] font-semibold capitalize text-greenAccent-900 ${textColor}`}
         >
           {label}
         </span>
@@ -53,7 +53,7 @@ const CustomSelect = <T,>({
           textColor={textColor}
           name={name}
           disabled={disabled}
-          className=" bg-transparent shadow-none text-grayscale-500 opacity-70 "
+          className=" bg-transparent shadow-none text-greenAccent-900 opacity-70 "
         />
       </div>
       {children}

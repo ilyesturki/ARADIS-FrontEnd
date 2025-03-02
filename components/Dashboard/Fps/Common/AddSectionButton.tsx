@@ -9,15 +9,15 @@ const AddSectionButton = ({ addNewSection }: { addNewSection: () => void }) => {
 
   return (
     <div className="flex items-center justify-between py-1">
-      <hr className="w-5/12 border-greenAccent-900 opacity-60" />
+      <hr className="w-5/12 border-grayscale-500 opacity-60" />
       <button
         onClick={handleClick}
-        className="flex justify-center items-center w-7 aspect-1 rounded-full bg-greenAccent-900 opacity-80 shadow-[0_0_5px] shadow-greenAccent-900"
+        className="flex justify-center items-center w-7 aspect-1 rounded-full bg-grayscale-500 opacity-80 shadow-[0_0_5px] shadow-grayscale-500"
       >
         <FontAwesomeIcon icon={faPlus} className="text-sm text-grayscale-100" />
       </button>
 
-      <hr className=" w-5/12 border-greenAccent-900 opacity-60" />
+      <hr className=" w-5/12 border-grayscale-500 opacity-60" />
     </div>
   );
 };

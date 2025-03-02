@@ -21,7 +21,8 @@ const SignOutButton = () => {
       <SidebarMenuItem>
         <SidebarMenuButton
           onClick={handleSignOut}
-          className=" flex items-center w-fit px-5 !h-10 mx-auto text-base font-semibold !bg-redAccent-900 !text-grayscale-100"
+          tooltip="log out"
+          className=" flex items-center w-fit px-5 !h-10 mx-auto text-base font-semibold !bg-redAccent-900 hover:!bg-opacity-70 !text-grayscale-100"
         >
           <LogOut className=" w-6 h-6 mr-1.5 rotate-180" />
           <span>Log out</span>

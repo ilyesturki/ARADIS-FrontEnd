@@ -25,7 +25,7 @@ const CustomPicker = ({
 
   return (
     <div className="w-full px-4 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
-      <span className=" w-full text-[10px] font-semibold text-grayscale-500 capitalize ">
+      <span className=" w-full text-[10px] font-semibold text-greenAccent-900 capitalize ">
         {label}
       </span>
       <div className="relative flex flex-wrap gap-x-3 gap-y-4 py-4">

@@ -8,10 +8,13 @@ import {
   customHandleChange,
   customHandleSubmit,
   customImagesChange,
+  handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyUserValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
+
+import { categoryData, serviceData } from "@/data/fps";
 
 const roleData = [
   {
@@ -31,6 +34,8 @@ const initialUserState: flexibleUserType = {
   phone: "",
   role: "user",
   image: "",
+  userCategory: "",
+  userService: "",
 };
 const useEditUser = (id: string) => {
   const dispatch = useAppDispatch();
@@ -76,6 +81,10 @@ const useEditUser = (id: string) => {
     }));
   };
 
+  const customHandleChangeSelect = (value: string, name?: string) => {
+    handleChangeSelect(setUserData, value, name || "");
+  };
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const formImage = imageFile
       ? imageFile
@@ -88,6 +97,8 @@ const useEditUser = (id: string) => {
       email: userData.email || "",
       phone: userData.phone || "",
       role: userData.role || "",
+      userCategory: userData.userCategory || "",
+      userService: userData.userService || "",
       image: formImage ? formImage.type : "",
     };
     const newErrors = validateFormFields(
@@ -111,6 +122,8 @@ const useEditUser = (id: string) => {
         lastName: userData.lastName,
         email: userData.email,
         phone: userData.phone,
+        userCategory: userData.userCategory,
+        userService: userData.userService,
       },
       (formData) => dispatch(updateUser({ id, user: formData })),
       handleReset
@@ -125,11 +138,16 @@ const useEditUser = (id: string) => {
   };
   return {
     roleData,
+
     userData,
 
     handleChange,
     handleImageChange,
     handleRoleChange,
+
+    categoryData,
+    serviceData,
+    customHandleChangeSelect,
 
     handleSubmit,
     handleReset,

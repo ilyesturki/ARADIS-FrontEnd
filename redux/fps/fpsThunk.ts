@@ -102,6 +102,22 @@ export const createFpsDefensiveActions = createAsyncThunk(
   }
 );
 
+export const createFpsValidation = createAsyncThunk(
+  "fpss/createFpsValidation",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/validation/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
 export const updateFps = createAsyncThunk(
   "fpss/updateFps",
   async ({ id, fps }: { id: string; fps: FormData }) => {

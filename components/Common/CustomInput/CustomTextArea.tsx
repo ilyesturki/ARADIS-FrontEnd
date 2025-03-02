@@ -19,7 +19,7 @@ const CustomTextArea = ({
   return (
     <div className=" flex gap-4 items-center">
       <div className="w-full pl-4 pr-2 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
-        <span className="text-[10px] font-semibold text-grayscale-500 capitalize ">
+        <span className="text-[10px] font-semibold text-greenAccent-900 capitalize ">
           {label}
         </span>
         <textarea

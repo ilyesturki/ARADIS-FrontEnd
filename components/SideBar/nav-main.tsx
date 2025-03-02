@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 
+import { usePathname } from "next/navigation";
+
 export function NavMain({
   items,
 }: {
@@ -33,6 +35,9 @@ export function NavMain({
     }[];
   }[];
 }) {
+  const path = usePathname();
+  const currentPath = path.split("/").join("/");
+  console.log(currentPath);
   return (
     <SidebarGroup>
       <SidebarGroupLabel className="text-grayscale-100">
@@ -50,15 +55,27 @@ export function NavMain({
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton
                   tooltip={item.title}
-                  className="text-grayscale-100"
+                  className="!h-10 text-base text-grayscale-100 hover:!text-grayscale-500"
                 >
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
+                  {item.icon && (
+                    <item.icon
+                      className={`!size-[18px] ${
+                        item.items?.some((item) => item.url === currentPath) &&
+                        "text-greenAccent-800"
+                      }`}
+                    />
+                  )}
+                  <span className="pt-0.5">{item.title}</span>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <SidebarMenuSub>
+                <SidebarMenuSub
+                  className={`${
+                    item.items?.some((item) => item.url === currentPath) &&
+                    "border-greenAccent-800"
+                  }`}
+                >
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem
                       key={subItem.title}
@@ -67,7 +84,11 @@ export function NavMain({
                       <SidebarMenuSubButton asChild>
                         <Link
                           href={subItem.url}
-                          className="!text-grayscale-100 hover:!text-grayscale-500"
+                          className={` hover:!text-grayscale-500 ${
+                            subItem.url === currentPath
+                              ? "!text-greenAccent-800"
+                              : "!text-grayscale-100"
+                          }`}
                         >
                           <span>{subItem.title}</span>
                         </Link>

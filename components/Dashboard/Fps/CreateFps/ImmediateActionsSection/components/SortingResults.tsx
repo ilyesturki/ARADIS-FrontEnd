@@ -44,7 +44,7 @@ const SortingResults = ({
             <CustomSectionHeader
               title="result"
               i={i}
-              removeDefensiveAction={() => removeSortingResult(i)}
+              handleDeleteSection={() => removeSortingResult(i)}
             />
             <SortingResult
               fpsData={e}

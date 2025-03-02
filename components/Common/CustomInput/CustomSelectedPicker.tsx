@@ -24,7 +24,7 @@ const CustomSelectedPicker = ({
         selectedValue={el}
         onChange={(s) => handleChange(s, i)}
         style={style}
-        className="px-6 h-8 bg-opacity-70"
+        className="px-6 h-8 bg-opacity-70 capitalize"
       />
     </div>
   );

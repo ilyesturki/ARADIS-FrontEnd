@@ -12,7 +12,7 @@ const EditButton = ({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={` py-2 px-4 text-sm font-semibold text-grayscale-500 ${
+      className={` py-2 px-4 text-sm font-semibold text-grayscale-100 bg-grayscale-500 rounded-sm ${
         disabled && "opacity-50"
       }`}
     >
