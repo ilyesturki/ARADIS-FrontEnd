@@ -56,7 +56,9 @@ const useCauseSection = () => {
         whyList,
       });
       setSubmitBtnValue(
-        ["defensiveActions"].includes(fps.currentStep) ? "Update" : "Save"
+        ["defensiveActions", "validation"].includes(fps.currentStep)
+          ? "Update"
+          : "Save"
       );
     }
   }, [fps]);

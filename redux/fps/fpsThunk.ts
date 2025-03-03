@@ -118,6 +118,48 @@ export const createFpsValidation = createAsyncThunk(
   }
 );
 
+export const createFpsComment = createAsyncThunk(
+  "fpss/createFpsComment",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/comment/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
+export const updateFpsComment = createAsyncThunk(
+  "fpss/updateFpsComment",
+  async ({ id, fps }: { id: string; fps: FormData }) => {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/comment/${id}`,
+      fps,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data as FpsType;
+  }
+);
+
+export const deleteFpsComment = createAsyncThunk(
+  "fpss/deleteFpsComment",
+  async (id: string) => {
+    const res = await axios.delete(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/fpss/comment/${id}`
+    );
+    return id;
+  }
+);
+
 export const updateFps = createAsyncThunk(
   "fpss/updateFps",
   async ({ id, fps }: { id: string; fps: FormData }) => {

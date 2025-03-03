@@ -178,3 +178,21 @@ export const fpsValidationValidationRules = {
   fpsId: { required: true },
   status: { required: true },
 };
+
+export const fpsSaveCommentValidationRules = {
+  fpsId: { required: true },
+  comment: { required: true },
+  rating: { required: true },
+  date: { required: true },
+  userId: { required: true },
+};
+
+export const fpsDeleteCommentValidationRules = {
+  id: { required: true },
+};
+
+export const fpsUpdateCommentValidationRules = {
+  id: { required: true },
+  comment: { required: true },
+  rating: { required: true },
+};

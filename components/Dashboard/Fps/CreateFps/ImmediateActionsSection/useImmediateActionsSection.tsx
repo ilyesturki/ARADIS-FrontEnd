@@ -72,7 +72,7 @@ const useImmediateActionsSection = () => {
         immediateActions: newImmediateActions,
       });
       setSubmitBtnValue(
-        ["cause", "defensiveActions"].includes(fps.currentStep)
+        ["cause", "defensiveActions", "validation"].includes(fps.currentStep)
           ? "Update"
           : "Save"
       );

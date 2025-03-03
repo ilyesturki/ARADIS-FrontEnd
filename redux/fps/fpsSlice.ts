@@ -70,6 +70,7 @@ export type fpsImmediateActionsType = {
 };
 
 export type FpsCommentType = {
+  id?:string;
   comment: string;
   date: string;
   rating: number;

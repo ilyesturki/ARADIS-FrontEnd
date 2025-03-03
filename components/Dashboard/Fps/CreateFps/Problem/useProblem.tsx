@@ -94,9 +94,13 @@ const useProblem = () => {
         });
       }
       setSubmitBtnValue(
-        ["problem", "immediateActions", "cause", "defensiveActions"].includes(
-          fps.currentStep
-        )
+        [
+          "problem",
+          "immediateActions",
+          "cause",
+          "defensiveActions",
+          "validation",
+        ].includes(fps.currentStep)
           ? "Update"
           : "Save"
       );

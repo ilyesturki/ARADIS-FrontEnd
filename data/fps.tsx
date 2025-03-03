@@ -1,6 +1,7 @@
 import {
   flexibleFpsType,
   fpsCauseType,
+  FpsCommentType,
   fpsDefensiveActionsType,
   fpsImmediateActionsType,
   fpsProblemType,
@@ -158,6 +159,5 @@ export const initialFpsDefensiveActions: fpsDefensiveActionsType = [
 ];
 
 export const initialFpsValidation: flexibleFpsType = {
-  comments: [],
   status: "inProgress",
 };

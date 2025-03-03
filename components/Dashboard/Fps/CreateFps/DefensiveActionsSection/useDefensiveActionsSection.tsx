@@ -64,11 +64,9 @@ const useDefensiveActionsSection = () => {
       console.log(fps?.defensiveActions);
       console.log("fps?.defensiveActions");
       setFpsData(fps?.defensiveActions);
-      // setSubmitBtnValue(
-      //   ["defensiveActions"].includes(
-      //     fps.currentStep
-      //   ) ? "Update" : "Save"
-      // );
+      setSubmitBtnValue(
+        ["validation"].includes(fps.currentStep) ? "Update" : "Save"
+      );
     }
   }, [fps]);
 
