@@ -30,7 +30,7 @@ const Comment = ({
   date?: string;
   disabled?: boolean;
   i: number;
-  handleDeleteSection?: () => void;
+  handleDeleteSection?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   customRatingChange: (rating: number) => void;
   editRating?: boolean;
 }) => {
@@ -54,7 +54,7 @@ const Comment = ({
 
             {handleDeleteSection && (
               <RemoveSectionButton
-                handleDelete={() => handleDeleteSection()}
+                handleDelete={(e) => handleDeleteSection(e)}
                 className="!w-[18px]"
               />
             )}

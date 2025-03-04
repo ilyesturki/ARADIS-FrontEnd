@@ -29,13 +29,7 @@ const ValidationSection = () => {
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className="flex flex-col gap-2">
-        <Comments
-          comments={fpsData.comments || []}
-          addNewComment={addNewComment}
-          removeComment={removeComment}
-          handleChangeComment={handleChangeComment}
-          setFpsData={setFpsData}
-        />
+        <Comments />
       </div>
       <div className=" flex flex-col gap-10">
         <CustomInput

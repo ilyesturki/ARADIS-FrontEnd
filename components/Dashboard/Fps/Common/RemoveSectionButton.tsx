@@ -5,12 +5,12 @@ const RemoveSectionButton = ({
   handleDelete,
   className,
 }: {
-  handleDelete: () => void;
+  handleDelete: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    handleDelete();
+    handleDelete(e);
   };
 
   return (

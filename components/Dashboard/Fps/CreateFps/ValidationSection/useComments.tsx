@@ -1,5 +1,5 @@
 "use client";
-import { FpsCommentType, FpsType, flexibleFpsType } from "@/redux/fps/fpsSlice";
+import { FpsCommentType } from "@/redux/fpsComments/fpsCommentsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { customHandleSubmit, handleChangeInArray } from "@/utils/handlers";
@@ -12,23 +12,31 @@ import {
 import { handleError } from "@/utils/handleError";
 import {
   createFpsComment,
-  createFpsValidation,
-  getFps,
+  deleteFpsComment,
+  getComments,
   updateFpsComment,
-} from "@/redux/fps/fpsThunk";
+} from "@/redux/fpsComments/fpsCommentsThunk";
 
-import { initialFpsValidation } from "@/data/fps";
+// import { initialFpsValidation } from "@/data/fps";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { FpsType } from "@/redux/fps/fpsSlice";
 
-const useValidationSection = () => {
+const useComments = () => {
   const searchParams = useSearchParams();
   const { data: session } = useSession({ required: true });
   const dispatch = useAppDispatch();
-  const [fpsData, setFpsData] = useState<{ comments: FpsCommentType[] }>({
+  const [fpsData, setFpsData] = useState<{
+    comments: ({ active?: boolean } & FpsCommentType)[];
+  }>({
     comments: [
       {
+        active:
+          session?.user.role &&
+          ["admin", "manager"].includes(session?.user.role)
+            ? true
+            : false,
         comment: "",
         date: new Date().toString(),
         rating: 5,
@@ -50,16 +58,23 @@ const useValidationSection = () => {
 
     if (fpsId) {
       setFpsId(fpsId);
+      dispatch(getComments(fpsId));
       return;
     }
   }, []);
-  const fps = useAppSelector((state) => state.fpss.fps);
+  const fpsComments = useAppSelector((state) => state.fpsComments);
 
   useEffect(() => {
-    if (fps && Object.keys(fps).length > 0) {
+    console.log(fpsComments);
+    if (fpsComments && Object.keys(fpsComments).length > 0) {
       const comments = [
-        ...(fps?.comments || [
+        ...(fpsComments?.comments || [
           {
+            active:
+              session?.user.role &&
+              ["admin", "manager"].includes(session?.user.role)
+                ? true
+                : false,
             comment: "",
             date: new Date().toString(),
             rating: 5,
@@ -73,14 +88,14 @@ const useValidationSection = () => {
           },
         ]),
       ];
-      console.log("fps?.validation");
-      console.log(fps);
-      console.log("fps?.validation");
+      console.log("fpsComments?.validation");
+      console.log(fpsComments);
+      console.log("fpsComments?.validation");
       setFpsData({
         comments,
       });
     }
-  }, [fps]);
+  }, [fpsComments]);
 
   const addNewComment = () => {
     setFpsData((prevData) => ({
@@ -127,7 +142,7 @@ const useValidationSection = () => {
         {
           id: selectedCommentId,
         },
-        () => dispatch(deleteFpsComment(id))
+        () => dispatch(deleteFpsComment(selectedCommentId))
       );
     }
   };
@@ -166,7 +181,8 @@ const useValidationSection = () => {
           comment: selectedComment.comment,
           rating: selectedComment.rating.toString(),
         },
-        (formData) => dispatch(updateFpsComment({ id: fpsId, fps: formData }))
+        (formData) =>
+          dispatch(updateFpsComment({ id: fpsId, fpsComment: formData }))
       );
     }
   };
@@ -193,13 +209,13 @@ const useValidationSection = () => {
       e,
       {},
       {
-        fpsId: fpsId,
         comment: lastComment.comment,
         rating: lastComment.rating.toString(),
         date: lastComment.date,
         userId: lastComment.user.id,
       },
-      (formData) => dispatch(createFpsComment({ id: fpsId, fps: formData }))
+      (formData) =>
+        dispatch(createFpsComment({ id: fpsId, fpsComment: formData }))
     );
   };
 
@@ -211,7 +227,9 @@ const useValidationSection = () => {
     removeComment,
     handleChangeComment,
     handleSaveComment,
+    updateComment,
+    session,
   };
 };
 
-export default useValidationSection;
+export default useComments;

@@ -11,6 +11,9 @@ import {
   updateFps,
   deleteFps,
   createFpsValidation,
+  createFpsComment,
+  updateFpsComment,
+  deleteFpsComment,
 } from "./fpsThunk";
 
 export type fpsProblemType = {
@@ -70,7 +73,7 @@ export type fpsImmediateActionsType = {
 };
 
 export type FpsCommentType = {
-  id?:string;
+  id?: string;
   comment: string;
   date: string;
   rating: number;
@@ -241,6 +244,58 @@ const fpssSlice = createSlice({
         state.error = action.error.message as string;
         state.updateSuccess = false;
       })
+      .addCase(createFpsComment.pending, (state) => {
+        state.loading = true;
+        state.updateSuccess = false;
+      })
+      .addCase(
+        createFpsComment.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
+        }
+      )
+      .addCase(createFpsComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+        state.updateSuccess = false;
+      })
+      .addCase(updateFpsComment.pending, (state) => {
+        state.loading = true;
+        state.updateSuccess = false;
+      })
+      .addCase(
+        updateFpsComment.fulfilled,
+        (state, action: PayloadAction<FpsType>) => {
+          state.loading = false;
+          state.fpss.push(action.payload as FpsType);
+          state.updateSuccess = true;
+          const index = state.fpss.findIndex(
+            (fps) => fps.fpsId === action.payload.fpsId
+          );
+          state.fpss[index] = action.payload;
+        }
+      )
+      .addCase(updateFpsComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+        state.updateSuccess = false;
+      })
+      .addCase(deleteFpsComment.pending, (state) => {
+        state.loading = true;
+        state.updateSuccess = false;
+      })
+      .addCase(deleteFpsComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.updateSuccess = true;
+      })
+      .addCase(deleteFpsComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+        state.updateSuccess = false;
+      })
+
       .addCase(updateFps.pending, (state) => {
         state.loading = true;
         state.updateSuccess = false;

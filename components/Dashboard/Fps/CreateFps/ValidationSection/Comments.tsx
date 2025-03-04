@@ -5,6 +5,7 @@ import { FpsCommentType } from "@/redux/fps/fpsSlice";
 import Comment from "./Comment";
 import { useSession } from "next-auth/react";
 import { handleChangeInArrayObject } from "@/utils/handlers";
+import useComments from "./useComments";
 
 interface Props {
   comments: FpsCommentType[];
@@ -14,17 +15,24 @@ interface Props {
   setFpsData: (updater: (prevState: any) => any) => void;
 }
 
-const Comments = ({
-  comments,
-  handleChangeComment,
-  addNewComment,
-  removeComment,
-  setFpsData,
-}: Props) => {
-  const { data: session } = useSession({ required: true });
+const Comments = () => {
+  const {
+    fpsData,
+    setFpsData,
+    fpsId,
+    addNewComment,
+    removeComment,
+    handleChangeComment,
+    handleSaveComment,
+    updateComment,
+    session,
+  } = useComments();
   return (
     <>
-      {comments?.map((e, i) => {
+      {fpsData.comments?.map((e, i) => {
+        if (e.active === false) {
+          return null;
+        }
         return (
           <div className=" flex flex-col gap-2" key={i}>
             <Comment
@@ -54,13 +62,15 @@ const Comments = ({
               i={i}
               handleDeleteSection={
                 e.user.id === session?.user?.id
-                  ? () => removeComment(i)
+                  ? (e) => removeComment(e, i)
                   : undefined
               }
             />
-            {comments.length - 1 === i && (
-              <AddSectionButton addNewSection={addNewComment} />
-            )}
+            {fpsData.comments.length - 1 === i &&
+              session?.user.role &&
+              ["admin", "manager"].includes(session?.user.role) && (
+                <AddSectionButton addNewSection={addNewComment} />
+              )}
           </div>
         );
       })}
