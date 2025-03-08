@@ -7,29 +7,14 @@ import {
   deleteUser,
 } from "./userThunk";
 
-export interface AddressType {
-  details: string;
-  governorate: string;
-  city: string;
-  postalCode: string;
-}
-
 export interface UserType {
   id: string;
   name: string;
   email: string;
   phone?: string;
   password?: string;
-  provider?: string;
-  providerId?: string;
   image?: string;
-  address?: AddressType;
-  wishList?: string[];
-  basket: string;
   status: "active" | "inactive";
-  emailProductsNotifications: boolean;
-  emailSecurityNotifications: boolean;
-  phoneSecurityNotifications: boolean;
 }
 
 export type UserTypeWithoutId = Omit<UserType, "id">;

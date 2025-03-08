@@ -27,6 +27,21 @@ const Comments = () => {
     updateComment,
     session,
   } = useComments();
+
+  if (
+    fpsData.comments.length === 1 &&
+    session?.user.role &&
+    !["admin", "manager"].includes(session?.user.role)
+  ) {
+    return (
+      <div className="h-[145px] flex items-center justify-center bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
+        <h1 className="text-lg font-semibold text-grayscale-500 text-opacity-50">
+          No comments found !
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <>
       {fpsData.comments?.map((e, i) => {
@@ -64,6 +79,17 @@ const Comments = () => {
                 e.user.id === session?.user?.id
                   ? (e) => removeComment(e, i)
                   : undefined
+              }
+              // handleSaveComment={handleSaveComment}
+              handleSaveComment={
+                e.user.id === session?.user?.id && e.active === undefined
+                  ? (e) => updateComment(e, i)
+                  : handleSaveComment
+              }
+              buttonTitle={
+                e.user.id === session?.user?.id && e.active === undefined
+                  ? "update"
+                  : "save"
               }
             />
             {fpsData.comments.length - 1 === i &&

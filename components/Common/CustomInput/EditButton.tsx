@@ -4,7 +4,7 @@ const EditButton = ({
   disabled,
 }: {
   title: string;
-  onClick: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
 }) => {
   return (

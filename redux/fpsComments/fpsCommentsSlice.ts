@@ -90,7 +90,7 @@ const commentsSlice = createSlice({
         updateFpsComment.fulfilled,
         (state, action: PayloadAction<FpsCommentType>) => {
           state.loading = false;
-          state.comments.push(action.payload as FpsCommentType);
+          // state.comments.push(action.payload as FpsCommentType);
           state.updateSuccess = true;
           const index = state.comments.findIndex(
             (comment) => comment.id === action.payload.id
@@ -110,6 +110,9 @@ const commentsSlice = createSlice({
       .addCase(deleteFpsComment.fulfilled, (state, action) => {
         state.loading = false;
         state.updateSuccess = true;
+        state.comments = state.comments.filter(
+          (comment) => comment.id !== action.payload
+        );
       })
       .addCase(deleteFpsComment.rejected, (state, action) => {
         state.loading = false;

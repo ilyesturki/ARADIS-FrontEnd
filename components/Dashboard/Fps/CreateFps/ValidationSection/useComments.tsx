@@ -68,28 +68,30 @@ const useComments = () => {
     console.log(fpsComments);
     if (fpsComments && Object.keys(fpsComments).length > 0) {
       const comments = [
-        ...(fpsComments?.comments || [
-          {
-            active:
-              session?.user.role &&
-              ["admin", "manager"].includes(session?.user.role)
-                ? true
-                : false,
-            comment: "",
-            date: new Date().toString(),
-            rating: 5,
-            user: {
-              id: session?.user?.id || "",
-              firstName: session?.user?.firstName || "",
-              lastName: session?.user?.lastName || "",
-              role: session?.user?.role || "",
-              image: session?.user?.image || "",
-            },
-          },
-        ]),
+        ...(fpsComments?.comments.length > 0
+          ? fpsComments?.comments
+          : [
+              {
+                active:
+                  session?.user.role &&
+                  ["admin", "manager"].includes(session?.user.role)
+                    ? true
+                    : false,
+                comment: "",
+                date: new Date().toString(),
+                rating: 5,
+                user: {
+                  id: session?.user?.id || "",
+                  firstName: session?.user?.firstName || "",
+                  lastName: session?.user?.lastName || "",
+                  role: session?.user?.role || "",
+                  image: session?.user?.image || "",
+                },
+              },
+            ]),
       ];
       console.log("fpsComments?.validation");
-      console.log(fpsComments);
+      console.log(comments);
       console.log("fpsComments?.validation");
       setFpsData({
         comments,
@@ -103,6 +105,11 @@ const useComments = () => {
       comments: [
         ...(prevData.comments || []),
         {
+          active:
+            session?.user.role &&
+            ["admin", "manager"].includes(session?.user.role)
+              ? true
+              : false,
           comment: "",
           date: new Date().toString(),
           rating: 5,
@@ -125,7 +132,7 @@ const useComments = () => {
     const selectedCommentId = fpsData.comments[index].id;
     if (selectedCommentId) {
       const dataToValidate: Record<string, string> = {
-        id: selectedCommentId,
+        id: selectedCommentId.toString(),
       };
       const newErrors = validateFormFields(
         dataToValidate,
@@ -159,9 +166,12 @@ const useComments = () => {
     index: number
   ) => {
     const selectedComment = fpsData.comments[index];
+    console.log("selectedComment");
+    console.log(selectedComment);
+    console.log("selectedComment");
     if (selectedComment.id) {
       const dataToValidate: Record<string, string> = {
-        id: selectedComment.id,
+        id: selectedComment.id.toString(),
         comment: selectedComment.comment,
         rating: selectedComment.rating.toString(),
       };
@@ -175,27 +185,34 @@ const useComments = () => {
       }
 
       customHandleSubmit(
-        e,
+        e, 
         {},
         {
           comment: selectedComment.comment,
           rating: selectedComment.rating.toString(),
         },
         (formData) =>
-          dispatch(updateFpsComment({ id: fpsId, fpsComment: formData }))
+          dispatch(
+            updateFpsComment({
+              id: dataToValidate.id,
+              fpsComment: formData,
+            })
+          )
       );
     }
   };
 
   const handleSaveComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     const lastComment = fpsData.comments[fpsData.comments.length - 1];
+
     const dataToValidate: Record<string, string> = {
       fpsId: fpsId,
       comment: lastComment.comment,
       rating: lastComment.rating.toString(),
       date: lastComment.date,
-      userId: lastComment.user.id,
+      userId: lastComment.user.id.toString(),
     };
+    console.log(dataToValidate);
     const newErrors = validateFormFields(
       dataToValidate,
       fpsSaveCommentValidationRules

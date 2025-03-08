@@ -35,6 +35,18 @@ const data = {
   },
   navMain: [
     {
+      title: "Panel",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "Fps Panel",
+          url: "/dashboard/panel/fps-panel",
+        },
+      ],
+    },
+    {
       title: "Fps",
       url: "#",
       icon: SquareTerminal,
@@ -64,23 +76,6 @@ const data = {
           url: "/dashboard/users/create-user",
         },
       ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 };

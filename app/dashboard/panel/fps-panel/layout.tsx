@@ -34,28 +34,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const cookieStore = await cookies();
-  // const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
   const session = await getServerSession(authOptions);
   console.log(session);
   return (
-    <SidebarProvider>
-      <CustomSideBar session={session} />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <BreadCrumb />
-          </div>
-        </header>
-        <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-7 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
-            <PageTitle />
-            {children}
-          </div>
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+    <div className="">
+      <h1>a</h1>
+      <div className="">{children}</div>
+    </div>
   );
 }

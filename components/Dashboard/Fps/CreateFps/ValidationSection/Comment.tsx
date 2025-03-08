@@ -19,6 +19,8 @@ const Comment = ({
   handleDeleteSection,
   customRatingChange,
   editRating,
+  handleSaveComment,
+  buttonTitle,
 }: {
   userName: string;
   userRole: string;
@@ -33,6 +35,8 @@ const Comment = ({
   handleDeleteSection?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   customRatingChange: (rating: number) => void;
   editRating?: boolean;
+  handleSaveComment?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  buttonTitle?: string;
 }) => {
   const formattedDate = date
     ? new Intl.DateTimeFormat("en-US", {
@@ -82,7 +86,9 @@ const Comment = ({
           <AvatarFallback className="rounded-lg">CN</AvatarFallback>
         </Avatar>
       </div>
-      {!disabled && <EditButton title="Save" onClick={() => {}} />}
+      {!disabled && (
+        <EditButton title={buttonTitle || "Save"} onClick={handleSaveComment} />
+      )}
     </div>
   );
 };
