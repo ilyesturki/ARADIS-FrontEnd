@@ -25,7 +25,7 @@ import { FpsType } from "@/redux/fps/fpsSlice";
 
 const useComments = () => {
   const searchParams = useSearchParams();
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession({ required: true }); 
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<{
     comments: ({ active?: boolean } & FpsCommentType)[];

@@ -1,13 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getFps } from "@/redux/fps/fpsThunk";
 import { resetFps } from "@/redux/fps/fpsSlice";
 
+import { useSession } from "next-auth/react";
+
 const useCreateFps = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
 
   //   const router = useRouter();
   const [currentTab, setCurrentTab] = useState("problem");
@@ -20,10 +29,8 @@ const useCreateFps = () => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
     if (fpsId) {
-      console.log("disp1111111111111111111111111111");
       dispatch(getFps(fpsId));
     } else {
-      console.log("disp1111111111111111111111111112");
       dispatch(resetFps());
       // setCurrentStep("problem");
       handleTabChange("problem");
@@ -35,8 +42,6 @@ const useCreateFps = () => {
   // Update currentStep when fps changes
   useEffect(() => {
     if (fps?.currentStep === currentStep) {
-      console.log("fps11111111111111111");
-      console.log(currentStep);
       const tabsOrder = [
         "problem",
         "immediateActions",
@@ -52,9 +57,7 @@ const useCreateFps = () => {
 
       handleTabChange(tabsOrder[nextTabIndex]);
     } else if (fps?.currentStep) {
-      console.log("fps11111111111111112");
       setCurrentStep(fps.currentStep);
-      console.log(fps);
     }
   }, [fps]);
 
@@ -64,7 +67,6 @@ const useCreateFps = () => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
     if (fpsId && fpsUpdateSuccess) {
-      console.log("fpsUpdateSuccess11111111111111111111");
       dispatch(getFps(fpsId));
     }
   }, [fpsUpdateSuccess]);
@@ -72,8 +74,6 @@ const useCreateFps = () => {
   // Handle tab change after currentStep is updated
   useEffect(() => {
     if (currentStep) {
-      console.log("currentStep1111111111111111111");
-      console.log(currentStep);
       const tabsOrder = [
         "problem",
         "immediateActions",
@@ -108,7 +108,6 @@ const useCreateFps = () => {
   const validateTab = (tab: string = currentTab) => {
     switch (tab) {
       case "problem":
-        console.log("valid problem");
         if (currentStep) {
           return true;
         }
@@ -116,13 +115,14 @@ const useCreateFps = () => {
         return false;
       case "immediateActions":
         if (
-          currentStep &&
-          [
-            "immediateActions",
-            "cause",
-            "defensiveActions",
-            "validation",
-          ].includes(currentStep)
+          (currentStep &&
+            [
+              "immediateActions",
+              "cause",
+              "defensiveActions",
+              "validation",
+            ].includes(currentStep)) ||
+          isAdminOrManager
         ) {
           return true;
         }
@@ -131,8 +131,11 @@ const useCreateFps = () => {
 
       case "cause":
         if (
-          currentStep &&
-          ["cause", "defensiveActions", "validation"].includes(currentStep)
+          (currentStep &&
+            ["cause", "defensiveActions", "validation"].includes(
+              currentStep
+            )) ||
+          isAdminOrManager
         ) {
           return true;
         }
@@ -141,8 +144,9 @@ const useCreateFps = () => {
 
       case "defensiveActions":
         if (
-          currentStep &&
-          ["defensiveActions", "validation"].includes(currentStep)
+          (currentStep &&
+            ["defensiveActions", "validation"].includes(currentStep)) ||
+          isAdminOrManager
         ) {
           return true;
         }
@@ -156,26 +160,6 @@ const useCreateFps = () => {
     }
   };
 
-  //   const handleNext = () => {
-  //     if (validateTab()) {
-  //       setValidTabs([...validTabs, currentTab]);
-  //       switch (currentTab) {
-  //         case "clientAddress":
-  //           setCurrentTab("shippingDetails");
-  //           break;
-  //         case "shippingDetails":
-  //           setCurrentTab("paymentDetails");
-  //           break;
-  //         case "paymentDetails":
-  //           executeCreateOrder();
-
-  //           break;
-  //         default:
-  //           setCurrentTab("clientAddress");
-  //       }
-  //     }
-  //   };
-
   const handleTabChange = (value: string) => {
     const tabsOrder = [
       "problem",
@@ -187,7 +171,7 @@ const useCreateFps = () => {
     const currentIndex = tabsOrder.indexOf(currentTab);
     const targetIndex = tabsOrder.indexOf(value);
 
-    if (currentIndex === 0 && targetIndex === 2) {
+    if ((currentIndex === 0 || currentIndex === 4) && targetIndex === 2) {
       if (validateTab()) {
         if (validateTab("immediateActions")) {
           setValidTabs(["problem", "immediateActions"]);
@@ -197,37 +181,15 @@ const useCreateFps = () => {
           setCurrentTab("immediateActions");
         }
       }
-    } else if (currentIndex === 0 && targetIndex === 3) {
+    } else if (
+      (currentIndex === 0 || currentIndex === 4) &&
+      targetIndex === 3
+    ) {
       if (validateTab()) {
         if (validateTab("immediateActions")) {
           if (validateTab("cause")) {
             setValidTabs(["problem", "immediateActions", "cause"]);
             setCurrentTab("defensiveActions");
-          } else {
-            setValidTabs(["problem", "immediateActions"]);
-            setCurrentTab("cause");
-          }
-        } else {
-          setValidTabs(["problem"]);
-          setCurrentTab("immediateActions");
-        }
-      }
-    } else if (currentIndex === 0 && targetIndex === 4) {
-      if (validateTab()) {
-        if (validateTab("immediateActions")) {
-          if (validateTab("cause")) {
-            if (validateTab("defensiveActions")) {
-              setValidTabs([
-                "problem",
-                "immediateActions",
-                "cause",
-                "defensiveActions",
-              ]);
-              setCurrentTab("validation");
-            } else {
-              setValidTabs(["problem", "immediateActions", "cause"]);
-              setCurrentTab("defensiveActions");
-            }
           } else {
             setValidTabs(["problem", "immediateActions"]);
             setCurrentTab("cause");
@@ -252,57 +214,15 @@ const useCreateFps = () => {
           setCurrentTab("immediateActions");
         }
       }
-    } else if (currentIndex === 1 && targetIndex === 4) {
+    } else if (currentIndex === 4 && targetIndex === 1) {
       if (validateTab()) {
-        if (validateTab("immediateActions")) {
-          if (validateTab("cause")) {
-            if (validateTab("defensiveActions")) {
-              setValidTabs([
-                "problem",
-                "immediateActions",
-                "cause",
-                "defensiveActions",
-              ]);
-              setCurrentTab("validation");
-            } else {
-              setValidTabs(["problem", "immediateActions", "cause"]);
-              setCurrentTab("defensiveActions");
-            }
-          } else {
-            setValidTabs(["problem", "immediateActions"]);
-            setCurrentTab("cause");
-          }
-        } else {
-          setValidTabs(["problem"]);
-          setCurrentTab("immediateActions");
-        }
+        setValidTabs(["problem"]);
+        setCurrentTab("immediateActions");
+      } else {
+        setValidTabs([]);
+        setCurrentTab("problem");
       }
-    } else if (currentIndex === 2 && targetIndex === 4) {
-      if (validateTab()) {
-        if (validateTab("immediateActions")) {
-          if (validateTab("cause")) {
-            if (validateTab("defensiveActions")) {
-              setValidTabs([
-                "problem",
-                "immediateActions",
-                "cause",
-                "defensiveActions",
-              ]);
-              setCurrentTab("validation");
-            } else {
-              setValidTabs(["problem", "immediateActions", "cause"]);
-              setCurrentTab("defensiveActions");
-            }
-          } else {
-            setValidTabs(["problem", "immediateActions"]);
-            setCurrentTab("cause");
-          }
-        } else {
-          setValidTabs(["problem"]);
-          setCurrentTab("immediateActions");
-        }
-      }
-    } else if (targetIndex === currentIndex + 1) {
+    } else if (targetIndex === currentIndex + 1 && targetIndex !== 4) {
       if (validateTab()) {
         setValidTabs([...validTabs, currentTab]);
         setCurrentTab(value);

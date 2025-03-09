@@ -12,9 +12,12 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
+import { useRouter } from "next/navigation";
+
 const SignOutButton = () => {
+  const router = useRouter();
   const handleSignOut = () => {
-    signOut();
+    signOut({ redirect: true, callbackUrl: "/auth/login" });
   };
   return (
     <SidebarMenu>

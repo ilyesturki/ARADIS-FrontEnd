@@ -35,6 +35,7 @@ const data = {
   },
   navMain: [
     {
+      allowedTo: ["admin", "manager"],
       title: "Panel",
       url: "#",
       icon: SquareTerminal,
@@ -63,6 +64,7 @@ const data = {
       ],
     },
     {
+      allowedTo: ["admin"],
       title: "Users",
       url: "#",
       icon: Bot,
@@ -96,7 +98,7 @@ export function CustomSideBar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} role={session?.user?.role} />
       </SidebarContent>
       <SidebarFooter>
         <SignOutButton />

@@ -37,7 +37,7 @@ const useSignIn = () => {
     const successParam = params.get("success") as string | undefined;
     if (successParam) {
       toast.success(decodeURIComponent(successParam));
-      router.push("/");
+      router.push("/dashboard");
     }
   }, [params]);
 
@@ -57,7 +57,7 @@ const useSignIn = () => {
     }
     signIn("credentials", {
       redirect: true,
-      callbackUrl: "/",
+      callbackUrl: "/dashboard",
       email,
       password,
     });

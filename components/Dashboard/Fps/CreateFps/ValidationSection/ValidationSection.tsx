@@ -17,6 +17,8 @@ import Comments from "./Comments";
 
 const ValidationSection = () => {
   const {
+    isAdminOrManager,
+    currentStep,
     fpsData,
     setFpsData,
     fpsId,
@@ -27,8 +29,11 @@ const ValidationSection = () => {
     submitBtnValue,
   } = useValidationSection();
   return (
-    <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
+    <div className=" w-full grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-10 ">
       <div className="flex flex-col gap-2">
+        {/* <span className=" text-center text-lg font-bold capitalize text-grayscale-400">
+          Comments
+        </span> */}
         <Comments />
       </div>
       <div className=" flex flex-col gap-10">
@@ -45,11 +50,21 @@ const ValidationSection = () => {
           checked={fpsCompleted}
           onChange={handleStatusChange}
         />
-        <CustomButtons
-          value={submitBtnValue}
-          mainButtonOnCLick={handleSubmit}
-          secondaryButtonOnCLick={handleReset}
-        />
+        {isAdminOrManager ? (
+          <div>
+            <span>Your not allowed to edit this fps</span>
+          </div>
+        ) : currentStep !== "validation" ? (
+          <div>
+            <span>You have to all the previous steps</span>
+          </div>
+        ) : (
+          <CustomButtons
+            value={submitBtnValue}
+            mainButtonOnCLick={handleSubmit}
+            secondaryButtonOnCLick={handleReset}
+          />
+        )}
       </div>
     </div>
   );

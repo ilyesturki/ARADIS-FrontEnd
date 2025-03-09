@@ -1,6 +1,6 @@
 "use client";
 import { FpsType, flexibleFpsType } from "@/redux/fps/fpsSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { customHandleSubmit, handleChangeInArray } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
@@ -12,11 +12,21 @@ import { initialFpsValidation } from "@/data/fps";
 
 import { useSearchParams } from "next/navigation";
 
+import { useSession } from "next-auth/react";
+
 const useValidationSection = () => {
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<flexibleFpsType>(initialFpsValidation);
   const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
+
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -44,6 +54,7 @@ const useValidationSection = () => {
       setFpsData({
         status: fps.status,
       });
+      setCurrentStep(fps.currentStep);
       // setSubmitBtnValue(
       //   ["defensiveActions"].includes(fps.currentStep) ? "Update" : "Save"
       // );
@@ -90,6 +101,8 @@ const useValidationSection = () => {
   };
 
   return {
+    isAdminOrManager,
+    currentStep,
     fpsData,
     setFpsData,
     fpsId,

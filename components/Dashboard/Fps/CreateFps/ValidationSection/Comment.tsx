@@ -48,8 +48,8 @@ const Comment = ({
       }).format(new Date(date))
     : "";
   return (
-    <div className=" flex flex-col items-end gap-2 py-4">
-      <div className="relative w-full pl-4 pr-2 bg-grayscale-100 border-[1px] border-grayscale-400 shadow-[0px_0px_4px] shadow-grayscale-400 rounded-lg">
+    <div className=" flex flex-col items-end gap-1 py-4">
+      <div className="relative w-full pl-4 pr-2 bg-grayscale-100 border-[1px] border-grayscale-400 shadow-[0px_0px_3px] shadow-grayscale-400 rounded-lg">
         <div className="py-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold text-greenAccent-900">

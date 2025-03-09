@@ -44,62 +44,63 @@ const Comments = () => {
 
   return (
     <>
-      {fpsData.comments?.map((e, i) => {
-        if (e.active === false) {
-          return null;
-        }
-        return (
-          <div className=" flex flex-col gap-2" key={i}>
-            <Comment
-              value={e.comment}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                handleChangeComment(e.target.value, i)
-              }
-              userName={`${e.user.firstName} ${e.user.lastName}`}
-              userRole={e.user.role}
-              image={e.user.image}
-              rating={e.rating}
-              date={e.date}
-              editRating={e.user.id === session?.user?.id}
-              customRatingChange={(rating: number) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  rating,
-                  "comments",
-                  "rating",
-                  i
-                )
-              }
-              placeholder={
-                e.user.id === session?.user?.id ? "Add a comment" : undefined
-              }
-              disabled={e.user.id !== session?.user?.id}
-              i={i}
-              handleDeleteSection={
-                e.user.id === session?.user?.id
-                  ? (e) => removeComment(e, i)
-                  : undefined
-              }
-              // handleSaveComment={handleSaveComment}
-              handleSaveComment={
-                e.user.id === session?.user?.id && e.active === undefined
-                  ? (e) => updateComment(e, i)
-                  : handleSaveComment
-              }
-              buttonTitle={
-                e.user.id === session?.user?.id && e.active === undefined
-                  ? "update"
-                  : "save"
-              }
-            />
-            {fpsData.comments.length - 1 === i &&
-              session?.user.role &&
-              ["admin", "manager"].includes(session?.user.role) && (
-                <AddSectionButton addNewSection={addNewComment} />
-              )}
-          </div>
-        );
-      })}
+      <div className="flex flex-col gap-2 pl-5 pr-7 py-4 max-h-[500px] overflow-y-scroll customScroll bg-sidebar-border rounded-[10px] shadow-[0_0_2px] shadow-grayscale-400 ">
+        {fpsData.comments?.map((e, i) => {
+          if (e.active === false) {
+            return null;
+          }
+          return (
+            <div className=" flex flex-col gap-2" key={i}>
+              <Comment
+                value={e.comment}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  handleChangeComment(e.target.value, i)
+                }
+                userName={`${e.user.firstName} ${e.user.lastName}`}
+                userRole={e.user.role}
+                image={e.user.image}
+                rating={e.rating}
+                date={e.date}
+                editRating={e.user.id === session?.user?.id}
+                customRatingChange={(rating: number) =>
+                  handleChangeInArrayObject(
+                    setFpsData,
+                    rating,
+                    "comments",
+                    "rating",
+                    i
+                  )
+                }
+                placeholder={
+                  e.user.id === session?.user?.id ? "Add a comment" : undefined
+                }
+                disabled={e.user.id !== session?.user?.id}
+                i={i}
+                handleDeleteSection={
+                  e.user.id === session?.user?.id
+                    ? (e) => removeComment(e, i)
+                    : undefined
+                }
+                // handleSaveComment={handleSaveComment}
+                handleSaveComment={
+                  e.user.id === session?.user?.id && e.active === undefined
+                    ? (e) => updateComment(e, i)
+                    : handleSaveComment
+                }
+                buttonTitle={
+                  e.user.id === session?.user?.id && e.active === undefined
+                    ? "update"
+                    : "save"
+                }
+              />
+            </div>
+          );
+        })}
+      </div>
+      {session?.user.role &&
+        ["admin", "manager"].includes(session?.user.role) && (
+          <AddSectionButton addNewSection={addNewComment} />
+        )}
     </>
   );
 };
