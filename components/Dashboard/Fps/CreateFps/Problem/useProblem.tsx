@@ -1,6 +1,6 @@
 "use client";
 import { FpsType, fpsProblemType } from "@/redux/fps/fpsSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
@@ -22,6 +22,7 @@ import {
 } from "@/data/fps";
 import { useRouter, useSearchParams } from "next/navigation";
 import { urlToFile } from "@/utils/UrlToFile";
+import { useSession } from "next-auth/react";
 
 const useProblem = () => {
   const router = useRouter();
@@ -36,6 +37,23 @@ const useProblem = () => {
   const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
   const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
     "Save"
+  );
+
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+
+  const isDone = useMemo(() => {
+    return currentStep === "validation";
+  }, [currentStep]);
+
+  const isDisabled = useMemo(
+    () => isAdminOrManager || isDone,
+    [isAdminOrManager, currentStep]
   );
 
   const [typeColors, setTypeColors] = useState<{
@@ -93,18 +111,19 @@ const useProblem = () => {
           className: undefined,
         });
       }
-      setSubmitBtnValue(
-        [
-          "problem",
-          "immediateActions",
-          "cause",
-          "defensiveActions",
-          "validation",
-        ].includes(fps.currentStep)
-          ? "Update"
-          : "Save"
-      );
     }
+    setCurrentStep(fps?.currentStep || null);
+    setSubmitBtnValue(
+      [
+        "problem",
+        "immediateActions",
+        "cause",
+        "defensiveActions",
+        "validation",
+      ].includes(fps?.currentStep || "")
+        ? "Update"
+        : "Save"
+    );
   }, [fps]);
 
   const handleDeleteImages = (i?: number) => {
@@ -267,6 +286,10 @@ const useProblem = () => {
   };
 
   return {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     problemTypesData,
     typeColors,
     handleTypeChange,

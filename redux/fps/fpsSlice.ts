@@ -132,6 +132,10 @@ const fpssSlice = createSlice({
   reducers: {
     resetFps: (state) => {
       state.fps = null;
+      state.loading = false;
+      state.updateSuccess = false;
+      state.deleteSuccess = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {

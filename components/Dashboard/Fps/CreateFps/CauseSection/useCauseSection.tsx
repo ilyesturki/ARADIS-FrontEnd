@@ -1,6 +1,6 @@
 "use client";
 import { FpsType, flexibleFpsType, fpsCauseType } from "@/redux/fps/fpsSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
@@ -19,6 +19,7 @@ import { generateFPSId } from "@/utils/generateFPSId";
 import { initialFpsCause, causeData } from "@/data/fps";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const useCauseSection = () => {
   const router = useRouter();
@@ -42,6 +43,37 @@ const useCauseSection = () => {
     "Save"
   );
 
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+
+  const isDone = useMemo(() => {
+    return currentStep === "validation";
+  }, [currentStep]);
+
+  const isDisabled = useMemo(() => {
+    const tabsOrder = [
+      "problem",
+      "immediateActions",
+      "cause",
+      "defensiveActions",
+      "validation",
+    ];
+
+    return currentStep
+      ? isAdminOrManager ||
+          isDone ||
+          !(
+            tabsOrder.indexOf(currentStep) >=
+            tabsOrder.indexOf("immediateActions")
+          )
+      : isAdminOrManager;
+  }, [isAdminOrManager, currentStep]);
+
   const fps = useAppSelector((state) => state.fpss.fps);
 
   useEffect(() => {
@@ -55,12 +87,15 @@ const useCauseSection = () => {
         causeList,
         whyList,
       });
-      setSubmitBtnValue(
-        ["defensiveActions", "validation"].includes(fps.currentStep)
-          ? "Update"
-          : "Save"
-      );
     }
+    setCurrentStep(fps?.currentStep || null);
+    setSubmitBtnValue(
+      ["cause", "defensiveActions", "validation"].includes(
+        fps?.currentStep || ""
+      )
+        ? "Update"
+        : "Save"
+    );
   }, [fps]);
 
   const addNewWhy = () => {
@@ -126,6 +161,10 @@ const useCauseSection = () => {
   };
 
   return {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     addNewWhy,

@@ -20,6 +20,7 @@ interface Props {
   setFpsData: (updater: (prevState: any) => any) => void;
   addNewDefensiveAction: () => void;
   removeDefensiveAction: (index: number) => void;
+  disabled?: boolean;
 }
 
 const DefensiveActions = ({
@@ -30,6 +31,7 @@ const DefensiveActions = ({
   setFpsData,
   addNewDefensiveAction,
   removeDefensiveAction,
+  disabled,
 }: Props) => {
   return (
     <>
@@ -39,8 +41,8 @@ const DefensiveActions = ({
             <CustomSectionHeader
               title="procedure"
               i={i}
-              removeDefensiveAction={() => removeDefensiveAction(i)}
-              handleDelete={() => removeDefensiveAction(i)}
+              handleDeleteSection={() => removeDefensiveAction(i)}
+              disabled={disabled}
             />
             <DefensiveAction
               fpsData={e}
@@ -68,11 +70,15 @@ const DefensiveActions = ({
                   i
                 )
               }
+              disabled={disabled}
             />
             {fpsData.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewDefensiveAction} />
+              <AddSectionButton
+                addNewSection={addNewDefensiveAction}
+                disabled={disabled}
+              />
             )}
           </div>
         );

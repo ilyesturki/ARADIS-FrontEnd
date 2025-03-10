@@ -9,11 +9,13 @@ const CustomPicker = ({
   selectedData,
   handleChange,
   data,
+  disabled
 }: {
   label: string;
   selectedData: string[];
   handleChange: (data: string, i?: number) => void;
   data: { value: string; label: string }[];
+  disabled?: boolean;
 }) => {
   const handlePickerOpen = (s: string) => {
     if (selectedData?.every((e) => e !== s)) {
@@ -37,6 +39,7 @@ const CustomPicker = ({
             i={i}
             handleChange={handleChange}
             el={e}
+            disabled={disabled}
           />
         ))}
         <div className="w-8">
@@ -45,6 +48,7 @@ const CustomPicker = ({
             data={data}
             onChange={(s) => handlePickerOpen(s)}
             className="bg-opacity-70"
+            disabled={disabled}
           />
         </div>
       </div>

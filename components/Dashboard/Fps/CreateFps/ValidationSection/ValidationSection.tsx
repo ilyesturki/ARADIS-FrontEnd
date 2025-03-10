@@ -14,11 +14,14 @@ import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Comments from "./Comments";
+import CustomText from "@/components/Common/CustomInput/CustomText";
 
 const ValidationSection = () => {
   const {
     isAdminOrManager,
     currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     setFpsData,
     fpsId,
@@ -49,15 +52,14 @@ const ValidationSection = () => {
           title="Le FPS a-t-il été résolu avec succès ?"
           checked={fpsCompleted}
           onChange={handleStatusChange}
+          disabled={isDisabled}
         />
-        {isAdminOrManager ? (
-          <div>
-            <span>Your not allowed to edit this fps</span>
-          </div>
-        ) : currentStep !== "validation" ? (
-          <div>
-            <span>You have to all the previous steps</span>
-          </div>
+        {isDone ? (
+          <CustomText title="This fps is done" />
+        ) : isAdminOrManager ? (
+          <CustomText title="Your not allowed to edit this fps" />
+        ) : isDisabled ? (
+          <CustomText title="You have to do all the previous steps" />
         ) : (
           <CustomButtons
             value={submitBtnValue}

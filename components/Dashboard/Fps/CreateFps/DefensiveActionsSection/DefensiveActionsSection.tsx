@@ -4,9 +4,14 @@ import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import useDefensiveActionsSection from "./useDefensiveActionsSection";
 
 import DefensiveActions from "./DefensiveActions/DefensiveActions";
+import CustomText from "@/components/Common/CustomInput/CustomText";
 
 const DefensiveActionsSection = () => {
   const {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     categoryData,
@@ -32,6 +37,7 @@ const DefensiveActionsSection = () => {
           setFpsData={setFpsData}
           addNewDefensiveAction={addNewDefensiveAction}
           removeDefensiveAction={removeDefensiveAction}
+          disabled={isDisabled}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -43,11 +49,19 @@ const DefensiveActionsSection = () => {
           copy
           disabled
         />
-        <CustomButtons
-          value={submitBtnValue}
-          mainButtonOnCLick={handleSubmit}
-          secondaryButtonOnCLick={handleReset}
-        />
+        {isDone ? (
+          <CustomText title="This fps is done" />
+        ) : isAdminOrManager ? (
+          <CustomText title="Your not allowed to edit this fps" />
+        ) : isDisabled ? (
+          <CustomText title="You have to do all the previous steps" />
+        ) : (
+          <CustomButtons
+            value={submitBtnValue}
+            mainButtonOnCLick={handleSubmit}
+            secondaryButtonOnCLick={handleReset}
+          />
+        )}
       </div>
     </div>
   );

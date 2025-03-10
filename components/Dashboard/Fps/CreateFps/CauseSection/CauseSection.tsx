@@ -14,9 +14,14 @@ import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import WhyList from "./WhyList";
+import CustomText from "@/components/Common/CustomInput/CustomText";
 
 const CauseSection = () => {
   const {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     addNewWhy,
@@ -36,6 +41,7 @@ const CauseSection = () => {
           addNewWhy={addNewWhy}
           removeWhy={removeWhy}
           handleChangeWhyList={handleChangeWhyList}
+          disabled={isDisabled}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -52,12 +58,21 @@ const CauseSection = () => {
           selectedData={fpsData.causeList || []}
           handleChange={handleCauseChange}
           data={causeData || []}
+          disabled={isDisabled}
         />
-        <CustomButtons
-          value={submitBtnValue}
-          mainButtonOnCLick={handleSubmit}
-          secondaryButtonOnCLick={handleReset}
-        />
+        {isDone ? (
+          <CustomText title="This fps is done" />
+        ) : isAdminOrManager ? (
+          <CustomText title="Your not allowed to edit this fps" />
+        ) : isDisabled ? (
+          <CustomText title="You have to do all the previous steps" />
+        ) : (
+          <CustomButtons
+            value={submitBtnValue}
+            mainButtonOnCLick={handleSubmit}
+            secondaryButtonOnCLick={handleReset}
+          />
+        )}
       </div>
     </div>
   );

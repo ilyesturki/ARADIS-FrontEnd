@@ -29,7 +29,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-[5px] px-3 py-1.5 text-sm font-semibold ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-sidebar data-[state=active]:text-greenAccent-900 data-[state=active]:text-opacity-90 data-[state=inactive]:text-grayscale-100 data-[state=inactive]:!opacity-60 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 dark:data-[state=active]:bg-neutral-950 dark:data-[state=active]:text-neutral-50 data-[state=active]:shadow-[0_0_1px] data-[state=active]:shadow-grayscale-400",
+      "inline-flex items-center justify-center whitespace-nowrap rounded-[5px] px-3 py-1.5 text-sm font-semibold ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-sidebar data-[state=active]:text-grayscale-500 data-[state=active]:text-opacity-90 data-[state=inactive]:text-grayscale-100 data-[state=inactive]:!opacity-100 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 dark:data-[state=active]:bg-neutral-950 dark:data-[state=active]:text-neutral-50 data-[state=active]:shadow-[0_0_1px] data-[state=active]:shadow-grayscale-400",
       className
     )}
     {...props}

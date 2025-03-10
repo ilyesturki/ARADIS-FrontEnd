@@ -28,6 +28,29 @@ const useValidationSection = () => {
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
 
+  const isDone = useMemo(() => {
+    return currentStep === "validation";
+  }, [currentStep]);
+
+  const isDisabled = useMemo(() => {
+    const tabsOrder = [
+      "problem",
+      "immediateActions",
+      "cause",
+      "defensiveActions",
+      "validation",
+    ];
+
+    return currentStep
+      ? isAdminOrManager ||
+          isDone ||
+          !(
+            tabsOrder.indexOf(currentStep) >=
+            tabsOrder.indexOf("defensiveActions")
+          )
+      : isAdminOrManager;
+  }, [isAdminOrManager, currentStep]);
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
@@ -47,18 +70,19 @@ const useValidationSection = () => {
   const fps = useAppSelector((state) => state.fpss.fps);
 
   useEffect(() => {
-    if (fps && Object.keys(fps).length > 0) {
+    if (fps?.status) {
       console.log("fps?.validation");
       console.log(fps);
       console.log("fps?.validation");
       setFpsData({
         status: fps.status,
       });
-      setCurrentStep(fps.currentStep);
-      // setSubmitBtnValue(
-      //   ["defensiveActions"].includes(fps.currentStep) ? "Update" : "Save"
-      // );
+      setFpsCompleted(fps.status === "completed");
     }
+    setCurrentStep(fps?.currentStep || null);
+    // setSubmitBtnValue(
+    //   ["validation"].includes(fps?.currentStep || "") ? "Update" : "Save"
+    // );
   }, [fps]);
 
   const handleStatusChange = () => {
@@ -74,6 +98,7 @@ const useValidationSection = () => {
       fpsId: fpsId,
       status: fpsData.status || "",
     };
+    console.log(dataToValidate);
     const newErrors = validateFormFields(
       dataToValidate,
       fpsValidationValidationRules
@@ -103,6 +128,8 @@ const useValidationSection = () => {
   return {
     isAdminOrManager,
     currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     setFpsData,
     fpsId,

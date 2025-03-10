@@ -28,6 +28,7 @@ const CustomComboBox = ({
   selectedValue,
   onChange,
   style,
+  disabled,
 }: {
   label: string;
   data: { value: string; label: string }[];
@@ -35,6 +36,7 @@ const CustomComboBox = ({
   selectedValue?: string;
   onChange?: (currentValue: string) => void;
   style?: React.CSSProperties;
+  disabled?: boolean;
 }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [value, setValue] = React.useState<string>(selectedValue || "");
@@ -46,8 +48,11 @@ const CustomComboBox = ({
       <PopoverTrigger asChild>
         <button
           aria-expanded={open}
-          className={`flex items-center justify-center w-full aspect-1 bg-greenAccent-900 shadow-[0_0_2.5px] shadow-grayscale-500 rounded-[5px] hover:opacity-60 ${className}`}
+          className={`flex items-center justify-center w-full aspect-1 bg-greenAccent-900 shadow-[0_0_2.5px] shadow-grayscale-500 rounded-[5px] hover:opacity-60 ${className} ${
+            disabled ? "cursor-not-allowed hover:opacity-90" : "cursor-pointer"
+          }`}
           style={style}
+          disabled={disabled}
         >
           {value ? (
             label !== "Colors" ? (

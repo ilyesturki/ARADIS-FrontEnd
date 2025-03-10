@@ -25,6 +25,7 @@ interface Props {
     index: number
   ) => void;
   setFpsData: (updater: (prevState: any) => any) => void;
+  disabled?: boolean;
 }
 
 const SortingResults = ({
@@ -35,6 +36,7 @@ const SortingResults = ({
   serviceData,
   handleChangeInArrayObject,
   setFpsData,
+  disabled,
 }: Props) => {
   return (
     <>
@@ -45,6 +47,7 @@ const SortingResults = ({
               title="result"
               i={i}
               handleDeleteSection={() => removeSortingResult(i)}
+              disabled={disabled}
             />
             <SortingResult
               fpsData={e}
@@ -99,11 +102,12 @@ const SortingResults = ({
                   i
                 )
               }
+              disabled={disabled}
             />
             {sortingResults.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewSortingResult} />
+              <AddSectionButton addNewSection={addNewSortingResult} disabled={disabled} />
             )}
           </div>
         );

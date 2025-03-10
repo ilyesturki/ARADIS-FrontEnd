@@ -26,21 +26,31 @@ const useCreateFps = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
-    if (fpsId) {
-      dispatch(getFps(fpsId));
-    } else {
-      dispatch(resetFps());
-      // setCurrentStep("problem");
-      handleTabChange("problem");
-    }
+    const fetch = async () => {
+      console.log("searchParams");
+      const params = new URLSearchParams(searchParams.toString());
+      let fpsId = params.get("fpsId");
+      if (fpsId) {
+        console.log("getFps");
+        await dispatch(getFps(fpsId));
+      } else {
+        console.log("resetFps");
+        await dispatch(resetFps());
+
+        setCurrentStep(null);
+        setCurrentTab("problem");
+        setValidTabs([]);
+      }
+    };
+    fetch();
   }, [dispatch, searchParams]);
 
   const fps = useAppSelector((state) => state.fpss.fps);
 
   // Update currentStep when fps changes
   useEffect(() => {
+    console.log("fps");
+    console.log(fps);
     if (fps?.currentStep === currentStep) {
       const tabsOrder = [
         "problem",
@@ -64,6 +74,7 @@ const useCreateFps = () => {
   const fpsUpdateSuccess = useAppSelector((state) => state.fpss.updateSuccess);
 
   useEffect(() => {
+    console.log("updated");
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
     if (fpsId && fpsUpdateSuccess) {
@@ -73,6 +84,7 @@ const useCreateFps = () => {
 
   // Handle tab change after currentStep is updated
   useEffect(() => {
+    console.log("currentStep");
     if (currentStep) {
       const tabsOrder = [
         "problem",
@@ -87,7 +99,10 @@ const useCreateFps = () => {
           ? tabsOrder.indexOf(currentStep)
           : tabsOrder.indexOf(currentStep) + 1;
 
-      handleTabChange(tabsOrder[nextTabIndex]);
+      // handleTabChange(tabsOrder[nextTabIndex]);
+      handleTabChange(
+        isAdminOrManager ? "validation" : tabsOrder[nextTabIndex]
+      );
     }
   }, [currentStep]);
 
@@ -106,9 +121,12 @@ const useCreateFps = () => {
   //   });
 
   const validateTab = (tab: string = currentTab) => {
+    console.log("currentStep !!!!!!!!!");
+    console.log(currentStep);
     switch (tab) {
       case "problem":
         if (currentStep) {
+          console.log("pass");
           return true;
         }
         setValidTabs([]);
@@ -154,7 +172,19 @@ const useCreateFps = () => {
         return false;
 
       case "validation":
-        return true;
+        if (
+          (currentStep && ["validation"].includes(currentStep)) ||
+          isAdminOrManager
+        ) {
+          return true;
+        }
+        setValidTabs([
+          "problem",
+          "immediateActions",
+          "cause",
+          "defensiveActions",
+        ]);
+        return false;
       default:
         return false;
     }
@@ -173,13 +203,20 @@ const useCreateFps = () => {
 
     if ((currentIndex === 0 || currentIndex === 4) && targetIndex === 2) {
       if (validateTab()) {
+        console.log("pass 1");
         if (validateTab("immediateActions")) {
+          console.log("pass 3");
           setValidTabs(["problem", "immediateActions"]);
           setCurrentTab("cause");
         } else {
+          console.log("pass 4");
           setValidTabs(["problem"]);
           setCurrentTab("immediateActions");
         }
+      } else {
+        console.log("pass 2");
+        setValidTabs([]);
+        setCurrentTab("problem");
       }
     } else if (
       (currentIndex === 0 || currentIndex === 4) &&
@@ -198,6 +235,9 @@ const useCreateFps = () => {
           setValidTabs(["problem"]);
           setCurrentTab("immediateActions");
         }
+      } else {
+        setValidTabs([]);
+        setCurrentTab("problem");
       }
     } else if (currentIndex === 1 && targetIndex === 3) {
       if (validateTab()) {
@@ -233,6 +273,7 @@ const useCreateFps = () => {
   };
 
   return {
+    currentStep,
     currentTab,
     validTabs,
     handleTabChange,

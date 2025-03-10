@@ -4,7 +4,7 @@ import {
   fpsDefensiveActionsType,
   fpsDefensiveActionType,
 } from "@/redux/fps/fpsSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
@@ -28,6 +28,7 @@ import {
 } from "@/data/fps";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const useDefensiveActionsSection = () => {
   const router = useRouter();
@@ -42,6 +43,34 @@ const useDefensiveActionsSection = () => {
   const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
     "Save"
   );
+
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+
+  const isDone = useMemo(() => {
+    return currentStep === "validation";
+  }, [currentStep]);
+
+  const isDisabled = useMemo(() => {
+    const tabsOrder = [
+      "problem",
+      "immediateActions",
+      "cause",
+      "defensiveActions",
+      "validation",
+    ];
+
+    return currentStep
+      ? isAdminOrManager ||
+          isDone ||
+          !(tabsOrder.indexOf(currentStep) >= tabsOrder.indexOf("cause"))
+      : isAdminOrManager;
+  }, [isAdminOrManager, currentStep]);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -64,10 +93,13 @@ const useDefensiveActionsSection = () => {
       console.log(fps?.defensiveActions);
       console.log("fps?.defensiveActions");
       setFpsData(fps?.defensiveActions);
-      setSubmitBtnValue(
-        ["validation"].includes(fps.currentStep) ? "Update" : "Save"
-      );
     }
+    setCurrentStep(fps?.currentStep || null);
+    setSubmitBtnValue(
+      ["defensiveActions", "validation"].includes(fps?.currentStep || "")
+        ? "Update"
+        : "Save"
+    );
   }, [fps]);
 
   const addNewDefensiveAction = () => {
@@ -116,6 +148,10 @@ const useDefensiveActionsSection = () => {
   };
 
   return {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     categoryData,

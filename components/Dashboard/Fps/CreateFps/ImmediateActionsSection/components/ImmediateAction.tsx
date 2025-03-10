@@ -18,6 +18,7 @@ const ImmediateAction = ({
   customWhyChange,
   customCategoryChange,
   customServiceChange,
+  disabled,
 }: {
   fpsData: immediatActionsType;
   categoryData: { value: string; label: string }[];
@@ -25,6 +26,7 @@ const ImmediateAction = ({
   customWhyChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
+  disabled?: boolean;
 }) => {
   return (
     <div className=" flex flex-col gap-4">
@@ -33,6 +35,7 @@ const ImmediateAction = ({
         onChange={customWhyChange}
         label="pourquoi"
         placeholder="Qu'est ce qu'on a appris du tri ?"
+        disabled={disabled}
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomSelect
@@ -40,12 +43,14 @@ const ImmediateAction = ({
           value={fpsData.userService}
           onChange={customServiceChange}
           data={serviceData}
+          disabled={disabled}
         />
         <CustomSelect
           label="categorie"
           value={fpsData.userCategory}
           onChange={customCategoryChange}
           data={categoryData}
+          disabled={disabled}
         />
       </div>
     </div>

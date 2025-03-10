@@ -15,9 +15,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SortingResults from "./components/SortingResults";
 import ImmediateActions from "./components/ImmediateActions";
+import CustomText from "@/components/Common/CustomInput/CustomText";
 
 const ImmediateActionsSection = () => {
   const {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     handleChange,
@@ -44,6 +49,7 @@ const ImmediateActionsSection = () => {
           title="Faut-il lancer un tri ?"
           checked={fpsData.startSorting}
           onChange={handleStartSorting}
+          disabled={isDisabled}
         />
         <SortingResults
           sortingResults={fpsData.sortingResults || []}
@@ -53,6 +59,7 @@ const ImmediateActionsSection = () => {
           serviceData={serviceData}
           handleChangeInArrayObject={handleChangeInArrayObject}
           setFpsData={setFpsData}
+          disabled={isDisabled}
         />
         <CustomTextArea
           value={fpsData.concludeFromSorting}
@@ -60,6 +67,7 @@ const ImmediateActionsSection = () => {
           label="Conclusion"
           placeholder="Qu'est ce qu'on a appris du tri ?"
           name="concludeFromSorting"
+          disabled={isDisabled}
         />
 
         <ImmediateActions
@@ -71,6 +79,7 @@ const ImmediateActionsSection = () => {
           serviceData={serviceData}
           handleChangeInArrayObject={handleChangeInArrayObject}
           setFpsData={setFpsData}
+          disabled={isDisabled}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -87,12 +96,21 @@ const ImmediateActionsSection = () => {
           selectedData={fpsData.alert || []}
           handleChange={handleAlertChange}
           data={serviceData || []}
+          disabled={isDisabled}
         />
-        <CustomButtons
-          value={submitBtnValue}
-          mainButtonOnCLick={handleSubmit}
-          secondaryButtonOnCLick={handleReset}
-        />
+        {isDone ? (
+          <CustomText title="This fps is done" />
+        ) : isAdminOrManager ? (
+          <CustomText title="Your not allowed to edit this fps" />
+        ) : isDisabled ? (
+          <CustomText title="You have to do all the previous steps" />
+        ) : (
+          <CustomButtons
+            value={submitBtnValue}
+            mainButtonOnCLick={handleSubmit}
+            secondaryButtonOnCLick={handleReset}
+          />
+        )}
       </div>
     </div>
   );

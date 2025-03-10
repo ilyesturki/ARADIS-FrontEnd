@@ -37,18 +37,26 @@ const tabs = [
 ];
 
 const CreateFps = () => {
-  const { currentTab, validTabs, handleTabChange } = useCreateFps();
+  const { currentStep, currentTab, validTabs, handleTabChange } =
+    useCreateFps();
   return (
     <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
-      <TabsList className="grid w-full grid-cols-5">
+      <TabsList className="w-full h-auto flex flex-wrap">
         {tabs.map((e, i) => {
+          const tabsOrder = [
+            "problem",
+            "immediateActions",
+            "cause",
+            "defensiveActions",
+            "validation",
+          ];
           return (
             <TabsTrigger
               value={e.value}
               key={i}
-              className=" flex items-center gap-1.5"
+              className="flex-1 flex items-center gap-1.5 "
             >
-              {validTabs.includes(e.value) ? (
+              {tabsOrder.indexOf(currentStep || "") >= i ? (
                 <FontAwesomeIcon icon={solidCircleCheck} size="lg" />
               ) : (
                 <FontAwesomeIcon icon={faCircleCheck} size="lg" />

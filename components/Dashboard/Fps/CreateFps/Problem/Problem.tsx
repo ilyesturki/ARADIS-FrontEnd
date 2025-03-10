@@ -9,9 +9,14 @@ import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
+import CustomText from "@/components/Common/CustomInput/CustomText";
 
 const Problem = () => {
   const {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     problemTypesData,
     typeColors,
     handleTypeChange,
@@ -41,6 +46,7 @@ const Problem = () => {
           textColor={typeColors.textColor}
           className={typeColors.className}
           name="type"
+          disabled={isDisabled}
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomTextArea
@@ -49,6 +55,7 @@ const Problem = () => {
             label="quoi"
             placeholder="Quel est le probleme ?"
             name="quoi"
+            disabled={isDisabled}
           />
           <CustomTextArea
             value={fpsData.ref}
@@ -56,6 +63,7 @@ const Problem = () => {
             label="ref"
             placeholder="Quelle reference ?"
             name="ref"
+            disabled={isDisabled}
           />
         </div>
         <CustomDateTimePicker
@@ -63,6 +71,7 @@ const Problem = () => {
           value={fpsData.quand}
           name="quand"
           onChange={customHandleChangeDate}
+          disabled={isDisabled}
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomInput
@@ -71,6 +80,7 @@ const Problem = () => {
             label="ou"
             placeholder="A-t-il detecte ?"
             name="ou"
+            disabled={isDisabled}
           />
           <CustomInput
             value={fpsData.combien}
@@ -78,6 +88,7 @@ const Problem = () => {
             label="combien"
             placeholder="De pieces ? Pertes ?"
             name="combien"
+            disabled={isDisabled}
           />
           <CustomSelect
             label="departement"
@@ -85,6 +96,7 @@ const Problem = () => {
             onChange={customHandleChangeSelect}
             data={serviceData}
             name="userService"
+            disabled={isDisabled}
           />
           <CustomSelect
             label="categorie"
@@ -92,6 +104,7 @@ const Problem = () => {
             onChange={customHandleChangeSelect}
             data={categoryData}
             name="userCategory"
+            disabled={isDisabled}
           />
         </div>
         <CustomTextArea
@@ -100,6 +113,7 @@ const Problem = () => {
           label="comment"
           placeholder="A-t-il detecte ?"
           name="comment"
+          disabled={isDisabled}
         />
 
         <CustomTextArea
@@ -108,12 +122,14 @@ const Problem = () => {
           label="pourquoi"
           placeholder="Est-ce un probleme ?"
           name="pourquoi"
+          disabled={isDisabled}
         />
 
         <CustomSwitch
           title="Y a-t-il un risque client ?"
           checked={fpsData.clientRisk}
           onChange={handleClientRisk}
+          disabled={isDisabled}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -132,13 +148,22 @@ const Problem = () => {
             images={fpsData.images || []}
             handleImageChange={handleImageChange}
             handleDeleteImages={handleDeleteImages}
+            disabled={isDisabled}
           />
         </div>
-        <CustomButtons
-          value={submitBtnValue}
-          mainButtonOnCLick={handleSubmit}
-          secondaryButtonOnCLick={handleReset}
-        />
+        {isDone ? (
+          <CustomText title="This fps is done" />
+        ) : isAdminOrManager ? (
+          <CustomText title="Your not allowed to edit this fps" />
+        ) : isDisabled ? (
+          <CustomText title="You have to do all the previous steps" />
+        ) : (
+          <CustomButtons
+            value={submitBtnValue}
+            mainButtonOnCLick={handleSubmit}
+            secondaryButtonOnCLick={handleReset}
+          />
+        )}
       </div>
     </div>
   );

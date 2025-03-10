@@ -7,12 +7,14 @@ const CustomSelectedPicker = ({
   handleChange,
   i,
   el,
+  disabled,
 }: {
   label: string;
   data: { value: string; label: string }[];
   handleChange: (data: string, i?: number) => void;
   i?: number;
   el: string;
+  disabled?: boolean;
 }) => {
   const style =
     label === "Colors" && el ? { backgroundColor: el, outlineColor: el } : {};
@@ -25,6 +27,7 @@ const CustomSelectedPicker = ({
         onChange={(s) => handleChange(s, i)}
         style={style}
         className="px-6 h-8 bg-opacity-70 capitalize"
+        disabled={disabled}
       />
     </div>
   );

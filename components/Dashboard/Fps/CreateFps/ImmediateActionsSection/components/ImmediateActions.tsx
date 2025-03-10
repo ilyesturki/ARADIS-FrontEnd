@@ -28,6 +28,7 @@ interface Props {
     index: number
   ) => void;
   setFpsData: (updater: (prevState: any) => any) => void;
+  disabled?: boolean;
 }
 
 const ImmediateActions = ({
@@ -39,6 +40,7 @@ const ImmediateActions = ({
   serviceData,
   handleChangeInArrayObject,
   setFpsData,
+  disabled,
 }: Props) => {
   return (
     <>
@@ -48,7 +50,8 @@ const ImmediateActions = ({
             <CustomSectionHeader
               title="action"
               i={i}
-              removeDefensiveAction={() => removeImmediateAction(i)}
+              handleDeleteSection={() => removeImmediateAction(i)}
+              disabled={disabled}
             />
             <ImmediateAction
               fpsData={e}
@@ -81,11 +84,12 @@ const ImmediateActions = ({
                   i
                 )
               }
+              disabled={disabled}
             />
             {immediateActions.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewImmediateAction} />
+              <AddSectionButton addNewSection={addNewImmediateAction} disabled={disabled} />
             )}
           </div>
         );

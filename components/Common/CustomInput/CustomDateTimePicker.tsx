@@ -37,11 +37,17 @@ const CustomDateTimePicker = ({
                 value={value ? new TZDate(value) : undefined}
                 onChange={(date) => !open && onChange?.(date, name)}
                 format="dd/MM/yyyy hh:mm aa"
-                disabled={open}
-                onCalendarClick={() => setOpen(!open)}
+                disabled={disabled ? disabled : open}
+                onCalendarClick={() => {
+                  disabled ? setOpen(false) : setOpen(!open);
+                }}
                 timezone="Europe/Paris"
+                className={disabled ? `opacity-90` : ""}
+                
               />
             )}
+            
+            disabled={disabled}
           />
         </div>
       </div>

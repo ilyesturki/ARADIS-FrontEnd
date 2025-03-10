@@ -22,6 +22,7 @@ const DefensiveAction = ({
   customCategoryChange,
   customServiceChange,
   customQuandChange,
+  disabled,
 }: {
   fpsData: fpsDefensiveActionType;
   categoryData: { value: string; label: string }[];
@@ -33,6 +34,7 @@ const DefensiveAction = ({
     date: Date | undefined,
     name?: string | undefined
   ) => void;
+  disabled?: boolean;
 }) => {
   return (
     <div className=" flex flex-col gap-4">
@@ -41,6 +43,7 @@ const DefensiveAction = ({
         onChange={customProcedureChange}
         label="procedure"
         placeholder="Mesures finales que nous avons prises"
+        disabled={disabled}
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomSelect
@@ -48,18 +51,21 @@ const DefensiveAction = ({
           value={fpsData.userService}
           onChange={customServiceChange}
           data={serviceData}
+          disabled={disabled}
         />
         <CustomSelect
           label="categorie"
           value={fpsData.userCategory}
           onChange={customCategoryChange}
           data={categoryData}
+          disabled={disabled}
         />
       </div>
       <CustomDateTimePicker
         label="Quand"
         value={fpsData.quand}
         onChange={customQuandChange}
+        disabled={disabled}
       />
     </div>
   );

@@ -9,12 +9,10 @@ import CustomSectionHeader from "../../Common/CustomSectionHeader";
 
 interface Props {
   whyList: fpsCauseType["whyList"];
-  handleChangeWhyList: (
-    value: any,
-    index: number
-  ) => void;
+  handleChangeWhyList: (value: any, index: number) => void;
   addNewWhy: () => void;
   removeWhy: (index: number) => void;
+  disabled: boolean;
 }
 
 const WhyList = ({
@@ -22,6 +20,7 @@ const WhyList = ({
   handleChangeWhyList,
   addNewWhy,
   removeWhy,
+  disabled,
 }: Props) => {
   return (
     <>
@@ -31,21 +30,23 @@ const WhyList = ({
             <CustomSectionHeader
               title="why"
               i={i}
-              removeDefensiveAction={() => removeWhy(i)}
+              handleDeleteSection={() => removeWhy(i)}
+              disabled={disabled}
             />
             <CustomTextArea
               value={e}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                handleChangeWhyList( e.target.value, i)
+                handleChangeWhyList(e.target.value, i)
               }
               label="procedure"
               placeholder="Mesures finales que nous avons prises"
               name="procedure"
+              disabled={disabled}
             />
             {whyList.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewWhy} />
+              <AddSectionButton addNewSection={addNewWhy} disabled={disabled} />
             )}
           </div>
         );

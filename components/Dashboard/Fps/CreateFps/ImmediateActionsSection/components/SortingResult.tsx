@@ -20,6 +20,7 @@ const SortingResult = ({
   customQuantityNOKChange,
   customCategoryChange,
   customServiceChange,
+  disabled,
 }: {
   fpsData: sortingResultsType;
   categoryData: { value: string; label: string }[];
@@ -29,6 +30,7 @@ const SortingResult = ({
   customQuantityNOKChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   customCategoryChange: (userCategory: string) => void;
   customServiceChange: (userService: string) => void;
+  disabled?: boolean;
 }) => {
   return (
     <div className=" flex flex-col gap-4">
@@ -37,6 +39,7 @@ const SortingResult = ({
         onChange={handleProductChange}
         label="produit"
         placeholder="produit"
+        disabled={disabled}
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomInput
@@ -44,24 +47,28 @@ const SortingResult = ({
           onChange={customSortedQuantityChange}
           label="quantité triee"
           placeholder="quantité triee"
+          disabled={disabled}
         />
         <CustomInput
           value={fpsData.quantityNOK}
           onChange={customQuantityNOKChange}
           label="quantité NOK"
           placeholder="quantité NOK"
+          disabled={disabled}
         />
         <CustomSelect
           label="departement"
           value={fpsData.userService}
           onChange={customServiceChange}
           data={serviceData}
+          disabled={disabled}
         />
         <CustomSelect
           label="categorie"
           value={fpsData.userCategory}
           onChange={customCategoryChange}
           data={categoryData}
+          disabled={disabled}
         />
       </div>
     </div>

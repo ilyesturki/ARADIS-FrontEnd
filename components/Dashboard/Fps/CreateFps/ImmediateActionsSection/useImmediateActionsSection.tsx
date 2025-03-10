@@ -5,7 +5,7 @@ import {
   fpsDefensiveActionType,
   fpsImmediateActionsType,
 } from "@/redux/fps/fpsSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
@@ -27,6 +27,7 @@ import {
 } from "@/data/fps";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const useImmediateActionsSection = () => {
   const router = useRouter();
@@ -43,6 +44,34 @@ const useImmediateActionsSection = () => {
     "Save"
   );
 
+  const { data: session } = useSession({ required: true });
+
+  const isAdminOrManager = useMemo(
+    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    [session?.user.role]
+  );
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+
+  const isDone = useMemo(() => {
+    return currentStep === "validation";
+  }, [currentStep]);
+
+  const isDisabled = useMemo(() => {
+    const tabsOrder = [
+      "problem",
+      "immediateActions",
+      "cause",
+      "defensiveActions",
+      "validation",
+    ];
+
+    return currentStep
+      ? isAdminOrManager ||
+          isDone ||
+          !(tabsOrder.indexOf(currentStep) >= tabsOrder.indexOf("problem"))
+      : isAdminOrManager;
+  }, [isAdminOrManager, currentStep]);
+
   const fps = useAppSelector((state) => state.fpss.fps);
 
   useEffect(() => {
@@ -56,7 +85,9 @@ const useImmediateActionsSection = () => {
   }, []);
 
   useEffect(() => {
+    console.log(fps);
     if (fps?.immediateActions && Object.keys(fps.immediateActions).length > 0) {
+      console.log(fps?.immediateActions);
       const newAlert = [...(fps.immediateActions?.alert || [])];
       const newSortingResult = [...(fps.immediateActions.sortingResults || [])];
       const newImmediateActions = [
@@ -71,12 +102,16 @@ const useImmediateActionsSection = () => {
         sortingResults: newSortingResult,
         immediateActions: newImmediateActions,
       });
-      setSubmitBtnValue(
-        ["cause", "defensiveActions", "validation"].includes(fps.currentStep)
-          ? "Update"
-          : "Save"
-      );
     }
+    console.log(fps?.currentStep);
+    setCurrentStep(fps?.currentStep || null);
+    setSubmitBtnValue(
+      ["immediateActions", "cause", "defensiveActions", "validation"].includes(
+        fps?.currentStep || ""
+      )
+        ? "Update"
+        : "Save"
+    );
   }, [fps]);
 
   useEffect(() => {
@@ -213,6 +248,10 @@ const useImmediateActionsSection = () => {
   };
 
   return {
+    isAdminOrManager,
+    currentStep,
+    isDisabled,
+    isDone,
     fpsData,
     fpsId,
     handleChange,

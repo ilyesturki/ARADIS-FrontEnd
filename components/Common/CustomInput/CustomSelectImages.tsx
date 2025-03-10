@@ -10,6 +10,7 @@ const CustomSelectImages = ({
   images,
   handleImageChange,
   handleDeleteImages,
+  disabled,
 }: {
   label: string;
   imageCover: string;
@@ -19,6 +20,7 @@ const CustomSelectImages = ({
     index?: number
   ) => void;
   handleDeleteImages?: (i?: number) => void;
+  disabled?: boolean;
 }) => {
   return (
     <div className="w-full flex gap-4 items-center">
@@ -31,8 +33,11 @@ const CustomSelectImages = ({
           <div className="relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm">
             <input
               type="file"
-              className="absolute w-full h-full z-10 opacity-0 cursor-pointer"
+              className={`absolute w-full h-full z-10 opacity-0 ${
+                disabled ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
               onChange={(e) => handleImageChange(e)}
+              disabled={disabled}
             />
             {imageCover ? (
               <>
@@ -41,7 +46,7 @@ const CustomSelectImages = ({
                   alt="Cover"
                   className="w-full h-full object-cover rounded-sm"
                 />
-                {handleDeleteImages && (
+                {handleDeleteImages && !disabled && (
                   <RemoveImageButton handleDelete={handleDeleteImages} />
                 )}
               </>
@@ -65,8 +70,11 @@ const CustomSelectImages = ({
               >
                 <input
                   type="file"
-                  className="absolute w-full h-full z-10 opacity-0 cursor-pointer"
+                  className={`absolute w-full h-full z-10 opacity-0 ${
+                    disabled ? "cursor-not-allowed" : "cursor-pointer"
+                  }`}
                   onChange={(e) => handleImageChange(e, i)}
+                  disabled={disabled}
                 />
                 {images[i] ? (
                   <>
@@ -75,7 +83,7 @@ const CustomSelectImages = ({
                       alt={`Image ${i}`}
                       className="w-full h-full object-cover rounded-sm"
                     />
-                    {handleDeleteImages && (
+                    {handleDeleteImages && !disabled && (
                       <RemoveImageButton
                         handleDelete={() => handleDeleteImages(i)}
                         className="!top-0.5 !right-0.5 !w-4 !h-4"
