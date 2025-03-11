@@ -38,9 +38,9 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   console.log(session);
   return (
-    <div className="">
+    <div className="flex flex-col gap-8">
       <FpssPanelDashboard />
-      <div className="">{children}</div>
+      {children}
     </div>
   );
 }
