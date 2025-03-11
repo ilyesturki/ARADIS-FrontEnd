@@ -75,10 +75,12 @@ const DefensiveActions = ({
             {fpsData.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton
-                addNewSection={addNewDefensiveAction}
-                disabled={disabled}
-              />
+              !disabled && (
+                <AddSectionButton
+                  addNewSection={addNewDefensiveAction}
+                  disabled={disabled}
+                />
+              )
             )}
           </div>
         );

@@ -89,7 +89,12 @@ const ImmediateActions = ({
             {immediateActions.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewImmediateAction} disabled={disabled} />
+              !disabled && (
+                <AddSectionButton
+                  addNewSection={addNewImmediateAction}
+                  disabled={disabled}
+                />
+              )
             )}
           </div>
         );

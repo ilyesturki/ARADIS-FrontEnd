@@ -7,11 +7,23 @@ const CustomSwitch = ({
   checked,
   onChange,
   disabled,
+  checkedColor,
+  unCheckedColor,
+  checkedValue,
+  unCheckedValue,
+  checkedBgColor,
+  unCheckedBgColor,
 }: {
   title: string;
   checked: boolean;
   onChange: () => void;
   disabled?: boolean;
+  checkedColor?: string;
+  unCheckedColor?: string;
+  checkedValue?: string;
+  unCheckedValue?: string;
+  checkedBgColor?: string;
+  unCheckedBgColor?: string;
 }) => {
   return (
     <div className="w-full px-4 py-3 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md flex items-center">
@@ -22,14 +34,22 @@ const CustomSwitch = ({
         onClick={(e) => {
           onChange();
         }}
-        className={`ml-4 data-[state=checked]:bg-redAccent-900 data-[state=unchecked]:bg-greenAccent-800`}
+        className={`ml-4  ${
+          checkedBgColor
+            ? checkedBgColor
+            : "data-[state=checked]:bg-redAccent-900"
+        } ${
+          unCheckedBgColor
+            ? unCheckedBgColor
+            : "data-[state=unchecked]:bg-greenAccent-800"
+        } `}
       />
       <span
         className={`ml-2 text-xs font-semibold capitalize ${
-          checked ? "text-redAccent-900" : "text-greenAccent-800"
+          checked ? checkedColor : unCheckedColor
         } ${disabled && "opacity-80"}`}
       >
-        ( {checked ? "Oui" : "Non"} )
+        ( {checked ? checkedValue : unCheckedValue} )
       </span>
     </div>
   );

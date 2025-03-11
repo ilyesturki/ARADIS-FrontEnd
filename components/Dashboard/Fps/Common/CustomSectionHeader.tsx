@@ -7,16 +7,16 @@ const CustomSectionHeader = ({
   disabled,
 }: {
   title: string;
-  i: number;
-  handleDeleteSection: () => void;
+  i?: number;
+  handleDeleteSection?: () => void;
   disabled?: boolean;
 }) => {
   return (
     <div className="flex items-center justify-between px-2">
       <span className="text-sm font-bold capitalize text-grayscale-500">
-        {title} N°{i + 1}
+        {title} {i !== undefined ? `N°${i + 1}` : ""}
       </span>
-      {!disabled && (
+      {!disabled && handleDeleteSection && (
         <RemoveSectionButton handleDelete={() => handleDeleteSection()} />
       )}
     </div>

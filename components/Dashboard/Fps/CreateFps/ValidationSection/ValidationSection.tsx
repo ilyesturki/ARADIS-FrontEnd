@@ -53,6 +53,12 @@ const ValidationSection = () => {
           checked={fpsCompleted}
           onChange={handleStatusChange}
           disabled={isDisabled}
+          checkedColor="text-greenAccent-900"
+          unCheckedColor="text-redAccent-900"
+          checkedValue="Oui"
+          unCheckedValue="Non"
+          checkedBgColor="!bg-greenAccent-800"
+          unCheckedBgColor="!bg-redAccent-900"
         />
         {isDone ? (
           <CustomText title="This fps is done" />

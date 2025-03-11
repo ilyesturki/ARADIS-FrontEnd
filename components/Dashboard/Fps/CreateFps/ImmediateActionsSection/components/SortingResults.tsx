@@ -107,7 +107,12 @@ const SortingResults = ({
             {sortingResults.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewSortingResult} disabled={disabled} />
+              !disabled && (
+                <AddSectionButton
+                  addNewSection={addNewSortingResult}
+                  disabled={disabled}
+                />
+              )
             )}
           </div>
         );

@@ -46,7 +46,12 @@ const WhyList = ({
             {whyList.length - 1 !== i ? (
               <SectionsSeperator />
             ) : (
-              <AddSectionButton addNewSection={addNewWhy} disabled={disabled} />
+              !disabled && (
+                <AddSectionButton
+                  addNewSection={addNewWhy}
+                  disabled={disabled}
+                />
+              )
             )}
           </div>
         );

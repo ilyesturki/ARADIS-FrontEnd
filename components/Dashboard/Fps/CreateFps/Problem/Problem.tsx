@@ -130,6 +130,10 @@ const Problem = () => {
           checked={fpsData.clientRisk}
           onChange={handleClientRisk}
           disabled={isDisabled}
+          checkedColor="text-redAccent-900"
+          unCheckedColor="text-greenAccent-900"
+          checkedValue="Oui"
+          unCheckedValue="Non"
         />
       </div>
       <div className=" flex flex-col gap-10">

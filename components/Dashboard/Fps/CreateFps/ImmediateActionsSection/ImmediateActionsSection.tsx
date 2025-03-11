@@ -16,6 +16,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SortingResults from "./components/SortingResults";
 import ImmediateActions from "./components/ImmediateActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";
+import CustomSectionHeader from "../../Common/CustomSectionHeader";
 
 const ImmediateActionsSection = () => {
   const {
@@ -50,6 +51,10 @@ const ImmediateActionsSection = () => {
           checked={fpsData.startSorting}
           onChange={handleStartSorting}
           disabled={isDisabled}
+          checkedColor="text-redAccent-900"
+          unCheckedColor="text-greenAccent-900"
+          checkedValue="Oui"
+          unCheckedValue="Non"
         />
         <SortingResults
           sortingResults={fpsData.sortingResults || []}
@@ -61,6 +66,7 @@ const ImmediateActionsSection = () => {
           setFpsData={setFpsData}
           disabled={isDisabled}
         />
+        <CustomSectionHeader title="Conclusion" />
         <CustomTextArea
           value={fpsData.concludeFromSorting}
           onChange={handleChange}
