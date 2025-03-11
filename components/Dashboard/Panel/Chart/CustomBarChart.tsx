@@ -155,13 +155,21 @@ export default function CustomBarChart() {
                 className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
                 onClick={() => setActiveChart(chart)}
               >
-                <span className="text-xs text-[hsl(var(--chart-5))]">
+                <span
+                  className={`text-xs ${
+                    chart === "desktop"
+                      ? "text-[hsl(var(--chart-5))]"
+                      : "text-[hsl(var(--chart-2))]"
+                  }`}
+                >
                   {chartConfig[chart].label}
                 </span>
                 <span
-                  className={`text-lg font-bold leading-none sm:text-3xl text-[hsl(var(--color-${
-                    chart || "default"
-                  }))]`}
+                  className={`text-lg font-bold leading-none sm:text-3xl ${
+                    chart === "desktop"
+                      ? "text-[hsl(var(--chart-5))]"
+                      : "text-[hsl(var(--chart-2))]"
+                  }`}
                 >
                   {total[key as keyof typeof total].toLocaleString()}
                 </span>
