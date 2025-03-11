@@ -28,6 +28,7 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 import PageTitle from "@/components/Common/PageTitle";
+import FpssPanelDashboard from "@/components/Dashboard/Panel/Fps/FpssPanelDashboard";
 
 export default async function RootLayout({
   children,
@@ -38,7 +39,7 @@ export default async function RootLayout({
   console.log(session);
   return (
     <div className="">
-      <h1>a</h1>
+      <FpssPanelDashboard />
       <div className="">{children}</div>
     </div>
   );
