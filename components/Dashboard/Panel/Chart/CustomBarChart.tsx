@@ -116,7 +116,7 @@ const chartConfig = {
   },
   desktop: {
     label: "Desktop",
-    color: "hsl(var(--chart-5))",
+    color: "hsl(var(--chart-1))",
   },
   mobile: {
     label: "Mobile",
@@ -124,7 +124,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function CustomBarChart() {
+export default function CustomBarChart({ className }: { className?: string }) {
   const [activeChart, setActiveChart] =
     React.useState<keyof typeof chartConfig>("desktop");
 
@@ -137,11 +137,13 @@ export default function CustomBarChart() {
   );
 
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Bar Chart - Interactive</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-greenAccent-900">
+            Bar Chart - Interactive
+          </CardTitle>
+          <CardDescription className="text-grayscale-500 text-opacity-70">
             Showing total visitors for the last 3 months
           </CardDescription>
         </div>
@@ -152,22 +154,27 @@ export default function CustomBarChart() {
               <button
                 key={chart}
                 data-active={activeChart === chart}
-                className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                className={`relative z-30 h-full w-full flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6 `}
                 onClick={() => setActiveChart(chart)}
               >
-                <span
-                  className={`text-xs ${
+                <div
+                  className={`absolute top-[4%] left-[3%] w-[94%] h-[92%] rounded-[7px]  ${
                     chart === "desktop"
-                      ? "text-[hsl(var(--chart-5))]"
-                      : "text-[hsl(var(--chart-2))]"
+                      ? "bg-[hsl(var(--chart-1))]"
+                      : "bg-[hsl(var(--chart-2))]"
+                  } ${
+                    chart === activeChart
+                      ? "opacity-30"
+                      : "opacity-10 hover:opacity-20"
                   }`}
-                >
+                ></div>
+                <span className={`text-xs text-grayscale-500 text-opacity-70`}>
                   {chartConfig[chart].label}
                 </span>
                 <span
                   className={`text-lg font-bold leading-none sm:text-3xl ${
                     chart === "desktop"
-                      ? "text-[hsl(var(--chart-5))]"
+                      ? "text-[hsl(var(--chart-1))]"
                       : "text-[hsl(var(--chart-2))]"
                   }`}
                 >
