@@ -28,7 +28,7 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 import PageTitle from "@/components/Common/PageTitle";
-import FpssPanelDashboard from "@/components/Dashboard/Panel/Fps/FpssPanelDashboard";
+import FpssPanel from "@/components/Dashboard/Panel/Fpss/FpssPanel";
 
 export default async function RootLayout({
   children,
@@ -39,7 +39,7 @@ export default async function RootLayout({
   console.log(session);
   return (
     <div className="flex flex-col gap-8">
-      <FpssPanelDashboard />
+      <FpssPanel />
       {children}
     </div>
   );

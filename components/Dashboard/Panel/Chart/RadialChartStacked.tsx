@@ -39,16 +39,17 @@ export default function RadialChartStacked() {
         <CardTitle>Radial Chart - Stacked</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-1 items-center pb-0">
+      <CardContent className="flex flex-1 items-center justify-center pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square w-full max-w-[250px] h-[140px]"
+          className="mx-auto aspect-1 w-full max-w-[250px]"
         >
           <RadialBarChart
             data={chartData}
             endAngle={180}
             innerRadius={80}
             outerRadius={130}
+            className="pt-8"
           >
             <ChartTooltip
               cursor={false}
@@ -97,14 +98,14 @@ export default function RadialChartStacked() {
           </RadialBarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
+      {/* <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
-        {/* <div className="leading-none text-muted-foreground">
+        <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months
-        </div> */}
-      </CardFooter>
+        </div>
+      </CardFooter> */}
     </Card>
   );
 }

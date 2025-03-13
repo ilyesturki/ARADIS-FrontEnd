@@ -5,7 +5,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 
-const FpsPanelHeader = () => {
+const ShowFpsHeader = () => {
   const fps = useAppSelector((state) => state.fpss.fps);
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   console.log(fps);
@@ -44,4 +44,4 @@ const FpsPanelHeader = () => {
   );
 };
 
-export default FpsPanelHeader;
+export default ShowFpsHeader;

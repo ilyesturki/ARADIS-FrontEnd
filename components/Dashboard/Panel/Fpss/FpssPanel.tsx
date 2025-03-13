@@ -6,7 +6,7 @@ import CustomPieChartLabel from "../Chart/CustomPieChartLabel";
 import CustomLineChartLabel from "../Chart/CustomLineChartLabel";
 import CustomRadarChartLegend from "../Chart/CustomRadarChartLegend";
 
-const FpssPanelDashboard = () => {
+const FpssPanel = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-2 gap-6">
       {/* <div className="col-span-3 flex items-end">
@@ -23,4 +23,4 @@ const FpssPanelDashboard = () => {
   );
 };
 
-export default FpssPanelDashboard;
+export default FpssPanel;

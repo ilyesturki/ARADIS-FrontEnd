@@ -24,7 +24,7 @@ const DataTableRowMenu = <T extends { id: string }>({
   id?: string;
 }) => {
   const paths = usePathname();
-
+  console.log(paths);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none border-none" asChild>
@@ -48,12 +48,13 @@ const DataTableRowMenu = <T extends { id: string }>({
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <Link
-          href={`${paths}/edit-${label}${
-            id ? `?${label}Id=${id}` : `/${row.original.id}`
-          }`}
+          href={`${paths}/${
+            paths !== "/dashboard/panel/fps-panel" ? "edit-" : ""
+          }${label}${id ? `?${label}Id=${id}` : `/${row.original.id}`}`}
         >
           <DropdownMenuItem className=" cursor-pointer">
-            Edit {label}
+            {paths !== "/dashboard/panel/fps-panel" ? "Edit " : "show "}
+            {label}
           </DropdownMenuItem>
         </Link>
         <DropdownMenuItem

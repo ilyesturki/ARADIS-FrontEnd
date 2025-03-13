@@ -1,7 +1,7 @@
-import FpssPanel from "@/components/Dashboard/Panel/Fps/FpssPanel";
+import FpssTable from "@/components/Dashboard/Panel/Fpss/FpssTable";
 
 const page = async () => {
-  return <FpssPanel />;
+  return <FpssTable />;
 };
 
 export default page;
