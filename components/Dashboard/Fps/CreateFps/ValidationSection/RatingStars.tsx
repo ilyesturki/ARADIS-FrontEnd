@@ -22,7 +22,7 @@ const RatingStars = ({
       onChange={customRatingChange}
       value={rating}
       isEdit={isEdit}
-      size={12}
+      size={10}
       emptyIcon={<FontAwesomeIcon icon={emptyStar} />}
       halfIcon={<FontAwesomeIcon icon={faStarHalfStroke} />}
       filledIcon={<FontAwesomeIcon icon={filledStar} />}

@@ -44,7 +44,7 @@ const Comments = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 pl-5 pr-7 py-4 max-h-[500px] overflow-y-scroll customScroll bg-sidebar-border rounded-[10px] shadow-[0_0_2px] shadow-grayscale-400 ">
+      <div className="flex flex-col gap-2 pl-3 sm:pl-5 pr-[19px] sm:pr-7 py-4 max-h-[500px] overflow-y-scroll customScroll bg-sidebar-border rounded-[10px] shadow-[0_0_2px] shadow-grayscale-400 ">
         {fpsData.comments?.map((e, i) => {
           if (e.active === false) {
             return null;

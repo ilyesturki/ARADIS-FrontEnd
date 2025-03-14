@@ -38,7 +38,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function CustomPieChartLabel() {
+export default function FPSStatusChart() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0 text-center">
@@ -49,10 +49,10 @@ export default function CustomPieChartLabel() {
           Tracking FPS resolutions
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0 pt-4">
+      <CardContent className="flex-1 pb-0 pt-2">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-1 max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+          className="mx-auto aspect-1 h-[240px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />

@@ -1,24 +1,22 @@
 import React from "react";
 import CustomPieChart from "../Chart/CustomPieChart";
-import CustomAreaChart from "../Chart/CustomAreaChart";
+import FPSPerformanceChart from "../Chart/FPSPerformanceChart";
 import CustomBarChart from "../Chart/CustomBarChart";
-import CustomPieChartLabel from "../Chart/CustomPieChartLabel";
-import CustomLineChartLabel from "../Chart/CustomLineChartLabel";
-import CustomRadarChartLegend from "../Chart/CustomRadarChartLegend";
+import FPSStatusChart from "../Chart/FPSStatusChart";
+import CompletedFPSChart from "../Chart/CompletedFPSChart";
+import QrScanRadarChart from "../Chart/QrScanRadarChart";
+import FailedFPSChart from "../Chart/FailedFPSChart";
 
 const FpssPanel = () => {
   return (
-    <div className="grid grid-cols-3 grid-rows-2 gap-6">
-      {/* <div className="col-span-3 flex items-end">
-        <CustomBarChart className="flex-1" />
-      </div> */}
-      <div className="col-span-2 flex items-center">
-        <CustomAreaChart className="flex-1" />
+    <div className="grid  sm:grid-cols-2 lg:grid-cols-3 grid-rows-[repeat(6,auto)] sm:grid-rows-[auto_auto_auto] lg:grid-rows-[auto_auto] gap-6">
+      <div className="sm:col-span-2 flex">
+        <FPSPerformanceChart className="flex-1 !h-full" />
       </div>
-      <CustomPieChartLabel />
-      <CustomRadarChartLegend />
-      <CustomLineChartLabel />
-      <CustomLineChartLabel />
+      <FPSStatusChart />
+      <QrScanRadarChart />
+      <CompletedFPSChart />
+      <FailedFPSChart />
     </div>
   );
 };

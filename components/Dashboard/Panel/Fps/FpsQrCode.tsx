@@ -7,7 +7,7 @@ const FpsQrCode = () => {
 
   return (
     <div className="">
-      <div className="relative w-full h-full pt-[36px] pb-6 bg-grayscale-100 flex flex-col items-center gap-2.5 shadow-[0px_0px_2px] shadow-grayscale-400 rounded-md">
+      <div className=" relative w-full h-full pt-[36px] pb-6 bg-grayscale-100 flex flex-col items-center gap-2.5 shadow-[0px_0px_2px] shadow-grayscale-400 rounded-md">
         <span className="text-[12px] font-medium text-greenAccent-900 text-opacity-90">
           {fpsId}
         </span>

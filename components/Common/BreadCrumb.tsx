@@ -53,7 +53,9 @@ const BreadCrumb = () => {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="/" className="text-xs sm:text-sm">
+            Home
+          </BreadcrumbLink>
         </BreadcrumbItem>
         {pathList.slice(0, pathList.length - 1).map((e, i) => {
           return (
@@ -62,7 +64,7 @@ const BreadCrumb = () => {
               <BreadcrumbItem>
                 <Link
                   href={`/${pathList.slice(0, i + 1).join("/")}`}
-                  className="capitalize"
+                  className="text-xs sm:text-sm capitalize"
                 >
                   {e.split("-").join(" ")}
                 </Link>

@@ -34,12 +34,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const cookieStore = await cookies();
-  // const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
+  const cookieStore = await cookies();
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
+
   const session = await getServerSession(authOptions);
   console.log(session);
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={defaultOpen}>
       <CustomSideBar session={session} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
@@ -49,7 +50,9 @@ export default async function RootLayout({
             <BreadCrumb />
           </div>
         </header>
-        <main className="px-9 pb-4">
+        <main
+          className={`px-9 pb-4 peer-data-[active=true]/menu-button:bg-red-500`}
+        >
           <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-7 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
             <PageTitle />
             {children}

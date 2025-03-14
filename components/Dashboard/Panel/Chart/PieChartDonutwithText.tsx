@@ -61,7 +61,7 @@ export default function PieChartDonutwithText() {
   }, []);
 
   return (
-    <Card className="flex flex-col">
+    <Card className="max-sm:order-1 max-lg:-order-1 flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle className="text-grayscale-500">
           QR Code Scan Statistics

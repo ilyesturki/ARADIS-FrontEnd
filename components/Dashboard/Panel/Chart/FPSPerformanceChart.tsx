@@ -133,7 +133,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function CustomAreaChart({ className }: { className?: string }) {
+export default function FPSPerformanceChart({ className }: { className?: string }) {
   const [timeRange, setTimeRange] = React.useState("90d");
 
   const filteredData = chartData.filter((item) => {

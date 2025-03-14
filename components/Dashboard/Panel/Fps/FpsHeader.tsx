@@ -10,25 +10,25 @@ const ShowFpsHeader = () => {
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   console.log(fps);
   return (
-    <div className="flex justify-between px-3 pt-5">
-      <div className="flex items-center gap-2">
+    <div className="flex justify-between sm:px-3 pt-5">
+      <div className="flex items-center gap-1 sm:gap-2">
         <Link
           href="/dashboard/panel/fps-panel"
-          className="w-7 h-7 flex justify-center items-center text-base font-semibold text-grayscale-100 bg-greenAccent-900 bg-opacity-80 hover:bg-opacity-70 rounded-lg shadow-[0_0_2px] shadow-grayscale-500"
+          className="w-6 h-6 sm:w-7 sm:h-7 flex justify-center items-center text-base font-semibold text-grayscale-100 bg-greenAccent-900 bg-opacity-80 hover:bg-opacity-70 rounded-lg shadow-[0_0_2px] shadow-grayscale-500"
         >
-          <LogOut className="w-3.5 h-3.5 rotate-180" />
+          <LogOut className="w-3 h-3 sm:w-3.5 sm:h-3.5 rotate-180" />
         </Link>
         <Separator
           orientation="vertical"
-          className="h-6 ml-2 bg-greenAccent-900"
+          className="h-6 ml-1 sm:ml-2 bg-greenAccent-900"
         />
-        <span className="text-xl font-medium text-greenAccent-900">
+        <span className="text-[10px] sm:text-xl font-medium text-greenAccent-900">
           {fpsId}
         </span>
       </div>
 
       <div
-        className={`px-3 py-1 flex items-center rounded-full shadow-[0_0_5px] ${
+        className={`px-1.5 sm:px-3 sm:py-1 flex items-center rounded-full shadow-[0_0_5px] ${
           fps?.status === "completed"
             ? "bg-greenAccent-800 shadow-greenAccent-800"
             : fps?.status === "failed"
@@ -36,7 +36,7 @@ const ShowFpsHeader = () => {
             : "bg-orangeAccent shadow-orangeAccent"
         }`}
       >
-        <span className="text-[10px] font-bold uppercase text-grayscale-100">
+        <span className="text-[7px] sm:text-[10px] font-medium sm:font-bold uppercase text-grayscale-100">
           {fps?.status === "inProgress" ? "In Progress" : fps?.status}
         </span>
       </div>

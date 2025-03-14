@@ -87,7 +87,7 @@ export function CustomSideBar({
   ...props
 }: { session: any } & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" variant="sidebar" {...props}>
       <SidebarHeader>
         <WebsiteCustomLogo />
         <UserNav

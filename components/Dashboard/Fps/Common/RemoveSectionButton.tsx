@@ -20,7 +20,7 @@ const RemoveSectionButton = ({
     >
       <FontAwesomeIcon
         icon={faTrash}
-        className="w-4 h-4 text-[10px] text-grayscale-100"
+        className="w-3 h-3 sm:w-4 sm:h-4 text-[8px] sm:text-[10px] text-grayscale-100"
       />
     </button>
   );
