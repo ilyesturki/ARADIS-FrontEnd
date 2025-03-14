@@ -17,65 +17,51 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+const fpsData = [
+  { status: "Completed", count: 155, fill: "hsl(var(--chart-5))" },
+  { status: "Failed", count: 70, fill: "hsl(var(--chart-2))" },
+  { status: "Pending", count: 110, fill: "hsl(var(--chart-1))" },
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  completed: {
+    label: "Completed",
+    color: "hsl(var(--chart-5))",
   },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
+  failed: {
+    label: "Failed",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+  pending: {
+    label: "Pending",
+    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
 export default function CustomPieChartLabel() {
   return (
     <Card className="flex flex-col">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Label</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+      <CardHeader className="items-center pb-0 text-center">
+        <CardTitle className="text-xl text-greenAccent-900">
+          FPS Status Overview
+        </CardTitle>
+        <CardDescription className="text-sm font-semibold text-grayscale-500 text-opacity-60">
+          Tracking FPS resolutions
+        </CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex-1 pb-0 pt-4">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+          className="mx-auto aspect-1 max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="visitors" label nameKey="browser" />
+            <Pie data={fpsData} dataKey="count" label nameKey="status" />
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
+      <CardFooter className="text-sm text-center text-muted-foreground">
+        Insights into FPS performance trends and resolution progress.
       </CardFooter>
     </Card>
   );

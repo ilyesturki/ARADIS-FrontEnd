@@ -9,6 +9,7 @@ import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheck
 // import IconAndLabelColumn from "./CustomTableColumns/IconAndLabelColumn";
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
+import ScannedQrColumn from "./CustomTableColumns/ScannedQrColumn";
 export type Users = {
   id: string;
   mat: string;
@@ -37,7 +38,7 @@ export const columns: ColumnDef<Users>[] = [
         options={{ hide: true }}
       />
     ),
-    cell: ({ row }) => <IconAndNameColumn row={row} className="w-8 h-8" />,
+    cell: ({ row }) => <IconAndNameColumn row={row} className="w-10 h-10" />,
   },
   {
     accessorKey: "email",
@@ -68,6 +69,7 @@ export const columns: ColumnDef<Users>[] = [
         options={{ up: true, down: true, hide: true }}
       />
     ),
+    cell: ({ row }) => <ScannedQrColumn row={row} />,
   },
   {
     accessorKey: "actions",

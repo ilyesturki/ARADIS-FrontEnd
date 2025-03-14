@@ -10,7 +10,7 @@ const ShowFpsHeader = () => {
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   console.log(fps);
   return (
-    <div className="flex justify-between px-3 py-5">
+    <div className="flex justify-between px-3 pt-5">
       <div className="flex items-center gap-2">
         <Link
           href="/dashboard/panel/fps-panel"
@@ -37,7 +37,7 @@ const ShowFpsHeader = () => {
         }`}
       >
         <span className="text-[10px] font-bold uppercase text-grayscale-100">
-          {fps?.status}
+          {fps?.status === "inProgress" ? "In Progress" : fps?.status}
         </span>
       </div>
     </div>

@@ -15,17 +15,19 @@ const DataTable = <TData, TValue>({
   columns,
   data,
   title,
+  isSelectPageSizes,
 }: {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   title?: string;
+  isSelectPageSizes?: boolean;
 }) => {
   const [table] = useDataTable({ columns, data });
 
   return (
-    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 rounded-[7px] shadow-[0_0_2px] shadow-grayscale-400 ">
+    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 rounded-[7px] shadow-[0px_0px_2px] shadow-grayscale-400">
       {title && (
-        <span className="w-full px-2 text-lg font-medium text-grayscale-500 capitalize ">
+        <span className="w-full px-2 text-lg font-medium text-grayscale-500 text-opacity-90 capitalize ">
           {title}
         </span>
       )}
@@ -40,7 +42,7 @@ const DataTable = <TData, TValue>({
           <DataTableBody table={table} columns={columns} />
         </Table>
       </div>
-      <Pagination table={table} />
+      <Pagination table={table} isSelectPageSizes={isSelectPageSizes} />
     </div>
   );
 };

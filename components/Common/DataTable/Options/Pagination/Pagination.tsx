@@ -5,12 +5,18 @@ import PaginationButtons from "./PaginationButtons";
 import SelectedRows from "./SelectedRows";
 import CurrentPage from "./CurrentPage";
 
-const Pagination = <TData,>({ table }: { table: Table<TData> }) => {
+const Pagination = <TData,>({
+  table,
+  isSelectPageSizes,
+}: {
+  table: Table<TData>;
+  isSelectPageSizes?: boolean;
+}) => {
   return (
     <div className="flex flex-wrap items-center justify-between px-8 py-4">
       <SelectedRows table={table} />
       <div className="flex items-center gap-8">
-        <SelectPageSize table={table} />
+        {isSelectPageSizes && <SelectPageSize table={table} />}
         <div className="flex items-center gap-4">
           <CurrentPage table={table} />
           <PaginationButtons table={table} />
