@@ -48,6 +48,7 @@ const data = {
       ],
     },
     {
+      allowedTo: ["user"],
       title: "Fps",
       url: "#",
       icon: SquareTerminal,
@@ -87,7 +88,7 @@ export function CustomSideBar({
   ...props
 }: { session: any } & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" variant="sidebar" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <WebsiteCustomLogo />
         <UserNav

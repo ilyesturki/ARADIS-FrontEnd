@@ -10,18 +10,16 @@ import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheck
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 import ScannedQrColumn from "./CustomTableColumns/ScannedQrColumn";
-export type Users = {
+export type FpsSelectedUsersColumn = {
   id: string;
-  mat: string;
+  scanStatus:"notScanned" | "scanned";
   image?: string;
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
-  status: "pending" | "active" | "inactive";
 };
 
-export const columns: ColumnDef<Users>[] = [
+export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
   {
     accessorKey: "select",
     id: "select",
@@ -50,22 +48,12 @@ export const columns: ColumnDef<Users>[] = [
       />
     ),
   },
-  // {
-  //   accessorKey: "phone",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader
-  //       column={column}
-  //       title="Phone"
-  //       options={{ up: true, down: true, hide: true }}
-  //     />
-  //   ),
-  // },
   {
-    accessorKey: "status",
+    accessorKey: "scanStatus",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Status"
+        title="Scan Status"
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -81,7 +69,7 @@ export const columns: ColumnDef<Users>[] = [
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<Users> row={row} label={"user"}>
+      <DataTableRowMenu<FpsSelectedUsersColumn> row={row} label={"user"}>
         <DeleteUserDialog id={row.original.id} />
       </DataTableRowMenu>
     ),

@@ -17,3 +17,9 @@ export const fetchMe = async () => {
   const response = await axios.get(`${apiBaseUrl}/users/me`);
   return response.data.data;
 };
+
+export const fetchSelectedUsersForFps = async (id: string) => {
+  console.log(apiBaseUrl);
+  const response = await axios.get(`${apiBaseUrl}/selected-users/${id}`);
+  return response.data.data;
+};

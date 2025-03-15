@@ -1,12 +1,13 @@
 import { Row } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Users } from "../UsersColumn";
+import { FpsSelectedUsersColumn } from "../FpsSelectedUsersColumn";
 
 const IconAndNameColumn = ({
   row,
   className,
 }: {
-  row: Row<Users>;
+  row: Row<Users | FpsSelectedUsersColumn>;
   className?: string;
 }) => {
   const image = row.original.image as string;

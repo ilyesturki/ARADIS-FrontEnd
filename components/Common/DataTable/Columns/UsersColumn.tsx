@@ -49,26 +49,26 @@ export const columns: ColumnDef<Users>[] = [
       />
     ),
   },
-  // {
-  //   accessorKey: "phone",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader
-  //       column={column}
-  //       title="Phone"
-  //       options={{ up: true, down: true, hide: true }}
-  //     />
-  //   ),
-  // },
-  // {
-  //   accessorKey: "status",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader
-  //       column={column}
-  //       title="Status"
-  //       options={{ up: true, down: true, hide: true }}
-  //     />
-  //   ),
-  // },
+  {
+    accessorKey: "phone",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Phone"
+        options={{ up: true, down: true, hide: true }}
+      />
+    ),
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Status"
+        options={{ up: true, down: true, hide: true }}
+      />
+    ),
+  },
   {
     accessorKey: "actions",
     header: ({ column }) => (

@@ -34,6 +34,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
 
@@ -50,9 +51,7 @@ export default async function RootLayout({
             <BreadCrumb />
           </div>
         </header>
-        <main
-          className={`px-9 pb-4 peer-data-[active=true]/menu-button:bg-red-500`}
-        >
+        <main className="px-9 pb-4">
           <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-7 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
             <PageTitle />
             {children}
