@@ -45,9 +45,9 @@ export function UserNav({
         <SidebarMenuButton
           size="lg"
           tooltip={`${firstName} ${lastName}`}
-          className="data-[state=open]:bg-greenAccent-900 data-[state=open]:text-sidebar-accent-foreground bg-greenAccent-900 hover:bg-greenAccent-900 rounded-[5px] shadow-[0_0_1px] shadow-greenAccent-800"
+          className="data-[state=open]:bg-greenAccent-900 data-[state=open]:text-sidebar-accent-foreground bg-greenAccent-900 hover:bg-greenAccent-900 rounded-[5px] "
         >
-          <Avatar className="h-8 w-8 rounded-lg shadow-[0_0_2px] shadow-greenAccent-800">
+          <Avatar className="h-8 w-8 rounded-lg ">
             <AvatarImage src={image} alt={firstName} />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
           </Avatar>

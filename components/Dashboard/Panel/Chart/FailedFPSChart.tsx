@@ -21,14 +21,14 @@ import {
 import { useEffect, useState } from "react";
 import axios from "@/utils/axios";
 
-// const chartData = [
-//   { month: "Jan", failedFPS: 120 },
-//   { month: "Feb", failedFPS: 250 },
-//   { month: "Mar", failedFPS: 180 },
-//   { month: "Apr", failedFPS: 90 },
-//   { month: "May", failedFPS: 200 },
-//   { month: "Jun", failedFPS: 220 },
-// ];
+const data = [
+  { month: "Jan", fpsCount: 0 },
+  { month: "Feb", fpsCount: 0 },
+  { month: "Mar", fpsCount: 0 },
+  { month: "Apr", fpsCount: 0 },
+  { month: "May", fpsCount: 0 },
+  { month: "Jun", fpsCount: 0 },
+];
 
 const chartConfig: ChartConfig = {
   failedFPS: {
@@ -38,9 +38,8 @@ const chartConfig: ChartConfig = {
 };
 
 export default function FailedFPSChart() {
-  const [chartData, setChartData] = useState<
-    { month: string; failedFPS: number }[]
-  >([]);
+  const [chartData, setChartData] =
+    useState<{ month: string; fpsCount: number }[]>(data);
 
   useEffect(() => {
     async function fetchData() {
@@ -94,7 +93,7 @@ export default function FailedFPSChart() {
               content={<ChartTooltipContent indicator="line" />}
             />
             <Line
-              dataKey="failedFPS"
+              dataKey="fpsCount"
               type="natural"
               stroke="var(--color-failedFPS)"
               strokeWidth={2}

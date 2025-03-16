@@ -23,7 +23,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import axios from "@/utils/axios";
 
-// const fpsData = [
+// const data = [
 //   { status: "Completed", count: 155, fill: "hsl(var(--chart-5))" },
 //   { status: "Failed", count: 70, fill: "hsl(var(--chart-2))" },
 //   { status: "Pending", count: 110, fill: "hsl(var(--chart-1))" },

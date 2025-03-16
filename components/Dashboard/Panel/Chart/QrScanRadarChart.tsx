@@ -24,14 +24,13 @@ import { useEffect, useMemo, useState } from "react";
 
 import axios from "@/utils/axios";
 
-// const chartData = [
-//   { month: "Jan", scanned: 320, unscanned: 140 },
-//   { month: "Feb", scanned: 450, unscanned: 180 },
-//   { month: "Mar", scanned: 390, unscanned: 250 },
-//   { month: "Apr", scanned: 220, unscanned: 440 },
-//   { month: "May", scanned: 410, unscanned: 110 },
-//   { month: "Jun", scanned: 430, unscanned: 310 },
-// ];
+const data = [
+  { month: "Jan", scanned: 0, unscanned: 0 },
+  { month: "Feb", scanned: 0, unscanned: 0 },
+  { month: "Mar", scanned: 0, unscanned: 0 },
+  { month: "Apr", scanned: 0, unscanned: 0 },
+  { month: "May", scanned: 0, unscanned: 0 },
+];
 
 const chartConfig = {
   scanned: {
@@ -45,9 +44,8 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function QrScanRadarChart() {
-  const [chartData, setChartData] = useState<
-    { month: string; scanned: number; unscanned: number }[]
-  >([]);
+  const [chartData, setChartData] =
+    useState<{ month: string; scanned: number; unscanned: number }[]>(data);
 
   useEffect(() => {
     async function fetchData() {
@@ -55,40 +53,14 @@ export default function QrScanRadarChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/all-qr-codes-scan-statistics`
         );
-
-        // Get last 5 months (YYYY-MM format)
-        const lastFiveMonths = Array.from({ length: 5 }, (_, i) => {
-          const date = new Date();
-          date.setMonth(date.getMonth() - i);
-          return date.toISOString().slice(0, 7);
-        }).reverse(); // Keep chronological order
-
-        const apiData: Record<
-          string,
-          { month: string; scanned: number; unscanned: number }
-        > = {};
-
+        console.log(data);
         if (data?.data && Array.isArray(data.data)) {
-          data.data.forEach(
-            (e: { month: string; scanned: number; unscanned: number }) => {
-              apiData[e.month] = e; // Store fetched data in an object for quick lookup
-            }
-          );
+          setChartData(data.data); // Already formatted!
         }
-
-        // Ensure all last 5 months are present with default values if missing
-        const formattedData = lastFiveMonths.map((month) => ({
-          month,
-          scanned: apiData[month]?.scanned || 0,
-          unscanned: apiData[month]?.unscanned || 0,
-        }));
-
-        setChartData(formattedData);
       } catch (error) {
         console.error("Error fetching QR scan stats:", error);
       }
     }
-
     fetchData();
   }, []);
 

@@ -51,34 +51,6 @@ export default function FPSPerformanceChart({
     { date: string; completed: number; failed: number }[]
   >([]);
 
-  // Helper function to generate the full date range
-  function generateFullDateRange(timeRange: string) {
-    const days = timeRange === "90d" ? 90 : timeRange === "30d" ? 30 : 7;
-    const dates = [];
-    let currentDate = subDays(new Date(), days - 1); // start date
-
-    for (let i = 0; i < days; i++) {
-      dates.push(format(currentDate, "yyyy-MM-dd")); // or any desired format
-      currentDate = addDays(currentDate, 1);
-    }
-    return dates;
-  }
-
-  // Merges your data with missing dates filled with zeros
-  function fillMissingDates(
-    rawData: { date: string; completed: number; failed: number }[],
-    timeRange: string
-  ) {
-    const fullDates = generateFullDateRange(timeRange);
-    const dataMap = new Map(
-      rawData.map((item) => [item.date.slice(0, 10), item]) // Use only YYYY-MM-DD
-    );
-
-    return fullDates
-      .map((date) => dataMap.get(date) ?? { date, completed: 0, failed: 0 })
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  }
-
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -86,10 +58,7 @@ export default function FPSPerformanceChart({
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}`
         );
         console.log(data);
-
-        const filledData = fillMissingDates(data.data, timeRange);
-        console.log("Final filled data:", filledData);
-        setChartData(filledData);
+        setChartData(data.data); // Directly use backend-processed data
       } catch (error) {
         console.error("Failed to fetch FPS performance stats:", error);
       }
