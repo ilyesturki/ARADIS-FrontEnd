@@ -18,52 +18,57 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { title: "scanned", scanCount: 380, fill: "var(--color-scanned)" },
-  { title: "unscanned", scanCount: 200, fill: "var(--color-unscanned)" },
-  // { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  // { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  // { browser: "other", visitors: 190, fill: "var(--color-other)" },
-];
 
-const chartConfig = {
-  scans: {
-    label: "Total Scans",
-  },
-  scanned: {
-    label: "Scanned",
-    color: "hsl(var(--chart-1))",
-  },
-  unscanned: {
-    label: "Unscanned",
-    color: "hsl(var(--chart-2))",
-  },
-  // firefox: {
-  //   label: "Firefox",
-  //   color: "hsl(var(--chart-3))",
-  // },
-  // edge: {
-  //   label: "Edge",
-  //   color: "hsl(var(--chart-4))",
-  // },
-  // other: {
-  //   label: "Other",
-  //   color: "hsl(var(--chart-5))",
-  // },
-} satisfies ChartConfig;
+import { useEffect, useMemo, useState } from "react";
 
-export default function PieChartDonutwithText() {
-  const scannedPercentage = React.useMemo(() => {
-    return (
-      (chartData[0].scanCount * 100) /
-      chartData.reduce((acc, curr) => acc + curr.scanCount, 0)
-    );
-  }, []);
+import axios from "@/utils/axios";
+import { useAppSelector } from "@/redux/hooks";
+
+const chartConfig: ChartConfig = {
+  scans: { label: "Total Scans" },
+  scanned: { label: "Scanned", color: "hsl(var(--chart-1))" },
+  unscanned: { label: "Unscanned", color: "hsl(var(--chart-2))" },
+};
+
+export default function QRCodeScanStatisticsChart() {
+  const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
+  const [chartData, setChartData] = useState({
+    total: 0,
+    scanned: 0,
+    unscanned: 0,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!fpsId) return;
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/qr-code-scan-statistics/${fpsId}`
+        );
+
+        setChartData({
+          total: data.data.total,
+          scanned: data.data.scanned,
+          unscanned: data.data.unScanned,
+        });
+      } catch (error) {
+        console.error("Error fetching QR Code statistics:", error);
+      }
+    };
+
+    fetchData();
+  }, [fpsId]);
+
+  const scannedPercentage = useMemo(() => {
+    return chartData.total > 0
+      ? (chartData.scanned / chartData.total) * 100
+      : 0;
+  }, [chartData]);
 
   return (
     <Card className="max-sm:order-1 max-lg:-order-1 flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-grayscale-500">
+        <CardTitle className="text-[16px] text-greenAccent-900">
           QR Code Scan Statistics
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
@@ -81,7 +86,18 @@ export default function PieChartDonutwithText() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={chartData}
+              data={[
+                {
+                  title: "Scanned",
+                  scanCount: chartData.scanned,
+                  fill: "var(--color-scanned)",
+                },
+                {
+                  title: "Unscanned",
+                  scanCount: chartData.unscanned,
+                  fill: "var(--color-unscanned)",
+                },
+              ]}
               dataKey="scanCount"
               nameKey="title"
               innerRadius={60}
@@ -100,14 +116,14 @@ export default function PieChartDonutwithText() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
+                          className="fill-greenAccent-900 text-[28px] font-bold"
                         >
                           {scannedPercentage.toFixed(1)}%
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
+                          className="fill-grayscale-500 font-medium"
                         >
                           Scanned
                         </tspan>
@@ -120,9 +136,11 @@ export default function PieChartDonutwithText() {
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="text-xs font-medium text-grayscale-500">
-        {chartData[0].scanCount} users scanned, {chartData[1].scanCount}{" "}
-        pending.
+      <CardFooter>
+        <div className="flex justify-center w-full text-center leading-relaxed text-sm font-medium text-grayscale-500">
+          {chartData.scanned} users scanned, {chartData.unscanned} pending{" "}
+          <br /> out of {chartData.total} total.
+        </div>
       </CardFooter>
     </Card>
   );

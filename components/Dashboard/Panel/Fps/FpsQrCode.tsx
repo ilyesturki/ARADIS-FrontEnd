@@ -10,7 +10,7 @@ const FpsQrCode = () => {
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
 
   const [qr, setQr] = useState("");
-
+  const [fpsImage, setFpsImage] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,6 +18,7 @@ const FpsQrCode = () => {
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/qr-code/${fpsId}`
         );
         console.log(response);
+        setFpsImage(response.data.data.image);
         setQr(response.data.data.qrCodeUrl);
       } catch (error) {
         console.error("Error fetching FPS QR Code:", error);
@@ -51,7 +52,7 @@ const FpsQrCode = () => {
           <div className="absolute -right-1.5 top-[15%] w-2 h-[70%] bg-grayscale-100 "></div>
         </div>
         <Avatar className="absolute -top-9 h-16 w-16 rounded-full border-[2px] border-grayscale-400 shadow-[0px_0px_4px] shadow-grayscale-400">
-          <AvatarImage src="/imgs/userIcon.png" alt="user image" />
+          <AvatarImage src={fpsImage} alt="user image" />
           <AvatarFallback className="rounded-lg">CN</AvatarFallback>
         </Avatar>
         <Image

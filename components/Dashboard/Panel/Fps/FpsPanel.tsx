@@ -1,7 +1,7 @@
 import RadialChartStacked from "../Chart/RadialChartStacked";
 import FpsQrCode from "./FpsQrCode";
 import FpsSelectedUsers from "./FpsSelectedUsers";
-import PieChartDonutwithText from "../Chart/PieChartDonutwithText";
+import QRCodeScanStatisticsChart from "../Chart/QRCodeScanStatisticsChart";
 
 const FpsPanel = () => {
   return (
@@ -13,7 +13,7 @@ const FpsPanel = () => {
         <FpsSelectedUsers title="selected users" isSelectPageSizes={false} />
         <div className="flex-1 grid max-lg:-order-1 max-sm:grid-cols-1 max-lg:grid-cols-[auto_auto] lg:grid-rows-[auto_auto] gap-4">
           <FpsQrCode />
-          <PieChartDonutwithText />
+          <QRCodeScanStatisticsChart />
         </div>
       </div>
     </div>

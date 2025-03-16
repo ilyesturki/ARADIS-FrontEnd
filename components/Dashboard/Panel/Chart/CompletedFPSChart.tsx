@@ -17,30 +17,53 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { month: "Jan", completedFPS: 120 },
-  { month: "Feb", completedFPS: 250 },
-  { month: "Mar", completedFPS: 180 },
-  { month: "Apr", completedFPS: 90 },
-  { month: "May", completedFPS: 200 },
-  { month: "Jun", completedFPS: 220 },
-];
 
-const chartConfig = {
+import { useEffect, useState } from "react";
+import axios from "@/utils/axios";
+
+// const chartData = [
+//   { month: "Jan", completedFPS: 120 },
+//   { month: "Feb", completedFPS: 250 },
+//   { month: "Mar", completedFPS: 180 },
+//   { month: "Apr", completedFPS: 90 },
+//   { month: "May", completedFPS: 200 },
+//   { month: "Jun", completedFPS: 220 },
+// ];
+
+const chartConfig: ChartConfig = {
   completedFPS: {
     label: "Completed FPS",
     color: "hsl(var(--chart-5))",
   },
-} satisfies ChartConfig;
+};
 
 export default function CompletedFPSChart() {
+  const [chartData, setChartData] = useState<
+    { month: string; completedFPS: number }[]
+  >([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/completed-fps-chart`
+        );
+        console.log(data);
+        setChartData(data.data);
+      } catch (error) {
+        console.error("Failed to fetch completed FPS stats:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-center text-xl text-greenAccent-900">
+      <CardHeader className="items-center pb-4 text-center">
+        <CardTitle className="text-xl text-greenAccent-900">
           Completed FPS Overview
         </CardTitle>
-        <CardDescription className="text-center text-sm font-semibold text-grayscale-500 text-opacity-60">
+        <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
           Monthly FPS completion trends
         </CardDescription>
       </CardHeader>

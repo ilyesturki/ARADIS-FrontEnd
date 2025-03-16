@@ -52,8 +52,8 @@ const DataTableRowMenu = <T extends { id: string }>({
             paths !== "/dashboard/panel/fps-panel" ? "edit-" : ""
           }${label}${id ? `?${label}Id=${id}` : `/${row.original.id}`}`}
         >
-          <DropdownMenuItem className=" cursor-pointer">
-            {paths !== "/dashboard/panel/fps-panel" ? "Edit " : "show "}
+          <DropdownMenuItem className="capitalize cursor-pointer">
+            {paths !== "/dashboard/panel/fps-panel" ? "edit " : "show "}
             {label}
           </DropdownMenuItem>
         </Link>

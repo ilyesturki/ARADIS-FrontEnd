@@ -17,30 +17,53 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { month: "Jan", failedFPS: 120 },
-  { month: "Feb", failedFPS: 250 },
-  { month: "Mar", failedFPS: 180 },
-  { month: "Apr", failedFPS: 90 },
-  { month: "May", failedFPS: 200 },
-  { month: "Jun", failedFPS: 220 },
-];
 
-const chartConfig = {
+import { useEffect, useState } from "react";
+import axios from "@/utils/axios";
+
+// const chartData = [
+//   { month: "Jan", failedFPS: 120 },
+//   { month: "Feb", failedFPS: 250 },
+//   { month: "Mar", failedFPS: 180 },
+//   { month: "Apr", failedFPS: 90 },
+//   { month: "May", failedFPS: 200 },
+//   { month: "Jun", failedFPS: 220 },
+// ];
+
+const chartConfig: ChartConfig = {
   failedFPS: {
     label: "Failed FPS",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig;
+};
 
 export default function FailedFPSChart() {
+  const [chartData, setChartData] = useState<
+    { month: string; failedFPS: number }[]
+  >([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart`
+        );
+        console.log(data);
+        setChartData(data.data);
+      } catch (error) {
+        console.error("Failed to fetch Failed FPS stats:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="items-center pb-4 text-center">
         <CardTitle className="text-center text-xl text-greenAccent-900">
           Failed FPS Overview
         </CardTitle>
-        <CardDescription className="text-center text-sm font-semibold text-grayscale-500 text-opacity-60">
+        <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
           Monthly FPS completion trends
         </CardDescription>
       </CardHeader>
