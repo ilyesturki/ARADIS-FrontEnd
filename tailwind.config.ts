@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 
+// #F5F5F5
+// #ECFBF6
+
 export default {
   darkMode: ["class"],
   content: [
@@ -9,7 +12,6 @@ export default {
   ],
   safelist: [
     "bg-opacity-10",
-    
     "text-red-500",
     "text-greenAccent-800",
     "text-pinkAccent",
@@ -24,74 +26,88 @@ export default {
     "shadow-greenAccent-700",
   ],
   theme: {
-  	container: {
-  		center: true,
-  		padding: '1.5rem',
-  		screens: {
-  			sm: '576px',
-  			md: '768px',
-  			lg: '992px',
-  			xl: '1200px',
-  			'2xl': '1400px'
-  		}
-  	},
-  	screens: {
-  		sm: '576px',
-  		md: '768px',
-  		lg: '992px',
-  		xl: '1200px',
-  		'2xl': '1400px'
-  	},
-  	extend: {
-  		colors: {
-  			grayscale: {
-  				'100': '#FFFFFF',
-  				'200': '#F2F4F8',
-  				'300': '#F2F5F9',
-  				'400': '#A3B2C7',
-  				'500': '#333F4E',
-  				'600': '#04050C',
-  				'700': '#131524'
-  			},
-  			pinkAccent: '#FF7474',
-  			greenAccent: {
-  				'700': '#3DD9B3',
-  				'800': '#2FCC40',
-  				'900': '#0F626B'
-  			},
-  			redAccent: {
-  				'700': '#FF7474',
-  				'800': '#FA7275',
-  				'900': '#EA6365'
-  			},
-  			error: '#B80000',
-  			text: {
-  				primary: '#0F626B',
-  				secondary: '#61767F',
-  				disabled: '#'
-  			},
-  			orangeAccent: '#F9AB72',
-  			purpleAccent: '#EEA8FD',
-  			blueAccent: '#56B8FF',
-  			background: 'var(--background)',
-  			foreground: 'var(--foreground)',
-  			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
-  				foreground: 'hsl(var(--sidebar-foreground))',
-  				primary: 'hsl(var(--sidebar-primary))',
-  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  				accent: 'hsl(var(--sidebar-accent))',
-  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  				border: 'hsl(var(--sidebar-border))',
-  				ring: 'hsl(var(--sidebar-ring))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+    container: {
+      center: true,
+      padding: "1.5rem",
+      screens: {
+        sm: "576px",
+        md: "768px",
+        lg: "992px",
+        xl: "1200px",
+        "2xl": "1400px",
+      },
+    },
+    screens: {
+      sm: "576px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+      "2xl": "1400px",
+    },
+    extend: {
+      colors: {
+        grayscale: {
+          "100": "#FFFFFF",
+          "200": "#F2F4F8",
+          "300": "#F2F5F9",
+          "400": "#A3B2C7",
+          "500": "#333F4E",
+          "600": "#04050C",
+          "700": "#131524",
+        },
+        pinkAccent: "#FF7474",
+        greenAccent: {
+          "700": "#3DD9B3",
+          "800": "#2FCC40",
+          "900": "#0F626B",
+        },
+        redAccent: {
+          "700": "#FF7474",
+          "800": "#FA7275",
+          "900": "#EA6365",
+        },
+        error: "#B80000",
+        text: {
+          primary: "#0F626B",
+          secondary: "#61767F",
+          disabled: "#",
+        },
+        orangeAccent: "#F9AB72",
+        purpleAccent: "#EEA8FD",
+        blueAccent: "#56B8FF",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+        gradient: "gradient-shift 3s infinite ease-in-out",
+      },
+    },
   },
   plugins: [
     require("tailwindcss-animate"),

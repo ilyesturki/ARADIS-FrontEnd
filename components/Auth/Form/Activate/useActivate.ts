@@ -63,7 +63,7 @@ const useActivate = () => {
         dispatch(activate({ data: formData })).then((e: any) => {
           if (!e.error) {
             router.push(
-              `/auth/setpassword?token=${activateData.token}&mat=${activateData.mat}`
+              `/auth/set-password?token=${activateData.token}&mat=${activateData.mat}`
             );
           }
         }),

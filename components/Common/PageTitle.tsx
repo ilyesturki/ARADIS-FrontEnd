@@ -41,7 +41,7 @@ const PageTitle = () => {
   // }, [user]);
 
   return (
-    <h1 className=" capitalize text-3xl font-medium text-greenAccent-900">
+    <h1 className=" capitalize text-3xl font-medium text-grayscale-500">
       {pathName}
     </h1>
   );

@@ -8,8 +8,8 @@ export default function RootLayout({
   return (
     <div className="relative overflow-hidden ">
       <img
-        className="absolute left-8 top-[18px] h-8 "
-        src="/imgs/aradisTwo.png"
+        className="absolute left-8 top-[18px] h-7 "
+        src="/imgs/aradisFoor.png"
       />
       <img
         className="max-lg:hidden fixed left-0 bottom-0 -z-10 h-full aspect-1"

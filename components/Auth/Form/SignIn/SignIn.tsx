@@ -12,9 +12,10 @@ import AuthButton from "../../subcomponents/AuthButton";
 import useSignIn from "./useSignIn";
 import CustomAuthInput from "@/components/Common/CustomInput/CustomAuthInput";
 const SignInForm = ({ AuthButtonTitle }: { AuthButtonTitle: string }) => {
-  const { email, setEmail, password, setPassword, handleSubmit } = useSignIn();
+  const { email, setEmail, password, setPassword, handleSubmit, loading } =
+    useSignIn();
   return (
-    <div className="mt-6">
+    <>
       <CustomAuthInput
         name="username"
         label="Username"
@@ -32,19 +33,17 @@ const SignInForm = ({ AuthButtonTitle }: { AuthButtonTitle: string }) => {
         className="mt-6"
       />
       <Link
-        href="#"
+        href="/auth/forget-password"
         className="block text-right text-grayscale-500 text-sm font-medium mt-2 hover:text-greenAccent-900"
       >
         Forgot Password?
       </Link>
-      <button
-        type="button"
-        className="w-full mt-6 py-3 bg-gradient-to-r from-[#2AC68F] to-greenAccent-900 text-white rounded-full text-lg font-semibold transition-all duration-300 hover:from-greenAccent-900 hover:to-[#2AC68F]"
+      <AuthButton
+        title={AuthButtonTitle}
         onClick={handleSubmit}
-      >
-        {AuthButtonTitle}
-      </button>
-    </div>
+        loading={loading}
+      />
+    </>
   );
 };
 

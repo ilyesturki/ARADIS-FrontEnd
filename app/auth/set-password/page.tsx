@@ -5,7 +5,6 @@ const page = () => {
   return (
     <CustomAuthPage
       title="Set Password"
-      subTitle="Please enter your new password"
     >
       <SetPasswordForm AuthButtonTitle="Set Password" />
     </CustomAuthPage>

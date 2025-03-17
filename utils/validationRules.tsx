@@ -38,6 +38,37 @@ export const setPasswordValidationRules = {
   password: { required: true },
 };
 
+export const forgetPasswordValidationRules = {
+  email: {
+    required: true,
+    pattern: /\S+@\S+\.\S+/,
+  },
+};
+
+export const resetPasswordValidationRules = {
+  email: {
+    required: true,
+    pattern: /\S+@\S+\.\S+/,
+  },
+  password: {
+    required: true,
+    minLength: 8,
+  },
+  passwordConfirm: {
+    required: true,
+    customValidator: (value: string, formData: Record<string, string>) =>
+      value !== formData?.password ? "Passwords do not match" : null,
+  },
+};
+
+export const verifyResetCodeValidationRules = {
+  email: {
+    required: true,
+    pattern: /\S+@\S+\.\S+/,
+  },
+  resetCode: { required: true, minLength: 6, maxLength: 6 },
+};
+
 export const verifyBasicDetailsValidationRules = {
   name: { required: true },
   email: {

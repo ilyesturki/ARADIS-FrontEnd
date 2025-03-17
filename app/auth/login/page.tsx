@@ -5,7 +5,6 @@ const page = () => {
   return (
     <CustomAuthPage
       title="Login Account"
-      subTitle="Welcome back!"
       >
       <SignInForm AuthButtonTitle="Log In" />
     </CustomAuthPage>
