@@ -364,7 +364,7 @@ export function DateTimePicker({
               day: "h-9 w-9 text-center text-sm p-0 relative flex items-center justify-center [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 rounded-1",
               day_button: cn(
                 buttonVariants({ variant: "ghost" }),
-                "size-9 rounded-md p-0 font-normal aria-selected:opacity-100"
+                "size-9 rounded-md p-0 font-normal aria-selected:opacity-100 bg-greenAccent-900 bg-opacity-50 text-grayscale-500 hover:bg-greenAccent-900 hover:text-grayscale-100 focus:bg-greenAccent-900 focus:text-grayscale-100"
               ),
               range_end: "day-range-end",
               selected:

@@ -1,9 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "iShop",
-  description: "welcome to our iShop website",
-};
+import Image from "next/image";
 
 export default function RootLayout({
   children,
@@ -11,9 +6,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-cols-2 min-h-screen  ">
-      <div className="bg-greenAccent-900"></div>
-      <div className="flex justify-center items-center">{children}</div>
+    <div className="relative overflow-hidden ">
+      <img
+        className="absolute left-8 top-[18px] h-8 "
+        src="/imgs/aradisTwo.png"
+      />
+      <img
+        className="max-lg:hidden fixed left-0 bottom-0 -z-10 h-full aspect-1"
+        src="/imgs/authWave.png"
+      />
+      <div className="w-screen h-screen px-8 grid grid-cols-1 lg:grid-cols-2 gap-28">
+        <div className="hidden lg:flex justify-end items-center ">
+          <img src="/imgs/authBg.svg" className="w-[500px]" />
+        </div>
+        <div className="flex justify-center lg:justify-start items-center text-center">
+          <div className="w-96">
+            <Image
+              src="/imgs/authAvatar.svg"
+              alt="Avatar"
+              width={100}
+              height={100}
+              className="mx-auto"
+            />
+            {children}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,60 +1,50 @@
 "use client";
+import { useState } from "react";
+import { FaUser, FaLock } from "react-icons/fa";
+
+import Link from "next/link";
+
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import { faCircleCheck as regularCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthButton from "../../subcomponents/AuthButton";
 import useSignIn from "./useSignIn";
+import CustomAuthInput from "@/components/Common/CustomInput/CustomAuthInput";
 const SignInForm = ({ AuthButtonTitle }: { AuthButtonTitle: string }) => {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    keepSignedIn,
-    handleKeepSignedIn,
-    handleSubmit,
-  } = useSignIn();
+  const { email, setEmail, password, setPassword, handleSubmit } = useSignIn();
   return (
-    <>
-      <div className=" grid gap-y-3 py-3 pb-5 w-72">
-        <CustomInput
-          label="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <CustomInput
-          label="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="flex gap-2 items-center">
-          <button
-            type="button"
-            onClick={handleKeepSignedIn}
-            className="w-6 h-6 flex justify-center items-center"
-          >
-            {keepSignedIn ? (
-              <FontAwesomeIcon
-                icon={faCircleCheck}
-                className="text-xl text-greenAccent-900 "
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={regularCircleCheck}
-                className=" text-xl text-greenAccent-900 "
-              />
-            )}
-          </button>
-          <span className="text-grayscale-400 text-sm font-normal">
-            keep me signed in
-          </span>
-        </div>
-      </div>
-      <AuthButton onClick={handleSubmit} title={AuthButtonTitle} />
-    </>
+    <div className="mt-6">
+      <CustomAuthInput
+        name="username"
+        label="Username"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        icon={<FaUser />}
+      />
+      <CustomAuthInput
+        name="password"
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        icon={<FaLock />}
+        className="mt-6"
+      />
+      <Link
+        href="#"
+        className="block text-right text-grayscale-500 text-sm font-medium mt-2 hover:text-greenAccent-900"
+      >
+        Forgot Password?
+      </Link>
+      <button
+        type="button"
+        className="w-full mt-6 py-3 bg-gradient-to-r from-[#2AC68F] to-greenAccent-900 text-white rounded-full text-lg font-semibold transition-all duration-300 hover:from-greenAccent-900 hover:to-[#2AC68F]"
+        onClick={handleSubmit}
+      >
+        {AuthButtonTitle}
+      </button>
+    </div>
   );
 };
 

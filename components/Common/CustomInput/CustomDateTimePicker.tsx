@@ -43,10 +43,8 @@ const CustomDateTimePicker = ({
                 }}
                 timezone="Europe/Paris"
                 className={disabled ? `opacity-90` : ""}
-                
               />
             )}
-            
             disabled={disabled}
           />
         </div>
