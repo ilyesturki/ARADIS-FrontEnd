@@ -14,7 +14,7 @@ const ScannedQrColumn = ({
     <div
       className={`w-fit px-3 py-1.5 flex items-center rounded-full shadow-[0_0_5px] ${
         title === "scanned"
-          ? "bg-greenAccent-800 shadow-greenAccent-800"
+          ? "bg-greenAccent-700 shadow-greenAccent-700"
           : "bg-redAccent-800 shadow-redAccent-800"
       }`}
     >

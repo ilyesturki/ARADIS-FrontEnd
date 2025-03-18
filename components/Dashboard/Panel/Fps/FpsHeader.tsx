@@ -30,7 +30,7 @@ const ShowFpsHeader = () => {
       <div
         className={`px-1.5 sm:px-3 sm:py-1 flex items-center rounded-full shadow-[0_0_5px] ${
           fps?.status === "completed"
-            ? "bg-greenAccent-800 shadow-greenAccent-800"
+            ? "bg-greenAccent-700 shadow-greenAccent-700"
             : fps?.status === "failed"
             ? "bg-redAccent-800 shadow-redAccent-800"
             : "bg-orangeAccent shadow-orangeAccent"

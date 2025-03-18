@@ -68,7 +68,7 @@ export default function QRCodeScanStatisticsChart() {
   return (
     <Card className="max-sm:order-1 max-lg:-order-1 flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-[16px] text-greenAccent-900">
+        <CardTitle className="text-[16px] text-greenAccent-800">
           QR Code Scan Statistics
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
@@ -116,7 +116,7 @@ export default function QRCodeScanStatisticsChart() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-greenAccent-900 text-[28px] font-bold"
+                          className="fill-greenAccent-800 text-[28px] font-bold"
                         >
                           {scannedPercentage.toFixed(1)}%
                         </tspan>

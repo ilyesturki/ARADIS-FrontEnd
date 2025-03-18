@@ -45,13 +45,13 @@ export default async function RootLayout({
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger className="-ml-1 text-greenAccent-900" />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <BreadCrumb />
           </div>
         </header>
         <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-8 bg-sidebar-accent py-6 px-7 rounded-[7px] shadow-[0_0_3px] shadow-grayscale-400">
+          <div className=" flex flex-col gap-8 bg-[#ECFBF6] py-6 px-7 rounded-[5px] shadow-[0_0_5px] shadow-[#F5F5F5]">
             <PageTitle />
             {children}
           </div>

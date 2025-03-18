@@ -16,18 +16,25 @@ const WebsiteCustomLogo = () => {
     <SidebarMenu>
       <SidebarMenuItem>
         <div className="w-full flex justify-center">
-          <div className="flex py-1.5 items-center gap-0.5 overflow-hidden ">
+          <div className="flex py-2 items-center gap-1 overflow-hidden ">
             <Image
-              src="/imgs/ara.png"
+              src="/imgs/araTwo.png"
               alt="ara"
               width={400}
               height={400}
-              className="w-12 h-auto"
+              className="h-auto w-12"
+            />
+            <Image
+              src="/imgs/aradisName.png"
+              alt="ara"
+              width={400}
+              height={400}
+              className="h-8 w-auto"
             />
 
-            <div className="text-left text-2xl text-grayscale-100 text-opacity-80">
+            {/* <div className="text-left text-2xl text-grayscale-100 text-opacity-80">
               ARADIS
-            </div>
+            </div> */}
           </div>
         </div>
       </SidebarMenuItem>

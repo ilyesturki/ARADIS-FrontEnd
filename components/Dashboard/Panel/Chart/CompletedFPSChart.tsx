@@ -59,7 +59,7 @@ export default function CompletedFPSChart() {
   return (
     <Card>
       <CardHeader className="items-center pb-4 text-center">
-        <CardTitle className="text-xl text-greenAccent-900">
+        <CardTitle className="text-xl text-greenAccent-800">
           Completed FPS Overview
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">

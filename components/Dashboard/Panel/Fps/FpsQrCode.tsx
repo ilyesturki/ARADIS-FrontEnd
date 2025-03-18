@@ -34,7 +34,7 @@ const FpsQrCode = () => {
         <span className="text-[12px] font-medium text-greenAccent-900 text-opacity-90">
           {fpsId}
         </span>
-        <div className="relative w-[65%] aspect-1 border-4 border-greenAccent-800 border-opacity-70">
+        <div className="relative w-[65%] aspect-1 border-4 border-greenAccent-700 border-opacity-70">
           {/* <Image
             src={qr}
             alt="qr code"
