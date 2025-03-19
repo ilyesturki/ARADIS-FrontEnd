@@ -29,7 +29,8 @@ import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 import PageTitle from "@/components/Common/PageTitle";
 
-// import ChangeLanguage from "@/components/Common/ChangeLanguage";
+import LocaleSwitcher from "@/components/Common/LocaleSwitcher";
+import ThemeToggle from "@/components/Common/ThemeToggle/ThemeToggle";
 
 export default async function RootLayout({
   children,
@@ -46,18 +47,20 @@ export default async function RootLayout({
       <CustomSideBar session={session} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="w-full flex justify-between px-4">
+          <div className="w-full flex justify-between pl-4 pr-7">
             <div className="flex items-center gap-2">
               <SidebarTrigger className="-ml-1 text-grayscale-500" />
               <Separator orientation="vertical" className="mr-2 h-4" />
               <BreadCrumb />
             </div>
-
-            {/* <ChangeLanguage /> */}
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <LocaleSwitcher />
+            </div>
           </div>
         </header>
         <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-6 bg-sidebar py-6 px-7 rounded-[5px] shadow-[0_0_2px] shadow-grayscale-400">
+          <div className=" flex flex-col gap-6 bg-sidebar py-9 px-7 rounded-[5px] shadow-[0_0_2px] shadow-grayscale-400">
             <PageTitle />
             {children}
           </div>

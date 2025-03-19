@@ -3,7 +3,7 @@ import { deleteUser } from "@/redux/users/usersThunk";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const DeleteUserDialog = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();

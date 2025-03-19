@@ -11,7 +11,6 @@ import { createFpsValidation, getFps } from "@/redux/fps/fpsThunk";
 import { initialFpsValidation } from "@/data/fps";
 
 import { useSearchParams } from "next/navigation";
-
 import { useSession } from "next-auth/react";
 
 const useValidationSection = () => {

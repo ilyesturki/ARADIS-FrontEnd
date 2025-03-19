@@ -6,7 +6,8 @@ import { signIn } from "next-auth/react";
 
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { useAppSelector } from "@/redux/hooks"; 
 import { validateFormFields } from "@/utils/validateFormFields";
 import { handleError } from "@/utils/handleError";

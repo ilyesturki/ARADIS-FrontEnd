@@ -11,6 +11,10 @@ import { Toaster } from "react-hot-toast";
 import NextSessionProvider from "@/components/Provider/NextSessionProvider";
 import StoreProvider from "@/redux/StoreProvider";
 
+import { NextIntlClientProvider, Locale, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,19 +30,27 @@ export const metadata: Metadata = {
   description: "ARADIS",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster position="top-right" reverseOrder={true} />
         <StoreProvider>
-          <NextSessionProvider>{children}</NextSessionProvider>
+          <NextSessionProvider>
+            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          </NextSessionProvider>
         </StoreProvider>
       </body>
     </html>

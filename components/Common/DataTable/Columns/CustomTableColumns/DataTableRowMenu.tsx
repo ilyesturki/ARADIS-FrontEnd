@@ -11,7 +11,7 @@ import { Row } from "@tanstack/react-table";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 const DataTableRowMenu = <T extends { id: string }>({
   row,
   label,

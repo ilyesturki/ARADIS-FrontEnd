@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 interface CollapsibleItem {
   title: string;

@@ -12,7 +12,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const SignOutButton = () => {
   const router = useRouter();

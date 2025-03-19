@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { urlToFile } from "@/utils/UrlToFile";
 import { customHandleChange, customImagesChange } from "@/utils/handlers";
-import { useRouter } from "next/navigation";
+import { useRouter } from "n";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { handleError } from "@/utils/handleError";
 import { verifyBasicDetailsValidationRules } from "@/utils/validationRules";

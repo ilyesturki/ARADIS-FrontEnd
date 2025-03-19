@@ -20,7 +20,8 @@ import {
   serviceData,
   initialFpsProblem,
 } from "@/data/fps";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { urlToFile } from "@/utils/UrlToFile";
 import { useSession } from "next-auth/react";
 

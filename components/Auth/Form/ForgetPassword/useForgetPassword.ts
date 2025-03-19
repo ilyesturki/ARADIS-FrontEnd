@@ -5,7 +5,7 @@ import { handleError } from "@/utils/handleError";
 import { customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { forgetPasswordValidationRules } from "@/utils/validationRules";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useState } from "react";
 
 const useForgetPassword = () => {

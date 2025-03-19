@@ -1,12 +1,11 @@
 import CustomAuthPage from "@/components/Auth/CustomAuthPage";
 import SignInForm from "@/components/Auth/Form/SignIn/SignIn";
-
+import { useTranslations } from "next-intl";
 const page = () => {
+  const t = useTranslations("LoginPage");
   return (
-    <CustomAuthPage
-      title="Login Account"
-      >
-      <SignInForm AuthButtonTitle="Log In" />
+    <CustomAuthPage title={t("title")}>
+      <SignInForm AuthButtonTitle={t("form.submitButton")} />
     </CustomAuthPage>
   );
 };

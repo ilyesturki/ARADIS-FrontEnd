@@ -1,3 +1,4 @@
+import LocaleSwitcher from "@/components/Common/LocaleSwitcher";
 import Image from "next/image";
 
 export default function RootLayout({
@@ -11,6 +12,7 @@ export default function RootLayout({
         className="absolute left-8 top-[18px] h-7 "
         src="/imgs/aradisFoor.png"
       />
+      <LocaleSwitcher className="absolute right-8 top-[18px]" />
       <img
         className="max-lg:hidden fixed left-0 bottom-0 -z-10 h-full aspect-1"
         src="/imgs/authWave.png"

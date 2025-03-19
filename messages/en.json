@@ -1,0 +1,19 @@
+{
+  "LoginPage": {
+    "title": "Login Account",
+    "form": {
+      "submitButton": "Log In",
+      "usernameLabel": "Username",
+      "passwordLabel": "Password",
+      "forgotPasswordButton": "Forgot Password?"
+    }
+  },
+
+  "LocaleSwitcher": {
+    "label": "Language",
+    "locale": {
+      "en": "EN",
+      "fr": "FR"
+    }
+  }
+}

@@ -27,7 +27,8 @@ import {
   serviceData,
 } from "@/data/fps";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const useDefensiveActionsSection = () => {

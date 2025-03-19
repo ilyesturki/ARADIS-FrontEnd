@@ -16,7 +16,7 @@ const WebsiteCustomLogo = () => {
     <SidebarMenu>
       <SidebarMenuItem>
         <div className="w-full flex justify-center">
-          <div className="flex py-2 items-center gap-1 overflow-hidden ">
+          <div className="flex pt-4 pb-5 items-center gap-1 overflow-hidden ">
             <Image
               src="/imgs/araTwo.png"
               alt="ara"

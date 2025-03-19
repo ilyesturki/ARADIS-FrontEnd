@@ -4,7 +4,7 @@ import { handleError } from "@/utils/handleError";
 import { customHandleChange, customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyResetCodeValidationRules } from "@/utils/validationRules";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 const useVerifyResetCode = () => {

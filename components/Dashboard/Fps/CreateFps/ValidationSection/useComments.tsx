@@ -19,7 +19,8 @@ import {
 
 // import { initialFpsValidation } from "@/data/fps";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { FpsType } from "@/redux/fps/fpsSlice";
 

@@ -9,7 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getUser } from "@/redux/users/usersThunk";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 
 const PageTitle = () => {
@@ -41,7 +41,7 @@ const PageTitle = () => {
   // }, [user]);
 
   return (
-    <h1 className=" capitalize text-3xl font-semibold text-greenAccent-900">
+    <h1 className="px-3 capitalize text-3xl font-semibold text-greenAccent-900">
       {pathName}
     </h1>
   );

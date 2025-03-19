@@ -10,7 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getUser } from "@/redux/users/usersThunk";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 
 const BreadCrumb = () => {

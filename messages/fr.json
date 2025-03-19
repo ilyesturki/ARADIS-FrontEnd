@@ -1,0 +1,18 @@
+{
+  "LoginPage": {
+    "title": "Connexion au compte",
+    "form": {
+      "submitButton": "Se Connecter",
+      "usernameLabel": "Nom d'utilisateur",
+      "passwordLabel": "Mot de passe",
+      "forgotPasswordButton": "Mot de passe oublié?"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Langue",
+    "locale": {
+      "en": "EN",
+      "fr": "FR"
+    }
+  }
+}
