@@ -22,7 +22,7 @@ const DataTable = <TData, TValue>({
   title?: string;
   isSelectPageSizes?: boolean;
 }) => {
-  const [table] = useDataTable({ columns, data });
+  const [table] = useDataTable({ columns, data, isSelectPageSizes });
 
   return (
     <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 rounded-[7px] shadow-[0px_0px_2px] shadow-grayscale-400">

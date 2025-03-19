@@ -76,7 +76,7 @@ export default function FPSStatusChart() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0 text-center">
-        <CardTitle className="text-xl text-greenAccent-800">
+        <CardTitle className="text-xl text-greenAccent-900">
           FPS Status Overview
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
@@ -129,7 +129,7 @@ export default function FPSStatusChart() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-greenAccent-800 text-[28px] font-bold"
+                          className="fill-greenAccent-900 text-[28px] font-bold"
                         >
                           {chartData.total}
                         </tspan>

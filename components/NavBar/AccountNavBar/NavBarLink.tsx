@@ -9,7 +9,7 @@ const NavBarLink = ({ href, name }: { href: string; name: string }) => {
       href={href}
       className={` flex py-3 px-2 text-sm font-medium text-greenAccent-900 ${
         path === href &&
-        "text-greenAccent-700 font-semibold border-b-2 border-greenAccent-700 "
+        "text-greenAccent-600 font-semibold border-b-2 border-greenAccent-600 "
       } `}
     >
       {name}

@@ -17,8 +17,8 @@ export const problemTypesData = [
   {
     value: "Environnement",
     label: "Environnement",
-    textColor: "text-greenAccent-700",
-    className: "shadow-greenAccent-700 bg-greenAccent-700 bg-opacity-10",
+    textColor: "text-greenAccent-600",
+    className: "shadow-greenAccent-600 bg-greenAccent-600 bg-opacity-10",
   },
   {
     value: "Qualite",
@@ -30,8 +30,8 @@ export const problemTypesData = [
   {
     value: "TRS/Efficience",
     label: "TRS/Efficience",
-    textColor: "text-greenAccent-600",
-    className: "shadow-greenAccent-600 bg-greenAccent-600 bg-opacity-10",
+    textColor: "text-greenAccent-500",
+    className: "shadow-greenAccent-500 bg-greenAccent-500 bg-opacity-10",
   },
   {
     value: "Maintenence",

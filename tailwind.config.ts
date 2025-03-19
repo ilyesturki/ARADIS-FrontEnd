@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 // #2AC68F
-// #F5F5F5
+//
 // #ECFBF6
 
 export default {
@@ -58,9 +58,10 @@ export default {
         },
         pinkAccent: "#FF7474",
         greenAccent: {
-          "600": "#3DD9B3",
-          "700": "#2FCC40",
-          "800": "#2AC790",
+          "500": "#3DD9B3",
+          "600": "#2FCC40",
+          "700": "#2AC790",
+          "800": "#2EB88A",
           "900": "#0F626B",
         },
         redAccent: {

@@ -32,7 +32,7 @@ const DataTableRowMenu = <T extends { id: string }>({
           <span className="sr-only">Open menu</span>
           <FontAwesomeIcon
             icon={faEllipsis}
-            className="h-4 w-4 text-grayscale-500 text-opacity-80"
+            className="h-4 w-4 text-greenAccent-900 text-opacity-80"
           />
         </button>
       </DropdownMenuTrigger>

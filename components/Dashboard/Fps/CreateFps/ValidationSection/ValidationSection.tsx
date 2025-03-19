@@ -57,7 +57,7 @@ const ValidationSection = () => {
           unCheckedColor="text-redAccent-900"
           checkedValue="Oui"
           unCheckedValue="Non"
-          checkedBgColor="!bg-greenAccent-700"
+          checkedBgColor="!bg-greenAccent-600"
           unCheckedBgColor="!bg-redAccent-900"
         />
         {isDone ? (

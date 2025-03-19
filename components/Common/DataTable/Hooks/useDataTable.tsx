@@ -16,11 +16,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isSelectPageSizes?: boolean;
 }
 
 const useDataTable = <TData, TValue>({
   columns,
   data,
+  isSelectPageSizes,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -42,7 +44,7 @@ const useDataTable = <TData, TValue>({
     onRowSelectionChange: setRowSelection,
     initialState: {
       pagination: {
-        pageSize: 5,
+        pageSize: isSelectPageSizes ? 5 : 6,
       },
     },
     state: {

@@ -12,7 +12,7 @@ import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 import ScannedQrColumn from "./CustomTableColumns/ScannedQrColumn";
 export type FpsSelectedUsersColumn = {
   id: string;
-  scanStatus:"notScanned" | "scanned";
+  scanStatus: "notScanned" | "scanned";
   image?: string;
   firstName: string;
   lastName: string;
@@ -55,6 +55,7 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
         column={column}
         title="Scan Status"
         options={{ up: true, down: true, hide: true }}
+        className="justify-center"
       />
     ),
     cell: ({ row }) => <ScannedQrColumn row={row} />,

@@ -140,7 +140,7 @@ export default function CustomBarChart({ className }: { className?: string }) {
     <Card className={className}>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle className="text-greenAccent-800">
+          <CardTitle className="text-greenAccent-900">
             Bar Chart - Interactive
           </CardTitle>
           <CardDescription className="text-grayscale-500 text-opacity-70">

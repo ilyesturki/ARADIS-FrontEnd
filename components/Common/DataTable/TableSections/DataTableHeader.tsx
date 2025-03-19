@@ -4,7 +4,7 @@ import { flexRender } from "@tanstack/react-table";
 
 const DataTableHeader = <TData,>({ table }: { table: Table<TData> }) => {
   return (
-    <TableHeader className=" bg-grayscale-500 bg-opacity-90 shadow-[0_0_2px] shadow-grayscale-400 ">
+    <TableHeader className=" bg-grayscale-500 bg-opacity-80 shadow-[0_0_2px] shadow-grayscale-400 ">
       {table.getHeaderGroups().map((headerGroup) => (
         <TableRow key={headerGroup.id}>
           {headerGroup.headers.map((header, i) => {

@@ -41,7 +41,7 @@ const CustomSwitch = ({
         } ${
           unCheckedBgColor
             ? unCheckedBgColor
-            : "data-[state=unchecked]:bg-greenAccent-700"
+            : "data-[state=unchecked]:bg-greenAccent-600"
         } `}
       />
       <span

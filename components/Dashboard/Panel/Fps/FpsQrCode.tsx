@@ -31,10 +31,10 @@ const FpsQrCode = () => {
   return (
     <div className="">
       <div className=" relative w-full h-full pt-[36px] pb-6 bg-grayscale-100 flex flex-col items-center gap-2.5 shadow-[0px_0px_2px] shadow-grayscale-400 rounded-md">
-        <span className="text-[12px] font-medium text-greenAccent-900 text-opacity-90">
+        <span className="text-[12px] font-medium text-grayscale-500 text-opacity-80 ">
           {fpsId}
         </span>
-        <div className="relative w-[65%] aspect-1 border-4 border-greenAccent-700 border-opacity-70">
+        <div className="relative w-[65%] aspect-1 border-4 border-greenAccent-800 border-opacity-70">
           {/* <Image
             src={qr}
             alt="qr code"
@@ -51,12 +51,12 @@ const FpsQrCode = () => {
           <div className="absolute -left-1.5 top-[15%] w-2 h-[70%] bg-grayscale-100 "></div>
           <div className="absolute -right-1.5 top-[15%] w-2 h-[70%] bg-grayscale-100 "></div>
         </div>
-        <Avatar className="absolute -top-9 h-16 w-16 rounded-full border-[2px] border-grayscale-400 shadow-[0px_0px_4px] shadow-grayscale-400">
+        <Avatar className="absolute -top-9 h-16 w-16 rounded-full border-[2px] border-grayscale-400 shadow-[0px_0px_3px] shadow-grayscale-400">
           <AvatarImage src={fpsImage} alt="user image" />
           <AvatarFallback className="rounded-lg">CN</AvatarFallback>
         </Avatar>
         <Image
-          src="/imgs/aradis.png"
+          src="/imgs/aradisTwo.png"
           alt="ara"
           width={400}
           height={400}

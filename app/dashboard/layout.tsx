@@ -29,6 +29,8 @@ import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 import PageTitle from "@/components/Common/PageTitle";
 
+// import ChangeLanguage from "@/components/Common/ChangeLanguage";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -44,14 +46,18 @@ export default async function RootLayout({
       <CustomSideBar session={session} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1 text-greenAccent-900" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <BreadCrumb />
+          <div className="w-full flex justify-between px-4">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger className="-ml-1 text-grayscale-500" />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <BreadCrumb />
+            </div>
+
+            {/* <ChangeLanguage /> */}
           </div>
         </header>
         <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-8 bg-[#ECFBF6] py-6 px-7 rounded-[5px] shadow-[0_0_5px] shadow-[#F5F5F5]">
+          <div className=" flex flex-col gap-6 bg-sidebar py-6 px-7 rounded-[5px] shadow-[0_0_2px] shadow-grayscale-400">
             <PageTitle />
             {children}
           </div>

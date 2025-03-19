@@ -73,7 +73,7 @@ export function NavMain({
                         className={`!size-[18px] ${
                           item.items?.some(
                             (item) => item.url === currentPath
-                          ) && "text-greenAccent-800"
+                          ) && "text-greenAccent-700"
                         }`}
                       />
                     )}
@@ -85,7 +85,7 @@ export function NavMain({
                   <SidebarMenuSub
                     className={`${
                       item.items?.some((item) => item.url === currentPath) &&
-                      "border-greenAccent-800"
+                      "border-greenAccent-700"
                     }`}
                   >
                     {item.items?.map((subItem) => (
@@ -98,7 +98,7 @@ export function NavMain({
                             href={subItem.url}
                             className={` hover:!text-grayscale-500 ${
                               subItem.url === currentPath
-                                ? "!text-greenAccent-800"
+                                ? "!text-greenAccent-700"
                                 : "!text-grayscale-100"
                             }`}
                           >

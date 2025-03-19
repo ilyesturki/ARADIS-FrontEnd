@@ -15,10 +15,10 @@ const IconAndNameColumn = ({
   return (
     <div className=" flex items-center gap-6 pl-4">
       <Avatar
-        className={`border-4 outline-2 outline-dotted outline-grayscale-500 w-14 h-14 ${className}`}
+        className={`border-4 outline-2 outline-dotted outline-greenAccent-900 w-14 h-14 ${className}`}
       >
         <AvatarImage src={image} />
-        <AvatarFallback className=" text-xl font-medium text-grayscale-500 text-opacity-50 capitalize">
+        <AvatarFallback className=" text-xl font-semibold text-greenAccent-900 text-opacity-50 capitalize">
           {title?.charAt(0)}
         </AvatarFallback>
       </Avatar>
