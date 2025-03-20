@@ -5,7 +5,7 @@ import Link from "next/link";
 import AuthButton from "../../subcomponents/AuthButton";
 import useSignIn from "./useSignIn";
 import CustomAuthInput from "@/components/Common/CustomInput/CustomAuthInput";
-
+ 
 import { useTranslations } from "next-intl";
 
 const SignInForm = ({ AuthButtonTitle }: { AuthButtonTitle: string }) => {

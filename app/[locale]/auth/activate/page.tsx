@@ -1,12 +1,11 @@
 import CustomAuthPage from "@/components/Auth/CustomAuthPage";
 import ActivateForm from "@/components/Auth/Form/Activate/Activate";
-
+import { useTranslations } from "next-intl";
 const page = () => {
+  const t = useTranslations("ActivatePage"); 
   return (
-    <CustomAuthPage
-      title="Activate Account"
-    >
-      <ActivateForm AuthButtonTitle="Activate" />
+    <CustomAuthPage title={t("title")}>
+      <ActivateForm AuthButtonTitle={t("form.submitButton")} />
     </CustomAuthPage>
   );
 };

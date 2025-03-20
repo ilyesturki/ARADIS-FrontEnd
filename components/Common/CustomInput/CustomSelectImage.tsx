@@ -4,11 +4,13 @@ import RemoveImageButton from "./RemoveImageButton";
 
 const CustomSelectImage = ({
   label,
+  imagePlaceholder,
   image,
   handleImageChange,
   handleDelete,
 }: {
   label: string;
+  imagePlaceholder?: string;
   image: string;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleDelete?: (i?: number) => void;
@@ -43,7 +45,7 @@ const CustomSelectImage = ({
                 className="text-5xl text-neutral-400"
               />
               <p className="text-sm font-medium text-neutral-400">
-                Drop your image here, or browse
+                {imagePlaceholder}
               </p>
             </>
           )}

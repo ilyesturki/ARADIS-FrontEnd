@@ -45,6 +45,14 @@ const useEditUser = (id: string) => {
   const user = useAppSelector((state) => state.users.user);
   const updateSuccess = useAppSelector((state) => state.users.updateSuccess);
 
+  const [pageTitle, setPageTitle] = useState(id);
+
+  useEffect(() => {
+    if (user) {
+      setPageTitle(`${user.firstName} ${user.lastName}`);
+    }
+  }, [user]);
+
   useEffect(() => {
     dispatch(getUser(id));
   }, [dispatch, id]);
@@ -137,6 +145,7 @@ const useEditUser = (id: string) => {
     setUserData(initialUserState);
   };
   return {
+    pageTitle,
     roleData,
 
     userData,

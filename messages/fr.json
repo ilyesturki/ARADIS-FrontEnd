@@ -1,4 +1,11 @@
 {
+  "LocaleSwitcher": {
+    "label": "Langue",
+    "locale": {
+      "en": "EN",
+      "fr": "FR"
+    }
+  },
   "LoginPage": {
     "title": "Connexion au compte",
     "form": {
@@ -8,11 +15,79 @@
       "forgotPasswordButton": "Mot de passe oublié?"
     }
   },
-  "LocaleSwitcher": {
-    "label": "Langue",
-    "locale": {
-      "en": "EN",
-      "fr": "FR"
+
+  "ForgetPasswordPage": {
+    "title": "Récupérer le compte",
+    "form": {
+      "submitButton": "Envoyer le code",
+      "usernameLabel": "Nom d'utilisateur"
     }
+  },
+  "VerifyResetCodePage": {
+    "title": "Vérifier le code de vérification",
+    "form": {
+      "submitButton": "Vérifier le code"
+    }
+  },
+  "ResetPasswordPage": {
+    "title": "Changer le mot de passe",
+    "form": {
+      "submitButton": "Changer",
+      "passwordLabel": "Mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe"
+    }
+  },
+  "SetPasswordPage": {
+    "title": "Définir le mot de passe",
+    "form": {
+      "submitButton": "Définir le mot de passe",
+      "passwordLabel": "Mot de passe"
+    }
+  },
+  "ActivatePage": {
+    "title": "Activer le compte",
+    "form": {
+      "submitButton": "Activer",
+      "employeeNumberLabel": "Matricule"
+    }
+  },
+  "CreateUserPage": {
+    "pageTitle": "Créer un nouvel utilisateur",
+    "firstNameLabel": "Prénom de l'utilisateur",
+    "firstNamePlaceholder": "Entrez le prénom de l'utilisateur",
+    "lastNameLabel": "Nom de l'utilisateur",
+    "lastNamePlaceholder": "Entrez le nom de l'utilisateur",
+    "emailLabel": "Email de l'utilisateur",
+    "emailPlaceholder": "Entrez l'email de l'utilisateur",
+    "matriculeLabel": "Matricule de l'utilisateur",
+    "matriculePlaceholder": "Entrez le matricule de l'utilisateur",
+    "phoneLabel": "Téléphone de l'utilisateur",
+    "phonePlaceholder": "Entrez le téléphone de l'utilisateur",
+    "departmentLabel": "Département",
+    "categoryLabel": "Catégorie",
+    "roleLabel": "Rôle",
+    "imageLabel": "Image de l'utilisateur",
+    "imagePlaceholder": "Déposez votre image ici, ou parcourez",
+    "mainButton": "Enregistrer",
+    "secondaryButton": "Réinitialiser"
+  },
+  "EditUserPage": {
+    "firstNameLabel": "Prénom de l'utilisateur",
+    "firstNamePlaceholder": "Entrez le prénom de l'utilisateur",
+    "lastNameLabel": "Nom de l'utilisateur",
+    "lastNamePlaceholder": "Entrez le nom de l'utilisateur",
+    "emailLabel": "Email de l'utilisateur",
+    "emailPlaceholder": "Entrez l'email de l'utilisateur",
+    "matriculeLabel": "Matricule de l'utilisateur",
+    "matriculePlaceholder": "Entrez le matricule de l'utilisateur",
+    "phoneLabel": "Téléphone de l'utilisateur",
+    "phonePlaceholder": "Entrez le téléphone de l'utilisateur",
+    "departmentLabel": "Département",
+    "categoryLabel": "Catégorie",
+    "roleLabel": "Rôle",
+    "imageLabel": "Image de l'utilisateur",
+    "imagePlaceholder": "Déposez votre image ici, ou parcourez",
+    "mainButton": "Enregistrer",
+    "secondaryButton": "Réinitialiser"
   }
 }

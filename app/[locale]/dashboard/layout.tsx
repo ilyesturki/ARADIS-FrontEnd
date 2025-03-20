@@ -60,8 +60,8 @@ export default async function RootLayout({
           </div>
         </header>
         <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-6 bg-sidebar py-9 px-7 border rounded-md">
-            <PageTitle />
+          <div className=" flex flex-col gap-7 bg-sidebar py-9 px-7 border rounded-md">
+            {/* <PageTitle /> */}
             {children}
           </div>
         </main>

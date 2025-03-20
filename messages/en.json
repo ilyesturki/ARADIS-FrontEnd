@@ -1,4 +1,11 @@
 {
+  "LocaleSwitcher": {
+    "label": "Language",
+    "locale": {
+      "en": "EN",
+      "fr": "FR"
+    }
+  },
   "LoginPage": {
     "title": "Login Account",
     "form": {
@@ -8,12 +15,81 @@
       "forgotPasswordButton": "Forgot Password?"
     }
   },
-
-  "LocaleSwitcher": {
-    "label": "Language",
-    "locale": {
-      "en": "EN",
-      "fr": "FR"
+  "ForgetPasswordPage": {
+    "title": "Recover account",
+    "form": {
+      "submitButton": "Send Code",
+      "usernameLabel": "Username"
     }
+  },
+  "VerifyResetCodePage": {
+    "title": "Check verification code",
+    "form": {
+      "submitButton": "Check Code"
+    }
+  },
+  "ResetPasswordPage": {
+    "title": "Change password",
+    "form": {
+      "submitButton": "Change",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Password Confirm"
+    }
+  },
+  "SetPasswordPage": {
+    "title": "Set Password",
+    "form": {
+      "submitButton": "Set Password",
+      "passwordLabel": "Password"
+    }
+  },
+  "ActivatePage": {
+    "title": "Activate Account",
+    "form": {
+      "submitButton": "Activate",
+      "employeeNumberLabel": "Employee Number"
+    }
+  },
+  "CreateUserPage": {
+    "pageTitle": "Create New User",
+    "firstNameLabel": "User First Name",
+    "firstNamePlaceholder": "Enter User First Name",
+    "lastNameLabel": "User Last Name",
+    "lastNamePlaceholder": "Enter User Last Name",
+    "emailLabel": "User Email",
+    "emailPlaceholder": "Enter User email",
+    "matriculeLabel": "User Matricule",
+    "matriculePlaceholder": "Enter User Matricule",
+    "phoneLabel": "User Phone",
+    "phonePlaceholder": "Enter User phone",
+    "departmentLabel": "Department",
+    "categoryLabel": "Category",
+    "roleLabel": "Role",
+    "imageLabel": "User Image",
+    "imagePlaceholder": "Drop your image here, or browse",
+    "mainButton": "Save",
+    "secondaryButton": "Reset"
+  },
+  "EditUserPage": {
+    "firstNameLabel": "User First Name",
+    "firstNamePlaceholder": "Enter User First Name",
+    "lastNameLabel": "User Last Name",
+    "lastNamePlaceholder": "Enter User Last Name",
+    "emailLabel": "User Email",
+    "emailPlaceholder": "Enter User email",
+    "matriculeLabel": "User Matricule",
+    "matriculePlaceholder": "Enter User Matricule",
+    "phoneLabel": "User Phone",
+    "phonePlaceholder": "Enter User phone",
+    "departmentLabel": "Department",
+    "categoryLabel": "Category",
+    "roleLabel": "Role",
+    "imageLabel": "User Image",
+    "imagePlaceholder": "Drop your image here, or browse",
+    "mainButton": "Save",
+    "secondaryButton": "Reset"
+  },
+  "UsersPanelPage": {
+    "pageTitle": "Users Dashboard"
   }
 }
