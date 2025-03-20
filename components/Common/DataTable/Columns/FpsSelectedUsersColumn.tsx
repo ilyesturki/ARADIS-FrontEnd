@@ -10,6 +10,7 @@ import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheck
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 import ScannedQrColumn from "./CustomTableColumns/ScannedQrColumn";
+import EmailColumn from "./CustomTableColumns/EmailColumn";
 export type FpsSelectedUsersColumn = {
   id: string;
   scanStatus: "notScanned" | "scanned";
@@ -30,7 +31,7 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
     accessorKey: "firstName",
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="flex justify-center"
+        className="pl-[70px]"
         column={column}
         title="Name"
         options={{ hide: true }}
@@ -42,20 +43,22 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
     accessorKey: "email",
     header: ({ column }) => (
       <DataTableColumnHeader
+        // className="flex justify-center"
         column={column}
         title="Email"
         options={{ up: true, down: true, hide: true }}
       />
     ),
+    cell: ({ row }) => <EmailColumn row={row} />,
   },
   {
     accessorKey: "scanStatus",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Scan Status"
+        title="Status"
         options={{ up: true, down: true, hide: true }}
-        className="justify-center"
+        // className="justify-center"
       />
     ),
     cell: ({ row }) => <ScannedQrColumn row={row} />,

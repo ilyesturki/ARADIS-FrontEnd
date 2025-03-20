@@ -29,7 +29,7 @@ const CustomSelect = <T,>({
   return (
     <div className=" flex gap-4 items-center">
       <div
-        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 shadow-[0px_0px_2px] rounded-md shadow-grayscale-500 ${className} ${
+        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 border rounded-md ${className} ${
           disabled ? "cursor-not-allowed" : ""
         }`}
       >

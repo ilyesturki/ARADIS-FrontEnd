@@ -61,7 +61,7 @@ export default function LocaleSwitcherSelect({
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border rounded-md"
       >
-        <Image
+        <Image 
           src={localeData[selectedLocale].flag}
           alt={selectedLocale}
           width={24}

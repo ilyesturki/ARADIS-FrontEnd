@@ -26,7 +26,7 @@ const CustomSwitch = ({
   unCheckedBgColor?: string;
 }) => {
   return (
-    <div className="w-full px-4 py-3 bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md flex items-center">
+    <div className="w-full px-4 py-3 bg-grayscale-100 border rounded-md flex items-center">
       <h2 className=" text-xs font-medium text-greenAccent-900">{title}</h2>
       <Switch
         checked={checked}

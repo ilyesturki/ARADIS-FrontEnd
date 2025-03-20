@@ -28,7 +28,7 @@ const DataTableRowMenu = <T extends { id: string }>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none border-none" asChild>
-        <button className=" flex items-center justify-center h-8 w-8 p-0 bg-grayscale-500 bg-opacity-5 shadow-[0_0_2px] shadow-grayscale-400 rounded-md">
+        <button className=" flex items-center justify-center h-8 w-8 p-0 bg-neutral-100 shadow-[0_0_2px] shadow-grayscale-400 rounded-md">
           <span className="sr-only">Open menu</span>
           <FontAwesomeIcon
             icon={faEllipsis}

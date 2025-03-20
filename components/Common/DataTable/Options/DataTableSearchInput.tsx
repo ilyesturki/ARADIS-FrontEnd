@@ -4,7 +4,7 @@ import { Table } from "@tanstack/react-table";
 
 const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
   return (
-    <div className=" flex items-center relative flex-1 bg-sidebar-accent border-[1px] border-grayscale-300 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm">
+    <div className=" flex items-center relative flex-1 bg-sidebar-accent border rounded-md">
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         className="absolute left-4 w-4 h-4 text-grayscale-500"
