@@ -403,5 +403,8 @@
         "secondaryButtonText": "Reset"
       }
     }
+  },
+  "DashboardPage": {
+    "pageTitle": "Dashboard"
   }
 }

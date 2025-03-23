@@ -14,7 +14,7 @@ const ProgressBox = ({
           ? "bg-greenAccent-800"
           : status === "inProgress"
           ? "border-2 border-greenAccent-800"
-          : "bg-neutral-200"
+          : "bg-neutral-300"
       } rounded-full`}
     >
       <span
