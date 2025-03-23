@@ -11,6 +11,8 @@ import DefensiveActionsTab from "./CreateFpsTabs/DefensiveActionsTab";
 import { use } from "react";
 import useCreateFps from "./useCreateFps";
 import ValidationTab from "./CreateFpsTabs/ValidationTab";
+import { useTranslations } from "next-intl";
+import PageTitle from "@/components/Common/PageTitle";
 // defaultValue="problem"
 
 const tabs = [
@@ -37,53 +39,59 @@ const tabs = [
 ];
 
 const CreateFps = () => {
+  const t = useTranslations("CreateFps");
   const { currentStep, currentTab, validTabs, handleTabChange } =
     useCreateFps();
   return (
     <>
       <PageTitle title={t("pageTitle")} />
-    <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
-      <TabsList className="w-full h-auto flex flex-wrap">
-        {tabs.map((e, i) => {
-          const tabsOrder = [
-            "problem",
-            "immediateActions",
-            "cause",
-            "defensiveActions",
-            "validation",
-          ];
-          return (
-            <TabsTrigger
-              value={e.value}
-              key={i}
-              className="flex-1 flex items-center gap-1.5 "
-            >
-              {tabsOrder.indexOf(currentStep || "") >= i ? (
-                <FontAwesomeIcon icon={solidCircleCheck} size="lg" />
-              ) : (
-                <FontAwesomeIcon icon={faCircleCheck} size="lg" />
-              )}
-              {e.label}
-            </TabsTrigger>
-          );
-        })}
-      </TabsList>
-      <TabsContent value="problem">
-        <ProblemTab />
-      </TabsContent>
-      <TabsContent value="immediateActions">
-        <ImmediateActionsTab />
-      </TabsContent>
-      <TabsContent value="cause">
-        <CauseTab />
-      </TabsContent>
-      <TabsContent value="defensiveActions">
-        <DefensiveActionsTab />
-      </TabsContent>
-      <TabsContent value="validation">
-        <ValidationTab />
-      </TabsContent>
-    </Tabs></>
+      <Tabs
+        value={currentTab}
+        onValueChange={handleTabChange}
+        className="w-full"
+      >
+        <TabsList className="w-full h-auto flex flex-wrap">
+          {tabs.map((e, i) => {
+            const tabsOrder = [
+              "problem",
+              "immediateActions",
+              "cause",
+              "defensiveActions",
+              "validation",
+            ];
+            return (
+              <TabsTrigger
+                value={e.value}
+                key={i}
+                className="flex-1 flex items-center gap-1.5 "
+              >
+                {tabsOrder.indexOf(currentStep || "") >= i ? (
+                  <FontAwesomeIcon icon={solidCircleCheck} size="lg" />
+                ) : (
+                  <FontAwesomeIcon icon={faCircleCheck} size="lg" />
+                )}
+                {e.label}
+              </TabsTrigger>
+            );
+          })}
+        </TabsList>
+        <TabsContent value="problem">
+          <ProblemTab />
+        </TabsContent>
+        <TabsContent value="immediateActions">
+          <ImmediateActionsTab />
+        </TabsContent>
+        <TabsContent value="cause">
+          <CauseTab />
+        </TabsContent>
+        <TabsContent value="defensiveActions">
+          <DefensiveActionsTab />
+        </TabsContent>
+        <TabsContent value="validation">
+          <ValidationTab />
+        </TabsContent>
+      </Tabs>
+    </>
   );
 };
 

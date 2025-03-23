@@ -13,6 +13,7 @@ import {
   fpsDefensiveActionType,
   fpsDefensiveActionsType,
 } from "@/redux/fps/fpsSlice";
+import { useTranslations } from "next-intl";
 
 const DefensiveAction = ({
   fpsData,
@@ -36,25 +37,28 @@ const DefensiveAction = ({
   ) => void;
   disabled?: boolean;
 }) => {
+  const t = useTranslations(
+    "CreateFps.defensiveActions.defensiveActions.defensiveAction"
+  );
   return (
     <div className=" flex flex-col gap-4">
       <CustomTextArea
         value={fpsData.procedure}
         onChange={customProcedureChange}
-        label="procedure"
-        placeholder="Mesures finales que nous avons prises"
+        label={t("procedure.label")}
+        placeholder={t("procedure.placeholder")}
         disabled={disabled}
       />
       <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
         <CustomSelect
-          label="departement"
+          label={t("department.label")}
           value={fpsData.userService}
           onChange={customServiceChange}
           data={serviceData}
           disabled={disabled}
         />
         <CustomSelect
-          label="categorie"
+          label={t("category.label")}
           value={fpsData.userCategory}
           onChange={customCategoryChange}
           data={categoryData}
@@ -62,7 +66,7 @@ const DefensiveAction = ({
         />
       </div>
       <CustomDateTimePicker
-        label="Quand"
+        label={t("when.label")}
         value={fpsData.quand}
         onChange={customQuandChange}
         disabled={disabled}

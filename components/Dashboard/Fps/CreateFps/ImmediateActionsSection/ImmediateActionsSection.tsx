@@ -17,8 +17,10 @@ import SortingResults from "./components/SortingResults";
 import ImmediateActions from "./components/ImmediateActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";
 import CustomSectionHeader from "../../Common/CustomSectionHeader";
+import { useTranslations } from "next-intl";
 
 const ImmediateActionsSection = () => {
+  const t = useTranslations("CreateFps.immediateActions");
   const {
     isAdminOrManager,
     currentStep,
@@ -47,14 +49,14 @@ const ImmediateActionsSection = () => {
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomSwitch
-          title="Faut-il lancer un tri ?"
+          title={t("switch.label")}
           checked={fpsData.startSorting}
           onChange={handleStartSorting}
           disabled={isDisabled}
           checkedColor="text-redAccent-900"
           unCheckedColor="text-greenAccent-900"
-          checkedValue="Oui"
-          unCheckedValue="Non"
+          checkedValue={t("switch.checkedValue")}
+          unCheckedValue={t("switch.unCheckedValue")}
         />
         <SortingResults
           sortingResults={fpsData.sortingResults || []}
@@ -66,12 +68,12 @@ const ImmediateActionsSection = () => {
           setFpsData={setFpsData}
           disabled={isDisabled}
         />
-        <CustomSectionHeader title="Conclusion" />
+        <CustomSectionHeader title={t("conclusion.label")} />
         <CustomTextArea
           value={fpsData.concludeFromSorting}
           onChange={handleChange}
-          label="Conclusion"
-          placeholder="Qu'est ce qu'on a appris du tri ?"
+          label={t("conclusion.label")}
+          placeholder={t("conclusion.placeholder")}
           name="concludeFromSorting"
           disabled={isDisabled}
         />
@@ -91,30 +93,35 @@ const ImmediateActionsSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
-          label="fpsId"
-          placeholder="fpsId"
+          label={t("fpsId.label")}
+          placeholder={t("fpsId.placeholder")}
           name="fpsId"
           copy
           disabled
         />
         <CustomPicker
-          label="Alert"
+          label={t("alert.label")}
           selectedData={fpsData.alert || []}
           handleChange={handleAlertChange}
           data={serviceData || []}
           disabled={isDisabled}
         />
         {isDone ? (
-          <CustomText title="This fps is done" />
+          <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
-          <CustomText title="Your not allowed to edit this fps" />
+          <CustomText title={t("doneStatus.notAllowed")} />
         ) : isDisabled ? (
-          <CustomText title="You have to do all the previous steps" />
+          <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons
-            value={submitBtnValue}
+            value={
+              submitBtnValue === "Save"
+                ? t("buttons.saveButtonText")
+                : t("buttons.updateButtonText")
+            }
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
+            secondaryButtonText={t("buttons.secondaryButtonText")}
           />
         )}
       </div>

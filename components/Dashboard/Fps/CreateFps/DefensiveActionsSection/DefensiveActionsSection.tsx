@@ -5,8 +5,10 @@ import useDefensiveActionsSection from "./useDefensiveActionsSection";
 
 import DefensiveActions from "./DefensiveActions/DefensiveActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";
+import { useTranslations } from "next-intl";
 
 const DefensiveActionsSection = () => {
+  const t = useTranslations("CreateFps.defensiveActions");
   const {
     isAdminOrManager,
     currentStep,
@@ -43,23 +45,28 @@ const DefensiveActionsSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
-          label="fpsId"
-          placeholder="fpsId"
+          label={t("fpsId.label")}
+          placeholder={t("fpsId.placeholder")}
           name="fpsId"
           copy
           disabled
         />
         {isDone ? (
-          <CustomText title="This fps is done" />
+          <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
-          <CustomText title="Your not allowed to edit this fps" />
+          <CustomText title={t("doneStatus.notAllowed")} />
         ) : isDisabled ? (
-          <CustomText title="You have to do all the previous steps" />
+          <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons
-            value={submitBtnValue}
+            value={
+              submitBtnValue === "Save"
+                ? t("buttons.saveButtonText")
+                : t("buttons.updateButtonText")
+            }
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
+            secondaryButtonText={t("buttons.secondaryButtonText")}
           />
         )}
       </div>

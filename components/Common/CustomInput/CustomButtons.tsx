@@ -3,7 +3,7 @@ const CustomButtons = ({
   value,
   mainButtonOnCLick,
   secondaryButtonOnCLick,
-  mainButtonText ,
+  mainButtonText,
   secondaryButtonText,
 }: {
   value?: string;
@@ -18,7 +18,7 @@ const CustomButtons = ({
         onClick={mainButtonOnCLick}
         className=" py-2 px-6 bg-greenAccent-900 rounded-md text-base font-medium text-white "
       >
-        {value || mainButtonText || "save"}
+        {value || mainButtonText}
       </button>
       <button
         onClick={secondaryButtonOnCLick}

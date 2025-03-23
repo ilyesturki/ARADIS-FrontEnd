@@ -15,8 +15,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import WhyList from "./WhyList";
 import CustomText from "@/components/Common/CustomInput/CustomText";
+import { useTranslations } from "next-intl";
 
 const CauseSection = () => {
+  const t = useTranslations("CreateFps.cause");
   const {
     isAdminOrManager,
     currentStep,
@@ -47,30 +49,35 @@ const CauseSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
-          label="fpsId"
-          placeholder="fpsId"
+          label={t("fpsId.label")}
+          placeholder={t("fpsId.placeholder")}
           name="fpsId"
           copy
           disabled
         />
         <CustomPicker
-          label="Cause"
+          label={t("cause.label")}
           selectedData={fpsData.causeList || []}
           handleChange={handleCauseChange}
           data={causeData || []}
           disabled={isDisabled}
         />
         {isDone ? (
-          <CustomText title="This fps is done" />
+          <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
-          <CustomText title="Your not allowed to edit this fps" />
+          <CustomText title={t("doneStatus.notAllowed")} />
         ) : isDisabled ? (
-          <CustomText title="You have to do all the previous steps" />
+          <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons
-            value={submitBtnValue}
+            value={
+              submitBtnValue === "Save"
+                ? t("buttons.saveButtonText")
+                : t("buttons.updateButtonText")
+            }
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
+            secondaryButtonText={t("buttons.secondaryButtonText")}
           />
         )}
       </div>

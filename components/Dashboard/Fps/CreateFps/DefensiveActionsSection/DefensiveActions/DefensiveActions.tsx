@@ -6,6 +6,7 @@ import AddSectionButton from "../../../Common/AddSectionButton";
 import { fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomSectionHeader from "../../../Common/CustomSectionHeader";
+import { useTranslations } from "next-intl";
 
 interface Props {
   fpsData: fpsDefensiveActionsType;
@@ -33,13 +34,14 @@ const DefensiveActions = ({
   removeDefensiveAction,
   disabled,
 }: Props) => {
+  const t = useTranslations("CreateFps.defensiveActions.defensiveActions");
   return (
     <>
       {fpsData.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
-              title="procedure"
+              title={t("title")}
               i={i}
               handleDeleteSection={() => removeDefensiveAction(i)}
               disabled={disabled}

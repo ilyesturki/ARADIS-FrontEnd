@@ -15,8 +15,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Comments from "./Comments";
 import CustomText from "@/components/Common/CustomInput/CustomText";
+import { useTranslations } from "next-intl";
 
 const ValidationSection = () => {
+  const t = useTranslations("CreateFps.validation");
   const {
     isAdminOrManager,
     currentStep,
@@ -42,35 +44,40 @@ const ValidationSection = () => {
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
-          label="fpsId"
-          placeholder="fpsId"
+          label={t("fpsId.label")}
+          placeholder={t("fpsId.placeholder")}
           name="fpsId"
           copy
           disabled
         />
         <CustomSwitch
-          title="Le FPS a-t-il été résolu avec succès ?"
+          title={t("status.title")}
           checked={fpsCompleted}
           onChange={handleStatusChange}
           disabled={isDisabled}
           checkedColor="text-greenAccent-900"
           unCheckedColor="text-redAccent-900"
-          checkedValue="Oui"
-          unCheckedValue="Non"
+          checkedValue={t("status.checkedValue")}
+          unCheckedValue={t("status.unCheckedValue")}
           checkedBgColor="!bg-greenAccent-600"
           unCheckedBgColor="!bg-redAccent-900"
         />
         {isDone ? (
-          <CustomText title="This fps is done" />
+          <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
-          <CustomText title="Your not allowed to edit this fps" />
+          <CustomText title={t("doneStatus.notAllowed")} />
         ) : isDisabled ? (
-          <CustomText title="You have to do all the previous steps" />
+          <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons
-            value={submitBtnValue}
+            value={
+              submitBtnValue === "Save"
+                ? t("buttons.saveButtonText")
+                : t("buttons.updateButtonText")
+            }
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
+            secondaryButtonText={t("buttons.secondaryButtonText")}
           />
         )}
       </div>

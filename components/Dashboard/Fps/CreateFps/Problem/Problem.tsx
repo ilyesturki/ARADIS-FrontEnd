@@ -4,14 +4,16 @@ import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useProblem from "./useProblem";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage"; 
+import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 import CustomText from "@/components/Common/CustomInput/CustomText";
+import { useTranslations } from "next-intl";
 
 const Problem = () => {
+  const t = useTranslations("CreateFps.problem");
   const {
     isAdminOrManager,
     currentStep,
@@ -39,7 +41,7 @@ const Problem = () => {
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
       <div className=" flex flex-col gap-6">
         <CustomSelect
-          label="Type"
+          label={t("type.label")}
           value={fpsData.type}
           onChange={handleTypeChange}
           data={problemTypesData}
@@ -52,22 +54,22 @@ const Problem = () => {
           <CustomTextArea
             value={fpsData.quoi}
             onChange={handleChange}
-            label="quoi"
-            placeholder="Quel est le probleme ?"
+            label={t("what.label")}
+            placeholder={t("what.placeholder")}
             name="quoi"
             disabled={isDisabled}
           />
           <CustomTextArea
             value={fpsData.ref}
             onChange={handleChange}
-            label="ref"
-            placeholder="Quelle reference ?"
+            label={t("ref.label")}
+            placeholder={t("ref.placeholder")}
             name="ref"
             disabled={isDisabled}
           />
         </div>
         <CustomDateTimePicker
-          label="Quand"
+          label={t("when.label")}
           value={fpsData.quand}
           name="quand"
           onChange={customHandleChangeDate}
@@ -77,21 +79,21 @@ const Problem = () => {
           <CustomInput
             value={fpsData.ou}
             onChange={handleChange}
-            label="ou"
-            placeholder="A-t-il detecte ?"
+            label={t("where.label")}
+            placeholder={t("where.placeholder")}
             name="ou"
             disabled={isDisabled}
           />
           <CustomInput
             value={fpsData.combien}
             onChange={handleChange}
-            label="combien"
-            placeholder="De pieces ? Pertes ?"
+            label={t("howMany.label")}
+            placeholder={t("howMany.placeholder")}
             name="combien"
             disabled={isDisabled}
           />
           <CustomSelect
-            label="departement"
+            label={t("department.label")}
             value={fpsData.userService}
             onChange={customHandleChangeSelect}
             data={serviceData}
@@ -99,7 +101,7 @@ const Problem = () => {
             disabled={isDisabled}
           />
           <CustomSelect
-            label="categorie"
+            label={t("category.label")}
             value={fpsData.userCategory}
             onChange={customHandleChangeSelect}
             data={categoryData}
@@ -110,8 +112,8 @@ const Problem = () => {
         <CustomTextArea
           value={fpsData.comment}
           onChange={handleChange}
-          label="comment"
-          placeholder="A-t-il detecte ?"
+          label={t("how.label")}
+          placeholder={t("how.placeholder")}
           name="comment"
           disabled={isDisabled}
         />
@@ -119,35 +121,35 @@ const Problem = () => {
         <CustomTextArea
           value={fpsData.pourquoi}
           onChange={handleChange}
-          label="pourquoi"
-          placeholder="Est-ce un probleme ?"
+          label={t("why.label")}
+          placeholder={t("why.placeholder")}
           name="pourquoi"
           disabled={isDisabled}
         />
 
         <CustomSwitch
-          title="Y a-t-il un risque client ?"
+          title={t("clientRisk.title")}
           checked={fpsData.clientRisk}
           onChange={handleClientRisk}
           disabled={isDisabled}
           checkedColor="text-redAccent-900"
           unCheckedColor="text-greenAccent-900"
-          checkedValue="Oui"
-          unCheckedValue="Non"
+          checkedValue={t("clientRisk.checkedValue")}
+          unCheckedValue={t("clientRisk.unCheckedValue")}
         />
       </div>
       <div className=" flex flex-col gap-10">
         <div className=" flex flex-col gap-6">
           <CustomInput
             value={fpsId}
-            label="fpsId"
-            placeholder="fpsId"
+            label={t("fpsId.label")}
+            placeholder={t("fpsId.placeholder")}
             name="fpsId"
             copy
             disabled
           />
           <CustomSelectImages
-            label="Fps Gallery"
+            label={t("fpsGallery.label")}
             imageCover={fpsData.image || ""}
             images={fpsData.images || []}
             handleImageChange={handleImageChange}
@@ -156,19 +158,21 @@ const Problem = () => {
           />
         </div>
         {isDone ? (
-          <CustomText title="This fps is done" />
+          <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
-          <CustomText title="Your not allowed to edit this fps" />
+          <CustomText title={t("doneStatus.notAllowed")} />
         ) : isDisabled ? (
-          <CustomText title="You have to do all the previous steps" />
+          <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons
-
-            value={submitBtnValue}
+            value={
+              submitBtnValue === "Save"
+                ? t("buttons.saveButtonText")
+                : t("buttons.updateButtonText")
+            }
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
-            mainButtonText="Enregistrer"
-            secondaryButtonText="Réinitialiser"
+            secondaryButtonText={t("buttons.secondaryButtonText")}
           />
         )}
       </div>

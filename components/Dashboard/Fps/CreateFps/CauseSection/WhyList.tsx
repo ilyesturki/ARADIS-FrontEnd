@@ -6,6 +6,7 @@ import { fpsCauseType, fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../Common/RemoveSectionButton";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import CustomSectionHeader from "../../Common/CustomSectionHeader";
+import { useTranslations } from "next-intl";
 
 interface Props {
   whyList: fpsCauseType["whyList"];
@@ -22,13 +23,14 @@ const WhyList = ({
   removeWhy,
   disabled,
 }: Props) => {
+  const t = useTranslations("CreateFps.cause.whyList");
   return (
     <>
       {whyList.map((e, i) => {
         return (
           <div className=" flex flex-col gap-2" key={i}>
             <CustomSectionHeader
-              title="why"
+              title={t("title")}
               i={i}
               handleDeleteSection={() => removeWhy(i)}
               disabled={disabled}
@@ -38,8 +40,8 @@ const WhyList = ({
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                 handleChangeWhyList(e.target.value, i)
               }
-              label="procedure"
-              placeholder="Mesures finales que nous avons prises"
+              label={t("procedure.label")}
+              placeholder={t("procedure.placeholder")}
               name="procedure"
               disabled={disabled}
             />

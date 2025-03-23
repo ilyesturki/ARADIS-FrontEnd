@@ -221,7 +221,187 @@
       }
     }
   },
-  "CreateFps":{
-    "pageTitle":"Manage FPS"
+  "CreateFps": {
+    "pageTitle": "Manage FPS",
+    "problem": {
+      "type": {
+        "label": "Type"
+      },
+      "what": {
+        "label": "What",
+        "placeholder": "What is the problem?"
+      },
+      "ref": {
+        "label": "Reference",
+        "placeholder": "Which reference?"
+      },
+      "when": {
+        "label": "When"
+      },
+      "where": {
+        "label": "Where",
+        "placeholder": "Where was it detected?"
+      },
+      "howMany": {
+        "label": "How Many",
+        "placeholder": "Number of pieces? Losses?"
+      },
+      "department": {
+        "label": "Department"
+      },
+      "category": {
+        "label": "Category"
+      },
+      "how": {
+        "label": "Comment",
+        "placeholder": "Where was it detected?"
+      },
+      "why": {
+        "label": "Why",
+        "placeholder": "Is this a problem?"
+      },
+      "clientRisk": {
+        "title": "Is there a client risk?",
+        "checkedValue": "Yes",
+        "unCheckedValue": "No"
+      },
+      "fpsId": {
+        "label": "FPS ID",
+        "placeholder": "FPS ID"
+      },
+      "fpsGallery": {
+        "label": "FPS Gallery"
+      },
+      "doneStatus": {
+        "done": "This FPS is done",
+        "notAllowed": "You are not allowed to edit this FPS",
+        "disabled": "You have to complete all previous steps"
+      },
+      "buttons": {
+        "saveButtonText": "Save",
+        "updateButtonText": "Update",
+        "secondaryButtonText": "Reset"
+      }
+    },
+    "immediateActions": {
+      "switch": {
+        "label": "Should sorting be started?",
+        "checkedValue": "Yes",
+        "unCheckedValue": "No"
+      },
+      "sortingResults": {
+        "add": "Add sorting result",
+        "remove": "Remove sorting result",
+        "placeholder": "Select category and service"
+      },
+      "conclusion": {
+        "label": "Conclusion",
+        "placeholder": "What did we learn from sorting?"
+      },
+      "immediateActions": {
+        "add": "Add immediate action",
+        "remove": "Remove immediate action",
+        "placeholder": "Select category and service"
+      },
+      "fpsId": {
+        "label": "FPS ID",
+        "placeholder": "FPS ID"
+      },
+      "alert": {
+        "label": "Alert",
+        "placeholder": "Select an alert"
+      },
+      "doneStatus": {
+        "done": "This FPS is done",
+        "notAllowed": "You are not allowed to edit this FPS",
+        "disabled": "You must complete all previous steps"
+      },
+      "buttons": {
+        "saveButtonText": "Save",
+        "updateButtonText": "Update",
+        "secondaryButtonText": "Reset"
+      }
+    },
+    "cause": {
+      "fpsId": {
+        "label": "FPS ID",
+        "placeholder": "Enter FPS ID"
+      },
+      "whyList": {
+        "title": "Why",
+        "procedure": {
+          "label": "Procedure",
+          "placeholder": "Final measures we have taken"
+        }
+      },
+      "cause": {
+        "label": "Cause"
+      },
+      "doneStatus": {
+        "done": "This fps is done",
+        "notAllowed": "You are not allowed to edit this fps",
+        "disabled": "You must complete all previous steps"
+      },
+      "buttons": {
+        "saveButtonText": "Save",
+        "updateButtonText": "Update",
+        "secondaryButtonText": "Reset"
+      }
+    },
+    "defensiveActions": {
+      "fpsId": {
+        "label": "FPS ID",
+        "placeholder": "Enter FPS ID"
+      },
+      "defensiveActions": {
+        "title": "Procedure",
+        "defensiveAction": {
+          "procedure": {
+            "label": "Procedure",
+            "placeholder": "Final measures we have taken"
+          },
+          "department": {
+            "label": "Department"
+          },
+          "category": {
+            "label": "Category"
+          },
+          "when": {
+            "label": "When"
+          }
+        }
+      },
+      "doneStatus": {
+        "done": "This FPS is done",
+        "notAllowed": "You are not allowed to edit this FPS",
+        "disabled": "You must complete all previous steps"
+      },
+      "buttons": {
+        "saveButtonText": "Save",
+        "updateButtonText": "Update",
+        "secondaryButtonText": "Reset"
+      }
+    },
+    "validation": {
+      "fpsId": {
+        "label": "FPS ID",
+        "placeholder": "Enter the FPS ID"
+      },
+      "status": {
+        "title": "Has the FPS been resolved successfully?",
+        "checkedValue": "Yes",
+        "unCheckedValue": "No"
+      },
+      "doneStatus": {
+        "done": "This FPS is done",
+        "notAllowed": "You are not allowed to edit this FPS",
+        "disabled": "You must complete all previous steps"
+      },
+      "buttons": {
+        "saveButtonText": "Save",
+        "updateButtonText": "Update",
+        "secondaryButtonText": "Reset"
+      }
+    }
   }
 }

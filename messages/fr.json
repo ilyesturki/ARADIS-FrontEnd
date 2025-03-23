@@ -221,5 +221,189 @@
         "entityLabel": "Utilisateur"
       }
     }
+  },
+  "CreateFps": {
+    "pageTitle": "Gérer FPS",
+    "problem": {
+      "type": {
+        "label": "Type"
+      },
+      "what": {
+        "label": "Quoi",
+        "placeholder": "Quel est le problème ?"
+      },
+      "ref": {
+        "label": "Référence",
+        "placeholder": "Quelle référence ?"
+      },
+      "when": {
+        "label": "Quand"
+      },
+      "where": {
+        "label": "Où",
+        "placeholder": "Où a-t-il été détecté ?"
+      },
+      "howMany": {
+        "label": "Combien",
+        "placeholder": "Combien d'éléments ? Pertes ?"
+      },
+      "department": {
+        "label": "Département"
+      },
+      "category": {
+        "label": "Catégorie"
+      },
+      "how": {
+        "label": "Commentaire",
+        "placeholder": "Où a-t-il été détecté ?"
+      },
+      "why": {
+        "label": "Pourquoi",
+        "placeholder": "Est-ce un problème ?"
+      },
+      "clientRisk": {
+        "title": "Y a-t-il un risque client ?",
+        "checkedValue": "Oui",
+        "unCheckedValue": "Non"
+      },
+      "fpsId": {
+        "label": "ID FPS",
+        "placeholder": "ID FPS"
+      },
+      "fpsGallery": {
+        "label": "Galerie FPS"
+      },
+      "doneStatus": {
+        "done": "Ce FPS est terminé",
+        "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",
+        "disabled": "Vous devez compléter toutes les étapes précédentes"
+      },
+      "buttons": {
+        "saveButtonText": "Enregistrer",
+        "updateButtonText": "Mettre à jour",
+        "secondaryButtonText": "Réinitialiser"
+      }
+    },
+    "immediateActions": {
+      "title": "Actions Immédiates",
+      "switch": {
+        "label": "Faut-il lancer un tri ?",
+        "checkedValue": "Oui",
+        "unCheckedValue": "Non"
+      },
+      "sortingResults": {
+        "add": "Ajouter un résultat de tri",
+        "remove": "Retirer un résultat de tri",
+        "placeholder": "Sélectionner une catégorie et un service"
+      },
+      "conclusion": {
+        "label": "Conclusion",
+        "placeholder": "Qu'est-ce qu'on a appris du tri ?"
+      },
+      "immediateActions": {
+        "add": "Ajouter une action immédiate",
+        "remove": "Retirer une action immédiate",
+        "placeholder": "Sélectionner une catégorie et un service"
+      },
+      "fpsId": {
+        "label": "ID FPS",
+        "placeholder": "ID FPS"
+      },
+      "alert": {
+        "label": "Alerte",
+        "placeholder": "Sélectionner une alerte"
+      },
+      "doneStatus": {
+        "done": "Ce FPS est terminé",
+        "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",
+        "disabled": "Vous devez compléter toutes les étapes précédentes"
+      },
+      "buttons": {
+        "saveButtonText": "Enregistrer",
+        "updateButtonText": "Mettre à jour",
+        "secondaryButtonText": "Réinitialiser"
+      }
+    },
+    "cause": {
+      "fpsId": {
+        "label": "ID FPS",
+        "placeholder": "Entrez l'ID du FPS"
+      },
+      "whyList": {
+        "title": "Pourquoi",
+        "procedure": {
+          "label": "Procédure",
+          "placeholder": "Mesures finales que nous avons prises"
+        }
+      },
+      "cause": {
+        "label": "Cause"
+      },
+      "doneStatus": {
+        "done": "Ce FPS est terminé",
+        "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",
+        "disabled": "Vous devez compléter toutes les étapes précédentes"
+      },
+      "buttons": {
+        "saveButtonText": "Enregistrer",
+        "updateButtonText": "Mettre à jour",
+        "secondaryButtonText": "Réinitialiser"
+      }
+    },
+    "defensiveActions": {
+      "fpsId": {
+        "label": "ID FPS",
+        "placeholder": "Entrez l'ID du FPS"
+      },
+      "defensiveActions": {
+        "title": "Procédure",
+        "defensiveAction": {
+          "procedure": {
+            "label": "Procédure",
+            "placeholder": "Mesures finales que nous avons prises"
+          },
+          "department": {
+            "label": "Département"
+          },
+          "category": {
+            "label": "Catégorie"
+          },
+          "when": {
+            "label": "Quand"
+          }
+        }
+      },
+      "doneStatus": {
+        "done": "Ce FPS est terminé",
+        "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",
+        "disabled": "Vous devez compléter toutes les étapes précédentes"
+      },
+      "buttons": {
+        "saveButtonText": "Enregistrer",
+        "updateButtonText": "Mettre à jour",
+        "secondaryButtonText": "Réinitialiser"
+      }
+    },
+    "validation": {
+      "fpsId": {
+        "label": "ID FPS",
+        "placeholder": "Entrez l'ID du FPS"
+      },
+      "status": {
+        "title": "Le FPS a-t-il été résolu avec succès ?",
+        "checkedValue": "Oui",
+        "unCheckedValue": "Non"
+      },
+      "doneStatus": {
+        "done": "Ce FPS est terminé",
+        "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",
+        "disabled": "Vous devez compléter toutes les étapes précédentes"
+      },
+      "buttons": {
+        "saveButtonText": "Enregistrer",
+        "updateButtonText": "Mettre à jour",
+        "secondaryButtonText": "Réinitialiser"
+      }
+    }
   }
 }
