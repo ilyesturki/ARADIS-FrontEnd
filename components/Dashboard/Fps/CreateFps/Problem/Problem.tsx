@@ -4,7 +4,7 @@ import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useProblem from "./useProblem";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
+import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage"; 
 
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
@@ -163,9 +163,12 @@ const Problem = () => {
           <CustomText title="You have to do all the previous steps" />
         ) : (
           <CustomButtons
+
             value={submitBtnValue}
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
+            mainButtonText="Enregistrer"
+            secondaryButtonText="Réinitialiser"
           />
         )}
       </div>

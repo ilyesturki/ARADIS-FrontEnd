@@ -1,18 +1,18 @@
 import { useAppDispatch } from "@/redux/hooks";
-import { deleteUser } from "@/redux/users/usersThunk";
+import { deleteFps } from "@/redux/fps/fpsThunk";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
-const DeleteUserDialog = ({ id }: { id: string }) => {
+const DeleteFpsDialog = ({ id }: { id: string }) => {
   // Use useTranslations to get localized messages
-  const t = useTranslations("UsersPanelPage");
+  const t = useTranslations("FpssPanelPage");
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  // const deleteSuccess = useAppSelector((state) => state.users.deleteSuccess);
+  // const deleteSuccess = useAppSelector((state) => state.fpss.deleteSuccess);
 
   // useEffect(() => {
   //   if (deleteSuccess) {
@@ -21,29 +21,29 @@ const DeleteUserDialog = ({ id }: { id: string }) => {
   // }, [deleteSuccess, dispatch, id]);
 
   // const handelDelete = () => {
-  //   dispatch(deleteUser(id));
+  //   dispatch(deleteFps(id));
   // };
 
   const router = useRouter();
 
   const [isLoading, executeDeleteAccount] = useApiCallWithToast({
     apiCallFunction: () => {
-      return dispatch(deleteUser(id));
+      return dispatch(deleteFps(id));
     },
     handleSuccess: async () => {
       setIsOpen(false);
       router.refresh();
     },
     messages: {
-      loading: t("deleteUser.loading"), // Localize loading message
-      success: t("deleteUser.success"), // Localize success message
-      error: t("deleteUser.error"), // Localize error message
+      loading: t("deleteFps.loading"), // Localize loading message
+      success: t("deleteFps.success"), // Localize success message
+      error: t("deleteFps.error"), // Localize error message
     },
   });
 
   return (
     <CustomDialog
-      label={t("deleteUser.label")}
+      label={t("deleteFps.label")}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       handelDelete={executeDeleteAccount}
@@ -52,4 +52,4 @@ const DeleteUserDialog = ({ id }: { id: string }) => {
   );
 };
 
-export default DeleteUserDialog;
+export default DeleteFpsDialog;

@@ -20,6 +20,7 @@ import {
 
 import { useEffect, useState } from "react";
 import axios from "@/utils/axios";
+import { useTranslations } from "next-intl";
 
 const data = [
   { month: "Jan", fpsCount: 0 },
@@ -38,6 +39,7 @@ const chartConfig: ChartConfig = {
 };
 
 export default function CompletedFPSChart() {
+  const t = useTranslations("FpssPanelPage.charts.completedFPS");
   const [chartData, setChartData] =
     useState<{ month: string; fpsCount: number }[]>(data);
 
@@ -60,10 +62,10 @@ export default function CompletedFPSChart() {
     <Card>
       <CardHeader className="items-center pb-4 text-center">
         <CardTitle className="text-xl text-greenAccent-900">
-          Completed FPS Overview
+          {t("title")}
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
-          Monthly FPS completion trends
+          {t("description")}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -116,7 +118,7 @@ export default function CompletedFPSChart() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="w-full leading-none text-muted-foreground text-center">
-          Tracking completed FPS only
+          {t("footerDescription")}
         </div>
       </CardFooter>
     </Card>

@@ -4,7 +4,7 @@ import CustomTabCard from "./CustomTabCard";
 
 const DefensiveActionsTab = () => {
   return (
-    <CustomTabCard title="Défensive Actions">
+    <CustomTabCard>
       <DefensiveActionsSection />
     </CustomTabCard>
   );

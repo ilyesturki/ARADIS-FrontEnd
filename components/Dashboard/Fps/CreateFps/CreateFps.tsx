@@ -40,6 +40,8 @@ const CreateFps = () => {
   const { currentStep, currentTab, validTabs, handleTabChange } =
     useCreateFps();
   return (
+    <>
+      <PageTitle title={t("pageTitle")} />
     <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
       <TabsList className="w-full h-auto flex flex-wrap">
         {tabs.map((e, i) => {
@@ -81,7 +83,7 @@ const CreateFps = () => {
       <TabsContent value="validation">
         <ValidationTab />
       </TabsContent>
-    </Tabs>
+    </Tabs></>
   );
 };
 

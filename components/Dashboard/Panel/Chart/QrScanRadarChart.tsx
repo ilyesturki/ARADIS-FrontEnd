@@ -23,6 +23,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 import axios from "@/utils/axios";
+import { useTranslations } from "next-intl";
 
 const data = [
   { month: "Jan", scanned: 0, unscanned: 0 },
@@ -44,6 +45,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function QrScanRadarChart() {
+  const t = useTranslations("FpssPanelPage.charts.qrScanInsights");
   const [chartData, setChartData] =
     useState<{ month: string; scanned: number; unscanned: number }[]>(data);
 
@@ -68,10 +70,10 @@ export default function QrScanRadarChart() {
     <Card>
       <CardHeader className="items-center pb-4 text-center">
         <CardTitle className="text-xl text-greenAccent-900">
-          QR Code Scanning Insights
+          {t("title")}
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
-          Scanned vs. unscanned QR trends
+          {t("description")}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -104,7 +106,7 @@ export default function QrScanRadarChart() {
       </CardContent>
       <CardFooter className="flex-col gap-2 pt-4 text-sm">
         <div className="leading-none text-muted-foreground">
-          Tracking QR scan completion rates
+          {t("footerDescription")}
         </div>
       </CardFooter>
     </Card>

@@ -3,7 +3,7 @@ import CustomTabCard from "./CustomTabCard";
 
 const ImmediateActionsTab = () => {
   return (
-    <CustomTabCard title="Immediate Actions">
+    <CustomTabCard>
       <ImmediateActionsSection />
     </CustomTabCard>
   );

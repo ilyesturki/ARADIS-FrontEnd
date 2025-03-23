@@ -1,14 +1,15 @@
+"use client";
 const CustomButtons = ({
   value,
   mainButtonOnCLick,
   secondaryButtonOnCLick,
-  mainButtonText,
+  mainButtonText ,
   secondaryButtonText,
 }: {
   value?: string;
   mainButtonOnCLick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   secondaryButtonOnCLick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  mainButtonText: string;
+  mainButtonText?: string;
   secondaryButtonText: string;
 }) => {
   return (
@@ -17,7 +18,7 @@ const CustomButtons = ({
         onClick={mainButtonOnCLick}
         className=" py-2 px-6 bg-greenAccent-900 rounded-md text-base font-medium text-white "
       >
-        {value || mainButtonText}
+        {value || mainButtonText || "save"}
       </button>
       <button
         onClick={secondaryButtonOnCLick}

@@ -2,8 +2,7 @@
 
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Table } from "@tanstack/react-table";
-
-// import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -17,8 +16,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export function DataTableViewOptions<TData>({
   table,
 }: {
-  table: Table<TData>;
+  table: Table<TData>; 
 }) {
+  const t = useTranslations("DataTable");
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,11 +28,11 @@ export function DataTableViewOptions<TData>({
         "
         >
           <FontAwesomeIcon icon={faSliders} className="mr-2 h-4 w-4 text-sm" />
-          View
+          {t("view")}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("toggleColumns")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()

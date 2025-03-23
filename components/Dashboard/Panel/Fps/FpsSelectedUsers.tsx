@@ -6,6 +6,7 @@ import axios from "@/utils/axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAppSelector } from "@/redux/hooks";
+import { useTranslations } from "next-intl";
 
 const FpsSelectedUsers = ({
   title,
@@ -14,6 +15,7 @@ const FpsSelectedUsers = ({
   title?: string;
   isSelectPageSizes?: boolean;
 }) => {
+  const t = useTranslations("FpssPanelPage.FpsPanel.FpsSelectedUsers");
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   const [users, setUsers] = useState<any[]>([]); // Ensure type consistency
 
@@ -35,7 +37,7 @@ const FpsSelectedUsers = ({
 
   return (
     <DataTable
-      columns={columns}
+      columns={columns(t)}
       data={users}
       title={title}
       isSelectPageSizes={isSelectPageSizes}

@@ -89,7 +89,139 @@
     "mainButton": "Save",
     "secondaryButton": "Reset"
   },
+  "DataTable": {
+    "openMenu": "Open menu",
+    "actions": "Actions",
+    "copyId": "Copy {label} ID",
+    "edit": "Edit {label}",
+    "show": "Show {label}",
+    "rowsSelected": "{selected} of {total} row(s) selected.",
+    "rowsPerPage": "Rows per page",
+    "pageInfo": "Page {current} of {total}",
+    "view": "View",
+    "toggleColumns": "Toggle columns",
+    "searchPlaceholder": "Search customers...",
+    "noResults": "No results."
+  },
+  "CustomDialog": {
+    "title": "Sure you want to delete this {label}?",
+    "description": "This action cannot be undone. This will permanently delete the {label} and remove it's data from the servers.",
+    "buttons": {
+      "delete": "Delete",
+      "cancel": "Cancel"
+    }
+  },
   "UsersPanelPage": {
-    "pageTitle": "Users Dashboard"
+    "pageTitle": "Users Dashboard",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "entityName": "user",
+    "entityLabel": "User",
+    "deleteUser": {
+      "label": "Delete User",
+      "loading": "Deleting account...",
+      "success": "Account deleted successfully.",
+      "error": "Could not delete account!"
+    }
+  },
+  "FpssPanelPage": {
+    "pageTitle": "Fpss Dashboard",
+    "charts": {
+      "fpsPerformance": {
+        "title": "FPS Performance Overview",
+        "description": "Tracking completed vs. failed FPS over time",
+        "timeRanges": {
+          "90d": "Last 3 months",
+          "30d": "Last 30 days",
+          "7d": "Last 7 days"
+        }
+      },
+      "fpsStatusOverview": {
+        "title": "FPS Status Overview",
+        "description": "Tracking FPS resolutions across different statuses"
+      },
+      "qrScanInsights": {
+        "title": "QR Code Scanning Insights",
+        "description": "Scanned vs. unscanned QR trends",
+        "footerDescription": "Tracking QR scan completion rates"
+      },
+      "completedFPS": {
+        "title": "Completed FPS Overview",
+        "description": "Monthly FPS completion trends",
+        "footerDescription": "Tracking completed FPS only"
+      },
+      "failedFPS": {
+        "title": "Failed FPS Overview",
+        "description": "Monthly failed FPS trends",
+        "footerDescription": "Tracking failed FPS only"
+      }
+    },
+    "columns": {
+      "image": "Image",
+      "type": "Type",
+      "currentStep": "Current Step",
+      "clientRisk": "Client Risk",
+      "when": "When",
+      "actions": "Actions"
+    },
+    "rows": {
+      "clientRisk": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "entityName": "fps",
+    "entityLabel": "Fps",
+    "deleteFps": {
+      "label": "Delete Fps",
+      "loading": "Deleting fps...",
+      "success": "fps deleted successfully.",
+      "error": "Could not delete fps!"
+    },
+    "FpsPanel": {
+      "status": {
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "failed": "Failed"
+      },
+      "charts": {
+        "qrScanStatistics": {
+          "title": "QR Code Scan Statistics",
+          "description": "Recent Activity Overview",
+          "footerDescription": "{scanned} users scanned, {unscanned} pending out of {total} total.",
+          "labels": {
+            "totalScans": "Total Scans",
+            "scanned": "Scanned",
+            "unscanned": "Unscanned"
+          }
+        }
+      },
+      "FpsSelectedUsers": {
+        "tableTitle": "selected users",
+        "columns": {
+          "name": "Name",
+          "email": "Email",
+          "scanStatus": "Scan Status",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "rows": {
+          "scanStatus": {
+            "scanned": "Scanned",
+            "unscanned": "Unscanned"
+          }
+        },
+        "entityName": "user",
+        "entityLabel": "User"
+      }
+    }
+  },
+  "CreateFps":{
+    "pageTitle":"Manage FPS"
   }
 }

@@ -3,7 +3,7 @@ import CustomTabCard from "./CustomTabCard";
 
 const CauseTab = () => {
   return (
-    <CustomTabCard title="Cause">
+    <CustomTabCard>
       <CauseSection />
     </CustomTabCard>
   );

@@ -9,6 +9,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { useTranslations } from "next-intl";
 
 const CustomDialog = ({
   label,
@@ -23,22 +24,22 @@ const CustomDialog = ({
   handelDelete: () => void;
   isLoading?: boolean;
 }) => {
+  const t = useTranslations("CustomDialog");
   return (
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
       <DialogTrigger
         onClick={() => setIsOpen(true)}
         className="font-semibold text-error"
       >
-        Delete {label}
+        {label}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className=" py-2 text-lg capitalize text-error">
-            sure you want to delete this {label} ?
+          <DialogTitle className=" py-2 text-lg text-error">
+            {t("title", { label })}
           </DialogTitle>
           <DialogDescription className="text-sm font-medium text-grayscale-500 leading-loose">
-            This action cannot be undone. This will permanently delete the
-            {label} and remove it&lsquo;s data from the servers.
+            {t("description", { label })}
           </DialogDescription>
         </DialogHeader>
 
@@ -49,7 +50,7 @@ const CustomDialog = ({
             disabled={isLoading}
             className="bg-error text-grayscale-100 shadow-[0_0_2px] shadow-grayscale-500"
           >
-            Delete
+            {t("buttons.delete")}
           </Button>
           <DialogClose>
             <Button
@@ -58,7 +59,7 @@ const CustomDialog = ({
               disabled={isLoading}
               className="shadow-[0_0_2px] shadow-grayscale-500"
             >
-              Cancel
+              {t("buttons.cancel")}
             </Button>
           </DialogClose>
         </DialogFooter>

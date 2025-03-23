@@ -2,6 +2,8 @@ import { ColumnDef, Table } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 
+import { useTranslations } from "next-intl";
+
 const DataTableBody = <TData, TValue>({
   table,
   columns,
@@ -9,6 +11,7 @@ const DataTableBody = <TData, TValue>({
   table: Table<TData>;
   columns: ColumnDef<TData, TValue>[];
 }) => {
+  const t = useTranslations("DataTable");
   return (
     <TableBody>
       {table.getRowModel().rows?.length ? (
@@ -24,7 +27,7 @@ const DataTableBody = <TData, TValue>({
       ) : (
         <TableRow>
           <TableCell colSpan={columns.length} className="h-24 text-center">
-            No results.
+            {t("noResults")}
           </TableCell>
         </TableRow>
       )}

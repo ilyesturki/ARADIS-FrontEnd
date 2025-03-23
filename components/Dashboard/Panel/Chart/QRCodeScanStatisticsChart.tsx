@@ -23,6 +23,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import axios from "@/utils/axios";
 import { useAppSelector } from "@/redux/hooks";
+import { useTranslations } from "next-intl";
 
 const chartConfig: ChartConfig = {
   scans: { label: "Total Scans" },
@@ -31,6 +32,7 @@ const chartConfig: ChartConfig = {
 };
 
 export default function QRCodeScanStatisticsChart() {
+  const t = useTranslations("FpssPanelPage.FpsPanel.charts.qrScanStatistics");
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   const [chartData, setChartData] = useState({
     total: 0,
@@ -68,11 +70,11 @@ export default function QRCodeScanStatisticsChart() {
   return (
     <Card className="max-sm:order-1 max-lg:-order-1 flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-[16px] text-greenAccent-900">
-          QR Code Scan Statistics
+        <CardTitle className="text-[15px] text-greenAccent-900">
+          {t("title")}
         </CardTitle>
-        <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
-          Recent Activity Overview
+        <CardDescription className="text-[11px] font-semibold text-grayscale-500 text-opacity-50">
+          {t("description")}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -88,12 +90,12 @@ export default function QRCodeScanStatisticsChart() {
             <Pie
               data={[
                 {
-                  title: "Scanned",
+                  title: t("labels.scanned"),
                   scanCount: chartData.scanned,
                   fill: "var(--color-scanned)",
                 },
                 {
-                  title: "Unscanned",
+                  title: t("labels.unscanned"),
                   scanCount: chartData.unscanned,
                   fill: "var(--color-unscanned)",
                 },
@@ -125,7 +127,7 @@ export default function QRCodeScanStatisticsChart() {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-grayscale-500 font-medium"
                         >
-                          Scanned
+                          {t("labels.scanned")}
                         </tspan>
                       </text>
                     );
@@ -138,8 +140,11 @@ export default function QRCodeScanStatisticsChart() {
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full text-center leading-relaxed text-sm font-medium text-grayscale-500">
-          {chartData.scanned} users scanned, {chartData.unscanned} pending{" "}
-          <br /> out of {chartData.total} total.
+          {t("footerDescription", {
+            scanned: chartData.scanned,
+            unscanned: chartData.unscanned,
+            total: chartData.total,
+          })}
         </div>
       </CardFooter>
     </Card>

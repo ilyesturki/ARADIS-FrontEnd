@@ -20,7 +20,9 @@ export type FpsSelectedUsersColumn = {
   email: string;
 };
 
-export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
+export const columns = (
+  t: (key: string) => string
+): ColumnDef<FpsSelectedUsersColumn>[] => [
   {
     accessorKey: "select",
     id: "select",
@@ -33,7 +35,7 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
       <DataTableColumnHeader
         className="pl-[70px]"
         column={column}
-        title="Name"
+        title={t("columns.name")}
         options={{ hide: true }}
       />
     ),
@@ -45,7 +47,7 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
       <DataTableColumnHeader
         // className="flex justify-center"
         column={column}
-        title="Email"
+        title={t("columns.email")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -56,7 +58,7 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Status"
+        title={t("columns.scanStatus")}
         options={{ up: true, down: true, hide: true }}
         // className="justify-center"
       />
@@ -68,14 +70,17 @@ export const columns: ColumnDef<FpsSelectedUsersColumn>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Actions"
+        title={t("columns.actions")}
         options={{ hide: true }}
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<FpsSelectedUsersColumn> row={row} label={"user"}>
-        <DeleteUserDialog id={row.original.id} />
-      </DataTableRowMenu>
+      <DataTableRowMenu<FpsSelectedUsersColumn>
+        row={row}
+        entityName={t("entityName")}
+        entityLabel={t("entityLabel")}
+        viewOnly={true}
+      ></DataTableRowMenu>
     ),
   },
 ];

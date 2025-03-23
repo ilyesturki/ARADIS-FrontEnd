@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useState, useTransition, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import Image from "next/image";
@@ -30,11 +30,21 @@ export default function LocaleSwitcherSelect({
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const searchParams = useSearchParams();
+
   function handleSelect(locale: SupportedLocale) {
     setSelectedLocale(locale);
     setIsOpen(false);
+    // startTransition(() => {
+    //   router.replace({ pathname, ...params }, { locale });
+    // });
+    const query: Record<string, string> = {};
+    searchParams.forEach((value, key) => {
+      query[key] = value;
+    });
+
     startTransition(() => {
-      router.replace({ pathname, ...params }, { locale });
+      router.replace({ pathname, query, ...params }, { locale });
     });
   }
 
@@ -61,7 +71,7 @@ export default function LocaleSwitcherSelect({
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border rounded-md"
       >
-        <Image 
+        <Image
           src={localeData[selectedLocale].flag}
           alt={selectedLocale}
           width={24}

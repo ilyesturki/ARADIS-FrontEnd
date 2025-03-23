@@ -22,6 +22,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 import axios from "@/utils/axios";
+import { useTranslations } from "next-intl";
 
 // const data = [
 //   { status: "Completed", count: 155, fill: "hsl(var(--chart-5))" },
@@ -45,6 +46,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function FPSStatusChart() {
+  const t = useTranslations("FpssPanelPage.charts.fpsStatusOverview");
   const [chartData, setChartData] = useState({
     inProgress: 0,
     completed: 0,
@@ -77,10 +79,10 @@ export default function FPSStatusChart() {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0 text-center">
         <CardTitle className="text-xl text-greenAccent-900">
-          FPS Status Overview
+        {t("title")}
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
-          Tracking FPS resolutions
+        {t("description")}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">

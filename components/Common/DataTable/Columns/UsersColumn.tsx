@@ -20,7 +20,7 @@ export type Users = {
   status: "pending" | "active" | "inactive";
 };
 
-export const columns: ColumnDef<Users>[] = [
+export const columns = (t: (key: string) => string): ColumnDef<Users>[] => [
   {
     accessorKey: "select",
     id: "select",
@@ -31,9 +31,9 @@ export const columns: ColumnDef<Users>[] = [
     accessorKey: "firstName",
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="flex justify-center"
+        className="flex justify-center pl-8"
         column={column}
-        title="Name"
+        title={t("columns.name")}
         options={{ hide: true }}
       />
     ),
@@ -44,7 +44,7 @@ export const columns: ColumnDef<Users>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Email"
+        title={t("columns.email")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -54,7 +54,7 @@ export const columns: ColumnDef<Users>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Phone"
+        title={t("columns.phone")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Users>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Status"
+        title={t("columns.status")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -74,12 +74,16 @@ export const columns: ColumnDef<Users>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Actions"
+        title={t("columns.actions")}
         options={{ hide: true }}
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<Users> row={row} label={"user"}>
+      <DataTableRowMenu<Users>
+        row={row}
+        entityName={t("entityName")}
+        entityLabel={t("entityLabel")}
+      >
         <DeleteUserDialog id={row.original.id} />
       </DataTableRowMenu>
     ),

@@ -3,9 +3,11 @@ import CreateFps from "@/components/Dashboard/Fps/CreateFps/CreateFps";
 import { Separator } from "@/components/ui/separator";
 import { useAppSelector } from "@/redux/hooks";
 import { LogOut } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const ShowFpsHeader = () => {
+  const t = useTranslations("FpssPanelPage.FpsPanel.status");
   const fps = useAppSelector((state) => state.fpss.fps);
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
   console.log(fps);
@@ -37,7 +39,11 @@ const ShowFpsHeader = () => {
         }`}
       >
         <span className="text-[7px] sm:text-[10px] font-medium sm:font-bold uppercase text-grayscale-100">
-          {fps?.status === "inProgress" ? "In Progress" : fps?.status}
+          {fps?.status === "completed"
+            ? t("completed")
+            : fps?.status === "failed"
+            ? t("failed")
+            : t("inProgress")}
         </span>
       </div>
     </div>

@@ -1,10 +1,4 @@
-const CustomTabCard = ({
-  title,
-  children,
-}: {
-  title: string;
-  children?: React.ReactNode;
-}) => {
+const CustomTabCard = ({ children }: { children?: React.ReactNode }) => {
   return <div className="py-4">{children}</div>;
 };
 

@@ -89,5 +89,137 @@
     "imagePlaceholder": "Déposez votre image ici, ou parcourez",
     "mainButton": "Enregistrer",
     "secondaryButton": "Réinitialiser"
+  },
+  "DataTable": {
+    "openMenu": "Ouvrir le menu",
+    "actions": "Actions",
+    "copyId": "Copier l'ID de {label}",
+    "edit": "Modifier l'\u200B{label}",
+    "show": "Afficher l'\u200B{label}",
+    "rowsSelected": "{selected} sur {total} ligne(s) sélectionnée(s).",
+    "rowsPerPage": "Lignes par page",
+    "pageInfo": "Page {current} sur {total}",
+    "view": "Vue",
+    "toggleColumns": "Afficher / Masquer les colonnes",
+    "searchPlaceholder": "Rechercher des clients...",
+    "noResults": "Aucun résultat."
+  },
+  "CustomDialog": {
+    "title": "Êtes-vous sûr de vouloir supprimer ce {label} ?",
+    "description": "Cette action est irréversible. Cela supprimera définitivement le {label} et supprimera ses données des serveurs.",
+    "buttons": {
+      "delete": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "UsersPanelPage": {
+    "pageTitle": "Tableau de bord des utilisateurs",
+    "columns": {
+      "name": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "entityName": "user",
+    "entityLabel": "Utilisateur",
+    "deleteUser": {
+      "label": "Supprimer l'utilisateur",
+      "loading": "Suppression du compte...",
+      "success": "Compte supprimé avec succès.",
+      "error": "Impossible de supprimer le compte !"
+    }
+  },
+  "FpssPanelPage": {
+    "pageTitle": "Tableau de bord Fpss",
+    "charts": {
+      "fpsPerformance": {
+        "title": "Aperçu des performances FPS",
+        "description": "Suivi des FPS réussis et échoués au fil du temps",
+        "timeRanges": {
+          "90d": "Les 3 derniers mois",
+          "30d": "Les 30 derniers jours",
+          "7d": "Les 7 derniers jours"
+        }
+      },
+      "fpsStatusOverview": {
+        "title": "Aperçu du statut des FPS",
+        "description": "Suivi des résolutions FPS selon les statuts"
+      },
+      "qrScanInsights": {
+        "title": "Aperçu des scans de QR",
+        "description": "Tendances des QR scannés et non scannés",
+        "footerDescription": "Suivi et analyse des scans QR"
+      },
+      "completedFPS": {
+        "title": "Aperçu des FPS complétés",
+        "description": "Tendances mensuelles des FPS complétés",
+        "footerDescription": "Suivi uniquement des FPS complétés"
+      },
+      "failedFPS": {
+        "title": "Aperçu des FPS échoués",
+        "description": "Tendances mensuelles des FPS échoués",
+        "footerDescription": "Suivi uniquement des FPS échoués"
+      }
+    },
+    "columns": {
+      "image": "Image",
+      "type": "Type",
+      "currentStep": "Étape actuelle",
+      "clientRisk": "Risque client",
+      "when": "Quand",
+      "actions": "Actions"
+    },
+    "rows": {
+      "clientRisk": {
+        "yes": "Oui",
+        "no": "Non"
+      }
+    },
+    "entityName": "fps",
+    "entityLabel": "FPS",
+    "deleteFps": {
+      "label": "Supprimer FPS",
+      "loading": "Suppression de FPS...",
+      "success": "FPS supprimé avec succès.",
+      "error": "Impossible de supprimer FPS !"
+    },
+    "FpsPanel": {
+      "status": {
+        "inProgress": "En cours",
+        "completed": "Complété",
+        "failed": "Échoué"
+      },
+      "charts": {
+        "qrScanStatistics": {
+          "title": "Statistiques de scan du QR Code",
+          "description": "Aperçu de l'activité récente",
+          "footerDescription": "{scanned} utilisateurs scannés, {unscanned} en attente sur un total de {total}.",
+          "labels": {
+            "totalScans": "Scans totaux",
+            "scanned": "Scanné",
+            "unscanned": "Non scanné"
+          }
+        }
+      },
+      "FpsSelectedUsers": {
+        "tableTitle": "Utilisateurs sélectionnés",
+        "columns": {
+          "name": "Nom",
+          "email": "Email",
+          "scanStatus": "Statut du scan",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "rows": {
+          "scanStatus": {
+            "scanned": "Scanné",
+            "unscanned": "Non scanné"
+          }
+        },
+        "entityName": "user",
+        "entityLabel": "Utilisateur"
+      }
+    }
   }
 }

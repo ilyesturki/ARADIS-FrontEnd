@@ -12,6 +12,7 @@ import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 import ClientRiskColumn from "./CustomTableColumns/ClientRiskColumn";
 import FpsDateColumn from "./CustomTableColumns/FpsDateColumn";
 import ImageAndTitleColumn from "./CustomTableColumns/ImageAndTitleColumn";
+import DeleteFpsDialog from "../../Dialog/DeleteFpsDialog";
 export type Fpss = {
   id: string;
   fpsId: string;
@@ -23,11 +24,11 @@ export type Fpss = {
     image?: string;
   };
 };
-
-export const columns: ColumnDef<Fpss>[] = [
+ 
+export const columns = (t: (key: string) => string): ColumnDef<Fpss>[] => [
   {
-    accessorKey: "select",
-    id: "select",
+    accessorKey: "fpsId",
+    id: "fpsId",
     header: ({ table }) => <DataTableHeaderCheckBox table={table} />,
     cell: ({ row }) => <DataTableContentCheckBox row={row} />,
   },
@@ -37,7 +38,7 @@ export const columns: ColumnDef<Fpss>[] = [
       <DataTableColumnHeader
         className="flex justify-center"
         column={column}
-        title="Type"
+        title={t("columns.type")}
         options={{ hide: true }}
       />
     ),
@@ -48,7 +49,7 @@ export const columns: ColumnDef<Fpss>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="currentStep"
+        title={t("columns.currentStep")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -59,7 +60,7 @@ export const columns: ColumnDef<Fpss>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="clientRisk"
+        title={t("columns.clientRisk")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -70,7 +71,7 @@ export const columns: ColumnDef<Fpss>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Quand"
+        title={t("columns.when")}
         options={{ up: true, down: true, hide: true }}
       />
     ),
@@ -81,13 +82,18 @@ export const columns: ColumnDef<Fpss>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Actions"
+        title={t("columns.actions")}
         options={{ hide: true }}
       />
     ),
     cell: ({ row }) => (
-      <DataTableRowMenu<Fpss> row={row} label={"fps"} id={row.original.fpsId}>
-        <DeleteUserDialog id={row.original.fpsId} />
+      <DataTableRowMenu<Fpss>
+        row={row}
+        entityName={t("entityName")}
+        entityLabel={t("entityLabel")}
+        id={row.original.fpsId}
+      >
+        <DeleteFpsDialog id={row.original.fpsId} />
       </DataTableRowMenu>
     ),
   },

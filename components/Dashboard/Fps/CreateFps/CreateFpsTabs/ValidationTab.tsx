@@ -3,7 +3,7 @@ import CustomTabCard from "./CustomTabCard";
 
 const ValidationTab = () => {
   return (
-    <CustomTabCard title="Validation">
+    <CustomTabCard>
       <ValidationSection />
     </CustomTabCard>
   );

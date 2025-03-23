@@ -29,6 +29,7 @@ import {
 import axios from "@/utils/axios";
 
 import { subDays, format, addDays } from "date-fns"; // Add date-fns
+import { useTranslations } from "next-intl";
 
 const chartConfig: ChartConfig = {
   completed: {
@@ -46,6 +47,7 @@ export default function FPSPerformanceChart({
 }: {
   className?: string;
 }) {
+  const t = useTranslations("FpssPanelPage.charts.fpsPerformance");
   const [timeRange, setTimeRange] = React.useState("90d");
   const [chartData, setChartData] = React.useState<
     { date: string; completed: number; failed: number }[]
@@ -71,10 +73,10 @@ export default function FPSPerformanceChart({
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle className="text-lg text-greenAccent-900">
-            FPS Performance Overview
+            {t("title")}
           </CardTitle>
           <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-60">
-            Tracking completed vs. failed FPS over time
+            {t("description")}
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -86,13 +88,13 @@ export default function FPSPerformanceChart({
           </SelectTrigger>
           <SelectContent className="rounded-xl">
             <SelectItem value="90d" className="rounded-lg">
-              Last 3 months
+              {t("timeRanges.90d")}
             </SelectItem>
             <SelectItem value="30d" className="rounded-lg">
-              Last 30 days
+              {t("timeRanges.30d")}
             </SelectItem>
             <SelectItem value="7d" className="rounded-lg">
-              Last 7 days
+              {t("timeRanges.7d")}
             </SelectItem>
           </SelectContent>
         </Select>
