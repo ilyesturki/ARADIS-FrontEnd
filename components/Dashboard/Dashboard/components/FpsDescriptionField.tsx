@@ -9,7 +9,7 @@ const FpsDescriptionField = ({
 }) => {
   return (
     <div className="flex flex-wrap items-center">
-      <span className="mr-2 text-sm font-semibold text-greenAccent-900 text-opacity-90">
+      <span className="mr-2 text-sm font-semibold text-greenAccent-900 text-opacity-80">
         {title}
       </span>
       {children && children}

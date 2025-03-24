@@ -34,6 +34,12 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
+    // {
+    //   allowedTo: ["user"],
+    //   title: "Dashboard",
+    //   url: "/dashboard",
+    //   icon: SquareTerminal,
+    // },
     {
       allowedTo: ["admin", "manager"],
       title: "Panel",

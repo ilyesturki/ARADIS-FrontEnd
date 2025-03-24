@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Fps from "./components/Fps";
 import PageTitle from "@/components/Common/PageTitle";
 import { useTranslations } from "next-intl";
-import { fetchMyFpss } from "@/utils/Api/fpsApi";
+import { fetchMyHelperFpss } from "@/utils/Api/fpsApi";
 import { FpsType } from "@/redux/fps/fpsSlice";
 
 const Dashboard = () => {
@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadFpss = async () => {
-      const fpss = await fetchMyFpss();
+      const fpss = await fetchMyHelperFpss();
       console.log(fpss);
       setFpss(fpss);
     };

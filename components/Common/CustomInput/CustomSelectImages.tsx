@@ -11,16 +11,18 @@ const CustomSelectImages = ({
   handleImageChange,
   handleDeleteImages,
   disabled,
+  viewOnly,
 }: {
   label: string;
   imageCover: string;
   images: string[];
-  handleImageChange: (
+  handleImageChange?: (
     e: React.ChangeEvent<HTMLInputElement>,
     index?: number
   ) => void;
   handleDeleteImages?: (i?: number) => void;
   disabled?: boolean;
+  viewOnly?: boolean;
 }) => {
   return (
     <div className="w-full flex gap-4 items-center">
@@ -30,13 +32,19 @@ const CustomSelectImages = ({
         </span>
 
         <div className="w-full grid gap-3">
-          <div className="relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm">
+          <div
+            className={`relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 ${
+              viewOnly
+                ? "border"
+                : "border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500"
+            } rounded-sm`}
+          >
             <input
               type="file"
               className={`absolute w-full h-full z-10 opacity-0 ${
-                disabled ? "cursor-not-allowed" : "cursor-pointer"
+                disabled && !viewOnly ? "cursor-not-allowed" : "cursor-pointer"
               }`}
-              onChange={(e) => handleImageChange(e)}
+              onChange={(e) => handleImageChange?.(e)}
               disabled={disabled}
             />
             {imageCover ? (
@@ -56,9 +64,11 @@ const CustomSelectImages = ({
                   icon={faImage}
                   className="text-5xl text-grayscale-500 opacity-50"
                 />
-                <p className="text-sm font-medium text-grayscale-500 opacity-50">
-                  Drop your image here, or browse
-                </p>
+                {!viewOnly && (
+                  <p className="text-sm font-medium text-grayscale-500 opacity-50">
+                    Drop your image here, or browse
+                  </p>
+                )}
               </>
             )}
           </div>
@@ -66,14 +76,20 @@ const CustomSelectImages = ({
             {new Array(5).fill("").map((_, i) => (
               <div
                 key={i}
-                className="relative flex justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500 rounded-sm"
+                className={`relative flex justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 ${
+                  viewOnly
+                    ? "border"
+                    : "border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500"
+                } rounded-sm`}
               >
                 <input
                   type="file"
                   className={`absolute w-full h-full z-10 opacity-0 ${
-                    disabled ? "cursor-not-allowed" : "cursor-pointer"
+                    disabled && !viewOnly
+                      ? "cursor-not-allowed"
+                      : "cursor-pointer"
                   }`}
-                  onChange={(e) => handleImageChange(e, i)}
+                  onChange={(e) => handleImageChange?.(e, i)}
                   disabled={disabled}
                 />
                 {images[i] ? (

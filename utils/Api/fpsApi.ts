@@ -14,3 +14,10 @@ export const fetchFpss = async (options: string = "") => {
   const response = await axios.get(`${apiBaseUrl}/fps${options}`);
   return response.data.data;
 };
+
+export const fetchMyHelperFpss = async (options: string = "") => {
+  console.log(apiBaseUrl);
+  console.log(`${apiBaseUrl}/fps/helper/me${options}`);
+  const response = await axios.get(`${apiBaseUrl}/fps/helper/me${options}`);
+  return response.data.data;
+};
