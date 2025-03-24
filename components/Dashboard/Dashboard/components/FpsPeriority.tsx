@@ -2,7 +2,7 @@ import { GoAlertFill } from "react-icons/go";
 const FpsPeriority = ({ periority }: { periority: boolean }) => {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs font-medium text-neutral-500">Periority :</span>
+      <span className="text-sm font-medium text-neutral-500">Periority :</span>
       <div
         className={`flex items-center gap-1 px-1.5 py-1.5  ${
           periority ? "bg-redAccent-900" : "bg-blueAccent"

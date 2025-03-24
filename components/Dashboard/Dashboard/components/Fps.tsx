@@ -15,8 +15,22 @@ const Fps = ({ fps }: { fps: FpsType }) => {
         periority={fps.problem.clientRisk || fps.problem.type === "Securite"}
       />
       <hr className="border-neutral-200 my-3" />
-      <FpsProgress />
-      <FpsDescription />
+      <FpsProgress status={fps.status} />
+      <FpsDescription
+        currentStep={fps.currentStep}
+        ref={fps.problem.ref}
+        where={fps.problem.ou}
+        when={new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(fps.problem.quand))}
+        userImage={fps.user?.image}
+        fullName={`${fps.user?.firstName} ${fps.user?.lastName}`}
+        clientRisk={fps.problem.clientRisk?"True":"False"}
+      />
       <DetailsButton />
     </div>
   );

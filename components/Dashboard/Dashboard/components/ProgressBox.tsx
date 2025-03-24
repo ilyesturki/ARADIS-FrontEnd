@@ -1,16 +1,14 @@
-import React from "react";
+import { FaCheck } from "react-icons/fa";
 
 const ProgressBox = ({
   status,
-  children,
 }: {
-  status: "open" | "inProgress" | "resolved";
-  children: React.ReactNode;
+  status: "done" | "inProgress" | "notYet";
 }) => {
   return (
     <div
-      className={`w-8 h-8 flex justify-center items-center ${
-        status === "open"
+      className={`w-10 h-10 flex justify-center items-center ${
+        status === "done"
           ? "bg-greenAccent-800"
           : status === "inProgress"
           ? "border-2 border-greenAccent-800"
@@ -24,7 +22,13 @@ const ProgressBox = ({
             : "text-grayscale-100"
         }  font-bold`}
       >
-        {children}
+        {status === "inProgress" ? (
+          "2"
+        ) : status === "notYet" ? (
+          "3"
+        ) : (
+          <FaCheck />
+        )}
       </span>
     </div>
   );

@@ -15,6 +15,7 @@ import {
   updateFpsComment,
   deleteFpsComment,
 } from "./fpsThunk";
+import { UserType } from "../users/usersSlice";
 
 export type fpsProblemType = {
   type:
@@ -100,6 +101,7 @@ export interface FpsType {
   immediateActions?: fpsImmediateActionsType;
   status: "inProgress" | "completed" | "failed";
   comments: FpsCommentType[];
+  user?: UserType;
 }
 
 export type FpsTypeWithoutId = Omit<FpsType, "fpsId">;

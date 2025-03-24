@@ -11,9 +11,9 @@ const FpsHeader = ({
   periority: boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       <div className="flex justify-between items-center">
-        <span className="text-[11px] font-medium text-greenAccent-900">
+        <span className="text-xs font-medium text-greenAccent-900">
           {fpsId}
         </span>
         <FpsStatus type={type} />

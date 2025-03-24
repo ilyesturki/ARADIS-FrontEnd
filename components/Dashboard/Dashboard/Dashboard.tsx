@@ -21,12 +21,10 @@ const Dashboard = () => {
   return (
     <>
       <PageTitle title={t("pageTitle")} />
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
-        {
-          fpss.map((fps :FpsType) => (
-            <Fps key={fps.fpsId} fps={fps} />
-          ))
-        }
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
+        {fpss.map((fps: FpsType) => (
+          <Fps key={fps.fpsId} fps={fps} />
+        ))}
       </div>
     </>
   );
