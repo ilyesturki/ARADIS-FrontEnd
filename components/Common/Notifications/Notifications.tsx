@@ -94,10 +94,11 @@ const Notifications = () => {
       >
         <MdOutlineNotificationsActive className="text-xl text-gray-600 dark:text-gray-300" />
       </DialogTrigger>
-      <DialogContent className="  max-w-md max-h-screen pl-2 pr-0 pt-8 overflow-y-auto">
-        <span className="px-6 mb-4 text-xl font-semibold text-gray-600">
+      <DialogContent className="max-w-lg max-h-screen pl-2 pr-0 pt-6 overflow-y-auto dialogScroll">
+        <DialogHeader className="px-5 mb-3 text-2xl font-semibold text-grayscale-500 text-opacity-80">
           Notifications
-        </span>
+        </DialogHeader>
+
         {exampleNotifications.map((notif, i) => (
           <>
             <NotificationItem key={notif.id} notif={notif} />

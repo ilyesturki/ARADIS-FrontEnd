@@ -48,7 +48,7 @@ export default function NotificationItem({
         </div>
         <p className="text-sm text-neutral-700 mt-1.5">{notif.message}</p>
         <div className="flex justify-between items-center mt-2.5">
-          <small className="text-xs text-neutral-600">
+          <small className="text-xs text-neutral-500">
             {new Date(notif.timestamp).toLocaleString()}
           </small>
           <Link href={notif.actionLink}>

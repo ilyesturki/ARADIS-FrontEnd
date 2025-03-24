@@ -25,7 +25,7 @@ const FpsDetailsDialog = ({ fps }: { fps: FpsType }) => {
         View Details
         {/* </button> */}
       </DialogTrigger>
-      <DialogContent className="max-w-[700px] max-h-screen pt-8 overflow-y-auto">
+      <DialogContent className="max-w-[700px] max-h-screen pt-8 overflow-y-auto dialogScroll">
         <FpsDetails fps={fps} dialogMode={true} />
       </DialogContent>
     </Dialog>
