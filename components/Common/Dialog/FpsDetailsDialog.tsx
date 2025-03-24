@@ -19,7 +19,7 @@ const FpsDetailsDialog = ({ fps }: { fps: FpsType }) => {
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
       <DialogTrigger
         onClick={() => setIsOpen(true)}
-        className="w-full py-2.5 bg-greenAccent-800 text-base font-semibold text-grayscale-100 rounded-sm"
+        className="w-full py-2.5 bg-greenAccent-900 bg-opacity-80 text-base font-semibold text-grayscale-100 rounded-sm"
       >
         {/* <button className=""> */}
         View Details

@@ -31,6 +31,7 @@ import PageTitle from "@/components/Common/PageTitle";
 
 import LocaleSwitcher from "@/components/Common/LocaleSwitcher";
 import ThemeToggle from "@/components/Common/ThemeToggle/ThemeToggle";
+import Notifications from "@/components/Common/Notifications/Notifications";
 
 export default async function RootLayout({
   children,
@@ -53,7 +54,8 @@ export default async function RootLayout({
               <Separator orientation="vertical" className="mr-2 h-4" />
               <BreadCrumb />
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Notifications />
               <ThemeToggle />
               <LocaleSwitcher />
             </div>
