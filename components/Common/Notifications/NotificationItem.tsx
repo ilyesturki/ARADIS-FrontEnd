@@ -37,7 +37,7 @@ export default function NotificationItem({
           </Badge> */}
           <Badge
             variant={notif.priority === "High" ? "destructive" : "default"}
-            className={`px-2 py-[3px] text-xs  ${
+            className={`px-[7px] py-0.5 text-[11px]  ${
               notif.priority === "High"
                 ? "bg-redAccent-800"
                 : "bg-greenAccent-800"
@@ -54,7 +54,7 @@ export default function NotificationItem({
           <Link href={notif.actionLink}>
             <Button
               variant="link"
-              className="p-0 text-sm font-semibold text-greenAccent-900"
+              className="p-0 text-xs font-medium text-greenAccent-900"
             >
               View FPS
             </Button>
