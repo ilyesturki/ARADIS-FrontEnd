@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Bell } from "lucide-react";
 import Link from "next/link";
+
 interface FPSNotification {
   id: string;
   title: string;
@@ -21,27 +22,18 @@ export default function NotificationItem({
   notif: FPSNotification;
 }) {
   return (
-    <Card
-      className={`flex items-start pl-4 border-none ${
-        notif.status === "unread" ? "" : ""
-      }`}
-    >
-      <Bell className="text-greenAccent-900  mt-1" />
+    <Card className="flex items-start pl-4 border-none">
+      <Bell className="text-greenAccent-900 mt-1" />
       <CardContent className="flex-1 pb-0 pl-5">
         <div className="flex justify-between items-center">
           <h4 className="font-semibold text-greenAccent-900">{notif.title}</h4>
-          {/* <Badge
-            variant={notif.priority === "High" ? "destructive" : "secondary"}
-          >
-            {notif.priority}
-          </Badge> */}
           <Badge
             variant={notif.priority === "High" ? "destructive" : "default"}
-            className={`px-[7px] py-0.5 text-[11px]  ${
+            className={`px-[7px] py-0.5 text-[11px] ${
               notif.priority === "High"
-                ? "bg-redAccent-800"
+                ? "bg-redAccent-900"
                 : "bg-greenAccent-800"
-            } `}
+            }`}
           >
             {notif.priority}
           </Badge>
