@@ -7,16 +7,20 @@ export default function WebSocketComponent() {
   const [input, setInput] = useState("");
 
   const sendMessage = () => {
-    if (socket) {
-      socket.emit("clientMessage", input); // Send message to backend
-      setInput("");
+    if (!socket) {
+      console.warn("⚠️ Socket not connected yet!");
+      return;
     }
+
+    console.log(`📤 Sending: ${input}`);
+    socket.emit("clientMessage", input); // ✅ Ensured socket exists before emitting
+    setInput("");
   };
 
   return (
     <div className="p-4 border rounded-lg">
       <h2 className="text-lg font-bold">WebSocket Test</h2>
-      <p>Server says: {message}</p>
+      <p>Server says: {message || "Waiting for server response..."}</p>
       <input
         type="text"
         value={input}

@@ -2,20 +2,26 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = "http://localhost:3000"; // Update this for production
+// ✅ Fixed WebSocket URL (Removed :8000)
+const SOCKET_URL = "wss://aradis-backend.onrender.com"; // Use wss for secure WebSocket
 
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    const newSocket = io(SOCKET_URL); // Connect to the backend WebSocket server
+    const newSocket = io(SOCKET_URL, {
+      transports: ["websocket"], // Force WebSocket (avoid polling)
+    });
+
+    setSocket(newSocket); // ✅ Store socket in state
 
     newSocket.on("connect", () => {
       console.log("✅ Connected to WebSocket server");
     });
 
-    newSocket.on("message", (data: string) => {
+    // ✅ Updated event name to match the server
+    newSocket.on("serverMessage", (data: string) => {
       console.log("🔹 Server message:", data);
       setMessage(data);
     });
