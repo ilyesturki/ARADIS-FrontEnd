@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Bell } from "lucide-react";
 import Link from "next/link";
+import { markNotificationAsRead } from "@/utils/Api/fpsApi";
+import useNotifications from "./useNotifications";
 
 interface FPSNotification {
   id: string;
@@ -21,8 +23,31 @@ export default function NotificationItem({
 }: {
   notif: FPSNotification;
 }) {
+  const { notifications, setNotifications, setUnreadCount } =
+    useNotifications();
+
+  const handleMarkNotificationAsRead = async () => {
+    if (notif.status === "unread") {
+      await markNotificationAsRead(notif.id);
+
+      // ✅ Update UI immediately
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === notif.id ? { ...n, status: "read" } : n))
+      );
+
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+    }
+  };
+
   return (
-    <Card className="flex items-start pl-4 border-none">
+    <Card
+      onClick={handleMarkNotificationAsRead}
+      className={`flex items-start pl-4 rounded-md py-5 border-none ${
+        notif.status === "unread"
+          ? "bg-blueAccent bg-opacity-10 cursor-pointer"
+          : ""
+      }`}
+    >
       <Bell className="text-greenAccent-900 mt-1" />
       <CardContent className="flex-1 pb-0 pl-5">
         <div className="flex justify-between items-center">

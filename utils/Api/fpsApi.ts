@@ -21,3 +21,31 @@ export const fetchMyHelperFpss = async (options: string = "") => {
   const response = await axios.get(`${apiBaseUrl}/fps/helper/me${options}`);
   return response.data.data;
 };
+
+export const fetchNotifications = async (userId: string) => {
+  console.log(apiBaseUrl);
+  console.log(`${apiBaseUrl}/notifications/${userId}`);
+  const response = await axios.get(`${apiBaseUrl}/notifications/${userId}`);
+  console.log(response.data);
+  return response.data;
+};
+
+export const fetchNotificationsUnreadCount = async (userId: string) => {
+  console.log(apiBaseUrl);
+  console.log(`${apiBaseUrl}/notifications/${userId}`);
+  const response = await axios.get(
+    `${apiBaseUrl}/notifications/${userId}/unread-count`
+  );
+  console.log(response.data);
+  return response.data;
+};
+
+export const markNotificationAsRead = async (userId: string) => {
+  console.log(apiBaseUrl);
+  console.log(`${apiBaseUrl}/notifications/${userId}`);
+  const response = await axios.put(
+    `${apiBaseUrl}/notifications/${userId}/read`
+  );
+  console.log(response.data);
+  return response.data;
+};
