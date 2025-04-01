@@ -9,7 +9,7 @@ export interface FPSNotification {
   sender: string;
   fpsId: string;
   status: "unread" | "read";
-  timestamp: string;
+  formattedDate: string;
   priority: "High" | "Medium" | "Low";
   actionLink: string;
 }

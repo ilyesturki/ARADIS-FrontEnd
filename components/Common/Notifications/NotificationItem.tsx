@@ -13,7 +13,7 @@ interface FPSNotification {
   sender: string;
   fpsId: string;
   status: "unread" | "read";
-  timestamp: string; // ISO date string
+  formattedDate: string; // ISO date string
   priority: "High" | "Medium" | "Low";
   actionLink: string; // Direct link to FPS details
 }
@@ -66,7 +66,7 @@ export default function NotificationItem({
         <p className="text-sm text-neutral-700 mt-1.5">{notif.message}</p>
         <div className="flex justify-between items-center mt-2.5">
           <small className="text-xs text-neutral-500">
-            {new Date(notif.timestamp).toLocaleString()}
+            {new Date(notif.formattedDate).toLocaleString()}
           </small>
           <Link href={notif.actionLink}>
             <Button

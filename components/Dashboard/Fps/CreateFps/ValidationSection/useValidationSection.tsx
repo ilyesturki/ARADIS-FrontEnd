@@ -85,6 +85,9 @@ const useValidationSection = () => {
   }, [fps]);
 
   const handleStatusChange = () => {
+    console.log("fpsCompleted");
+    console.log(fpsCompleted);
+    console.log("fpsCompleted");
     setFpsData((prevData) => ({
       ...prevData,
       status: fpsCompleted ? "completed" : "failed",

@@ -405,5 +405,8 @@
         "secondaryButtonText": "Réinitialiser"
       }
     }
+  },
+  "DashboardPage": {
+    "pageTitle": "Tableau de bord"
   }
 }
