@@ -92,6 +92,7 @@ const useValidationSection = () => {
       ...prevData,
       status: fpsCompleted ? "completed" : "failed",
     }));
+    console.log(fpsData)
     setFpsCompleted(!fpsCompleted);
   };
 

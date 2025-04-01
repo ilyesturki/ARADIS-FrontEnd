@@ -68,17 +68,35 @@ export function NavMain({
                     tooltip={item.title}
                     className="!h-10 text-base text-grayscale-100 hover:!text-grayscale-500"
                   >
-                    {item.icon && (
-                      <item.icon
-                        className={`!size-[18px] ${
-                          item.items?.some(
-                            (item) => item.url === currentPath
-                          ) && "text-greenAccent-700"
-                        }`}
-                      />
+                    {item.items ? (
+                      <>
+                        {item.icon && (
+                          <item.icon
+                            className={`!size-[18px] ${
+                              item.items?.some(
+                                (item) => item.url === currentPath
+                              ) && "text-greenAccent-700"
+                            }`}
+                          />
+                        )}
+                        <span className="pt-0.5">{item.title}</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                      </>
+                    ) : (
+                      <Link
+                        href={item.url}
+                        className="flex items-center gap-2.5"
+                      >
+                        {item.icon && (
+                          <item.icon
+                            className={`!size-[18px] ${
+                              item.url === currentPath && "text-greenAccent-700"
+                            }`}
+                          />
+                        )}
+                        <span>{item.title}</span>
+                      </Link>
                     )}
-                    <span className="pt-0.5">{item.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>

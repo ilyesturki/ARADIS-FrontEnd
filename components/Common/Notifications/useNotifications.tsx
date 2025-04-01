@@ -58,7 +58,7 @@ export default function useNotifications() {
       newSocket.disconnect();
     };
   }, [session?.user?.id]);
-
+  console.log(notifications);
   return { notifications, unreadCount, setNotifications, setUnreadCount };
 }
 

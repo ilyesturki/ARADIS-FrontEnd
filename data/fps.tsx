@@ -12,38 +12,38 @@ export const problemTypesData = [
     value: "Securite",
     label: "Securite",
     textColor: "text-red-500",
-    className: "bg-red-500 shadow-red-500 bg-opacity-10",
+    className: "bg-red-500 shadow-red-500 !bg-opacity-10",
   },
   {
     value: "Environnement",
     label: "Environnement",
     textColor: "text-greenAccent-600",
-    className: "shadow-greenAccent-600 bg-greenAccent-600 bg-opacity-10",
+    className: "shadow-greenAccent-600 bg-greenAccent-600 !bg-opacity-10",
   },
   {
     value: "Qualite",
     label: "Qualite",
     textColor: "text-pinkAccent",
-    className: "shadow-pinkAccent bg-pinkAccent bg-opacity-10",
+    className: "shadow-pinkAccent bg-pinkAccent !bg-opacity-10",
   },
 
   {
     value: "TRS/Efficience",
     label: "TRS/Efficience",
     textColor: "text-greenAccent-500",
-    className: "shadow-greenAccent-500 bg-greenAccent-500 bg-opacity-10",
+    className: "shadow-greenAccent-500 bg-greenAccent-500 !bg-opacity-10",
   },
   {
     value: "Maintenence",
     label: "Maintenence",
     textColor: "text-red-500",
-    className: "shadow-red-500 bg-red-500 bg-opacity-10",
+    className: "shadow-red-500 bg-red-500 !bg-opacity-10",
   },
   {
     value: "Autre",
     label: "Autre",
     textColor: "text-red-500",
-    className: "shadow-red-500 bg-red-500 bg-opacity-10",
+    className: "shadow-red-500 bg-red-500 !bg-opacity-10",
   },
 ];
 
@@ -159,5 +159,5 @@ export const initialFpsDefensiveActions: fpsDefensiveActionsType = [
 ];
 
 export const initialFpsValidation: flexibleFpsType = {
-  status: "inProgress",
+  status: "failed",
 };

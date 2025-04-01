@@ -29,9 +29,9 @@ const CustomSelect = <T,>({
   return (
     <div className=" flex gap-4 items-center">
       <div
-        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 border rounded-md ${className} ${
-          disabled ? "cursor-not-allowed" : ""
-        }`}
+        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 border rounded-md ${
+          disabled ? "bg-opacity-50 cursor-not-allowed" : ""
+        } ${className}`}
       >
         <span
           className={`text-[10px] font-semibold capitalize text-greenAccent-900 ${textColor}`}

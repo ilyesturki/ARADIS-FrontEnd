@@ -26,7 +26,9 @@ const CustomPicker = ({
   console.log(data);
 
   return (
-    <div className="w-full px-4 bg-grayscale-100 border rounded-md">
+    <div className={`w-full px-4 bg-grayscale-100 border rounded-md ${
+      disabled && "bg-opacity-50"
+    }`}>
       <span className=" w-full text-[10px] font-semibold text-greenAccent-900 capitalize ">
         {label}
       </span>

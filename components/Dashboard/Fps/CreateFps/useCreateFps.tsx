@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter} from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { getFps } from "@/redux/fps/fpsThunk";
 import { resetFps } from "@/redux/fps/fpsSlice";
@@ -204,18 +204,14 @@ const useCreateFps = () => {
 
     if ((currentIndex === 0 || currentIndex === 4) && targetIndex === 2) {
       if (validateTab()) {
-        console.log("pass 1");
         if (validateTab("immediateActions")) {
-          console.log("pass 3");
           setValidTabs(["problem", "immediateActions"]);
           setCurrentTab("cause");
         } else {
-          console.log("pass 4");
           setValidTabs(["problem"]);
           setCurrentTab("immediateActions");
         }
       } else {
-        console.log("pass 2");
         setValidTabs([]);
         setCurrentTab("problem");
       }
@@ -267,6 +263,13 @@ const useCreateFps = () => {
       if (validateTab()) {
         setValidTabs([...validTabs, currentTab]);
         setCurrentTab(value);
+      }
+    } else if (currentIndex === 0 && targetIndex === 4) {
+      if (validateTab()) {
+        setCurrentTab("validation");
+      } else {
+        setValidTabs([]);
+        setCurrentTab("problem");
       }
     } else {
       setCurrentTab(value);

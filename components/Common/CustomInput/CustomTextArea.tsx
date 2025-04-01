@@ -18,7 +18,11 @@ const CustomTextArea = ({
 }) => {
   return (
     <div className=" flex gap-4 items-center">
-      <div className="w-full pl-4 pr-2 bg-grayscale-100 border rounded-md">
+      <div
+        className={`w-full px-4 bg-grayscale-100 border rounded-md ${
+          disabled && "bg-opacity-50"
+        }`}
+      >
         <span className="text-[10px] font-semibold text-greenAccent-900 capitalize ">
           {label}
         </span>

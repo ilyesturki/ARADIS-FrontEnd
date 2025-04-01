@@ -23,7 +23,11 @@ const CustomInput = ({
 }) => {
   return (
     <div className=" w-full flex gap-4 items-center">
-      <div className=" w-full px-4 bg-grayscale-100 border rounded-md">
+      <div
+        className={`w-full px-4 bg-grayscale-100 border rounded-md ${
+          disabled && "bg-opacity-50"
+        }`}
+      >
         <span className=" w-full text-[10px] font-semibold text-greenAccent-900 capitalize ">
           {label}
           {copy && <CopyButton data={value || ""} />}
@@ -40,7 +44,7 @@ const CustomInput = ({
           onChange={onChange}
           disabled={disabled}
           className={` w-full py-2 bg-transparent  text-sm font-medium text-grayscale-600 placeholder-greenAccent-900 placeholder-opacity-70 outline-none ${
-            disabled && " text-opacity-50"
+            disabled && "text-opacity-50"
           }`}
         />
       </div>

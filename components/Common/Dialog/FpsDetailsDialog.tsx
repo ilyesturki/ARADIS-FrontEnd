@@ -11,12 +11,31 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { FpsType } from "@/redux/fps/fpsSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const FpsDetailsDialog = ({ fps }: { fps: FpsType }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const FpsDetailsDialog = ({
+  fps,
+  isSelected,
+}: {
+  fps: FpsType;
+  isSelected: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(isSelected);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSelected) {
+      setIsOpen(true);
+    }
+  }, [isSelected]);
+
+  const closeDialog = () => {
+    setIsOpen(!isOpen);
+    router.push("/dashboard", { scroll: false }); // ✅ Remove fpsId from URL when closing
+  };
   return (
-    <Dialog open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
+    <Dialog open={isOpen} onOpenChange={closeDialog}>
       <DialogTrigger
         onClick={() => setIsOpen(true)}
         className="w-full py-2.5 bg-greenAccent-900 bg-opacity-80 text-base font-semibold text-grayscale-100 rounded-sm"
