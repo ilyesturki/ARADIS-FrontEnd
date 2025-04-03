@@ -1,3 +1,16 @@
+"use client";
+
+import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
+
+// const FpsSelectedUsers = dynamic(
+//   () => import("@/components/Dashboard/Fps/CreateFps/CreateFps"),
+//   {
+//     ssr: false,
+//     loading: () => <Skeleton className="w-full pt-6" />,
+//   }
+// );
+
 import RadialChartStacked from "../Chart/RadialChartStacked";
 import FpsQrCode from "./FpsQrCode";
 import FpsSelectedUsers from "./FpsSelectedUsers";

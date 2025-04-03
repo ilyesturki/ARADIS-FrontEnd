@@ -26,9 +26,11 @@ const CustomSelectImages = ({
 }) => {
   return (
     <div className="w-full flex gap-4 items-center">
-      <div className={`flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 border rounded-md ${
-        disabled && "bg-opacity-10"
-      }`}>
+      <div
+        className={`flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 border rounded-md ${
+          disabled && "bg-opacity-50"
+        }`}
+      >
         <span className="text-[10px] font-semibold text-greenAccent-900">
           {label}
         </span>
