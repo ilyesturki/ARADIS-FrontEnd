@@ -34,24 +34,18 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
+    // users
     {
       allowedTo: ["user"],
-      title: "Dashboard",
-      url: "/dashboard",
+      title: "Auto-MTCE",
+      url: "/auto-mtce",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["admin", "manager"],
-      title: "Panel",
-      url: "#",
+      allowedTo: ["user"],
+      title: "Diag-MTCE",
+      url: "/diag-mtce",
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "Fps Panel",
-          url: "/dashboard/panel/fps-panel",
-        },
-      ],
     },
     {
       allowedTo: ["user"],
@@ -70,6 +64,63 @@ const data = {
         },
       ],
     },
+    {
+      allowedTo: ["user"],
+      title: "Audit",
+      url: "/audit",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["user"],
+      title: "Planing",
+      url: "/planing",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["user"],
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: SquareTerminal,
+    },
+
+    // managers
+    {
+      allowedTo: ["admin", "manager"],
+      title: "Fps",
+      url: "/dashboard/panel/fps-panel",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["admin", "manager"],
+      title: "Auto-MTCE",
+      url: "/dashboard/panel/auto-mtce",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["admin", "manager"],
+      title: "Tag",
+      url: "/dashboard/panel/tag-panel",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["manager"],
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["admin", "manager"],
+      title: "Planing",
+      url: "/planing",
+      icon: SquareTerminal,
+    },
+    {
+      allowedTo: ["admin", "manager"],
+      title: "Audit",
+      url: "/audit",
+      icon: SquareTerminal,
+    },
+    // admin
     {
       allowedTo: ["admin"],
       title: "Users",

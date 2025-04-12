@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import CustomPieChart from "../Chart/CustomPieChart";
+import CustomPieChart from "../Chart/Fps/CustomPieChart";
 // import FPSPerformanceChart from "../Chart/FPSPerformanceChart";
-import CustomBarChart from "../Chart/CustomBarChart";
+import CustomBarChart from "../Chart/Fps/CustomBarChart";
 // import FPSStatusChart from "../Chart/FPSStatusChart";
 // import CompletedFPSChart from "../Chart/CompletedFPSChart";
 // import QrScanRadarChart from "../Chart/QrScanRadarChart";
@@ -11,28 +11,28 @@ import CustomBarChart from "../Chart/CustomBarChart";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 const FPSPerformanceChart = dynamic(
-  () => import("../Chart/FPSPerformanceChart"),
+  () => import("../Chart/Fps/FPSPerformanceChart"),
   {
     ssr: false,
     loading: () => <Skeleton className="flex-1 h-[390px]" />,
   }
 );
-const FPSStatusChart = dynamic(() => import("../Chart/FPSStatusChart"), {
+const FPSStatusChart = dynamic(() => import("../Chart/Fps/FPSStatusChart"), {
   ssr: false,
   loading: () => <Skeleton className="h-[390px]" />,
 });
 
-const CompletedFPSChart = dynamic(() => import("../Chart/CompletedFPSChart"), {
+const CompletedFPSChart = dynamic(() => import("../Chart/Fps/CompletedFPSChart"), {
   ssr: false,
   loading: () => <Skeleton className="h-[390px]" />,
 });
 
-const QrScanRadarChart = dynamic(() => import("../Chart/QrScanRadarChart"), {
+const QrScanRadarChart = dynamic(() => import("../Chart/Fps/QrScanRadarChart"), {
   ssr: false,
   loading: () => <Skeleton className="h-[390px]" />,
 });
 
-const FailedFPSChart = dynamic(() => import("../Chart/FailedFPSChart"), {
+const FailedFPSChart = dynamic(() => import("../Chart/Fps/FailedFPSChart"), {
   ssr: false,
   loading: () => <Skeleton className="h-[390px]" />,
 });

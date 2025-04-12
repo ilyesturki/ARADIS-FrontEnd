@@ -408,5 +408,96 @@
   },
   "DashboardPage": {
     "pageTitle": "Tableau de bord"
+  },
+  "TagsPanelPage": {
+    "pageTitle": "Tableau de bord Tags",
+    "charts": {
+      "tagPerformance": {
+        "title": "Aperçu des performances TAG",
+        "description": "Suivi des TAG réussis et échoués au fil du temps",
+        "timeRanges": {
+          "90d": "Les 3 derniers mois",
+          "30d": "Les 30 derniers jours",
+          "7d": "Les 7 derniers jours"
+        }
+      },
+      "tagStatusOverview": {
+        "title": "Aperçu du statut des TAG",
+        "description": "Suivi des résolutions TAG selon les statuts"
+      },
+      "qrScanInsights": {
+        "title": "Aperçu des scans de QR",
+        "description": "Tendances des QR scannés et non scannés",
+        "footerDescription": "Suivi et analyse des scans QR"
+      },
+      "completedTAG": {
+        "title": "Aperçu des TAG complétés",
+        "description": "Tendances mensuelles des TAG complétés",
+        "footerDescription": "Suivi uniquement des TAG complétés"
+      },
+      "failedTAG": {
+        "title": "Aperçu des TAG échoués",
+        "description": "Tendances mensuelles des TAG échoués",
+        "footerDescription": "Suivi uniquement des TAG échoués"
+      }
+    },
+    "columns": {
+      "zone": "Zone",
+      "machine": "Machine",
+      "equipment": "Équipement",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "rows": {
+      "clientRisk": {
+        "yes": "Oui",
+        "no": "Non"
+      }
+    },
+    "entityName": "tag",
+    "entityLabel": "TAG",
+    "deleteTag": {
+      "label": "Supprimer TAG",
+      "loading": "Suppression de TAG...",
+      "success": "TAG supprimé avec succès.",
+      "error": "Impossible de supprimer TAG !"
+    },
+    "TagPanel": {
+      "status": {
+        "toDo": "À faire",
+        "done": "Terminé",
+        "open": "Ouvert"
+      },
+      "charts": {
+        "qrScanStatistics": {
+          "title": "Statistiques de scan du QR Code",
+          "description": "Aperçu de l'activité récente",
+          "footerDescription": "{scanned} utilisateurs scannés, {unscanned} en attente sur un total de {total}.",
+          "labels": {
+            "totalScans": "Scans totaux",
+            "scanned": "Scanné",
+            "unscanned": "Non scanné"
+          }
+        }
+      },
+      "TagSelectedUsers": {
+        "tableTitle": "Utilisateurs sélectionnés",
+        "columns": {
+          "name": "Nom",
+          "email": "Email",
+          "scanStatus": "Statut du scan",
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "rows": {
+          "scanStatus": {
+            "scanned": "Scanné",
+            "unscanned": "Non scanné"
+          }
+        },
+        "entityName": "user",
+        "entityLabel": "Utilisateur"
+      }
+    }
   }
 }

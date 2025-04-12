@@ -30,18 +30,6 @@ const DefensiveActionsSection = () => {
   } = useDefensiveActionsSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
-      <div className=" flex flex-col gap-2">
-        <DefensiveActions
-          fpsData={fpsData}
-          categoryData={categoryData}
-          serviceData={serviceData}
-          handleChangeInArray={handleChangeInArray}
-          setFpsData={setFpsData}
-          addNewDefensiveAction={addNewDefensiveAction}
-          removeDefensiveAction={removeDefensiveAction}
-          disabled={isDisabled}
-        />
-      </div>
       <div className=" flex flex-col gap-10">
         <CustomInput
           value={fpsId}
@@ -51,6 +39,18 @@ const DefensiveActionsSection = () => {
           copy
           disabled
         />
+        <div className=" flex flex-col gap-2">
+          <DefensiveActions
+            fpsData={fpsData}
+            categoryData={categoryData}
+            serviceData={serviceData}
+            handleChangeInArray={handleChangeInArray}
+            setFpsData={setFpsData}
+            addNewDefensiveAction={addNewDefensiveAction}
+            removeDefensiveAction={removeDefensiveAction}
+            disabled={isDisabled}
+          />
+        </div>
         {isDone ? (
           <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (

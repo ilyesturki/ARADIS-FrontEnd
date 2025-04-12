@@ -406,5 +406,96 @@
   },
   "DashboardPage": {
     "pageTitle": "Dashboard"
+  },
+  "TagsPanelPage": {
+    "pageTitle": "Tags Dashboard",
+    "charts": {
+      "tagPerformance": {
+        "title": "TAG Performance Overview",
+        "description": "Tracking completed vs. failed TAG over time",
+        "timeRanges": {
+          "90d": "Last 3 months",
+          "30d": "Last 30 days",
+          "7d": "Last 7 days"
+        }
+      },
+      "tagStatusOverview": {
+        "title": "TAG Status Overview",
+        "description": "Tracking TAG resolutions across different statuses"
+      },
+      "qrScanInsights": {
+        "title": "QR Code Scanning Insights",
+        "description": "Scanned vs. unscanned QR trends",
+        "footerDescription": "Tracking QR scan completion rates"
+      },
+      "completedTAG": {
+        "title": "Completed TAG Overview",
+        "description": "Monthly TAG completion trends",
+        "footerDescription": "Tracking completed TAG only"
+      },
+      "failedTAG": {
+        "title": "Failed TAG Overview",
+        "description": "Monthly failed TAG trends",
+        "footerDescription": "Tracking failed TAG only"
+      }
+    },
+    "columns": {
+      "zone": "Zone",
+      "machine": "Machine",
+      "equipment": "Equipment",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "rows": {
+      "clientRisk": {
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "entityName": "tag",
+    "entityLabel": "Tag",
+    "deleteTag": {
+      "label": "Delete Tag",
+      "loading": "Deleting tag...",
+      "success": "tag deleted successfully.",
+      "error": "Could not delete tag!"
+    },
+    "TagPanel": {
+      "status": {
+        "toDo": "ToDo",
+        "done": "Done",
+        "open": "Open"
+      },
+      "charts": {
+        "qrScanStatistics": {
+          "title": "QR Code Scan Statistics",
+          "description": "Recent Activity Overview",
+          "footerDescription": "{scanned} users scanned, {unscanned} pending out of {total} total.",
+          "labels": {
+            "totalScans": "Total Scans",
+            "scanned": "Scanned",
+            "unscanned": "Unscanned"
+          }
+        }
+      },
+      "TagSelectedUsers": {
+        "tableTitle": "selected users",
+        "columns": {
+          "name": "Name",
+          "email": "Email",
+          "scanStatus": "Scan Status",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "rows": {
+          "scanStatus": {
+            "scanned": "Scanned",
+            "unscanned": "Unscanned"
+          }
+        },
+        "entityName": "user",
+        "entityLabel": "User"
+      }
+    }
   }
 }

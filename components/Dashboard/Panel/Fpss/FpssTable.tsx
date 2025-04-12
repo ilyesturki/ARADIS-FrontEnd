@@ -11,9 +11,9 @@ const FpssTable = () => {
 
   useEffect(() => {
     const loadFpss = async () => {
-      const fpss = await fetchFpss();
-      console.log(fpss);
-      setFpss(fpss);
+      const response = await fetchFpss();
+      console.log(response.data);
+      setFpss(response.data);
     };
     loadFpss();
   }, []);

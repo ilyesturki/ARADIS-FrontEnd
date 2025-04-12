@@ -5,6 +5,7 @@ import authReducer from "./auth/authSlice";
 import userReducer from "./user/userSlice";
 import usersReducer from "./users/usersSlice";
 import fpssReducer from "./fps/fpsSlice";
+import tagsReducer from "./tag/tagSlice";
 import fpsCommentsReducer from "./fpsComments/fpsCommentsSlice";
 
 export const makeStore = () =>
@@ -14,6 +15,7 @@ export const makeStore = () =>
       user: userReducer,
       users: usersReducer,
       fpss: fpssReducer,
+      tags: tagsReducer,
       fpsComments: fpsCommentsReducer,
     },
   });

@@ -1,8 +1,8 @@
 "use client";
 import { TfiViewListAlt, TfiViewGrid } from "react-icons/tfi";
-import FpssTable from "@/components/Dashboard/Panel/Fpss/FpssTable";
+import TagsTable from "@/components/Dashboard/Panel/Tags/TagsTable";
 import { useState } from "react";
-import FpssGrid from "@/components/Dashboard/Panel/Fpss/FpssGrid";
+import TagsGrid from "@/components/Dashboard/Panel/Tags/TagsGrid";
 
 const page = () => {
   const [view, setView] = useState<"list" | "grid">("list");
@@ -29,7 +29,7 @@ const page = () => {
           </button>
         </div>
       </div>
-      {view === "list" ? <FpssTable /> : <FpssGrid />}
+      {view === "list" ? <TagsTable /> : <TagsGrid />}
     </div>
   );
 };

@@ -59,15 +59,19 @@ const DataTableRowMenu = <T extends { id: string }>({
             <DropdownMenuSeparator />
             <Link
               href={`${paths}/${
-                paths !== "/dashboard/panel/fps-panel" ? "edit-" : ""
+                paths === "/dashboard/panel/fps-panel" ||
+                paths === "/dashboard/panel/tag-panel"
+                  ? ""
+                  : "edit-"
               }${entityName}${
                 id ? `?${entityName}Id=${id}` : `/${row.original.id}`
               }`}
             >
               <DropdownMenuItem className="cursor-pointer">
-                {paths !== "/dashboard/panel/fps-panel"
-                  ? t("edit", { label: entityLabel })
-                  : t("show", { label: entityLabel })}
+                {paths === "/dashboard/panel/fps-panel" ||
+                paths === "/dashboard/panel/tag-panel"
+                  ? t("show", { label: entityLabel })
+                  : t("edit", { label: entityLabel })}
               </DropdownMenuItem>
             </Link>
             {children && (

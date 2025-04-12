@@ -2,23 +2,23 @@ import axios from "@/utils/axios";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const fetchMyFpss = async (options: string = "") => {
+export const fetchMyTags = async (options: string = "") => {
   console.log(apiBaseUrl);
-  console.log(`${apiBaseUrl}/fps/me${options}`);
-  const response = await axios.get(`${apiBaseUrl}/fps/me${options}`);
+  console.log(`${apiBaseUrl}/tag/me${options}`);
+  const response = await axios.get(`${apiBaseUrl}/tag/me${options}`);
   return response.data.data;
 };
 
-export const fetchFpss = async (options: string = "") => {
+export const fetchTags = async (options: string = "") => {
   console.log(apiBaseUrl);
-  const response = await axios.get(`${apiBaseUrl}/fps${options}`);
+  const response = await axios.get(`${apiBaseUrl}/tag${options}`);
   return response.data;
 };
 
-export const fetchMyHelperFpss = async (options: string = "") => {
+export const fetchMyHelperTags = async (options: string = "") => {
   console.log(apiBaseUrl);
-  console.log(`${apiBaseUrl}/fps/helper/me${options}`);
-  const response = await axios.get(`${apiBaseUrl}/fps/helper/me${options}`);
+  console.log(`${apiBaseUrl}/tag/helper/me${options}`);
+  const response = await axios.get(`${apiBaseUrl}/tag/helper/me${options}`);
   return response.data.data;
 };
 
