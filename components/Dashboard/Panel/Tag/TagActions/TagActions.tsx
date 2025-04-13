@@ -32,7 +32,7 @@ const TagActions = ({
   removeTagAction,
   disabled,
 }: Props) => {
-  const t = useTranslations("CreateFps.defensiveActions.defensiveActions");
+  const t = useTranslations("CreateTag.tagActions");
   return (
     <div className=" flex flex-col gap-2">
       {tagData.map((e, i) => {

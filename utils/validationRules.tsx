@@ -227,3 +227,30 @@ export const fpsUpdateCommentValidationRules = {
   comment: { required: true },
   rating: { required: true },
 };
+
+
+
+
+
+export const TagActionsRules = {
+  fpsId: { required: true },
+  defensiveActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const defensiveActions = JSON.parse(value);
+        for (let i = 0; i < defensiveActions.length; i++) {
+          if (
+            !defensiveActions[i].procedure ||
+            !defensiveActions[i].userCategory ||
+            !defensiveActions[i].userService ||
+            !defensiveActions[i].quand
+          ) {
+            return "Please fill in all required fields for all defensive actions.";
+          }
+        }
+      }
+      return null;
+    },
+  },
+};

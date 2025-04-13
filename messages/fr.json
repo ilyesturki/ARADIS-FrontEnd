@@ -499,5 +499,26 @@
         "entityLabel": "Utilisateur"
       }
     }
+  },
+  "CreateTag": {
+    "pageTitle": "Gérer le TAG",
+    "tagActions": {
+      "title": "Procédure",
+      "tagAction": {
+        "procedure": {
+          "label": "Procédure",
+          "placeholder": "Mesures finales que nous avons prises"
+        },
+        "department": {
+          "label": "Département"
+        },
+        "category": {
+          "label": "Catégorie"
+        },
+        "when": {
+          "label": "Quand"
+        }
+      }
+    }
   }
 }

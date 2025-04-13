@@ -34,9 +34,7 @@ const DefensiveAction = ({
   ) => void;
   disabled?: boolean;
 }) => {
-  const t = useTranslations(
-    "CreateTag.defensiveActions.defensiveActions.defensiveAction"
-  );
+  const t = useTranslations("CreateTag.tagActions.tagAction");
   return (
     <div className=" flex flex-col gap-4">
       <CustomTextArea

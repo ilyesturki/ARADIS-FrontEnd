@@ -497,5 +497,26 @@
         "entityLabel": "User"
       }
     }
+  },
+  "CreateTag": {
+    "pageTitle": "Manage TAG",
+    "tagActions": {
+      "title": "Procedure",
+      "tagAction": {
+        "procedure": {
+          "label": "Procedure",
+          "placeholder": "Final measures we have taken"
+        },
+        "department": {
+          "label": "Department"
+        },
+        "category": {
+          "label": "Category"
+        },
+        "when": {
+          "label": "When"
+        }
+      }
+    }
   }
 }

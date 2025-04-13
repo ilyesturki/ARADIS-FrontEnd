@@ -1,9 +1,5 @@
 "use client";
-import {
-  TagType,
-  tagActionsType,
-  tagActionType,
-} from "@/redux/tag/tagSlice";
+import { TagType, TagActionType } from "@/redux/tag/tagSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
@@ -13,64 +9,40 @@ import {
   handleChangeInArrayObject,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
-import {
-  TagActionsRules,
-  tagProblemValidationRules,
-} from "@/utils/validationRules";
+import { TagActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createTagActions, getTag } from "@/redux/tag/tagThunk";
-import { generateTAGId } from "@/utils/generateTAGId";
+import { createActions } from "@/redux/tag/tagThunk";
 
-import {
-  initialTagActions,
-  categoryData,
-  serviceData,
-} from "@/data/tag";
+import { initialTagActions, categoryData, serviceData } from "@/data/tag";
 
-import { useRouter} from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-const useActionsSection = () => {
+const useTag = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const [tagData, setTagData] = useState<tagActionsType>(
-    initialTagActions
-  );
+  const [tagData, setTagData] = useState<TagActionType[]>(initialTagActions);
   const [tagId, setTagId] = useState<TagType["tagId"]>("");
-
-  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
-    "Save"
-  );
 
   const { data: session } = useSession({ required: true });
 
   const isAdminOrManager = useMemo(
-    () => ["admin", "manager"].includes(session?.user.role ?? ""),
+    () => false,
+
+    // ["admin", "manager"].includes(session?.user.role ?? ""),
     [session?.user.role]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
 
   const isDone = useMemo(() => {
-    return currentStep === "validation";
+    return currentStep === "done";
   }, [currentStep]);
 
   const isDisabled = useMemo(() => {
-    const tabsOrder = [
-      "problem",
-      "immediateActions",
-      "cause",
-      "defensiveActions",
-      "validation",
-    ];
-
-    return currentStep
-      ? isAdminOrManager ||
-          isDone ||
-          !(tabsOrder.indexOf(currentStep) >= tabsOrder.indexOf("cause"))
-      : isAdminOrManager;
+    return currentStep ? isAdminOrManager || isDone : isAdminOrManager;
   }, [isAdminOrManager, currentStep]);
 
   useEffect(() => {
@@ -86,21 +58,10 @@ const useActionsSection = () => {
   const tag = useAppSelector((state) => state.tags.tag);
 
   useEffect(() => {
-    if (
-      tag?.defensiveActions &&
-      Object.keys(tag?.defensiveActions).length > 0
-    ) {
-      console.log("tag?.defensiveActions");
-      console.log(tag?.defensiveActions);
-      console.log("tag?.defensiveActions");
-      setTagData(tag?.defensiveActions);
+    if (tag?.tagAction && Object.keys(tag?.tagAction).length > 0) {
+      setTagData(tag?.tagAction);
     }
-    setCurrentStep(tag?.currentStep || null);
-    setSubmitBtnValue(
-      ["defensiveActions", "validation"].includes(tag?.currentStep || "")
-        ? "Update"
-        : "Save"
-    );
+    setCurrentStep(tag?.status || null);
   }, [tag]);
 
   const addNewAction = () => {
@@ -119,12 +80,9 @@ const useActionsSection = () => {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       tagId: tagId,
-      defensiveActions: JSON.stringify(tagData),
+      tagActions: JSON.stringify(tagData),
     };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      TagActionsRules
-    );
+    const newErrors = validateFormFields(dataToValidate, TagActionsRules);
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
       return;
@@ -135,10 +93,9 @@ const useActionsSection = () => {
       {},
       {
         tagId: tagId,
-        defensiveActions: JSON.stringify(tagData),
+        tagActions: JSON.stringify(tagData),
       },
-      (formData) =>
-        dispatch(createTagActions({ id: tagId, tag: formData }))
+      (formData) => dispatch(createActions({ id: tagId, tag: formData }))
     );
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -164,8 +121,7 @@ const useActionsSection = () => {
 
     handleSubmit,
     handleReset,
-    submitBtnValue,
   };
 };
 
-export default useActionsSection;
+export default useTag;
