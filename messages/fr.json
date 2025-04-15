@@ -463,6 +463,7 @@
       "error": "Impossible de supprimer TAG !"
     },
     "TagPanel": {
+      "title": "Tableau de bord Tag",
       "status": {
         "toDo": "À faire",
         "done": "Terminé",
@@ -498,27 +499,29 @@
         "entityName": "user",
         "entityLabel": "Utilisateur"
       }
-    }
-  },
-  "CreateTag": {
-    "pageTitle": "Gérer le TAG",
-    "tagActions": {
-      "title": "Procédure",
-      "tagAction": {
-        "procedure": {
-          "label": "Procédure",
-          "placeholder": "Mesures finales que nous avons prises"
-        },
-        "department": {
-          "label": "Département"
-        },
-        "category": {
-          "label": "Catégorie"
-        },
-        "when": {
-          "label": "Quand"
+    },
+    "TagActionsSection": {
+      "pageTitle": "Gérer le TAG",
+      "tagActions": {
+        "title": "Procédure",
+        "tagAction": {
+          "procedure": {
+            "label": "Procédure",
+            "placeholder": "Mesures finales que nous avons prises"
+          },
+          "department": {
+            "label": "Département"
+          },
+          "category": {
+            "label": "Catégorie"
+          },
+          "when": {
+            "label": "Quand"
+          }
         }
-      }
+      },
+      "mainButton": "Enregistrer",
+      "secondaryButton": "Réinitialiser"
     }
   }
 }

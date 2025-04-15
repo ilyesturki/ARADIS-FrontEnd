@@ -18,12 +18,18 @@ export type TagActionType = {
   quand: string;
 };
 
- 
+export type EditedTagActionType = {
+  procedure: string;
+  userCategory: string;
+  userService: string;
+  quand: string;
+  edit?: boolean;
+};
 
 export interface TagType {
   tagId: string;
-  
-  tagAction: TagActionType[];
+
+  tagActions: TagActionType[];
   zone: string;
   machine: string;
   equipment: string;
@@ -99,14 +105,11 @@ const tagsSlice = createSlice({
         state.loading = true;
         state.updateSuccess = false;
       })
-      .addCase(
-        createTag.fulfilled,
-        (state, action: PayloadAction<TagType>) => {
-          state.loading = false;
-          state.tags.push(action.payload as TagType);
-          state.updateSuccess = true;
-        }
-      )
+      .addCase(createTag.fulfilled, (state, action: PayloadAction<TagType>) => {
+        state.loading = false;
+        state.tags.push(action.payload as TagType);
+        state.updateSuccess = true;
+      })
       .addCase(createTag.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string;
@@ -163,7 +166,7 @@ const tagsSlice = createSlice({
         state.loading = false;
         state.updateSuccess = false;
         state.error = action.error.message as string;
-      })
+      });
   },
 });
 

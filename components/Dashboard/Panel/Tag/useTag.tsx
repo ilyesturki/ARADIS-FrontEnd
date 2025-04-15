@@ -1,19 +1,23 @@
 "use client";
-import { TagType, TagActionType } from "@/redux/tag/tagSlice";
+import { TagType, EditedTagActionType } from "@/redux/tag/tagSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
   customHandleSubmit,
-  handleChangeInArray,
-  handleChangeInArrayObject,
+  handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { TagActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createActions } from "@/redux/tag/tagThunk";
 
-import { initialTagActions, categoryData, serviceData } from "@/data/tag";
+import {
+  initialTagActions,
+  categoryData,
+  serviceData,
+  initialTagAction,
+} from "@/data/tag";
 
 import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -24,7 +28,8 @@ const useTag = () => {
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const [tagData, setTagData] = useState<TagActionType[]>(initialTagActions);
+  const [tagData, setTagData] =
+    useState<EditedTagActionType[]>(initialTagActions);
   const [tagId, setTagId] = useState<TagType["tagId"]>("");
 
   const { data: session } = useSession({ required: true });
@@ -41,7 +46,7 @@ const useTag = () => {
     return currentStep === "done";
   }, [currentStep]);
 
-  const isDisabled = useMemo(() => {
+  const disabled = useMemo(() => {
     return currentStep ? isAdminOrManager || isDone : isAdminOrManager;
   }, [isAdminOrManager, currentStep]);
 
@@ -58,23 +63,24 @@ const useTag = () => {
   const tag = useAppSelector((state) => state.tags.tag);
 
   useEffect(() => {
-    if (tag?.tagAction && Object.keys(tag?.tagAction).length > 0) {
-      setTagData(tag?.tagAction);
+    console.log("***********************");
+    console.log(tag);
+    console.log("***********************");
+    if (tag?.tagActions && Object.keys(tag?.tagActions).length > 0) {
+      setTagData(tag?.tagActions);
     }
     setCurrentStep(tag?.status || null);
   }, [tag]);
 
-  const addNewAction = () => {
-    setTagData((prevData) => [
-      ...prevData,
-      { procedure: "", userCategory: "", userService: "", quand: "" },
-    ]);
+  const editAction = (index: number) => {
+    let newTagData = tagData.map((e, i) => {
+      return i === index ? { ...e, edit: true } : e;
+    });
+    setTagData(newTagData);
   };
 
   const removeAction = (index: number) => {
-    if (tagData.length > 1) {
-      setTagData((prevData) => prevData.filter((_, i) => i !== index));
-    }
+    setTagData((prevData) => prevData.filter((_, i) => i !== index));
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -93,7 +99,7 @@ const useTag = () => {
       {},
       {
         tagId: tagId,
-        tagActions: JSON.stringify(tagData),
+        actions: JSON.stringify(tagData),
       },
       (formData) => dispatch(createActions({ id: tagId, tag: formData }))
     );
@@ -106,19 +112,11 @@ const useTag = () => {
   };
 
   return {
-    isAdminOrManager,
-    currentStep,
-    isDisabled,
-    isDone,
-    tagData,
-    tagId,
-    categoryData,
-    serviceData,
-    handleChangeInArray,
+    disabled,
     setTagData,
-    addNewAction,
+    tagData,
+    editAction,
     removeAction,
-
     handleSubmit,
     handleReset,
   };

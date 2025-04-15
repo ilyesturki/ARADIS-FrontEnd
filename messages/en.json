@@ -461,6 +461,7 @@
       "error": "Could not delete tag!"
     },
     "TagPanel": {
+      "title": "Tag Panel",
       "status": {
         "toDo": "ToDo",
         "done": "Done",
@@ -496,27 +497,29 @@
         "entityName": "user",
         "entityLabel": "User"
       }
-    }
-  },
-  "CreateTag": {
-    "pageTitle": "Manage TAG",
-    "tagActions": {
-      "title": "Procedure",
-      "tagAction": {
-        "procedure": {
-          "label": "Procedure",
-          "placeholder": "Final measures we have taken"
-        },
-        "department": {
-          "label": "Department"
-        },
-        "category": {
-          "label": "Category"
-        },
-        "when": {
-          "label": "When"
+    },
+    "TagActionsSection": {
+      "pageTitle": "Manage TAG",
+      "tagActions": {
+        "title": "Procedure",
+        "tagAction": {
+          "procedure": {
+            "label": "Procedure",
+            "placeholder": "Final measures we have taken"
+          },
+          "department": {
+            "label": "Department"
+          },
+          "category": {
+            "label": "Category"
+          },
+          "when": {
+            "label": "When"
+          }
         }
-      }
+      },
+      "mainButton": "Save",
+      "secondaryButton": "Reset"
     }
   }
 }

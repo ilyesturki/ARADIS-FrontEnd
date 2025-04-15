@@ -228,25 +228,41 @@ export const fpsUpdateCommentValidationRules = {
   rating: { required: true },
 };
 
-
-
-
-
-export const TagActionsRules = {
-  fpsId: { required: true },
-  defensiveActions: {
+export const TagActionRules = {
+  tagAction: {
     required: true,
     customValidator: (value: string) => {
       if (value) {
-        const defensiveActions = JSON.parse(value);
-        for (let i = 0; i < defensiveActions.length; i++) {
+        const tagAction = JSON.parse(value);
+        if (
+          !tagAction.procedure ||
+          !tagAction.userCategory ||
+          !tagAction.userService ||
+          !tagAction.quand
+        ) {
+          return "Please fill in all required fields for all tag actions.";
+        }
+      }
+      return null;
+    },
+  },
+};
+
+export const TagActionsRules = {
+  fpsId: { required: true },
+  tagActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const tagActions = JSON.parse(value);
+        for (let i = 0; i < tagActions.length; i++) {
           if (
-            !defensiveActions[i].procedure ||
-            !defensiveActions[i].userCategory ||
-            !defensiveActions[i].userService ||
-            !defensiveActions[i].quand
+            !tagActions[i].procedure ||
+            !tagActions[i].userCategory ||
+            !tagActions[i].userService ||
+            !tagActions[i].quand
           ) {
-            return "Please fill in all required fields for all defensive actions.";
+            return "Please fill in all required fields for all tag actions.";
           }
         }
       }

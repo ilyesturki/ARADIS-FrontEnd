@@ -1,90 +1,97 @@
 "use client";
+import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
+import CustomInput from "@/components/Common/CustomInput/CustomInput";
+import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
+import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
+import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
+
+import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
+import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
+import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
+import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 
 import CustomSectionHeader from "@/components/Dashboard/Fps/Common/CustomSectionHeader";
-import TagAction from "./TagAction";
-import { TagActionType } from "@/redux/tag/tagSlice";
+// import TagAction from "./TagAction";
+import { EditedTagActionType, TagActionType } from "@/redux/tag/tagSlice";
 import { useTranslations } from "next-intl";
 import SectionsSeperator from "@/components/Dashboard/Fps/Common/SectionsSeperator";
 import AddSectionButton from "@/components/Dashboard/Fps/Common/AddSectionButton";
+import useTagActions from "./useTagActions";
 
-interface Props {
-  tagData: TagActionType[];
-  categoryData: { value: string; label: string }[];
-  serviceData: { value: string; label: string }[];
-  handleChangeInArray: (
-    setState: (updater: (prevState: any) => any) => void,
-    value: any,
-    name: string,
-    index: number
-  ) => void;
-  setTagData: (updater: (prevState: any) => any) => void;
-  addNewTagAction: () => void;
-  removeTagAction: (index: number) => void;
-  disabled?: boolean;
-}
 const TagActions = ({
-  tagData,
-  categoryData,
-  serviceData,
-  handleChangeInArray,
   setTagData,
-  addNewTagAction,
-  removeTagAction,
   disabled,
-}: Props) => {
-  const t = useTranslations("CreateTag.tagActions");
+  tagData,
+}: {
+  setTagData: (prevState: EditedTagActionType[]) => void;
+  disabled: boolean;
+  tagData: TagActionType[];
+}) => {
+  const t = useTranslations("TagsPanelPage.TagActionsSection.tagActions");
+
+  const {
+    editedTagData,
+    categoryData,
+    serviceData,
+    customHandleChange,
+    handleChangeSelect,
+    setEditedTagData,
+    addNewAction,
+  } = useTagActions(setTagData, tagData);
+
   return (
     <div className=" flex flex-col gap-2">
-      {tagData.map((e, i) => {
-        return (
-          <div className=" flex flex-col gap-2" key={i}>
-            <CustomSectionHeader
-              title={t("title")}
-              i={i}
-              handleDeleteSection={() => removeTagAction(i)}
-              disabled={disabled}
-            />
-            <TagAction
-              tagData={e}
-              categoryData={categoryData}
-              serviceData={serviceData}
-              customProcedureChange={(
-                e: React.ChangeEvent<HTMLTextAreaElement>
-              ) =>
-                handleChangeInArray(setTagData, e.target.value, "procedure", i)
-              }
-              customCategoryChange={(userCategory: string) =>
-                handleChangeInArray(setTagData, userCategory, "userCategory", i)
-              }
-              customServiceChange={(userService: string) =>
-                handleChangeInArray(setTagData, userService, "userService", i)
-              }
-              customQuandChange={(
-                value: Date | undefined,
-                name?: string | undefined
-              ) =>
-                handleChangeInArray(
-                  setTagData,
-                  value ? value.toISOString() : "",
-                  "quand",
-                  i
-                )
-              }
-              disabled={disabled}
-            />
-            {tagData.length - 1 !== i ? (
-              <SectionsSeperator />
-            ) : (
-              !disabled && (
-                <AddSectionButton
-                  addNewSection={addNewTagAction}
-                  disabled={disabled}
-                />
-              )
-            )}
-          </div>
-        );
-      })}
+      <div className=" flex flex-col gap-4">
+        <CustomTextArea
+          value={editedTagData.procedure}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            customHandleChange(e, setEditedTagData)
+          }
+          label={t("tagAction.procedure.label")}
+          placeholder={t("tagAction.procedure.placeholder")}
+          disabled={disabled}
+          name="procedure"
+        />
+        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
+          <CustomSelect
+            label={t("tagAction.department.label")}
+            value={editedTagData.userService}
+            onChange={(userService: string) =>
+              handleChangeSelect(setEditedTagData, userService, "userService")
+            }
+            data={serviceData}
+            disabled={disabled}
+            name="userService"
+          />
+          <CustomSelect
+            label={t("tagAction.category.label")}
+            value={editedTagData.userCategory}
+            onChange={(userCategory: string) =>
+              handleChangeSelect(setEditedTagData, userCategory, "userCategory")
+            }
+            data={categoryData}
+            disabled={disabled}
+            name="userCategory"
+          />
+        </div>
+        <CustomDateTimePicker
+          label={t("tagAction.when.label")}
+          value={editedTagData.quand}
+          onChange={(value: Date | undefined, name?: string | undefined) =>
+            handleChangeSelect(
+              setEditedTagData,
+              value?.toISOString() ?? "",
+              "quand"
+            )
+          }
+          disabled={disabled}
+          name="quand"
+        />
+      </div>
+
+      {!disabled && (
+        <AddSectionButton addNewSection={addNewAction} disabled={disabled} />
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const CustomSectionHeader = ({
   disabled?: boolean;
 }) => {
   return (
-    <div className="flex items-center justify-between px-2">
+    <div className="flex items-center justify-between px-1">
       <span className="text-sm font-bold capitalize text-grayscale-500">
         {title} {i !== undefined ? `N°${i + 1}` : ""}
       </span>

@@ -40,10 +40,17 @@ export const serviceData = [
 ];
 
 export const initialTagActions: TagActionType[] = [
-  {
-    procedure: "",
-    userCategory: "",
-    userService: "",
-    quand: "",
-  },
+  // {
+  //   procedure: "",
+  //   userCategory: "",
+  //   userService: "",
+  //   quand: "",
+  // },
 ];
+
+export const initialTagAction: TagActionType = {
+  procedure: "",
+  userCategory: "",
+  userService: "",
+  quand: "",
+};
