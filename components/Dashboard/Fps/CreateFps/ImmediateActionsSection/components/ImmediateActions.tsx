@@ -2,105 +2,81 @@
 
 import SectionsSeperator from "../../../Common/SectionsSeperator";
 import AddSectionButton from "../../../Common/AddSectionButton";
-import { immediatActionsType, sortingResultsType } from "@/redux/fps/fpsSlice";
+import { editedFpsImmediateActionsType } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import CustomSectionHeader from "../../../Common/CustomSectionHeader";
-import SortingResult from "./SortingResult";
-import ImmediateAction from "./ImmediateAction";
+import useImmediateAction from "./useImmediateAction";
+import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
+// import ImmediateAction from "./ImmediateAction";
 
-interface Props {
-  immediateActions: immediatActionsType[];
-  handleChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
-  addNewImmediateAction: () => void;
-  removeImmediateAction: (index: number) => void;
-  categoryData: { value: string; label: string }[];
-  serviceData: { value: string; label: string }[];
-  handleChangeInArrayObject: (
-    setState: (updater: (prevState: any) => any) => void,
-    value: any,
-    arrayName: string,
-    name: string,
-    index: number
-  ) => void;
-  setFpsData: (updater: (prevState: any) => any) => void;
-  disabled?: boolean;
-}
-
-const ImmediateActions = ({
-  immediateActions,
-  handleChange,
-  addNewImmediateAction,
-  removeImmediateAction,
-  categoryData,
-  serviceData,
-  handleChangeInArrayObject,
+const ImmediateAction = ({
   setFpsData,
   disabled,
-}: Props) => {
+  fpsData,
+}: {
+  setFpsData: (prevState: editedFpsImmediateActionsType) => void;
+  disabled: boolean;
+  fpsData: editedFpsImmediateActionsType;
+}) => {
+  const {
+    editedImmediateActionData,
+    categoryData,
+    serviceData,
+    customHandleChange,
+    handleChangeSelect,
+    setEditedImmediateActionData,
+    addNewAction,
+  } = useImmediateAction(setFpsData, fpsData);
   return (
-    <>
-      {immediateActions.map((e, i) => {
-        return (
-          <div className=" flex flex-col gap-2" key={i}>
-            <CustomSectionHeader
-              title="action"
-              i={i}
-              handleDeleteSection={() => removeImmediateAction(i)}
-              disabled={disabled}
-            />
-            <ImmediateAction
-              fpsData={e}
-              categoryData={categoryData}
-              serviceData={serviceData}
-              customWhyChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  e.target.value,
-                  "immediateActions",
-                  "description",
-                  i
-                )
-              }
-              customCategoryChange={(userCategory: string) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  userCategory,
-                  "immediateActions",
-                  "userCategory",
-                  i
-                )
-              }
-              customServiceChange={(userService: string) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  userService,
-                  "immediateActions",
-                  "userService",
-                  i
-                )
-              }
-              disabled={disabled}
-            />
-            {immediateActions.length - 1 !== i ? (
-              <SectionsSeperator />
-            ) : (
-              !disabled && (
-                <AddSectionButton
-                  addNewSection={addNewImmediateAction}
-                  disabled={disabled}
-                />
+    <div className=" flex flex-col gap-2">
+      <div className=" flex flex-col gap-4">
+        <CustomTextArea
+          value={editedImmediateActionData.description}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            customHandleChange(e, setEditedImmediateActionData)
+          }
+          label="pourquoi"
+          placeholder="Qu'est ce qu'on a appris du tri ?"
+          disabled={disabled}
+          name="description"
+        />
+        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
+          <CustomSelect
+            label="departement"
+            value={editedImmediateActionData.userService}
+            onChange={(userService: string) =>
+              handleChangeSelect(
+                setEditedImmediateActionData,
+                userService,
+                "userService"
               )
-            )}
-          </div>
-        );
-      })}
-    </>
+            }
+            data={serviceData}
+            disabled={disabled}
+            name="userService"
+          />
+          <CustomSelect
+            label="categorie"
+            value={editedImmediateActionData.userCategory}
+            onChange={(userCategory: string) =>
+              handleChangeSelect(
+                setEditedImmediateActionData,
+                userCategory,
+                "userCategory"
+              )
+            }
+            data={categoryData}
+            disabled={disabled}
+            name="userCategory"
+          />
+        </div>
+      </div>
+      {!disabled && (
+        <AddSectionButton addNewSection={addNewAction} disabled={disabled} />
+      )}
+    </div>
   );
 };
 
-export default ImmediateActions;
+export default ImmediateAction;

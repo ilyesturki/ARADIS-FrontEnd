@@ -137,9 +137,11 @@ const useImmediateActionsSection = () => {
   };
 
   const editSortingResult = (index: number) => {
-    let sortingResults = fpsData.sortingResults?.map((e, i) => {
-      return i === index ? { ...e, edit: true } : e;
-    });
+    let sortingResults = fpsData.sortingResults
+      ?.map((e, i) => (e.edit ? { ...e, edit: false } : e))
+      .map((e, i) => {
+        return i === index ? { ...e, edit: true } : e;
+      });
     setFpsData((prevData) => ({
       ...prevData,
       sortingResults,
@@ -159,14 +161,12 @@ const useImmediateActionsSection = () => {
     }
   };
 
-  const addNewImmediateAction = () => {
-    const immediateActions = [...(fpsData?.immediateActions || [])];
-    immediateActions.push({
-      description: "",
-      userCategory: "",
-      userService: "",
-    });
-
+  const editImmediateAction = (index: number) => {
+    let immediateActions = fpsData.immediateActions
+      ?.map((e, i) => (e.edit ? { ...e, edit: false } : e))
+      .map((e, i) => {
+        return i === index ? { ...e, edit: true } : e;
+      });
     setFpsData((prevData) => ({
       ...prevData,
       immediateActions,
@@ -174,7 +174,7 @@ const useImmediateActionsSection = () => {
   };
 
   const removeImmediateAction = (index: number) => {
-    if (fpsData.immediateActions && fpsData.immediateActions.length > 1) {
+    if (fpsData.immediateActions) {
       const immediateActions = [
         ...fpsData.immediateActions.slice(0, index),
         ...fpsData.immediateActions.slice(index + 1),
@@ -236,6 +236,8 @@ const useImmediateActionsSection = () => {
     disabled,
     editSortingResult,
     removeSortingResult,
+    editImmediateAction,
+    removeImmediateAction,
     handleSubmit,
     handleReset,
     submitBtnValue,
@@ -245,9 +247,6 @@ const useImmediateActionsSection = () => {
     fpsId,
 
     handleChange,
-
-    addNewImmediateAction,
-    removeImmediateAction,
 
     handleAlertChange,
     categoryData,

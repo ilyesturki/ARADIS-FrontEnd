@@ -29,6 +29,8 @@ const ImmediateActionsSection = () => {
     disabled,
     editSortingResult,
     removeSortingResult,
+    editImmediateAction,
+    removeImmediateAction,
     handleSubmit,
     handleReset,
     submitBtnValue,
@@ -39,8 +41,6 @@ const ImmediateActionsSection = () => {
 
     handleChange,
 
-    addNewImmediateAction,
-    removeImmediateAction,
 
     handleAlertChange,
     categoryData,
@@ -80,15 +80,9 @@ const ImmediateActionsSection = () => {
         />
 
         <ImmediateActions
-          immediateActions={fpsData.immediateActions || []}
-          handleChange={handleChange}
-          addNewImmediateAction={addNewImmediateAction}
-          removeImmediateAction={removeImmediateAction}
-          categoryData={categoryData}
-          serviceData={serviceData}
-          handleChangeInArrayObject={handleChangeInArrayObject}
           setFpsData={setFpsData}
           disabled={disabled}
+          fpsData={fpsData}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -110,6 +104,23 @@ const ImmediateActionsSection = () => {
                   data={[e.userService, e.userCategory, e.product]}
                   editAction={editSortingResult}
                   removeAction={removeSortingResult}
+                  i={i}
+                />
+              );
+            })}
+        </ActionsList>
+        <ActionsList
+          headers={["Service", "Category", "description", "Actions"]}
+        >
+          {fpsData?.immediateActions &&
+            fpsData?.immediateActions?.length > 0 &&
+            fpsData.immediateActions?.map((e, i) => {
+              return (
+                <ActionBox
+                  key={i}
+                  data={[e.userService, e.userCategory, e.description]}
+                  editAction={editImmediateAction}
+                  removeAction={removeImmediateAction}
                   i={i}
                 />
               );

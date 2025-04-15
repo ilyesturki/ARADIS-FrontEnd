@@ -1,4 +1,6 @@
 import {
+  editedFpsImmediateActionsType,
+  editedImmediatActionsType,
   editedSortingResultsType,
   flexibleFpsType,
   fpsCauseType,
@@ -123,32 +125,24 @@ export const initialFpsProblem: fpsProblemType = {
   clientRisk: false,
 };
 
-export const initialFpsImmediateActions: fpsImmediateActionsType = {
+export const initialFpsImmediateActions: editedFpsImmediateActionsType = {
   alert: [],
   startSorting: false,
-  sortingResults: [
-    {
-      product: "",
-      sortedQuantity: "",
-      quantityNOK: "",
-      userCategory: "",
-      userService: "",
-    },
-  ],
+  sortingResults: [],
   concludeFromSorting: "",
-  immediateActions: [
-    {
-      description: "",
-      userCategory: "",
-      userService: "",
-    },
-  ],
+  immediateActions: [],
 };
 
 export const initialSortingResultAction: editedSortingResultsType = {
   product: "",
   sortedQuantity: "",
   quantityNOK: "",
+  userCategory: "",
+  userService: "",
+};
+
+export const initialImmediateActionAction: editedImmediatActionsType = {
+  description: "",
   userCategory: "",
   userService: "",
 };

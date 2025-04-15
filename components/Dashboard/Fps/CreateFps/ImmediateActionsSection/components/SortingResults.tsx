@@ -44,6 +44,7 @@ const SortingResults = ({
           label="produit"
           placeholder="produit"
           disabled={disabled}
+          name="product"
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomInput
@@ -97,57 +98,6 @@ const SortingResults = ({
         </div>
       </div>
 
-      {/* <SortingResult
-        editedSortingResultData={e}
-        categoryData={categoryData}
-        serviceData={serviceData}
-        handleProductChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChangeInArrayObject(
-            setFpsData,
-            e.target.value,
-            "sortingResults",
-            "product",
-            i
-          )
-        }
-        customSortedQuantityChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChangeInArrayObject(
-            setFpsData,
-            e.target.value,
-            "sortingResults",
-            "sortedQuantity",
-            i
-          )
-        }
-        customQuantityNOKChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleChangeInArrayObject(
-            setFpsData,
-            e.target.value,
-            "sortingResults",
-            "quantityNOK",
-            i
-          )
-        }
-        customCategoryChange={(userCategory: string) =>
-          handleChangeInArrayObject(
-            setFpsData,
-            userCategory,
-            "sortingResults",
-            "userCategory",
-            i
-          )
-        }
-        customServiceChange={(userService: string) =>
-          handleChangeInArrayObject(
-            setFpsData,
-            userService,
-            "sortingResults",
-            "userService",
-            i
-          )
-        }
-        disabled={disabled}
-      /> */}
       {!disabled && (
         <AddSectionButton addNewSection={addNewAction} disabled={disabled} />
       )}

@@ -6,6 +6,8 @@ import useDefensiveActionsSection from "./useDefensiveActionsSection";
 import DefensiveActions from "./DefensiveActions/DefensiveActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";
 import { useTranslations } from "next-intl";
+import ActionsList from "@/components/Common/ActionsList/ActionsList";
+import ActionBox from "@/components/Common/ActionsList/ActionBox";
 
 const DefensiveActionsSection = () => {
   const t = useTranslations("CreateFps.defensiveActions");
@@ -20,8 +22,6 @@ const DefensiveActionsSection = () => {
     serviceData,
     handleChangeInArray,
     setFpsData,
-
-    addNewDefensiveAction,
     removeDefensiveAction,
 
     handleSubmit,
@@ -41,34 +41,49 @@ const DefensiveActionsSection = () => {
         />
         <div className=" flex flex-col gap-2">
           <DefensiveActions
-            fpsData={fpsData}
-            categoryData={categoryData}
-            serviceData={serviceData}
-            handleChangeInArray={handleChangeInArray}
             setFpsData={setFpsData}
-            addNewDefensiveAction={addNewDefensiveAction}
-            removeDefensiveAction={removeDefensiveAction}
-            disabled={isDisabled}
+            disabled={disabled}
+            fpsData={fpsData}
           />
         </div>
-        {isDone ? (
-          <CustomText title={t("doneStatus.done")} />
-        ) : isAdminOrManager ? (
-          <CustomText title={t("doneStatus.notAllowed")} />
-        ) : isDisabled ? (
-          <CustomText title={t("doneStatus.disabled")} />
-        ) : (
-          <CustomButtons
-            value={
-              submitBtnValue === "Save"
-                ? t("buttons.saveButtonText")
-                : t("buttons.updateButtonText")
-            }
-            mainButtonOnCLick={handleSubmit}
-            secondaryButtonOnCLick={handleReset}
-            secondaryButtonText={t("buttons.secondaryButtonText")}
-          />
-        )}
+        <div className=" flex flex-col gap-10">
+          <ActionsList headers={["Service", "Category", "Date", "Actions"]}>
+            {fpsData.length > 0 &&
+              fpsData.map((e, i) => {
+                return (
+                  <ActionBox
+                    key={i}
+                    data={[
+                      e.userService,
+                      e.userCategory,
+                      new Date(e.quand).toDateString(),
+                    ]}
+                    editAction={editDefensiveAction}
+                    removeAction={removeDefensiveAction}
+                    i={i}
+                  />
+                );
+              })}
+          </ActionsList>
+          {isDone ? (
+            <CustomText title={t("doneStatus.done")} />
+          ) : isAdminOrManager ? (
+            <CustomText title={t("doneStatus.notAllowed")} />
+          ) : isDisabled ? (
+            <CustomText title={t("doneStatus.disabled")} />
+          ) : (
+            <CustomButtons
+              value={
+                submitBtnValue === "Save"
+                  ? t("buttons.saveButtonText")
+                  : t("buttons.updateButtonText")
+              }
+              mainButtonOnCLick={handleSubmit}
+              secondaryButtonOnCLick={handleReset}
+              secondaryButtonText={t("buttons.secondaryButtonText")}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

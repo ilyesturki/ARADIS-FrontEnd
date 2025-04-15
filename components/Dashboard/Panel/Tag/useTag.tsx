@@ -57,7 +57,7 @@ const useTag = () => {
       setTagId(tagId);
       return;
     }
-  }, []); 
+  }, []);
 
   const tag = useAppSelector((state) => state.tags.tag);
 
@@ -72,9 +72,12 @@ const useTag = () => {
   }, [tag]);
 
   const editAction = (index: number) => {
-    let newTagData = tagData.map((e, i) => {
-      return i === index ? { ...e, edit: true } : e;
-    });
+    let newTagData = tagData
+      .map((e, i) => (e.edit ? { ...e, edit: false } : e))
+      .map((e, i) => {
+        return i === index ? { ...e, edit: true } : e;
+      });
+
     setTagData(newTagData);
   };
 

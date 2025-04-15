@@ -74,6 +74,13 @@ export type immediatActionsType = {
   userService: string;
 };
 
+export type editedImmediatActionsType = {
+  description: string;
+  userCategory: string;
+  userService: string;
+  edit?: boolean;
+};
+
 export type fpsImmediateActionsType = {
   alert?: string[];
   startSorting: boolean;
@@ -87,7 +94,7 @@ export type editedFpsImmediateActionsType = {
   startSorting: boolean;
   sortingResults?: editedSortingResultsType[];
   concludeFromSorting?: string;
-  immediateActions?: immediatActionsType[];
+  immediateActions?: editedImmediatActionsType[];
 };
 
 export type FpsCommentType = {

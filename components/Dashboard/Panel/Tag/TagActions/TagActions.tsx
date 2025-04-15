@@ -48,7 +48,7 @@ const TagActions = ({
             customHandleChange(e, setEditedTagData)
           }
           label={t("tagAction.procedure.label")}
-          placeholder={t("tagAction.procedure.placeholder")}
+          placeholder={t("tagAction.procedure.placeholder")} 
           disabled={disabled}
           name="procedure"
         />

@@ -31,8 +31,9 @@ const useSortingResultActions = (
 
   const addNewAction = () => {
     const dataToValidate: Record<string, string> = {
-      sortingResultAction: JSON.stringify(editedSortingResultData),
+      sortingResults: JSON.stringify(editedSortingResultData),
     };
+    console.log(dataToValidate);
     const newErrors = validateFormFields(
       dataToValidate,
       SortingResultActionRules

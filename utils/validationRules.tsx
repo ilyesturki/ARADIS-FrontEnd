@@ -194,6 +194,25 @@ export const SortingResultActionRules = {
   },
 };
 
+export const ImmediatActionRules = {
+  immediateActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const immediateAction = JSON.parse(value);
+        if (
+          !immediateAction.description ||
+          !immediateAction.userCategory ||
+          !immediateAction.userService
+        ) {
+          return "Please fill in all required fields for all immediate actions.";
+        }
+      }
+      return null;
+    },
+  },
+};
+
 export const fpsCauseValidationRules = {
   fpsId: { required: true },
   whyList: {
@@ -220,6 +239,27 @@ export const FpsDefensiveActionsRules = {
           ) {
             return "Please fill in all required fields for all defensive actions.";
           }
+        }
+      }
+      return null;
+    },
+  },
+};
+
+export const FpsDefensiveActionRules = {
+  fpsId: { required: true },
+  defensiveActions: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const defensiveAction = JSON.parse(value);
+        if (
+          !defensiveAction.procedure ||
+          !defensiveAction.userCategory ||
+          !defensiveAction.userService ||
+          !defensiveAction.quand
+        ) {
+          return "Please fill in all required fields for all defensive actions.";
         }
       }
       return null;
