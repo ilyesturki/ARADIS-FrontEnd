@@ -172,6 +172,28 @@ export const fpsImmediateActionsValidationRules = {
   },
 };
 
+export const SortingResultActionRules = {
+  sortingResults: {
+    required: true,
+    customValidator: (value: string) => {
+      if (value) {
+        const sortingResult = JSON.parse(value);
+        if (
+          !sortingResult.product ||
+          !sortingResult.sortedQuantity ||
+          !sortingResult.quantityNOK ||
+          !sortingResult.userCategory ||
+          !sortingResult.userService
+        ) {
+          return "Please fill in all required fields for all sorting results.";
+        }
+      }
+
+      return null;
+    },
+  },
+};
+
 export const fpsCauseValidationRules = {
   fpsId: { required: true },
   whyList: {

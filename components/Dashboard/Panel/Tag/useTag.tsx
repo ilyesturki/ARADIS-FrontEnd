@@ -24,7 +24,6 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const useTag = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
@@ -58,7 +57,7 @@ const useTag = () => {
       setTagId(tagId);
       return;
     }
-  }, []);
+  }, []); 
 
   const tag = useAppSelector((state) => state.tags.tag);
 

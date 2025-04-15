@@ -63,7 +63,7 @@ const Tag = () => {
         <TagActions
           setTagData={setTagData}
           disabled={disabled}
-          tagData={tagData}
+          tagData={tagData} 
         />
 
         <div className="grid grid-rows-[1fr_auto] grid-cols-1 gap-4">

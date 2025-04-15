@@ -18,32 +18,36 @@ import ImmediateActions from "./components/ImmediateActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";
 import CustomSectionHeader from "../../Common/CustomSectionHeader";
 import { useTranslations } from "next-intl";
+import ActionsList from "@/components/Common/ActionsList/ActionsList";
+import ActionBox from "@/components/Common/ActionsList/ActionBox";
 
 const ImmediateActionsSection = () => {
   const t = useTranslations("CreateFps.immediateActions");
   const {
+    fpsData,
+    setFpsData,
+    disabled,
+    editSortingResult,
+    removeSortingResult,
+    handleSubmit,
+    handleReset,
+    submitBtnValue,
     isAdminOrManager,
     currentStep,
-    isDisabled,
     isDone,
-    fpsData,
     fpsId,
+
     handleChange,
-    addNewSortingResult,
-    removeSortingResult,
+
     addNewImmediateAction,
     removeImmediateAction,
+
     handleAlertChange,
     categoryData,
     serviceData,
     handleChangeInArray,
     handleChangeInArrayObject,
-    setFpsData,
     handleStartSorting,
-
-    handleSubmit,
-    handleReset,
-    submitBtnValue,
   } = useImmediateActionsSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
@@ -52,22 +56,19 @@ const ImmediateActionsSection = () => {
           title={t("switch.label")}
           checked={fpsData.startSorting}
           onChange={handleStartSorting}
-          disabled={isDisabled}
+          disabled={disabled}
           checkedColor="text-redAccent-900"
           unCheckedColor="text-greenAccent-900"
           checkedValue={t("switch.checkedValue")}
           unCheckedValue={t("switch.unCheckedValue")}
         />
+
         <SortingResults
-          sortingResults={fpsData.sortingResults || []}
-          addNewSortingResult={addNewSortingResult}
-          removeSortingResult={removeSortingResult}
-          categoryData={categoryData}
-          serviceData={serviceData}
-          handleChangeInArrayObject={handleChangeInArrayObject}
           setFpsData={setFpsData}
-          disabled={isDisabled}
+          disabled={disabled}
+          fpsData={fpsData}
         />
+
         <CustomSectionHeader title={t("conclusion.label")} />
         <CustomTextArea
           value={fpsData.concludeFromSorting}
@@ -75,7 +76,7 @@ const ImmediateActionsSection = () => {
           label={t("conclusion.label")}
           placeholder={t("conclusion.placeholder")}
           name="concludeFromSorting"
-          disabled={isDisabled}
+          disabled={disabled}
         />
 
         <ImmediateActions
@@ -87,7 +88,7 @@ const ImmediateActionsSection = () => {
           serviceData={serviceData}
           handleChangeInArrayObject={handleChangeInArrayObject}
           setFpsData={setFpsData}
-          disabled={isDisabled}
+          disabled={disabled}
         />
       </div>
       <div className=" flex flex-col gap-10">
@@ -99,18 +100,33 @@ const ImmediateActionsSection = () => {
           copy
           disabled
         />
+        <ActionsList headers={["Service", "Category", "Product", "Actions"]}>
+          {fpsData?.sortingResults &&
+            fpsData?.sortingResults?.length > 0 &&
+            fpsData.sortingResults?.map((e, i) => {
+              return (
+                <ActionBox
+                  key={i}
+                  data={[e.userService, e.userCategory, e.product]}
+                  editAction={editSortingResult}
+                  removeAction={removeSortingResult}
+                  i={i}
+                />
+              );
+            })}
+        </ActionsList>
         <CustomPicker
           label={t("alert.label")}
           selectedData={fpsData.alert || []}
           handleChange={handleAlertChange}
           data={serviceData || []}
-          disabled={isDisabled}
+          disabled={disabled}
         />
         {isDone ? (
           <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (
           <CustomText title={t("doneStatus.notAllowed")} />
-        ) : isDisabled ? (
+        ) : disabled ? (
           <CustomText title={t("doneStatus.disabled")} />
         ) : (
           <CustomButtons

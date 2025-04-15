@@ -3,121 +3,155 @@
 import SectionsSeperator from "../../../Common/SectionsSeperator";
 import AddSectionButton from "../../../Common/AddSectionButton";
 import {
-  fpsImmediateActionsType,
+  editedFpsImmediateActionsType,
   sortingResultsType,
 } from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 import SortingResult from "./SortingResult";
-
-interface Props {
-  sortingResults: sortingResultsType[];
-  addNewSortingResult: () => void;
-  removeSortingResult: (index: number) => void;
-  categoryData: { value: string; label: string }[];
-  serviceData: { value: string; label: string }[];
-  handleChangeInArrayObject: (
-    setState: (updater: (prevState: any) => any) => void,
-    value: any,
-    arrayName: string,
-    name: string,
-    index: number
-  ) => void;
-  setFpsData: (updater: (prevState: any) => any) => void;
-  disabled?: boolean;
-}
+import useSortingResultActions from "./useSortingResultActions";
+import CustomInput from "@/components/Common/CustomInput/CustomInput";
+import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 
 const SortingResults = ({
-  sortingResults,
-  addNewSortingResult,
-  removeSortingResult,
-  categoryData,
-  serviceData,
-  handleChangeInArrayObject,
   setFpsData,
   disabled,
-}: Props) => {
+  fpsData,
+}: {
+  setFpsData: (prevState: editedFpsImmediateActionsType) => void;
+  disabled: boolean;
+  fpsData: editedFpsImmediateActionsType;
+}) => {
+  const {
+    editedSortingResultData,
+    categoryData,
+    serviceData,
+    customHandleChange,
+    handleChangeSelect,
+    setEditedSortingResultData,
+    addNewAction,
+  } = useSortingResultActions(setFpsData, fpsData);
+
   return (
-    <>
-      {sortingResults.map((e, i) => {
-        return (
-          <div className=" flex flex-col gap-2" key={i}>
-            <CustomSectionHeader
-              title="result"
-              i={i}
-              handleDeleteSection={() => removeSortingResult(i)}
-              disabled={disabled}
-            />
-            <SortingResult
-              fpsData={e}
-              categoryData={categoryData}
-              serviceData={serviceData}
-              handleProductChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  e.target.value,
-                  "sortingResults",
-                  "product",
-                  i
-                )
-              }
-              customSortedQuantityChange={(
-                e: React.ChangeEvent<HTMLInputElement>
-              ) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  e.target.value,
-                  "sortingResults",
-                  "sortedQuantity",
-                  i
-                )
-              }
-              customQuantityNOKChange={(
-                e: React.ChangeEvent<HTMLInputElement>
-              ) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  e.target.value,
-                  "sortingResults",
-                  "quantityNOK",
-                  i
-                )
-              }
-              customCategoryChange={(userCategory: string) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  userCategory,
-                  "sortingResults",
-                  "userCategory",
-                  i
-                )
-              }
-              customServiceChange={(userService: string) =>
-                handleChangeInArrayObject(
-                  setFpsData,
-                  userService,
-                  "sortingResults",
-                  "userService",
-                  i
-                )
-              }
-              disabled={disabled}
-            />
-            {sortingResults.length - 1 !== i ? (
-              <SectionsSeperator />
-            ) : (
-              !disabled && (
-                <AddSectionButton
-                  addNewSection={addNewSortingResult}
-                  disabled={disabled}
-                />
+    <div className=" flex flex-col gap-2">
+      <div className=" flex flex-col gap-4">
+        <CustomInput
+          value={editedSortingResultData.product}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            customHandleChange(e, setEditedSortingResultData)
+          }
+          label="produit"
+          placeholder="produit"
+          disabled={disabled}
+        />
+        <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
+          <CustomInput
+            value={editedSortingResultData.sortedQuantity}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              customHandleChange(e, setEditedSortingResultData)
+            }
+            label="quantité triee"
+            placeholder="quantité triee"
+            disabled={disabled}
+            name="sortedQuantity"
+          />
+          <CustomInput
+            value={editedSortingResultData.quantityNOK}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              customHandleChange(e, setEditedSortingResultData)
+            }
+            label="quantité NOK"
+            placeholder="quantité NOK"
+            disabled={disabled}
+            name="quantityNOK"
+          />
+          <CustomSelect
+            label="departement"
+            value={editedSortingResultData.userService}
+            onChange={(userService: string) =>
+              handleChangeSelect(
+                setEditedSortingResultData,
+                userService,
+                "userService"
               )
-            )}
-          </div>
-        );
-      })}
-    </>
+            }
+            data={serviceData}
+            disabled={disabled}
+            name="userService"
+          />
+          <CustomSelect
+            label="categorie"
+            value={editedSortingResultData.userCategory}
+            onChange={(userCategory: string) =>
+              handleChangeSelect(
+                setEditedSortingResultData,
+                userCategory,
+                "userCategory"
+              )
+            }
+            data={categoryData}
+            disabled={disabled}
+            name="userCategory"
+          />
+        </div>
+      </div>
+
+      {/* <SortingResult
+        editedSortingResultData={e}
+        categoryData={categoryData}
+        serviceData={serviceData}
+        handleProductChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChangeInArrayObject(
+            setFpsData,
+            e.target.value,
+            "sortingResults",
+            "product",
+            i
+          )
+        }
+        customSortedQuantityChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChangeInArrayObject(
+            setFpsData,
+            e.target.value,
+            "sortingResults",
+            "sortedQuantity",
+            i
+          )
+        }
+        customQuantityNOKChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChangeInArrayObject(
+            setFpsData,
+            e.target.value,
+            "sortingResults",
+            "quantityNOK",
+            i
+          )
+        }
+        customCategoryChange={(userCategory: string) =>
+          handleChangeInArrayObject(
+            setFpsData,
+            userCategory,
+            "sortingResults",
+            "userCategory",
+            i
+          )
+        }
+        customServiceChange={(userService: string) =>
+          handleChangeInArrayObject(
+            setFpsData,
+            userService,
+            "sortingResults",
+            "userService",
+            i
+          )
+        }
+        disabled={disabled}
+      /> */}
+      {!disabled && (
+        <AddSectionButton addNewSection={addNewAction} disabled={disabled} />
+      )}
+    </div>
   );
 };
 

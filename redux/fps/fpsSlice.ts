@@ -59,6 +59,15 @@ export type sortingResultsType = {
   userService: string;
 };
 
+export type editedSortingResultsType = {
+  product: string;
+  sortedQuantity: string;
+  quantityNOK: string;
+  userCategory: string;
+  userService: string;
+  edit?: boolean;
+};
+
 export type immediatActionsType = {
   description: string;
   userCategory: string;
@@ -69,6 +78,14 @@ export type fpsImmediateActionsType = {
   alert?: string[];
   startSorting: boolean;
   sortingResults?: sortingResultsType[];
+  concludeFromSorting?: string;
+  immediateActions?: immediatActionsType[];
+};
+
+export type editedFpsImmediateActionsType = {
+  alert?: string[];
+  startSorting: boolean;
+  sortingResults?: editedSortingResultsType[];
   concludeFromSorting?: string;
   immediateActions?: immediatActionsType[];
 };

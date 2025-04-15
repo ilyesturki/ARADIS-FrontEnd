@@ -1,4 +1,5 @@
 import {
+  editedSortingResultsType,
   flexibleFpsType,
   fpsCauseType,
   FpsCommentType,
@@ -142,6 +143,14 @@ export const initialFpsImmediateActions: fpsImmediateActionsType = {
       userService: "",
     },
   ],
+};
+
+export const initialSortingResultAction: editedSortingResultsType = {
+  product: "",
+  sortedQuantity: "",
+  quantityNOK: "",
+  userCategory: "",
+  userService: "",
 };
 
 export const initialFpsCause: fpsCauseType = {

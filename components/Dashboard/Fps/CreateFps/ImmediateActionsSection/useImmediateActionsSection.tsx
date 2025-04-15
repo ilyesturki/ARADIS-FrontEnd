@@ -3,7 +3,7 @@ import {
   FpsType,
   flexibleFpsType,
   fpsDefensiveActionType,
-  fpsImmediateActionsType,
+  editedFpsImmediateActionsType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -36,7 +36,7 @@ const useImmediateActionsSection = () => {
 
   const dispatch = useAppDispatch();
 
-  const [fpsData, setFpsData] = useState<fpsImmediateActionsType>(
+  const [fpsData, setFpsData] = useState<editedFpsImmediateActionsType>(
     initialFpsImmediateActions
   );
   const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
@@ -57,7 +57,7 @@ const useImmediateActionsSection = () => {
     return currentStep === "validation";
   }, [currentStep]);
 
-  const isDisabled = useMemo(() => {
+  const disabled = useMemo(() => {
     const tabsOrder = [
       "problem",
       "immediateActions",
@@ -136,22 +136,18 @@ const useImmediateActionsSection = () => {
     }));
   };
 
-  const addNewSortingResult = () => {
-    const sortingResults = [...(fpsData?.sortingResults || [])];
-    sortingResults.push({
-      product: "",
-      sortedQuantity: "",
-      quantityNOK: "",
-      userCategory: "",
-      userService: "",
+  const editSortingResult = (index: number) => {
+    let sortingResults = fpsData.sortingResults?.map((e, i) => {
+      return i === index ? { ...e, edit: true } : e;
     });
     setFpsData((prevData) => ({
       ...prevData,
       sortingResults,
     }));
   };
+
   const removeSortingResult = (index: number) => {
-    if (fpsData.sortingResults && fpsData.sortingResults.length > 1) {
+    if (fpsData.sortingResults) {
       const sortingResults = [
         ...fpsData.sortingResults.slice(0, index),
         ...fpsData.sortingResults.slice(index + 1),
@@ -189,20 +185,6 @@ const useImmediateActionsSection = () => {
       }));
     }
   };
-
-  // const handleCategoryChange = (
-  //   userCategory: fpsDefensiveActionType["userCategory"],
-  //   i: number
-  // ) => {
-  //   handleChangeInArray(setFpsData, userCategory, "userCategory", i);
-  // };
-
-  // const handleServiceChange = (
-  //   userService: fpsDefensiveActionType["userService"],
-  //   i: number
-  // ) => {
-  //   handleChangeInArray(setFpsData, userService, "userService", i);
-  // };
 
   const handleAlertChange = (data: string, i?: number) => {
     customHandleAlertChange(data, setFpsData, i);
@@ -249,28 +231,30 @@ const useImmediateActionsSection = () => {
   };
 
   return {
+    fpsData,
+    setFpsData,
+    disabled,
+    editSortingResult,
+    removeSortingResult,
+    handleSubmit,
+    handleReset,
+    submitBtnValue,
     isAdminOrManager,
     currentStep,
-    isDisabled,
     isDone,
-    fpsData,
     fpsId,
+
     handleChange,
-    addNewSortingResult,
-    removeSortingResult,
+
     addNewImmediateAction,
     removeImmediateAction,
+
     handleAlertChange,
     categoryData,
     serviceData,
     handleChangeInArray,
     handleChangeInArrayObject,
-    setFpsData,
     handleStartSorting,
-
-    handleSubmit,
-    handleReset,
-    submitBtnValue,
   };
 };
 

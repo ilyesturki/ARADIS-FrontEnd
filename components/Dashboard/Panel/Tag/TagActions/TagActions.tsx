@@ -34,7 +34,7 @@ const TagActions = ({
     categoryData,
     serviceData,
     customHandleChange,
-    handleChangeSelect,
+    handleChangeSelect, 
     setEditedTagData,
     addNewAction,
   } = useTagActions(setTagData, tagData);
