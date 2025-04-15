@@ -1,4 +1,5 @@
 import {
+  editDefensiveActionType,
   editedFpsImmediateActionsType,
   editedImmediatActionsType,
   editedSortingResultsType,
@@ -152,7 +153,9 @@ export const initialFpsCause: fpsCauseType = {
   whyList: [""],
 };
 
-export const initialFpsDefensiveActions: fpsDefensiveActionsType = [
+export const initialFpsDefensiveActions: fpsDefensiveActionsType = [];
+
+export const initialFpsDefensiveAction: editDefensiveActionType = [
   {
     procedure: "",
     userCategory: "",

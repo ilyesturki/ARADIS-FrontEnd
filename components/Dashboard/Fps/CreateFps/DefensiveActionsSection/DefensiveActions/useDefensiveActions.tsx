@@ -1,9 +1,9 @@
 "use client";
-import { EditedDefensiveActionType } from "@/redux/defensive/defensiveSlice";
+import { EditedDefensiveActionType } from "@/redux/fps/fpsSliceSlice";
 import { useEffect, useState } from "react";
 import { customHandleChange, handleChangeSelect } from "@/utils/handlers";
 
-import { categoryData, serviceData, initialDefensiveAction } from "@/data/defensive";
+import { categoryData, serviceData, initialDefensiveAction } from "@/data/fps";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { handleError } from "@/utils/handleError";
 import { FpsDefensiveActionRules } from "@/utils/validationRules";
@@ -26,7 +26,7 @@ const useDefensiveActions = (
     const dataToValidate: Record<string, string> = {
       defensiveAction: JSON.stringify(editedDefensiveData),
     };
-    const newErrors = validateFormFields(dataToValidate, FpsDefensiveActionRules);
+    const newErrors = validateFormFields(dataToValidate, DefensiveActionRules);
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
       return;

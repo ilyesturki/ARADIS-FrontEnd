@@ -46,6 +46,14 @@ export type fpsDefensiveActionType = {
   quand: string;
 };
 
+export type editDefensiveActionType = {
+  procedure: string;
+  userCategory: string;
+  userService: string;
+  quand: string;
+  edit?: boolean;
+};
+
 export type fpsCauseType = {
   causeList: string[];
   whyList: string[];
@@ -120,7 +128,7 @@ export interface FpsType {
     | "defensiveActions"
     | "validation";
   problem: fpsProblemType;
-  defensiveActions?: fpsDefensiveActionType[];
+  defensiveActions?: editDefensiveActionType[];
   cause?: fpsCauseType;
   immediateActions?: fpsImmediateActionsType;
   status: "inProgress" | "completed" | "failed";
