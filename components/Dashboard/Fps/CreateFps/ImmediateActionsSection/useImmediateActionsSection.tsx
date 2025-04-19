@@ -89,7 +89,7 @@ const useImmediateActionsSection = () => {
     console.log(fps);
     if (fps?.immediateActions && Object.keys(fps.immediateActions).length > 0) {
       console.log(fps?.immediateActions);
-      const newAlert = [...(fps.immediateActions?.alert || [])];
+      // const newAlert = [...(fps.immediateActions?.alert || [])];
       const newSortingResult = [...(fps.immediateActions.sortingResults || [])];
       const newImmediateActions = [
         ...(fps.immediateActions.immediateActions || []),
@@ -99,7 +99,7 @@ const useImmediateActionsSection = () => {
       console.log("fps?.immediateActions");
       setFpsData({
         ...fps.immediateActions,
-        alert: newAlert,
+        // alert: newAlert,
         sortingResults: newSortingResult,
         immediateActions: newImmediateActions,
       });
@@ -193,7 +193,7 @@ const useImmediateActionsSection = () => {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {
       fpsId: fpsId,
-      alert: JSON.stringify(fpsData.alert || []),
+      // alert: JSON.stringify(fpsData.alert || []),
       startSorting: fpsData.startSorting.toString() || "",
       sortingResults: JSON.stringify(fpsData.sortingResults || []),
       concludeFromSorting: fpsData.concludeFromSorting || "",
@@ -213,7 +213,7 @@ const useImmediateActionsSection = () => {
       {},
       {
         fpsId: fpsId,
-        alert: JSON.stringify(fpsData.alert || []),
+        // alert: JSON.stringify(fpsData.alert || []),
         startSorting: fpsData.startSorting.toString() || "",
         sortingResults: JSON.stringify(fpsData.sortingResults || []),
         concludeFromSorting: fpsData.concludeFromSorting || "",

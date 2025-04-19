@@ -1,7 +1,7 @@
 "use client";
 import {
   FpsType,
-  fpsDefensiveActionsType,
+  editedDefensiveActionType,
   fpsDefensiveActionType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
@@ -27,7 +27,7 @@ import {
   serviceData,
 } from "@/data/fps";
 
-import { useRouter} from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -36,7 +36,7 @@ const useDefensiveActionsSection = () => {
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const [fpsData, setFpsData] = useState<fpsDefensiveActionsType>(
+  const [fpsData, setFpsData] = useState<editedDefensiveActionType[]>(
     initialFpsDefensiveActions
   );
   const [fpsId, setFpsId] = useState<FpsType["fpsId"]>("");
@@ -57,7 +57,7 @@ const useDefensiveActionsSection = () => {
     return currentStep === "validation";
   }, [currentStep]);
 
-  const isDisabled = useMemo(() => {
+  const disabled = useMemo(() => {
     const tabsOrder = [
       "problem",
       "immediateActions",
@@ -103,11 +103,14 @@ const useDefensiveActionsSection = () => {
     );
   }, [fps]);
 
-  const addNewDefensiveAction = () => {
-    setFpsData((prevData) => [
-      ...prevData,
-      { procedure: "", userCategory: "", userService: "", quand: "" },
-    ]);
+  const editDefensiveAction = (index: number) => {
+    let newFpsData = fpsData
+      .map((e, i) => (e.edit ? { ...e, edit: false } : e))
+      .map((e, i) => {
+        return i === index ? { ...e, edit: true } : e;
+      });
+
+    setFpsData(newFpsData);
   };
 
   const removeDefensiveAction = (index: number) => {
@@ -149,22 +152,17 @@ const useDefensiveActionsSection = () => {
   };
 
   return {
-    isAdminOrManager,
-    currentStep,
-    isDisabled,
-    isDone,
-    fpsData,
-    fpsId,
-    categoryData,
-    serviceData,
-    handleChangeInArray,
+    disabled,
     setFpsData,
-    addNewDefensiveAction,
+    fpsData,
+    editDefensiveAction,
     removeDefensiveAction,
-
     handleSubmit,
     handleReset,
     submitBtnValue,
+    isAdminOrManager,
+    isDone,
+    fpsId,
   };
 };
 

@@ -35,18 +35,10 @@ const ImmediateActionsSection = () => {
     handleReset,
     submitBtnValue,
     isAdminOrManager,
-    currentStep,
     isDone,
     fpsId,
 
     handleChange,
-
-
-    handleAlertChange,
-    categoryData,
-    serviceData,
-    handleChangeInArray,
-    handleChangeInArrayObject,
     handleStartSorting,
   } = useImmediateActionsSection();
   return (
@@ -105,6 +97,7 @@ const ImmediateActionsSection = () => {
                   editAction={editSortingResult}
                   removeAction={removeSortingResult}
                   i={i}
+                  disabled={disabled}
                 />
               );
             })}
@@ -122,17 +115,18 @@ const ImmediateActionsSection = () => {
                   editAction={editImmediateAction}
                   removeAction={removeImmediateAction}
                   i={i}
+                  disabled={disabled}
                 />
               );
             })}
         </ActionsList>
-        <CustomPicker
+        {/* <CustomPicker
           label={t("alert.label")}
           selectedData={fpsData.alert || []}
           handleChange={handleAlertChange}
           data={serviceData || []}
           disabled={disabled}
-        />
+        /> */}
         {isDone ? (
           <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (

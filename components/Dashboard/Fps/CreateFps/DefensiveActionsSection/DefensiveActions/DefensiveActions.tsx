@@ -3,49 +3,38 @@
 import SectionsSeperator from "../../../Common/SectionsSeperator";
 import DefensiveAction from "./DefensiveAction";
 import AddSectionButton from "../../../Common/AddSectionButton";
-import { fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
+import {
+  fpsDefensiveActionsType,
+  editedDefensiveActionType,
+} from "@/redux/fps/fpsSlice";
 import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 import { useTranslations } from "next-intl";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-
-interface Props {
-  fpsData: fpsDefensiveActionsType;
-  categoryData: { value: string; label: string }[];
-  serviceData: { value: string; label: string }[];
-  handleChangeInArray: (
-    setState: (updater: (prevState: any) => any) => void,
-    value: any,
-    name: string,
-    index: number
-  ) => void;
-  setFpsData: (updater: (prevState: any) => any) => void;
-  addNewDefensiveAction: () => void;
-  removeDefensiveAction: (index: number) => void;
-  disabled?: boolean;
-}
+import useDefensiveActions from "./useDefensiveActions";
+import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
 
 const DefensiveActions = ({
   setDefensiveActionsData,
   disabled,
   defensiveActionsData,
 }: {
-  setDefensiveActionsData: (
-    prevState: EditedDefensiveActionsActionType[]
-  ) => void;
+  setDefensiveActionsData: (prevState: editedDefensiveActionType[]) => void;
   disabled: boolean;
-  defensiveActionsData: DefensiveActionsActionType[];
+  defensiveActionsData: editedDefensiveActionType[];
 }) => {
-  const t = useTranslations("CreateFps.defensiveActions.defensiveActions");
+  const t = useTranslations(
+    "CreateFps.defensiveActions.defensiveActions.defensiveAction"
+  );
 
   const {
-    editedDefensiveActionsData,
+    editedDefensiveData,
     categoryData,
     serviceData,
     customHandleChange,
     handleChangeSelect,
-    setEditedDefensiveActionsData,
+    setEditedDefensiveData,
     addNewAction,
   } = useDefensiveActions(setDefensiveActionsData, defensiveActionsData);
 
@@ -53,9 +42,9 @@ const DefensiveActions = ({
     <div className=" flex flex-col gap-2">
       <div className=" flex flex-col gap-4">
         <CustomTextArea
-          value={editedDefensiveActionsData.procedure}
+          value={editedDefensiveData.procedure}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            customHandleChange(e, setEditedDefensiveActionsData)
+            customHandleChange(e, setEditedDefensiveData)
           }
           label={t("procedure.label")}
           placeholder={t("procedure.placeholder")}
@@ -65,9 +54,13 @@ const DefensiveActions = ({
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">
           <CustomSelect
             label={t("department.label")}
-            value={editedDefensiveActionsData.userService}
+            value={editedDefensiveData.userService}
             onChange={(userService: string) =>
-              handleChangeSelect(setEditedDefensiveActionsData, userService, "userService")
+              handleChangeSelect(
+                setEditedDefensiveData,
+                userService,
+                "userService"
+              )
             }
             data={serviceData}
             disabled={disabled}
@@ -75,9 +68,13 @@ const DefensiveActions = ({
           />
           <CustomSelect
             label={t("category.label")}
-            value={editedDefensiveActionsData.userCategory}
+            value={editedDefensiveData.userCategory}
             onChange={(userCategory: string) =>
-              handleChangeSelect(setEditedDefensiveActionsData, userCategory, "userCategory")
+              handleChangeSelect(
+                setEditedDefensiveData,
+                userCategory,
+                "userCategory"
+              )
             }
             data={categoryData}
             disabled={disabled}
@@ -86,10 +83,10 @@ const DefensiveActions = ({
         </div>
         <CustomDateTimePicker
           label={t("when.label")}
-          value={editedDefensiveActionsData.quand}
+          value={editedDefensiveData.quand}
           onChange={(value: Date | undefined, name?: string | undefined) =>
             handleChangeSelect(
-              setEditedDefensiveActionsData,
+              setEditedDefensiveData,
               value?.toISOString() ?? "",
               "quand"
             )

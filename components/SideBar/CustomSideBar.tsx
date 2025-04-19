@@ -37,13 +37,13 @@ const data = {
     // users
     {
       allowedTo: ["user"],
-      title: "Auto-MTCE",
+      title: "Auto MTCE",
       url: "/auto-mtce",
       icon: SquareTerminal,
     },
     {
       allowedTo: ["user"],
-      title: "Diag-MTCE",
+      title: "Diag MTCE",
       url: "/diag-mtce",
       icon: SquareTerminal,
     },
@@ -145,7 +145,11 @@ export function CustomSideBar({
   ...props
 }: { session: any } & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar
+      collapsible="icon"
+      {...props}
+      className="transition-all duration-300"
+    >
       <SidebarHeader>
         <WebsiteCustomLogo />
         <UserNav

@@ -1,19 +1,23 @@
 "use client";
-import { EditedDefensiveActionType } from "@/redux/fps/fpsSliceSlice";
+import { editedDefensiveActionType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
 import { customHandleChange, handleChangeSelect } from "@/utils/handlers";
 
-import { categoryData, serviceData, initialDefensiveAction } from "@/data/fps";
+import {
+  categoryData,
+  serviceData,
+  initialFpsDefensiveAction,
+} from "@/data/fps";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { handleError } from "@/utils/handleError";
 import { FpsDefensiveActionRules } from "@/utils/validationRules";
 
 const useDefensiveActions = (
-  setDefensiveData: (prevState: EditedDefensiveActionType[]) => void,
-  defensiveData: EditedDefensiveActionType[]
+  setDefensiveData: (prevState: editedDefensiveActionType[]) => void,
+  defensiveData: editedDefensiveActionType[]
 ) => {
   const [editedDefensiveData, setEditedDefensiveData] =
-    useState<EditedDefensiveActionType>(initialDefensiveAction);
+    useState<editedDefensiveActionType>(initialFpsDefensiveAction);
 
   useEffect(() => {
     const found = defensiveData.find((e) => e.edit);
@@ -26,7 +30,10 @@ const useDefensiveActions = (
     const dataToValidate: Record<string, string> = {
       defensiveAction: JSON.stringify(editedDefensiveData),
     };
-    const newErrors = validateFormFields(dataToValidate, DefensiveActionRules);
+    const newErrors = validateFormFields(
+      dataToValidate,
+      FpsDefensiveActionRules
+    );
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
       return;

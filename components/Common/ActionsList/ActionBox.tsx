@@ -7,11 +7,13 @@ const ActionBox = ({
   editAction,
   removeAction,
   i,
+  disabled,
 }: {
   data: string[];
   editAction: any;
   removeAction: any;
   i: number;
+  disabled?: boolean;
 }) => {
   return (
     <div
@@ -30,7 +32,10 @@ const ActionBox = ({
       <div className="flex items-center gap-2">
         <button
           onClick={() => editAction(i)}
-          className={`flex justify-center items-center w-5 aspect-1 rounded-full bg-redAccent-900 bg-opacity-90 shadow-[0_0_2px] shadow-grayscale-400 `}
+          disabled={disabled}
+          className={`flex justify-center items-center w-5 aspect-1 rounded-full bg-redAccent-900 ${
+            disabled ? "bg-opacity-50 cursor-not-allowed" : "bg-opacity-90"
+          } shadow-[0_0_1px] shadow-grayscale-400 `}
         >
           <FontAwesomeIcon
             icon={faEdit}
@@ -39,7 +44,10 @@ const ActionBox = ({
         </button>
         <button
           onClick={() => removeAction(i)}
-          className={`flex justify-center items-center w-5 aspect-1 rounded-full bg-redAccent-900 bg-opacity-90 shadow-[0_0_2px] shadow-grayscale-400 `}
+          disabled={disabled}
+          className={`flex justify-center items-center w-5 aspect-1 rounded-full bg-redAccent-900 ${
+            disabled ? "bg-opacity-50 cursor-not-allowed" : "bg-opacity-90"
+          } shadow-[0_0_1px] shadow-grayscale-400 `}
         >
           <FontAwesomeIcon
             icon={faTrash}

@@ -1,5 +1,5 @@
 import {
-  editDefensiveActionType,
+  editedDefensiveActionType,
   editedFpsImmediateActionsType,
   editedImmediatActionsType,
   editedSortingResultsType,
@@ -153,16 +153,14 @@ export const initialFpsCause: fpsCauseType = {
   whyList: [""],
 };
 
-export const initialFpsDefensiveActions: fpsDefensiveActionsType = [];
+export const initialFpsDefensiveActions: editedDefensiveActionType[] = [];
 
-export const initialFpsDefensiveAction: editDefensiveActionType = [
-  {
-    procedure: "",
-    userCategory: "",
-    userService: "",
-    quand: "",
-  },
-];
+export const initialFpsDefensiveAction: editedDefensiveActionType = {
+  procedure: "",
+  userCategory: "",
+  userService: "",
+  quand: "",
+};
 
 export const initialFpsValidation: flexibleFpsType = {
   status: "failed",

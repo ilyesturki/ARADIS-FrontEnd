@@ -48,7 +48,7 @@ export function NavMain({
   // );
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="overflow-hidden">
       <SidebarGroupLabel className="text-grayscale-100">
         Dashboard
       </SidebarGroupLabel>
@@ -94,7 +94,7 @@ export function NavMain({
                             }`}
                           />
                         )}
-                        <span>{item.title}</span>
+                        <span className="text-nowrap">{item.title}</span>
                       </Link>
                     )}
                   </SidebarMenuButton>

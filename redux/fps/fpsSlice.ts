@@ -46,7 +46,7 @@ export type fpsDefensiveActionType = {
   quand: string;
 };
 
-export type editDefensiveActionType = {
+export type editedDefensiveActionType = {
   procedure: string;
   userCategory: string;
   userService: string;
@@ -90,7 +90,7 @@ export type editedImmediatActionsType = {
 };
 
 export type fpsImmediateActionsType = {
-  alert?: string[];
+  // alert?: string[];
   startSorting: boolean;
   sortingResults?: sortingResultsType[];
   concludeFromSorting?: string;
@@ -98,7 +98,7 @@ export type fpsImmediateActionsType = {
 };
 
 export type editedFpsImmediateActionsType = {
-  alert?: string[];
+  // alert?: string[];
   startSorting: boolean;
   sortingResults?: editedSortingResultsType[];
   concludeFromSorting?: string;
@@ -128,7 +128,7 @@ export interface FpsType {
     | "defensiveActions"
     | "validation";
   problem: fpsProblemType;
-  defensiveActions?: editDefensiveActionType[];
+  defensiveActions?: editedDefensiveActionType[];
   cause?: fpsCauseType;
   immediateActions?: fpsImmediateActionsType;
   status: "inProgress" | "completed" | "failed";

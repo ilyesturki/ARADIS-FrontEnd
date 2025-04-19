@@ -67,7 +67,7 @@ const useTag = () => {
     console.log("***********************");
     if (tag?.tagActions && Object.keys(tag?.tagActions).length > 0) {
       setTagData(tag?.tagActions);
-    }
+    } 
     setCurrentStep(tag?.status || null);
   }, [tag]);
 

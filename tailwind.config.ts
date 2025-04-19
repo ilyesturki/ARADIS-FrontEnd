@@ -13,6 +13,7 @@ export default {
   ],
   safelist: [
     "bg-opacity-10",
+    "!bg-opacity-10",
     "text-red-500",
     "text-greenAccent-800",
     "text-pinkAccent",
