@@ -42,12 +42,12 @@ const useImmediateAction = (
     console.log("//////////////////////////////////////");
     console.log(fpsData.immediateActions);
     console.log(
-      fpsData.immediateActions?.map((e, i) => {
+      fpsData.immediateActions?.map((e) => {
         return e.edit ? { ...e, ...editedImmediateActionData, edit: false } : e;
       })
     );
     const newImmediateActionData = fpsData.immediateActions?.some((e) => e.edit)
-      ? fpsData.immediateActions?.map((e, i) => {
+      ? fpsData.immediateActions?.map((e) => {
           return e.edit
             ? { ...e, ...editedImmediateActionData, edit: false }
             : e;

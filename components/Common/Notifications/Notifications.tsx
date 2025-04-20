@@ -1,6 +1,5 @@
 "use client";
 import { MdOutlineNotificationsActive } from "react-icons/md";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogTrigger,

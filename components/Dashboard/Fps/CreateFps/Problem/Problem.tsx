@@ -14,7 +14,6 @@ const Problem = () => {
   const t = useTranslations("CreateFps.problem");
   const {
     isAdminOrManager,
-    currentStep,
     isDisabled,
     isDone,
     problemTypesData,
@@ -24,7 +23,6 @@ const Problem = () => {
     fpsId,
     handleChange,
     handleImageChange,
-    customHandleChangeSelect,
     customHandleChangeDate,
     categoryData,
     serviceData,

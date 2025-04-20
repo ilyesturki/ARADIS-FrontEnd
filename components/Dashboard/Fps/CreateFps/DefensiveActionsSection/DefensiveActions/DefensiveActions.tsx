@@ -1,14 +1,9 @@
 "use client";
 
-import SectionsSeperator from "../../../Common/SectionsSeperator";
-import DefensiveAction from "./DefensiveAction";
 import AddSectionButton from "../../../Common/AddSectionButton";
 import {
-  fpsDefensiveActionsType,
   editedDefensiveActionType,
 } from "@/redux/fps/fpsSlice";
-import RemoveSectionButton from "../../../Common/RemoveSectionButton";
-import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 import { useTranslations } from "next-intl";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
@@ -84,7 +79,7 @@ const DefensiveActions = ({
         <CustomDateTimePicker
           label={t("when.label")}
           value={editedDefensiveData.quand}
-          onChange={(value: Date | undefined, name?: string | undefined) =>
+          onChange={(value: Date | undefined) =>
             handleChangeSelect(
               setEditedDefensiveData,
               value?.toISOString() ?? "",

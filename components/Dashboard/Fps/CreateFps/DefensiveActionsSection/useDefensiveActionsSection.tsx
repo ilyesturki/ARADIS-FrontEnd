@@ -1,30 +1,19 @@
 "use client";
-import {
-  FpsType,
-  editedDefensiveActionType,
-} from "@/redux/fps/fpsSlice";
+import { FpsType, editedDefensiveActionType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {
-  customHandleSubmit,
-} from "@/utils/handlers";
+import { customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
-import {
-  FpsDefensiveActionsRules,
-} from "@/utils/validationRules";
+import { FpsDefensiveActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createFpsDefensiveActions } from "@/redux/fps/fpsThunk";
 
-import {
-  initialFpsDefensiveActions,
-} from "@/data/fps";
+import { initialFpsDefensiveActions } from "@/data/fps";
 
-import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const useDefensiveActionsSection = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
@@ -67,7 +56,7 @@ const useDefensiveActionsSection = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
 
     if (fpsId) {
       setFpsId(fpsId);
@@ -96,8 +85,8 @@ const useDefensiveActionsSection = () => {
   }, [fps]);
 
   const editDefensiveAction = (index: number) => {
-    let newFpsData = fpsData
-      .map((e, i) => (e.edit ? { ...e, edit: false } : e))
+    const newFpsData = fpsData
+      .map((e) => (e.edit ? { ...e, edit: false } : e))
       .map((e, i) => {
         return i === index ? { ...e, edit: true } : e;
       });

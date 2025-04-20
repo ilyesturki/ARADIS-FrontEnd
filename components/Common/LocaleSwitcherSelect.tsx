@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useState, useTransition, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 
 import { FaAngleDown } from "react-icons/fa";
 
@@ -22,11 +22,11 @@ export default function LocaleSwitcherSelect({
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLocale, setSelectedLocale] =
     useState<SupportedLocale>(defaultValue);
-  const t = useTranslations("LocaleSwitcher");
+  // const t = useTranslations("LocaleSwitcher");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 

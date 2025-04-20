@@ -39,8 +39,7 @@ const tabs = [
 
 const CreateFps = () => {
   const t = useTranslations("CreateFps");
-  const { currentStep, currentTab, validTabs, handleTabChange } =
-    useCreateFps();
+  const { currentStep, currentTab, handleTabChange } = useCreateFps();
   return (
     <>
       <PageTitle title={t("pageTitle")} />

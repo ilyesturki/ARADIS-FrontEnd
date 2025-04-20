@@ -2,10 +2,7 @@
 import { FpsType, fpsCauseType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {
-  customHandleSubmit,
-  customHandleCauseChange,
-} from "@/utils/handlers";
+import { customHandleSubmit, customHandleCauseChange } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsCauseValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
@@ -25,7 +22,7 @@ const useCauseSection = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
 
     if (fpsId) {
       setFpsId(fpsId);

@@ -1,8 +1,5 @@
 "use client";
-import {
-  FpsType,
-  editedFpsImmediateActionsType,
-} from "@/redux/fps/fpsSlice";
+import { FpsType, editedFpsImmediateActionsType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
@@ -14,19 +11,17 @@ import {
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsImmediateActionsValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsImmediateActions, getFps } from "@/redux/fps/fpsThunk";
+import { createFpsImmediateActions } from "@/redux/fps/fpsThunk";
 import {
   initialFpsImmediateActions,
   categoryData,
   serviceData,
 } from "@/data/fps";
 
-import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const useImmediateActionsSection = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();
@@ -72,7 +67,7 @@ const useImmediateActionsSection = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
 
     if (fpsId) {
       setFpsId(fpsId);
@@ -130,8 +125,8 @@ const useImmediateActionsSection = () => {
   };
 
   const editSortingResult = (index: number) => {
-    let sortingResults = fpsData.sortingResults
-      ?.map((e, i) => (e.edit ? { ...e, edit: false } : e))
+    const sortingResults = fpsData.sortingResults
+      ?.map((e) => (e.edit ? { ...e, edit: false } : e))
       .map((e, i) => {
         return i === index ? { ...e, edit: true } : e;
       });
@@ -155,8 +150,8 @@ const useImmediateActionsSection = () => {
   };
 
   const editImmediateAction = (index: number) => {
-    let immediateActions = fpsData.immediateActions
-      ?.map((e, i) => (e.edit ? { ...e, edit: false } : e))
+    const immediateActions = fpsData.immediateActions
+      ?.map((e) => (e.edit ? { ...e, edit: false } : e))
       .map((e, i) => {
         return i === index ? { ...e, edit: true } : e;
       });
@@ -178,7 +173,6 @@ const useImmediateActionsSection = () => {
       }));
     }
   };
-
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dataToValidate: Record<string, string> = {

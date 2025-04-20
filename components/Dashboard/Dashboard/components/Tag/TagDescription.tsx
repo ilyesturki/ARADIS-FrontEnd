@@ -2,7 +2,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import TagDescriptionField from "./TagDescriptionField";
 
 const TagDescription = ({
-  dialogMode,
   zone,
   machine,
   equipment,

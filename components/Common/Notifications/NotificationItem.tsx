@@ -23,8 +23,7 @@ export default function NotificationItem({
 }: {
   notif: FPSNotification;
 }) {
-  const { notifications, setNotifications, setUnreadCount } =
-    useNotifications();
+  const { setNotifications, setUnreadCount } = useNotifications();
 
   const handleMarkNotificationAsRead = async () => {
     if (notif.status === "unread") {

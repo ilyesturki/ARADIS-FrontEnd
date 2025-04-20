@@ -18,7 +18,7 @@ export default function useNotifications() {
   const [notifications, setNotifications] = useState<FPSNotification[]>([]);
   const [unreadCount, setUnreadCount] = useState<number>(0);
   const { data: session } = useSession({ required: true });
-  const [socket, setSocket] = useState<Socket | null>(null);
+  const [, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
     if (!session?.user?.id) return;

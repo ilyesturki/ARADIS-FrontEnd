@@ -41,12 +41,12 @@ const useDefensiveActions = (
     console.log("//////////////////////////////////////");
     console.log(defensiveData);
     console.log(
-      defensiveData.map((e, i) => {
+      defensiveData.map((e) => {
         return e.edit ? { ...e, ...editedDefensiveData, edit: false } : e;
       })
     );
     const newDefensiveData = defensiveData.some((e) => e.edit)
-      ? defensiveData.map((e, i) => {
+      ? defensiveData.map((e) => {
           return e.edit ? { ...e, ...editedDefensiveData, edit: false } : e;
         })
       : [...defensiveData, editedDefensiveData];

@@ -2,7 +2,6 @@
 
 import ReactPaginate from "react-paginate";
 
-import { useAppSelector } from "@/redux/hooks";
 
 const Paginator = ({
   currentPage,

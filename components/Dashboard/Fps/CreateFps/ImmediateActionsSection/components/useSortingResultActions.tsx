@@ -45,12 +45,12 @@ const useSortingResultActions = (
     console.log("//////////////////////////////////////");
     console.log(fpsData.sortingResults);
     console.log(
-      fpsData.sortingResults?.map((e, i) => {
+      fpsData.sortingResults?.map((e) => {
         return e.edit ? { ...e, ...editedSortingResultData, edit: false } : e;
       })
     );
     const newSortingResultData = fpsData.sortingResults?.some((e) => e.edit)
-      ? fpsData.sortingResults?.map((e, i) => {
+      ? fpsData.sortingResults?.map((e) => {
           return e.edit ? { ...e, ...editedSortingResultData, edit: false } : e;
         })
       : [
