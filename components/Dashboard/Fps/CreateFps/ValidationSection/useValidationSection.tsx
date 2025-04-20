@@ -2,11 +2,11 @@
 import { FpsType, flexibleFpsType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { customHandleSubmit, handleChangeInArray } from "@/utils/handlers";
+import { customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsValidationValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsValidation, getFps } from "@/redux/fps/fpsThunk";
+import { createFpsValidation } from "@/redux/fps/fpsThunk";
 
 import { initialFpsValidation } from "@/data/fps";
 

@@ -7,8 +7,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { useRouter } from "@/i18n/navigation";
-
 const SignOutButton = () => {
   const handleSignOut = () => {
     signOut({ redirect: true, callbackUrl: "/auth/login" });

@@ -23,7 +23,7 @@ const TagActions = ({
     categoryData,
     serviceData,
     customHandleChange,
-    handleChangeSelect, 
+    handleChangeSelect,
     setEditedTagData,
     addNewAction,
   } = useTagActions(setTagData, tagData);
@@ -37,7 +37,7 @@ const TagActions = ({
             customHandleChange(e, setEditedTagData)
           }
           label={t("tagAction.procedure.label")}
-          placeholder={t("tagAction.procedure.placeholder")} 
+          placeholder={t("tagAction.procedure.placeholder")}
           disabled={disabled}
           name="procedure"
         />
@@ -66,7 +66,7 @@ const TagActions = ({
         <CustomDateTimePicker
           label={t("tagAction.when.label")}
           value={editedTagData.quand}
-          onChange={(value: Date | undefined, name?: string | undefined) =>
+          onChange={(value: Date | undefined) =>
             handleChangeSelect(
               setEditedTagData,
               value?.toISOString() ?? "",

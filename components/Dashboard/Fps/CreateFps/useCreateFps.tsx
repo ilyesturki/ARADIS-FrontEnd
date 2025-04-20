@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { getFps } from "@/redux/fps/fpsThunk";
 import { resetFps } from "@/redux/fps/fpsSlice";

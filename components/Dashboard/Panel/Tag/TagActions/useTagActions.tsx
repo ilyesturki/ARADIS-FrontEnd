@@ -34,12 +34,12 @@ const useTagActions = (
     console.log("//////////////////////////////////////");
     console.log(tagData);
     console.log(
-      tagData.map((e, i) => {
+      tagData.map((e) => {
         return e.edit ? { ...e, ...editedTagData, edit: false } : e;
       })
     );
     const newTagData = tagData.some((e) => e.edit)
-      ? tagData.map((e, i) => {
+      ? tagData.map((e) => {
           return e.edit ? { ...e, ...editedTagData, edit: false } : e;
         })
       : [...tagData, editedTagData];

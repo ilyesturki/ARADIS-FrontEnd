@@ -2,17 +2,13 @@
 import { TagType, EditedTagActionType } from "@/redux/tag/tagSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {
-  customHandleSubmit,
-} from "@/utils/handlers";
+import { customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { TagActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 import { createActions } from "@/redux/tag/tagThunk";
 
-import {
-  initialTagActions,
-} from "@/data/tag";
+import { initialTagActions } from "@/data/tag";
 
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -61,13 +57,13 @@ const useTag = () => {
     console.log("***********************");
     if (tag?.tagActions && Object.keys(tag?.tagActions).length > 0) {
       setTagData(tag?.tagActions);
-    } 
+    }
     setCurrentStep(tag?.status || null);
   }, [tag]);
 
   const editAction = (index: number) => {
-    let newTagData = tagData
-      .map((e, i) => (e.edit ? { ...e, edit: false } : e))
+    const newTagData = tagData
+      .map((e) => (e.edit ? { ...e, edit: false } : e))
       .map((e, i) => {
         return i === index ? { ...e, edit: true } : e;
       });

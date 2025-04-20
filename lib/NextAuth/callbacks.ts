@@ -1,4 +1,4 @@
-import { Account, Profile, Session, User } from "next-auth";
+import { Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import { AdapterUser } from "next-auth/adapters";
 

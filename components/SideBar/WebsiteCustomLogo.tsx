@@ -5,7 +5,6 @@ import * as React from "react";
 import {
   SidebarMenu,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 const WebsiteCustomLogo = () => {

@@ -1,7 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-
 import { Label, Pie, PieChart } from "recharts";
 
 import {
@@ -19,7 +17,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
