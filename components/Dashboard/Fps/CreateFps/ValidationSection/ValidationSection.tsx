@@ -1,18 +1,8 @@
 "use client";
 import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
-import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
-import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useValidationSection from "./useValidationSection";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
-
-import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
-import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
-import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Comments from "./Comments";
 import CustomText from "@/components/Common/CustomInput/CustomText";
 import { useTranslations } from "next-intl";
@@ -21,11 +11,8 @@ const ValidationSection = () => {
   const t = useTranslations("CreateFps.validation");
   const {
     isAdminOrManager,
-    currentStep,
     isDisabled,
     isDone,
-    fpsData,
-    setFpsData,
     fpsId,
     fpsCompleted,
     handleStatusChange,

@@ -4,16 +4,12 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { getTag } from "@/redux/tag/tagThunk";
 import { resetTag } from "@/redux/tag/tagSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 
 import TagPanel from "@/components/Dashboard/Panel/Tag/TagPanel";
 import TagHeader from "@/components/Dashboard/Panel/Tag/TagHeader";
 import TagActions from "./TagActions/TagActions";
 import useTag from "./useTag";
-import RemoveSectionButton from "../../Fps/Common/RemoveSectionButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import ActionsList from "@/components/Common/ActionsList/ActionsList";
 import ActionBox from "@/components/Common/ActionsList/ActionBox";
 import CustomButtons from "@/components/Common/CustomInput/CustomButtons";

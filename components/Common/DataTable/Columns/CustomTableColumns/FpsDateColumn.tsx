@@ -1,5 +1,3 @@
-import { Row } from "@tanstack/react-table";
-import { Fpss } from "../FpssColumn";
 
 const FpsDateColumn = ({ data }: { data: any }) => {
   const rawDate = data.quand as string;

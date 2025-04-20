@@ -1,5 +1,4 @@
 "use client";
-import { FpsType } from "@/redux/fps/fpsSlice";
 import { fetchFpss } from "@/utils/Api/fpsApi";
 import { useEffect, useState } from "react";
 import Paginator from "@/components/Common/Paginator";

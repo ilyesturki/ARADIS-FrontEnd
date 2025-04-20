@@ -1,12 +1,6 @@
 "use client";
 import React from "react";
-import CustomPieChart from "../Chart/Fps/CustomPieChart";
-// import FPSPerformanceChart from "../Chart/FPSPerformanceChart";
-import CustomBarChart from "../Chart/Fps/CustomBarChart";
-// import FPSStatusChart from "../Chart/FPSStatusChart";
-// import CompletedFPSChart from "../Chart/CompletedFPSChart";
-// import QrScanRadarChart from "../Chart/QrScanRadarChart";
-// import FailedFPSChart from "../Chart/FailedFPSChart";
+
 
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";

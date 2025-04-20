@@ -1,5 +1,4 @@
 "use client";
-import CreateFps from "@/components/Dashboard/Fps/CreateFps/CreateFps";
 import { Separator } from "@/components/ui/separator";
 import { useAppSelector } from "@/redux/hooks";
 import { LogOut } from "lucide-react";

@@ -2,29 +2,21 @@
 import {
   FpsType,
   editedDefensiveActionType,
-  fpsDefensiveActionType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
-  customHandleChange,
   customHandleSubmit,
-  handleChangeInArray,
-  handleChangeInArrayObject,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
   FpsDefensiveActionsRules,
-  fpsProblemValidationRules,
 } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsDefensiveActions, getFps } from "@/redux/fps/fpsThunk";
-import { generateFPSId } from "@/utils/generateFPSId";
+import { createFpsDefensiveActions } from "@/redux/fps/fpsThunk";
 
 import {
   initialFpsDefensiveActions,
-  categoryData,
-  serviceData,
 } from "@/data/fps";
 
 import { useRouter } from "@/i18n/navigation";

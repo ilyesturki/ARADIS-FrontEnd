@@ -6,13 +6,12 @@ import {
   customHandleChange,
   customImagesChange,
   customHandleSubmit,
-  handleChangeInArray,
   handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsProblemValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsProblem, getFps } from "@/redux/fps/fpsThunk";
+import { createFpsProblem } from "@/redux/fps/fpsThunk";
 import { generateFPSId } from "@/utils/generateFPSId";
 import {
   problemTypesData,

@@ -6,14 +6,8 @@ import { DataTableColumnHeader } from "./CustomTableColumns/DataTableColumnHeade
 import DataTableRowMenu from "./CustomTableColumns/DataTableRowMenu";
 import DataTableHeaderCheckBox from "./CustomTableColumns/DataTableHeaderCheckBox";
 import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheckBox";
-// import IconAndLabelColumn from "./CustomTableColumns/IconAndLabelColumn";
-import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
-import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
-import ClientRiskColumn from "./CustomTableColumns/ClientRiskColumn";
-// import TagDateColumn from "./CustomTableColumns/TagDateColumn";
-import ImageAndTitleColumn from "./CustomTableColumns/ImageAndTitleColumn";
+
 import TagImageAndStatusColumn from "./TagImageAndStatusColumn";
-// import DeleteTagDialog from "../../Dialog/DeleteTagDialog";
 export type Tags = {
   id: string;
   tagId: string;

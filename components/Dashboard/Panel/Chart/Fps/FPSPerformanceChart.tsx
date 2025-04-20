@@ -28,7 +28,6 @@ import {
 
 import axios from "@/utils/axios";
 
-import { subDays, format, addDays } from "date-fns"; // Add date-fns
 import { useTranslations } from "next-intl";
 
 const chartConfig: ChartConfig = {

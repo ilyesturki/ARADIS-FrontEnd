@@ -1,18 +1,9 @@
 "use client";
 import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
-import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useImmediateActionsSection from "./useImmediateActionsSection";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
-
-import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
-import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
-import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SortingResults from "./components/SortingResults";
 import ImmediateActions from "./components/ImmediateActions";
 import CustomText from "@/components/Common/CustomInput/CustomText";

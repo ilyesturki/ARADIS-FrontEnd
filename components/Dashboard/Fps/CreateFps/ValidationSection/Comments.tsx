@@ -1,25 +1,14 @@
 "use client";
 
 import AddSectionButton from "../../Common/AddSectionButton";
-import { FpsCommentType } from "@/redux/fps/fpsSlice";
 import Comment from "./Comment";
-import { useSession } from "next-auth/react";
 import { handleChangeInArrayObject } from "@/utils/handlers";
 import useComments from "./useComments";
-
-interface Props {
-  comments: FpsCommentType[];
-  handleChangeComment: (value: any, index: number) => void;
-  addNewComment: () => void;
-  removeComment: (index: number) => void;
-  setFpsData: (updater: (prevState: any) => any) => void;
-}
 
 const Comments = () => {
   const {
     fpsData,
     setFpsData,
-    fpsId,
     addNewComment,
     removeComment,
     handleChangeComment,

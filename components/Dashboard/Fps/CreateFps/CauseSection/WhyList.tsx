@@ -2,8 +2,7 @@
 
 import SectionsSeperator from "../../Common/SectionsSeperator";
 import AddSectionButton from "../../Common/AddSectionButton";
-import { fpsCauseType, fpsDefensiveActionsType } from "@/redux/fps/fpsSlice";
-import RemoveSectionButton from "../../Common/RemoveSectionButton";
+import { fpsCauseType } from "@/redux/fps/fpsSlice";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import CustomSectionHeader from "../../Common/CustomSectionHeader";
 import { useTranslations } from "next-intl";

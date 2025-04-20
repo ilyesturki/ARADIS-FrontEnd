@@ -1,29 +1,22 @@
 "use client";
-import { FpsType, flexibleFpsType, fpsCauseType } from "@/redux/fps/fpsSlice";
+import { FpsType, fpsCauseType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
-  customHandleChange,
-  customImagesChange,
   customHandleSubmit,
-  customHandleSizeChange,
   customHandleCauseChange,
-  handleChangeInArray,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsCauseValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
-import { createFpsCause, getFps } from "@/redux/fps/fpsThunk";
-import { generateFPSId } from "@/utils/generateFPSId";
+import { createFpsCause } from "@/redux/fps/fpsThunk";
 
 import { initialFpsCause, causeData } from "@/data/fps";
 
-import { useRouter} from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const useCauseSection = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const dispatch = useAppDispatch();

@@ -1,17 +1,13 @@
 "use client";
 import {
   FpsType,
-  flexibleFpsType,
-  fpsDefensiveActionType,
   editedFpsImmediateActionsType,
 } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
-  customImagesChange,
   customHandleSubmit,
-  customHandleSizeChange,
   handleChangeInArray,
   handleChangeInArrayObject,
 } from "@/utils/handlers";

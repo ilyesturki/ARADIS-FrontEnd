@@ -1,15 +1,9 @@
 "use client";
 
-import SectionsSeperator from "../../../Common/SectionsSeperator";
 import AddSectionButton from "../../../Common/AddSectionButton";
 import {
   editedFpsImmediateActionsType,
-  sortingResultsType,
 } from "@/redux/fps/fpsSlice";
-import RemoveSectionButton from "../../../Common/RemoveSectionButton";
-import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import CustomSectionHeader from "../../../Common/CustomSectionHeader";
-import SortingResult from "./SortingResult";
 import useSortingResultActions from "./useSortingResultActions";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";

@@ -1,4 +1,3 @@
-import CustomSectionHeader from "@/components/Dashboard/Fps/Common/CustomSectionHeader";
 import { useTranslations } from "next-intl";
 import React from "react";
 

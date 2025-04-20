@@ -4,8 +4,6 @@ import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useProblem from "./useProblem";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
-
 import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
 import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";

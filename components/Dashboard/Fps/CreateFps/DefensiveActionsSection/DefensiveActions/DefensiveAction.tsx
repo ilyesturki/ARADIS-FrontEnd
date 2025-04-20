@@ -1,17 +1,9 @@
 "use client";
-import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
-import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
-
-import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
-import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
-import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
 import {
   fpsDefensiveActionType,
-  fpsDefensiveActionsType,
 } from "@/redux/fps/fpsSlice";
 import { useTranslations } from "next-intl";
 

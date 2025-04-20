@@ -1,11 +1,8 @@
 "use client";
 
-import SectionsSeperator from "../../../Common/SectionsSeperator";
 import AddSectionButton from "../../../Common/AddSectionButton";
 import { editedFpsImmediateActionsType } from "@/redux/fps/fpsSlice";
-import RemoveSectionButton from "../../../Common/RemoveSectionButton";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import CustomSectionHeader from "../../../Common/CustomSectionHeader";
 import useImmediateAction from "./useImmediateAction";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 // import ImmediateAction from "./ImmediateAction";

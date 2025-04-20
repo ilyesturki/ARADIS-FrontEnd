@@ -5,9 +5,6 @@ import {
   editedSortingResultsType,
   flexibleFpsType,
   fpsCauseType,
-  FpsCommentType,
-  fpsDefensiveActionsType,
-  fpsImmediateActionsType,
   fpsProblemType,
 } from "@/redux/fps/fpsSlice";
 

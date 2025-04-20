@@ -2,7 +2,7 @@
 import { FpsCommentType } from "@/redux/fpsComments/fpsCommentsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { customHandleSubmit, handleChangeInArray } from "@/utils/handlers";
+import { customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
   fpsDeleteCommentValidationRules,
@@ -19,7 +19,6 @@ import {
 
 // import { initialFpsValidation } from "@/data/fps";
 
-import { useRouter} from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { FpsType } from "@/redux/fps/fpsSlice";

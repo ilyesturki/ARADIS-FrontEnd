@@ -1,5 +1,4 @@
 import { Row } from "@tanstack/react-table";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FpsSelectedUsersColumn } from "../FpsSelectedUsersColumn";
 import { useTranslations } from "next-intl";
 

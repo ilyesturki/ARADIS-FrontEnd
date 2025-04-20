@@ -8,7 +8,6 @@ import ProblemTab from "./CreateFpsTabs/ProblemTab";
 import ImmediateActionsTab from "./CreateFpsTabs/ImmediateActionsTab";
 import CauseTab from "./CreateFpsTabs/CauseTab";
 import DefensiveActionsTab from "./CreateFpsTabs/DefensiveActionsTab";
-import { use } from "react";
 import useCreateFps from "./useCreateFps";
 import ValidationTab from "./CreateFpsTabs/ValidationTab";
 import { useTranslations } from "next-intl";

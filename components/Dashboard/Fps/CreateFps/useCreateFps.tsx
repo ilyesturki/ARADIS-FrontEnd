@@ -9,7 +9,6 @@ import { resetFps } from "@/redux/fps/fpsSlice";
 import { useSession } from "next-auth/react";
 
 const useCreateFps = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const { data: session } = useSession({ required: true });

@@ -1,5 +1,4 @@
 import {
-  faBox,
   faBoxesStacked,
   faGears,
   faLayerGroup,
@@ -7,7 +6,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DashboardCollapsible from "../Collapsible/DashboardCollapsible";
 import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-import WebSiteLogo from "../Common/WebSiteLogo";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 interface CollapsibleItem {
   title: string;

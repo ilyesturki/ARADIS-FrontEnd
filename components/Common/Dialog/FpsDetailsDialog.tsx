@@ -1,18 +1,12 @@
 import FpsDetails from "@/components/Dashboard/Dashboard/components/FpsDetails";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { FpsType } from "@/redux/fps/fpsSlice";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "next/navigation";
 
 const FpsDetailsDialog = ({
   fps,

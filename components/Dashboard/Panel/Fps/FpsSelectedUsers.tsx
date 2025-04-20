@@ -4,7 +4,6 @@ import DataTable from "@/components/Common/DataTable/DataTable";
 import { columns } from "@/components/Common/DataTable/Columns/FpsSelectedUsersColumn";
 import axios from "@/utils/axios";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useAppSelector } from "@/redux/hooks";
 import { useTranslations } from "next-intl";
 
