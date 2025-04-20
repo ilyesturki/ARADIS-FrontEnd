@@ -2,20 +2,14 @@
 import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
 import { useRouter } from "@/i18n/navigation";
 
 const SignOutButton = () => {
-  const router = useRouter();
   const handleSignOut = () => {
     signOut({ redirect: true, callbackUrl: "/auth/login" });
   };

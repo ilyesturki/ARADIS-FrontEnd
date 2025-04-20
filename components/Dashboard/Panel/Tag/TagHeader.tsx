@@ -2,8 +2,6 @@
 // import CreateTag from "@/components/Dashboard/Tag/CreateTag/CreateTag";
 import { Separator } from "@/components/ui/separator";
 import { useAppSelector } from "@/redux/hooks";
-import { resetTag } from "@/redux/tag/tagSlice";
-import { getTag } from "@/redux/tag/tagThunk";
 import { LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";

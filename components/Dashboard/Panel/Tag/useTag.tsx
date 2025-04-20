@@ -3,9 +3,7 @@ import { TagType, EditedTagActionType } from "@/redux/tag/tagSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
-  customHandleChange,
   customHandleSubmit,
-  handleChangeSelect,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { TagActionsRules } from "@/utils/validationRules";
@@ -14,12 +12,8 @@ import { createActions } from "@/redux/tag/tagThunk";
 
 import {
   initialTagActions,
-  categoryData,
-  serviceData,
-  initialTagAction,
 } from "@/data/tag";
 
-import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 

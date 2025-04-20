@@ -1,5 +1,4 @@
 import { TagType } from "@/redux/tag/tagSlice";
-import TagPeriority from "./TagPeriority";
 import TagStatus from "./TagStatus";
 
 const TagHeader = ({

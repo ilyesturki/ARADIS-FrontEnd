@@ -4,13 +4,12 @@ import * as React from "react";
 
 import {
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 const WebsiteCustomLogo = () => {
-  const { isMobile } = useSidebar();
+  // const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>

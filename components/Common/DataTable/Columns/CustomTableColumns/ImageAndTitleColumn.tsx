@@ -1,9 +1,7 @@
-import { Row } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Users } from "../UsersColumn";
 
 const ImageAndTitleColumn = ({ data }: { data: any }) => {
-  const image = data.image as string; 
+  const image = data.image as string;
   const title = data.type as string;
   return (
     <div className=" flex items-center gap-6 pl-4">
