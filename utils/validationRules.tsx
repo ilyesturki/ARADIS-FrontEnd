@@ -128,7 +128,6 @@ export const fpsProblemValidationRules = {
 
 export const fpsImmediateActionsValidationRules = {
   fpsId: { required: true },
-  alert: { required: true },
   startSorting: { required: true },
   sortingResults: {
     required: true,

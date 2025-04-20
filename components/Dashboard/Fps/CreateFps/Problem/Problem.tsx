@@ -95,18 +95,16 @@ const Problem = () => {
           <CustomSelect
             label={t("department.label")}
             value={fpsData.userService}
-            onChange={customHandleChangeSelect}
             data={serviceData}
             name="userService"
-            disabled={isDisabled}
+            disabled={true}
           />
           <CustomSelect
             label={t("category.label")}
             value={fpsData.userCategory}
-            onChange={customHandleChangeSelect}
             data={categoryData}
             name="userCategory"
-            disabled={isDisabled}
+            disabled={true}
           />
         </div>
         <CustomTextArea

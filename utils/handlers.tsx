@@ -187,31 +187,6 @@ export const customHandleCauseChange = (
   });
 };
 
-export const customHandleAlertChange = (
-  data: string,
-  setProductData: (prevState: any) => any,
-  i?: number
-) => {
-  setProductData((prevData: any) => {
-    const alert = [...(prevData.alert || [])] as string[];
-    if (i !== undefined) {
-      if (data === "" || alert.some((e, k) => e === data && k !== i)) {
-        alert.splice(i, 1);
-      } else {
-        alert[i] = data;
-      }
-    } else {
-      if (data === "") {
-        return prevData;
-      }
-      alert.push(data);
-    }
-    return {
-      ...prevData,
-      alert,
-    };
-  });
-};
 
 export const handleChangeInArray = (
   setState: (updater: (prevState: any) => any) => void,

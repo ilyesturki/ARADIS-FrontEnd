@@ -7,6 +7,8 @@ declare module "next-auth" {
     id?: string;
     token?: string;
     role?: string;
+    userService?: string;
+    userCategory?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
@@ -21,6 +23,8 @@ declare module "next-auth" {
       image?: string;
       token?: string;
       role?: string;
+      userService?: string;
+      userCategory?: string;
     };
   }
 }
@@ -36,6 +40,8 @@ export const jwtCallback = async ({
     token.id = user.id;
     token.token = user.token;
     token.role = user.role;
+    token.userService = user.userService;
+    token.userCategory = user.userCategory;
     token.firstName = user.firstName;
     token.lastName = user.lastName;
     token.email = user.email;
@@ -53,6 +59,8 @@ export const sessionCallback = async ({
   if (session.user) {
     session.user.id = token.id as string;
     session.user.role = token.role as string;
+    session.user.userService = token.userService as string;
+    session.user.userCategory = token.userCategory as string;
     session.user.token = token.token as string;
     session.user.firstName = token.firstName as string;
     session.user.lastName = token.lastName as string;

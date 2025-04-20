@@ -309,10 +309,6 @@
         "label": "ID FPS",
         "placeholder": "ID FPS"
       },
-      "alert": {
-        "label": "Alerte",
-        "placeholder": "Sélectionner une alerte"
-      },
       "doneStatus": {
         "done": "Ce FPS est terminé",
         "notAllowed": "Vous n'êtes pas autorisé à modifier ce FPS",

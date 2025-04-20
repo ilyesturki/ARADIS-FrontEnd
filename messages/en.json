@@ -307,10 +307,6 @@
         "label": "FPS ID",
         "placeholder": "FPS ID"
       },
-      "alert": {
-        "label": "Alert",
-        "placeholder": "Select an alert"
-      },
       "doneStatus": {
         "done": "This FPS is done",
         "notAllowed": "You are not allowed to edit this FPS",

@@ -20,7 +20,7 @@ import {
   serviceData,
   initialFpsProblem,
 } from "@/data/fps";
-import { useRouter} from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { urlToFile } from "@/utils/UrlToFile";
 import { useSession } from "next-auth/react";
@@ -41,6 +41,14 @@ const useProblem = () => {
   );
 
   const { data: session } = useSession({ required: true });
+
+  useEffect(() => {
+    setFpsData((prev) => ({
+      ...prev,
+      userService: session?.user.userService || "",
+      userCategory: session?.user.userCategory || "",
+    }));
+  }, []);
 
   const isAdminOrManager = useMemo(
     () => ["admin", "manager"].includes(session?.user.role ?? ""),

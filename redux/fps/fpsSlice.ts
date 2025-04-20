@@ -90,7 +90,6 @@ export type editedImmediatActionsType = {
 };
 
 export type fpsImmediateActionsType = {
-  // alert?: string[];
   startSorting: boolean;
   sortingResults?: sortingResultsType[];
   concludeFromSorting?: string;
@@ -98,7 +97,6 @@ export type fpsImmediateActionsType = {
 };
 
 export type editedFpsImmediateActionsType = {
-  // alert?: string[];
   startSorting: boolean;
   sortingResults?: editedSortingResultsType[];
   concludeFromSorting?: string;

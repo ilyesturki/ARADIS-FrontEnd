@@ -120,13 +120,6 @@ const ImmediateActionsSection = () => {
               );
             })}
         </ActionsList>
-        {/* <CustomPicker
-          label={t("alert.label")}
-          selectedData={fpsData.alert || []}
-          handleChange={handleAlertChange}
-          data={serviceData || []}
-          disabled={disabled}
-        /> */}
         {isDone ? (
           <CustomText title={t("doneStatus.done")} />
         ) : isAdminOrManager ? (

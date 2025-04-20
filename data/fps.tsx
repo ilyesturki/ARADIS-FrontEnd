@@ -127,7 +127,6 @@ export const initialFpsProblem: fpsProblemType = {
 };
 
 export const initialFpsImmediateActions: editedFpsImmediateActionsType = {
-  alert: [],
   startSorting: false,
   sortingResults: [],
   concludeFromSorting: "",
