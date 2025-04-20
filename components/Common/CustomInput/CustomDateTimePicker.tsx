@@ -36,7 +36,7 @@ const CustomDateTimePicker = ({
             }}
             use12HourFormat
             timePicker={{ hour: true, minute: true }}
-            renderTrigger={({ open, value: data, setOpen }) => (
+            renderTrigger={({ open, value, setOpen }) => (
               <DateTimeInput
                 value={value ? new TZDate(value) : undefined}
                 onChange={(date) => !open && onChange?.(date, name)}

@@ -19,13 +19,13 @@ const BreadCrumb = () => {
   const pathname = usePathname();
   const paths = useMemo(() => pathname.split("/").slice(1), [pathname]);
   const [pathList, setPathList] = useState([""]);
-  const [pathName, setPathName] = useState(
-    paths[paths.length - 1]?.split("-").join(" ") || ""
-  );
+  // const [pathName, setPathName] = useState(
+  //   paths[paths.length - 1]?.split("-").join(" ") || ""
+  // );
 
   useEffect(() => {
     if (user) {
-      setPathName(`${user.firstName} ${user.lastName}`);
+      // setPathName(`${user.firstName} ${user.lastName}`);
       setPathList((prev) => [
         ...prev.slice(0, prev.length - 1),
         `${user.firstName} ${user.lastName}`,

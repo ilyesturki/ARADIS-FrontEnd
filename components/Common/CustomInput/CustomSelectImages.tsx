@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RemoveImageButton from "./RemoveImageButton";

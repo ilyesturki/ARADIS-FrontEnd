@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import React from "react";
 
 const ActionsList = ({
@@ -8,7 +8,7 @@ const ActionsList = ({
   headers?: string[];
   children?: React.ReactNode;
 }) => {
-  const t = useTranslations("TagsPanelPage.TagActionsSection.tagActions");
+  // const t = useTranslations("TagsPanelPage.TagActionsSection.tagActions");
   // console.log(children);
   console.log(children);
   // console.log(children);

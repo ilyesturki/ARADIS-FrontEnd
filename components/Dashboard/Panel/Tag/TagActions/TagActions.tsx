@@ -1,20 +1,9 @@
 "use client";
-import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
-import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
-import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
-
-import CustomSelectImages from "@/components/Common/CustomInput/CustomSelectImages";
-import CustomSwitch from "@/components/Common/CustomInput/CustomSwitch";
 import CustomDateTimePicker from "@/components/Common/CustomInput/CustomDateTimePicker";
-import CustomPicker from "@/components/Common/CustomInput/CustomPicker";
-
-import CustomSectionHeader from "@/components/Dashboard/Fps/Common/CustomSectionHeader";
-// import TagAction from "./TagAction";
 import { EditedTagActionType, TagActionType } from "@/redux/tag/tagSlice";
 import { useTranslations } from "next-intl";
-import SectionsSeperator from "@/components/Dashboard/Fps/Common/SectionsSeperator";
 import AddSectionButton from "@/components/Dashboard/Fps/Common/AddSectionButton";
 import useTagActions from "./useTagActions";
 
