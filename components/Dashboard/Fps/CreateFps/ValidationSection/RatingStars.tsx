@@ -5,7 +5,6 @@ import {
   faStar as filledStar,
   faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
 
 const RatingStars = ({

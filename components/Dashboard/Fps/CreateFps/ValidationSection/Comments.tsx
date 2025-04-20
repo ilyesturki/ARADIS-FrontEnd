@@ -64,7 +64,6 @@ const Comments = () => {
                   e.user.id === session?.user?.id ? "Add a comment" : undefined
                 }
                 disabled={e.user.id !== session?.user?.id}
-                i={i}
                 handleDeleteSection={
                   e.user.id === session?.user?.id
                     ? (e) => removeComment(e, i)

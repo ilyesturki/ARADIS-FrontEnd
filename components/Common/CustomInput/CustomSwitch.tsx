@@ -34,7 +34,7 @@ const CustomSwitch = ({
       <Switch
         checked={checked}
         disabled={disabled}
-        onClick={(e) => {
+        onClick={() => {
           onChange();
         }}
         className={`ml-4  ${

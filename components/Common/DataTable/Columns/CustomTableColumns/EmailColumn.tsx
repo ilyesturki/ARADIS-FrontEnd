@@ -4,10 +4,8 @@ import { Users } from "../UsersColumn";
 
 const EmailColumn = ({
   row,
-  className,
 }: {
   row: Row<Users | FpsSelectedUsersColumn>;
-  className?: string;
 }) => {
   const email = row.getValue("email") as string;
   return (

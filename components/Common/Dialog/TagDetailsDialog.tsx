@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/dialog";
 import { TagType } from "@/redux/tag/tagSlice";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 const TagDetailsDialog = ({
   tag,
