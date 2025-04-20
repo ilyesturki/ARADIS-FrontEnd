@@ -11,7 +11,7 @@ import { Toaster } from "react-hot-toast";
 import NextSessionProvider from "@/components/Provider/NextSessionProvider";
 import StoreProvider from "@/redux/StoreProvider";
 
-import { NextIntlClientProvider, Locale, hasLocale } from "next-intl";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
