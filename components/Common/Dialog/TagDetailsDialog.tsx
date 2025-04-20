@@ -16,8 +16,6 @@ const TagDetailsDialog = ({
   isSelected: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(isSelected);
-  const router = useRouter();
-
   useEffect(() => {
     if (isSelected) {
       setIsOpen(true);

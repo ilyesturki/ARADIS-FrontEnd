@@ -1,5 +1,4 @@
 "use client";
-import { TagType } from "@/redux/tag/tagSlice";
 import { fetchTags } from "@/utils/Api/tagApi";
 import { useEffect, useState } from "react";
 import Paginator from "@/components/Common/Paginator";

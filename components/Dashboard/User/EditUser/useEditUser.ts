@@ -65,7 +65,7 @@ const useEditUser = (id: string) => {
 
   useEffect(() => {
     if (user) {
-      const { id, ...rest } = user;
+      const { id: _id, ...rest } = user;
       setUserData(rest);
     }
   }, [user]);

@@ -2,13 +2,7 @@ import { Row } from "@tanstack/react-table";
 import { FpsSelectedUsersColumn } from "../FpsSelectedUsersColumn";
 import { useTranslations } from "next-intl";
 
-const ScannedQrColumn = ({
-  row,
-  className,
-}: {
-  row: Row<FpsSelectedUsersColumn>;
-  className?: string;
-}) => {
+const ScannedQrColumn = ({ row }: { row: Row<FpsSelectedUsersColumn> }) => {
   const t = useTranslations("FpssPanelPage.FpsPanel.FpsSelectedUsers.rows");
   const title = row.getValue("scanStatus") as string;
   return (

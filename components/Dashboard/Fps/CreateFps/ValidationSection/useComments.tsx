@@ -54,7 +54,7 @@ const useComments = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
 
     if (fpsId) {
       setFpsId(fpsId);

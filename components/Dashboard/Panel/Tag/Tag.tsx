@@ -28,7 +28,7 @@ const Tag = () => {
     const fetch = async () => {
       console.log("searchParams");
       const params = new URLSearchParams(searchParams.toString());
-      let tagId = params.get("tagId");
+      const tagId = params.get("tagId");
       if (tagId) {
         console.log("getTag");
         await dispatch(getTag(tagId));

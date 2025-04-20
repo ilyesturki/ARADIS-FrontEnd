@@ -2,7 +2,6 @@
 import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
-import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useCreateUser from "./useCreateUser";
 import CustomSelectImage from "@/components/Common/CustomInput/CustomSelectImage";
 import { useTranslations } from "next-intl";

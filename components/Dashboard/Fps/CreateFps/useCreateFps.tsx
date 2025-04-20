@@ -28,7 +28,7 @@ const useCreateFps = () => {
     const fetch = async () => {
       console.log("searchParams");
       const params = new URLSearchParams(searchParams.toString());
-      let fpsId = params.get("fpsId");
+      const fpsId = params.get("fpsId");
       if (fpsId) {
         console.log("getFps");
         await dispatch(getFps(fpsId));
@@ -75,7 +75,7 @@ const useCreateFps = () => {
   useEffect(() => {
     console.log("updated");
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
     if (fpsId && fpsUpdateSuccess) {
       dispatch(getFps(fpsId));
     }

@@ -41,7 +41,7 @@ const useTag = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let tagId = params.get("tagId");
+    const tagId = params.get("tagId");
 
     if (tagId) {
       setTagId(tagId);

@@ -52,7 +52,7 @@ const useValidationSection = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    let fpsId = params.get("fpsId");
+    const fpsId = params.get("fpsId");
 
     if (fpsId) {
       setFpsId(fpsId);
@@ -60,9 +60,7 @@ const useValidationSection = () => {
     }
   }, []);
 
-  const [submitBtnValue, setSubmitBtnValue] = useState<"Save" | "Update">(
-    "Save"
-  );
+  const [submitBtnValue] = useState<"Save" | "Update">("Save");
 
   const [fpsCompleted, setFpsCompleted] = useState<boolean>(false);
 
@@ -92,7 +90,7 @@ const useValidationSection = () => {
       ...prevData,
       status: fpsCompleted ? "completed" : "failed",
     }));
-    console.log(fpsData)
+    console.log(fpsData);
     setFpsCompleted(!fpsCompleted);
   };
 

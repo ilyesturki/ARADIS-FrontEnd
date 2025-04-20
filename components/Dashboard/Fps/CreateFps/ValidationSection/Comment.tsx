@@ -15,7 +15,6 @@ const Comment = ({
   placeholder,
   date,
   disabled,
-  i,
   handleDeleteSection,
   customRatingChange,
   editRating,
@@ -31,7 +30,6 @@ const Comment = ({
   placeholder?: string;
   date?: string;
   disabled?: boolean;
-  i: number;
   handleDeleteSection?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   customRatingChange: (rating: number) => void;
   editRating?: boolean;
@@ -53,7 +51,7 @@ const Comment = ({
         <div className="py-2 sm:py-3">
           <div className="flex items-center gap-1 sm:gap-2">
             <span className="text-[8px] sm:text-xs font-semibold text-greenAccent-900">
-              <span className="capitalize">{userName}</span>'s comment
+              <span className="capitalize">{userName}</span>&apos;s comment
             </span>
 
             {handleDeleteSection && (
