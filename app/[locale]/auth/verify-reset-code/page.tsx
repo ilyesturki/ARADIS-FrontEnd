@@ -1,13 +1,6 @@
-import CustomAuthPage from "@/components/Auth/CustomAuthPage";
-import VerifyResetCode from "@/components/Auth/Form/VerifyResetCode/VerifyResetCode";
-import { useTranslations } from "next-intl";
+import VerifyResetCodePage from "@/components/Auth/pages/VerifyResetCodePage";
 const page = () => {
-  const t = useTranslations("VerifyResetCodePage");
-  return (
-    <CustomAuthPage title={t("title")}>
-      <VerifyResetCode AuthButtonTitle={t("form.submitButton")} />
-    </CustomAuthPage>
-  );
+  return <VerifyResetCodePage />;
 };
 
 export default page;

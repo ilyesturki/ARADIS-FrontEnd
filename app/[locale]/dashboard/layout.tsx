@@ -1,16 +1,5 @@
-import CustomBreadCrumb from "@/components/Common/BreadCrumb";
-import DashboardSideBar from "@/components/SideBar/DashboardSideBar";
 import type { Metadata } from "next";
-import Header from "@/components/Header/Header";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -27,7 +16,6 @@ export const metadata: Metadata = {
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
-import PageTitle from "@/components/Common/PageTitle";
 
 import LocaleSwitcher from "@/components/Common/LocaleSwitcher";
 import ThemeToggle from "@/components/Common/ThemeToggle/ThemeToggle";

@@ -1,13 +1,6 @@
-import CustomAuthPage from "@/components/Auth/CustomAuthPage";
-import SetPasswordForm from "@/components/Auth/Form/SetPassword/SetPassword";
-import { useTranslations } from "next-intl";
+import SetPasswordPage from "@/components/Auth/pages/SetPasswordPage";
 const page = () => {
-  const t = useTranslations("SetPasswordPage");
-  return (
-    <CustomAuthPage title={t("title")}>
-      <SetPasswordForm AuthButtonTitle={t("form.submitButton")} />
-    </CustomAuthPage>
-  );
+  return <SetPasswordPage />;
 };
 
 export default page;

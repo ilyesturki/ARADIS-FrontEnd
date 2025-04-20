@@ -1,13 +1,6 @@
-import CustomAuthPage from "@/components/Auth/CustomAuthPage";
-import ResetPassword from "@/components/Auth/Form/ResetPassword/ResetPassword";
-import { useTranslations } from "next-intl";
+import ResetPasswordPage from "@/components/Auth/pages/ResetPasswordPage";
 const page = () => {
-  const t = useTranslations("ResetPasswordPage");
-  return (
-    <CustomAuthPage title={t("title")}>
-      <ResetPassword AuthButtonTitle={t("form.submitButton")} />
-    </CustomAuthPage>
-  );
+  return <ResetPasswordPage />;
 };
 
 export default page;

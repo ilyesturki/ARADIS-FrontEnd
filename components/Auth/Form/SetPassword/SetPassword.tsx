@@ -1,5 +1,4 @@
 "use client";
-import CustomInput from "@/components/Common/CustomInput/CustomInput";
 import AuthButton from "../../subcomponents/AuthButton";
 import useSetPassword from "./useSetPassword";
 import { FaLock } from "react-icons/fa";

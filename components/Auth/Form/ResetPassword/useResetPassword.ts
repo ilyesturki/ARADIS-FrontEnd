@@ -1,4 +1,4 @@
-import { resetPassword, signUp } from "@/redux/auth/authThunks";
+import { resetPassword } from "@/redux/auth/authThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { handleError } from "@/utils/handleError";
 import { customHandleChange, customHandleSubmit } from "@/utils/handlers";

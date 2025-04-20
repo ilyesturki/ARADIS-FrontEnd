@@ -1,5 +1,5 @@
 import { setUserEmail } from "@/redux/auth/authSlice";
-import { forgetPassword, signUp } from "@/redux/auth/authThunks";
+import { forgetPassword } from "@/redux/auth/authThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { handleError } from "@/utils/handleError";
 import { customHandleSubmit } from "@/utils/handlers";

@@ -4,10 +4,9 @@ import { handleError } from "@/utils/handleError";
 import { customHandleChange, customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { setPasswordValidationRules } from "@/utils/validationRules";
-import { usePathname, useRouter} from "@/i18n/navigation";
+import { useRouter} from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 interface setPasswordType {
   mat: string;

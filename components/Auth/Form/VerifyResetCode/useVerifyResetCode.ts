@@ -1,11 +1,11 @@
-import { signUp, verifyResetCode } from "@/redux/auth/authThunks";
+import { verifyResetCode } from "@/redux/auth/authThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { handleError } from "@/utils/handleError";
-import { customHandleChange, customHandleSubmit } from "@/utils/handlers";
+import {customHandleSubmit } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyResetCodeValidationRules } from "@/utils/validationRules";
 import { useRouter } from "@/i18n/navigation";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 
 const useVerifyResetCode = () => {
   const router = useRouter();
