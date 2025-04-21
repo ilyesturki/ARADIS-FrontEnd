@@ -1,7 +1,10 @@
 import EditUser from "@/components/Dashboard/User/EditUser/EditUser";
 
-const Page = ({ params }: { params: { id: string } }) => {
-  
+type PageProps = {
+  params: { id: string };
+};
+//
+const Page = ({ params }: PageProps) => {
   return <EditUser id={params.id} />;
 };
 
