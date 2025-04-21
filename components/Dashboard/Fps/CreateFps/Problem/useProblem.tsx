@@ -224,7 +224,7 @@ const useProblem = () => {
       : fpsData.image
       ? await urlToFile(fpsData.image as string, "image.png", "image/png")
       : null;
-    let formImages: File[] = [];
+    const formImages: File[] = [];
     for (const image of imagesFiles) {
       if (image instanceof File) {
         formImages.push(image);

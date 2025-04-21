@@ -77,8 +77,9 @@ const CustomComboBox = ({
                   onSelect={(currentValue) => {
                     setValue("");
                     setOpen(false);
-                    onChange &&
+                    if (onChange) {
                       onChange(currentValue === value ? "" : currentValue);
+                    }
                   }}
                 >
                   <Check

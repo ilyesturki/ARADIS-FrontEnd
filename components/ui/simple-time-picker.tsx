@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * Simple Time Picker
  * Check out the live demo at https://shadcn-datetime-picker-pro.vercel.app/
