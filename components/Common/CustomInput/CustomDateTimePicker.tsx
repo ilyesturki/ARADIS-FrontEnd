@@ -47,7 +47,11 @@ const CustomDateTimePicker = ({
                 format="dd/MM/yyyy hh:mm aa"
                 disabled={disabled ? disabled : open}
                 onCalendarClick={() => {
-                  disabled ? setOpen(false) : setOpen(!open);
+                  if (disabled) {
+                    setOpen(false);
+                  } else {
+                    setOpen(!open);
+                  }
                 }}
                 timezone="Europe/Paris"
                 className={disabled ? `opacity-90` : ""}
