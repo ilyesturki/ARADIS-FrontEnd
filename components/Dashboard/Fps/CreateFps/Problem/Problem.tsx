@@ -24,6 +24,7 @@ const Problem = () => {
     handleChange,
     handleImageChange,
     customHandleChangeDate,
+    customHandleChangeSelect,
     categoryData,
     serviceData,
     lineData,
@@ -75,6 +76,7 @@ const Problem = () => {
         <CustomSelect
           label="Line"
           value={fpsData.line}
+          onChange={customHandleChangeSelect}
           data={lineData}
           name="line"
           disabled={isDisabled}

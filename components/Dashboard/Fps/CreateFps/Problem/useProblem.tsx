@@ -48,7 +48,7 @@ const useProblem = () => {
       userService: session?.user.userService || "",
       userCategory: session?.user.userCategory || "",
     }));
-  }, []);
+  }, [session]);
 
   const isAdminOrManager = useMemo(
     () => ["admin", "manager"].includes(session?.user.role ?? ""),
