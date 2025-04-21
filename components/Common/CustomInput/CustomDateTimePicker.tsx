@@ -39,7 +39,11 @@ const CustomDateTimePicker = ({
             renderTrigger={({ open, value, setOpen }) => (
               <DateTimeInput
                 value={value ? new TZDate(value) : undefined}
-                onChange={(date) => !open && onChange?.(date, name)}
+                onChange={(date) => {
+                  if (!open && onChange) {
+                    onChange(date, name);
+                  }
+                }}
                 format="dd/MM/yyyy hh:mm aa"
                 disabled={disabled ? disabled : open}
                 onCalendarClick={() => {
