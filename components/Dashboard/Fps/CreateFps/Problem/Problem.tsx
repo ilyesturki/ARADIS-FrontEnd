@@ -26,6 +26,7 @@ const Problem = () => {
     customHandleChangeDate,
     categoryData,
     serviceData,
+    lineData,
     handleClientRisk,
     handleDeleteImages,
 
@@ -69,6 +70,13 @@ const Problem = () => {
           value={fpsData.quand}
           name="quand"
           onChange={customHandleChangeDate}
+          disabled={isDisabled}
+        />
+        <CustomSelect
+          label="Line"
+          value={fpsData.line}
+          data={lineData}
+          name="line"
           disabled={isDisabled}
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">

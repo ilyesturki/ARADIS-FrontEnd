@@ -37,6 +37,7 @@ export type fpsProblemType = {
   image?: string;
   images?: string[];
   clientRisk: boolean;
+  line: string;
 };
 
 export type fpsDefensiveActionType = {
@@ -152,7 +153,7 @@ interface FpssState {
 
 const initialState: FpssState = {
   fpss: [],
-  line: "all",
+  line: "",
   fps: null,
   loading: false,
   updateSuccess: false,

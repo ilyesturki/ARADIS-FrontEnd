@@ -87,6 +87,25 @@ export const serviceData = [
   },
 ];
 
+export const lineData = [
+  {
+    value: "line1",
+    label: "Line 1",
+  },
+  {
+    value: "line2",
+    label: "Line 2",
+  },
+  {
+    value: "line3",
+    label: "Line 3",
+  },
+  {
+    value: "line4",
+    label: "Line 4",
+  },
+];
+
 export const causeData = [
   {
     value: "Workforce",
@@ -121,6 +140,7 @@ export const initialFpsProblem: fpsProblemType = {
   image: "",
   images: [],
   clientRisk: false,
+  line: "",
 };
 
 export const initialFpsImmediateActions: editedFpsImmediateActionsType = {

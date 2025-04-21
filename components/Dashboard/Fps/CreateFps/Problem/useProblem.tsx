@@ -17,6 +17,7 @@ import {
   problemTypesData,
   categoryData,
   serviceData,
+  lineData,
   initialFpsProblem,
 } from "@/data/fps";
 import { useRouter } from "@/i18n/navigation";
@@ -249,6 +250,7 @@ const useProblem = () => {
       clientRisk: fpsData.clientRisk.toString(),
       userCategory: fpsData.userCategory || "",
       userService: fpsData.userService || "",
+      line: fpsData.line || "",
 
       image: formImage ? formImage.type : "",
       images: formImages.map((file) => file.type).join(","),
@@ -278,6 +280,7 @@ const useProblem = () => {
         clientRisk: fpsData.clientRisk.toString(),
         userCategory: fpsData.userCategory,
         userService: fpsData.userService,
+        line: fpsData.line,
       },
       (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData }))
     );
@@ -309,6 +312,7 @@ const useProblem = () => {
     customHandleChangeDate,
     categoryData,
     serviceData,
+    lineData,
     handleClientRisk,
     handleDeleteImages,
 

@@ -29,6 +29,7 @@ import {
 import axios from "@/utils/axios";
 
 import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/redux/hooks";
 
 const chartConfig: ChartConfig = {
   completed: {
@@ -52,11 +53,13 @@ export default function FPSPerformanceChart({
     { date: string; completed: number; failed: number }[]
   >([]);
 
+  const line = useAppSelector((state) => state.fpss.line);
+
   React.useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}?line=${line}`
         );
         console.log(data);
         setChartData(data.data); // Directly use backend-processed data
@@ -65,7 +68,7 @@ export default function FPSPerformanceChart({
       }
     }
     fetchData();
-  }, [timeRange]);
+  }, [timeRange, line]);
 
   return (
     <Card className={className}>

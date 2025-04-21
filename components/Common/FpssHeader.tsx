@@ -2,33 +2,10 @@
 
 import PageTitle from "@/components/Common/PageTitle";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import ComboBox from "./ComboBox";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setLine } from "@/redux/fps/fpsSlice";
-
-const data = [
-  {
-    value: "all",
-    label: "All",
-  },
-  {
-    value: "line1",
-    label: "Line 1",
-  },
-  {
-    value: "line2",
-    label: "Line 2",
-  },
-  {
-    value: "line3",
-    label: "Line 3",
-  },
-  {
-    value: "line4",
-    label: "Line 4",
-  },
-];
+import { lineData } from "@/data/fps";
 
 export default function FpssHeader() {
   const t = useTranslations("FpssPanelPage");
@@ -45,7 +22,13 @@ export default function FpssHeader() {
           label="Line"
           selectedValue={line}
           onChange={handleLine}
-          data={data}
+          data={[
+            {
+              value: "",
+              label: "All",
+            },
+            ...lineData,
+          ]}
           className="w-fit !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600"
         />
       </PageTitle>

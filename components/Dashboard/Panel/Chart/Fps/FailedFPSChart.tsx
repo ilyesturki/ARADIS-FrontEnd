@@ -20,6 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/redux/hooks";
 
 const data = [
   { month: "Jan", fpsCount: 0 },
@@ -42,11 +43,13 @@ export default function FailedFPSChart() {
   const [chartData, setChartData] =
     useState<{ month: string; fpsCount: number }[]>(data);
 
+  const line = useAppSelector((state) => state.fpss.line);
+
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart?line=${line}`
         );
         console.log(data);
         setChartData(data.data);
@@ -55,7 +58,7 @@ export default function FailedFPSChart() {
       }
     }
     fetchData();
-  }, []);
+  }, [line]);
 
   return (
     <Card>
