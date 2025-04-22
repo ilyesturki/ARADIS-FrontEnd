@@ -1,10 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  Bot,
-  SquareTerminal,
-} from "lucide-react";
+import { Bot, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "./nav-main";
 import { UserNav } from "./UserNav";
@@ -20,11 +17,6 @@ import SignOutButton from "./SignOutButton";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     // users
     {
@@ -77,19 +69,19 @@ const data = {
 
     // managers
     {
-      allowedTo: ["admin", "manager"],
+      allowedTo: ["manager"],
       title: "Fps",
       url: "/dashboard/panel/fps-panel",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["admin", "manager"],
+      allowedTo: ["manager"],
       title: "Auto-MTCE",
       url: "/dashboard/panel/auto-mtce",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["admin", "manager"],
+      allowedTo: ["manager"],
       title: "Tag",
       url: "/dashboard/panel/tag-panel",
       icon: SquareTerminal,
@@ -101,13 +93,13 @@ const data = {
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["admin", "manager"],
+      allowedTo: ["manager"],
       title: "Planing",
       url: "/planing",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["admin", "manager"],
+      allowedTo: ["manager"],
       title: "Audit",
       url: "/audit",
       icon: SquareTerminal,

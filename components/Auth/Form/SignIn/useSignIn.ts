@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks"; 
+import { useAppSelector } from "@/redux/hooks";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { handleError } from "@/utils/handleError";
 import { credentialsSignInValidationRules } from "@/utils/validationRules";
@@ -73,7 +73,8 @@ const useSignIn = () => {
     setPassword,
     keepSignedIn,
     handleKeepSignedIn,
-    handleSubmit,loading
+    handleSubmit,
+    loading,
   };
 };
 
