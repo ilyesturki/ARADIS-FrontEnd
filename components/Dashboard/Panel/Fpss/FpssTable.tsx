@@ -10,16 +10,16 @@ const FpssTable = () => {
   const t = useTranslations("FpssPanelPage");
   const [fpss, setFpss] = useState([]);
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   useEffect(() => {
     const loadFpss = async () => {
-      const response = await fetchFpss(`?line=${line}`);
+      const response = await fetchFpss(`?machine=${machine}`);
       console.log(response.data);
       setFpss(response.data);
     };
     loadFpss();
-  }, [line]);
+  }, [machine]);
 
   return <DataTable columns={columns(t)} data={fpss} />;
 };

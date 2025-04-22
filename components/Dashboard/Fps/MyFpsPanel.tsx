@@ -4,7 +4,7 @@ import { columns } from "@/components/Common/DataTable/Columns/FpssColumn";
 import { fetchMyFpss } from "@/utils/Api/fpsApi";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import PageTitle from "@/components/Common/PageTitle";
+import FpssHeader from "@/components/Common/FpssHeader";
 
 const MyFpsPanel = () => {
   const t = useTranslations("FpssPanelPage");
@@ -21,7 +21,7 @@ const MyFpsPanel = () => {
 
   return (
     <>
-      <PageTitle title={t("pageTitle")} />
+      <FpssHeader />
       <DataTable columns={columns(t)} data={fpss} />
     </>
   );

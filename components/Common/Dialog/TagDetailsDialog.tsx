@@ -1,10 +1,8 @@
 import TagDetails from "@/components/Dashboard/Dashboard/components/Tag/TagDetails";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { TagType } from "@/redux/tag/tagSlice";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const TagDetailsDialog = ({
@@ -15,6 +13,9 @@ const TagDetailsDialog = ({
   isSelected: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(isSelected);
+
+  const { data: session } = useSession({ required: true });
+
   useEffect(() => {
     if (isSelected) {
       setIsOpen(true);
@@ -25,6 +26,21 @@ const TagDetailsDialog = ({
     setIsOpen(!isOpen);
     // router.push("/dashboard", { scroll: false }); // ✅ Remove tagId from URL when closing
   };
+
+  if (
+    ["qualité", "productions", "maintenance"].includes(
+      session?.user?.userService || ""
+    )
+  ) {
+    return (
+      <Link
+        href={`tag-panel/tag?tagId=${tag.tagId}`}
+        className="flex justify-center items-center w-full py-2.5 bg-greenAccent-900 bg-opacity-80 text-base font-semibold text-grayscale-100 rounded-sm"
+      >
+        Show Tag
+      </Link>
+    );
+  }
   return (
     <Dialog open={isOpen} onOpenChange={closeDialog}>
       <DialogTrigger

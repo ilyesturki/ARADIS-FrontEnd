@@ -39,6 +39,25 @@ export const serviceData = [
   },
 ];
 
+export const machineData = [
+  {
+    value: "machine1",
+    label: "Machine 1",
+  },
+  {
+    value: "machine2",
+    label: "Machine 2",
+  },
+  {
+    value: "machine3",
+    label: "Machine 3",
+  },
+  {
+    value: "machine4",
+    label: "Machine 4",
+  },
+];
+
 export const initialTagActions: TagActionType[] = [
   // {
   //   procedure: "",

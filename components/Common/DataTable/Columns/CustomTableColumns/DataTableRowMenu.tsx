@@ -57,7 +57,7 @@ const DataTableRowMenu = <T extends { id: string }>({
         {!viewOnly && (
           <>
             <DropdownMenuSeparator />
-            <Link
+            <Link 
               href={`${paths}/${
                 paths === "/dashboard/panel/fps-panel" ||
                 paths === "/dashboard/panel/tag-panel"

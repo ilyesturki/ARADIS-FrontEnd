@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 
 import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/redux/hooks";
 
 // const data = [
 //   { status: "Done", count: 155, fill: "hsl(var(--chart-5))" },
@@ -52,11 +53,13 @@ export default function TAGStatusChart() {
     total: 0,
   });
 
+  const machine = useAppSelector((state) => state.fpss.machine);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/status-overview-chart`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/status-overview-chart?machine=${machine}`
         );
         console.log(data);
         setChartData({
@@ -71,7 +74,7 @@ export default function TAGStatusChart() {
     };
 
     fetchData();
-  }, []);
+  }, [machine]);
 
   return (
     <Card className="flex flex-col">

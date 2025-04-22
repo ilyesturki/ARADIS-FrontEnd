@@ -37,7 +37,7 @@ export type fpsProblemType = {
   image?: string;
   images?: string[];
   clientRisk: boolean;
-  line: string;
+  machine: string;
 };
 
 export type fpsDefensiveActionType = {
@@ -143,7 +143,7 @@ export type fpsDefensiveActionsType = fpsDefensiveActionType[];
 
 interface FpssState {
   fpss: FpsType[];
-  line: string;
+  machine: string;
   fps: FpsType | null;
   loading: boolean;
   updateSuccess: boolean;
@@ -153,7 +153,7 @@ interface FpssState {
 
 const initialState: FpssState = {
   fpss: [],
-  line: "",
+  machine: "",
   fps: null,
   loading: false,
   updateSuccess: false,
@@ -172,11 +172,11 @@ const fpssSlice = createSlice({
       state.deleteSuccess = false;
       state.error = null;
     },
-    setLine: (state, action) => {
-      state.line = action.payload;
+    setMachine: (state, action) => {
+      state.machine = action.payload;
     },
-    resetLine: (state) => {
-      state.line = "All";
+    resetMachine: (state) => {
+      state.machine = "All";
     },
   },
   extraReducers: (builder) => {
@@ -377,4 +377,4 @@ const fpssSlice = createSlice({
 
 export default fpssSlice.reducer;
 
-export const { resetFps, setLine, resetLine } = fpssSlice.actions;
+export const { resetFps, setMachine, resetMachine } = fpssSlice.actions;

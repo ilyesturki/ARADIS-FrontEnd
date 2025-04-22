@@ -53,13 +53,13 @@ export default function FPSStatusChart() {
     total: 0,
   });
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/status-overview-chart?line=${line}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/status-overview-chart?machine=${machine}`
         );
         console.log(data);
         setChartData({
@@ -74,7 +74,7 @@ export default function FPSStatusChart() {
     };
 
     fetchData();
-  }, [line]);
+  }, [machine]);
 
   return (
     <Card className="flex flex-col">

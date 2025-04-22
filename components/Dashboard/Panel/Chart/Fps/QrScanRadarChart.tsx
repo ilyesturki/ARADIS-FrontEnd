@@ -49,13 +49,13 @@ export default function QrScanRadarChart() {
   const [chartData, setChartData] =
     useState<{ month: string; scanned: number; unscanned: number }[]>(data);
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/all-qr-codes-scan-statistics?line=${line}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/all-qr-codes-scan-statistics?machine=${machine}`
         );
         console.log(data);
         if (data?.data && Array.isArray(data.data)) {
@@ -66,7 +66,7 @@ export default function QrScanRadarChart() {
       }
     }
     fetchData();
-  }, [line]);
+  }, [machine]);
 
   return (
     <Card>

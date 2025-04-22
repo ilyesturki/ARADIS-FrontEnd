@@ -27,7 +27,7 @@ const Problem = () => {
     customHandleChangeSelect,
     categoryData,
     serviceData,
-    lineData,
+    machineData,
     handleClientRisk,
     handleDeleteImages,
 
@@ -74,11 +74,11 @@ const Problem = () => {
           disabled={isDisabled}
         />
         <CustomSelect
-          label="Line"
-          value={fpsData.line}
+          label="Machine"
+          value={fpsData.machine}
           onChange={customHandleChangeSelect}
-          data={lineData}
-          name="line"
+          data={machineData}
+          name="machine"
           disabled={isDisabled}
         />
         <div className="grid grid-cols-2 gap-4 grid-rows-1 items-start">

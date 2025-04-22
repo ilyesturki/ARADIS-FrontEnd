@@ -53,13 +53,13 @@ export default function FPSPerformanceChart({
     { date: string; completed: number; failed: number }[]
   >([]);
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}?line=${line}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}?machine=${machine}`
         );
         console.log(data);
         setChartData(data.data); // Directly use backend-processed data
@@ -68,7 +68,7 @@ export default function FPSPerformanceChart({
       }
     }
     fetchData();
-  }, [timeRange, line]);
+  }, [timeRange, machine]);
 
   return (
     <Card className={className}>

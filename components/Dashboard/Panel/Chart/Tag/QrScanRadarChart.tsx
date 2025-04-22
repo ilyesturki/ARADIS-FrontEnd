@@ -21,8 +21,9 @@ import {
 
 import { useEffect, useState } from "react";
 
-import axios from "@/utils/axios";
+import axios from "@/utils/axios"; 
 import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/redux/hooks";
 
 const data = [
   { month: "Jan", scanned: 0, unscanned: 0 },
@@ -48,11 +49,12 @@ export default function QrScanRadarChart() {
   const [chartData, setChartData] =
     useState<{ month: string; scanned: number; unscanned: number }[]>(data);
 
+    const machine = useAppSelector((state) => state.fpss.machine);
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/all-qr-codes-scan-statistics`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/all-qr-codes-scan-statistics?machine=${machine}`
         );
         console.log(data);
         if (data?.data && Array.isArray(data.data)) {
@@ -63,7 +65,7 @@ export default function QrScanRadarChart() {
       }
     }
     fetchData();
-  }, []);
+  }, [machine]);
 
   return (
     <Card>

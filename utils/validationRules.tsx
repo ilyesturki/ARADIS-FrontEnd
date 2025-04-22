@@ -96,7 +96,7 @@ export const fpsProblemValidationRules = {
   clientRisk: { required: true },
   userCategory: { required: true },
   userService: { required: true },
-  line: { required: true },
+  machine: { required: true },
   image: {
     customValidator: (value: string) => {
       console.log(value);

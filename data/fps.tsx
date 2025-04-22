@@ -87,22 +87,22 @@ export const serviceData = [
   },
 ];
 
-export const lineData = [
+export const machineData = [
   {
-    value: "line1",
-    label: "Line 1",
+    value: "machine1",
+    label: "Machine 1",
   },
   {
-    value: "line2",
-    label: "Line 2",
+    value: "machine2",
+    label: "Machine 2",
   },
   {
-    value: "line3",
-    label: "Line 3",
+    value: "machine3",
+    label: "Machine 3",
   },
   {
-    value: "line4",
-    label: "Line 4",
+    value: "machine4",
+    label: "Machine 4",
   },
 ];
 
@@ -140,7 +140,7 @@ export const initialFpsProblem: fpsProblemType = {
   image: "",
   images: [],
   clientRisk: false,
-  line: "",
+  machine: "",
 };
 
 export const initialFpsImmediateActions: editedFpsImmediateActionsType = {

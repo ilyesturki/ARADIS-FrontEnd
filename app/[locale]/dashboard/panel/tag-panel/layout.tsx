@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import TagsPanel from "@/components/Dashboard/Panel/Tags/TagsPanel";
-import TagsPageTitle from "@/components/Common/TagsPageTitle";
+import TagsHeader from "@/components/Common/TagsHeader";
 
 export default async function RootLayout({
   children,
@@ -18,7 +18,7 @@ export default async function RootLayout({
   console.log(session);
   return (
     <>
-      <TagsPageTitle />
+      <TagsHeader />
       <div className="flex flex-col gap-8">
         <TagsPanel />
         {children}

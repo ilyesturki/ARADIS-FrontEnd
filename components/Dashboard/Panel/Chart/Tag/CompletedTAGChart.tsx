@@ -20,6 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/redux/hooks";
 
 const data = [
   { month: "Jan", tagCount: 0 },
@@ -42,11 +43,12 @@ export default function CompletedTAGChart() {
   const [chartData, setChartData] =
     useState<{ month: string; tagCount: number }[]>(data);
 
+    const machine = useAppSelector((state) => state.fpss.machine);
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/completed-tag-chart`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/completed-tag-chart?machine=${machine}`
         );
         console.log(data);
         setChartData(data.data);
@@ -55,7 +57,7 @@ export default function CompletedTAGChart() {
       }
     }
     fetchData();
-  }, []);
+  }, [machine]);
 
   return (
     <Card>

@@ -4,14 +4,14 @@ import PageTitle from "@/components/Common/PageTitle";
 import { useTranslations } from "next-intl";
 import ComboBox from "./ComboBox";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setMachine } from "@/redux/fps/fpsSlice";
-import { machineData } from "@/data/fps";
+import { setMachine } from "@/redux/tag/tagSlice";
+import { machineData } from "@/data/tag";
 
-export default function FpssHeader() {
-  const t = useTranslations("FpssPanelPage");
+export default function TagsHeader() {
+  const t = useTranslations("TagsPanelPage");
   // const [machine, setMachine] = useState("all");
   const dispatch = useAppDispatch();
-  const machine = useAppSelector((state) => state.fpss.machine);
+  const machine = useAppSelector((state) => state.tags.machine);
   const handleMachine = (e: string) => {
     dispatch(setMachine(e));
   };

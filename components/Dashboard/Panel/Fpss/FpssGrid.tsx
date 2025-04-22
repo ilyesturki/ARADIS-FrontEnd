@@ -11,12 +11,12 @@ const FpssGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(1);
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   useEffect(() => {
     const loadFpss = async () => {
       const response = await fetchFpss(
-        `?line=${line}&page=${currentPage}&limit=9`
+        `?machine=${machine}&page=${currentPage}&limit=9`
       );
       console.log(response);
       setFpss(response.data);
@@ -25,7 +25,7 @@ const FpssGrid = () => {
       }
     };
     loadFpss();
-  }, [currentPage, line]);
+  }, [currentPage, machine]);
   return (
     <>
       <FpssGridBox fpss={fpss} />

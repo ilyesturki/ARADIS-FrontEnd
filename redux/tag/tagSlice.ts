@@ -48,6 +48,7 @@ export type flexibleTagType = Partial<TagType>;
 
 interface TagsState {
   tags: TagType[];
+  machine: string;
   tag: TagType | null;
   loading: boolean;
   updateSuccess: boolean;
@@ -57,6 +58,7 @@ interface TagsState {
 
 const initialState: TagsState = {
   tags: [],
+  machine: "",
   tag: null,
   loading: false,
   updateSuccess: false,
@@ -74,6 +76,12 @@ const tagsSlice = createSlice({
       state.updateSuccess = false;
       state.deleteSuccess = false;
       state.error = null;
+    },
+    setMachine: (state, action) => {
+      state.machine = action.payload;
+    },
+    resetMachine: (state) => {
+      state.machine = "All";
     },
   },
   extraReducers: (builder) => {
@@ -172,4 +180,4 @@ const tagsSlice = createSlice({
 
 export default tagsSlice.reducer;
 
-export const { resetTag } = tagsSlice.actions;
+export const { resetTag, setMachine, resetMachine } = tagsSlice.actions;

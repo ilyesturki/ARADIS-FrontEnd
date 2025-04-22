@@ -43,13 +43,13 @@ export default function FailedFPSChart() {
   const [chartData, setChartData] =
     useState<{ month: string; fpsCount: number }[]>(data);
 
-  const line = useAppSelector((state) => state.fpss.line);
+  const machine = useAppSelector((state) => state.fpss.machine);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart?line=${line}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart?machine=${machine}`
         );
         console.log(data);
         setChartData(data.data);
@@ -58,7 +58,7 @@ export default function FailedFPSChart() {
       }
     }
     fetchData();
-  }, [line]);
+  }, [machine]);
 
   return (
     <Card>
