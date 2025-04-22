@@ -1,6 +1,8 @@
+"use client";
 // import CustomInput from "@/components/Common/CustomInput/CustomInput";
 // import Link from "next/link";
 // import AuthButton from "../../subcomponents/AuthButton";
+
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 
@@ -31,7 +33,7 @@ const useSignIn = () => {
   const router = useRouter();
   const params = useSearchParams();
 
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession();
 
   useEffect(() => {
     // const errorParam = params.get("error") as string | undefined;
@@ -72,8 +74,8 @@ const useSignIn = () => {
       return;
     }
     signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/dashboard",
+      // redirect: true,
+      // callbackUrl: "/dashboard",
       email,
       password,
     });

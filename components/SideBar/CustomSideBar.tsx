@@ -20,19 +20,25 @@ const data = {
   navMain: [
     // users
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Auto MTCE",
       url: "/auto-mtce",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Diag MTCE",
       url: "/diag-mtce",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Fps",
       url: "#",
       icon: SquareTerminal,
@@ -49,19 +55,25 @@ const data = {
       ],
     },
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Audit",
       url: "/audit",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Planing",
       url: "/planing",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["user"],
+      allowedTo: [
+        { role: "user", category: ["operational", "midel-management"] },
+      ],
       title: "Dashboard",
       url: "/dashboard",
       icon: SquareTerminal,
@@ -69,44 +81,44 @@ const data = {
 
     // managers
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Fps",
       url: "/dashboard/panel/fps-panel",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Auto-MTCE",
       url: "/dashboard/panel/auto-mtce",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Tag",
       url: "/dashboard/panel/tag-panel",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Dashboard",
       url: "/dashboard",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Planing",
       url: "/planing",
       icon: SquareTerminal,
     },
     {
-      allowedTo: ["manager"],
+      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Audit",
       url: "/audit",
       icon: SquareTerminal,
     },
     // admin
     {
-      allowedTo: ["admin"],
+      allowedTo: [{ role: "admin" }],
       title: "Users",
       url: "#",
       icon: Bot,
@@ -144,7 +156,11 @@ export function CustomSideBar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} role={session?.user?.role} />
+        <NavMain
+          items={data.navMain}
+          role={session?.user?.role}
+          category={session?.user?.userCategory}
+        />
       </SidebarContent>
       <SidebarFooter>
         <SignOutButton />

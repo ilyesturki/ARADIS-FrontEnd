@@ -24,9 +24,10 @@ import { usePathname } from "@/i18n/navigation";
 export function NavMain({
   items,
   role,
+  category,
 }: {
   items: {
-    allowedTo?: string[];
+    allowedTo?: { role: string; category?: string[] }[];
     title: string;
     url: string;
     icon?: LucideIcon;
@@ -37,6 +38,7 @@ export function NavMain({
     }[];
   }[];
   role?: string;
+  category?: string;
 }) {
   const path = usePathname();
   const currentPath = path.split("/").join("/");
@@ -54,7 +56,15 @@ export function NavMain({
       </SidebarGroupLabel>
       <SidebarMenu>
         {items
-          .filter((e) => !e.allowedTo || e.allowedTo?.includes(role ?? ""))
+          .filter(
+            (e) =>
+              !e.allowedTo ||
+              e.allowedTo?.some((a) => {
+                return a.category
+                  ? a.role === role && a.category?.includes(category || "")
+                  : a.role === role;
+              })
+          )
           .map((item) => (
             <Collapsible
               key={item.title}
