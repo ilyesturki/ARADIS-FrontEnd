@@ -2,7 +2,7 @@
 // import Link from "next/link";
 // import AuthButton from "../../subcomponents/AuthButton";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import toast from "react-hot-toast";
 import { useEffect } from "react";
@@ -31,19 +31,31 @@ const useSignIn = () => {
   const router = useRouter();
   const params = useSearchParams();
 
-  useEffect(() => {
-    const errorParam = params.get("error") as string | undefined;
-    if (errorParam) {
-      toast.error(decodeURIComponent(errorParam));
-      console.log(params.get("error"));
-    }
+  const { data: session } = useSession({ required: true });
 
-    const successParam = params.get("success") as string | undefined;
-    if (successParam) {
-      toast.success(decodeURIComponent(successParam));
-      router.push("/dashboard");
-    }
-  }, [params]);
+  useEffect(() => {
+    // const errorParam = params.get("error") as string | undefined;
+    // if (errorParam) {
+    //   toast.error(decodeURIComponent(errorParam));
+    //   console.log(params.get("error"));
+    // }
+
+    // const successParam = params.get("success") as string | undefined;
+    // if (successParam) {
+    //   toast.success(decodeURIComponent(successParam));
+    //   router.push("/dashboard");
+    // }
+    if (!session?.user) return;
+    const role = session?.user.role;
+    const userCategory = session?.user.userCategory;
+    const redirectTo =
+      role === "admin"
+        ? "/dashboard/users"
+        : ["top-management", "corporaite"].includes(userCategory || "")
+        ? "/dashboard/panel/fps-panel"
+        : "/dashboard/fps";
+    router.push(redirectTo);
+  }, [session]);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
