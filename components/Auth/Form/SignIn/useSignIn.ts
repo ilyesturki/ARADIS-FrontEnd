@@ -36,17 +36,6 @@ const useSignIn = () => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    // const errorParam = params.get("error") as string | undefined;
-    // if (errorParam) {
-    //   toast.error(decodeURIComponent(errorParam));
-    //   console.log(params.get("error"));
-    // }
-
-    // const successParam = params.get("success") as string | undefined;
-    // if (successParam) {
-    //   toast.success(decodeURIComponent(successParam));
-    //   router.push("/dashboard");
-    // }
     if (!session?.user) return;
     const role = session?.user.role;
     const userCategory = session?.user.userCategory;

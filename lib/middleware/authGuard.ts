@@ -69,5 +69,5 @@ export async function authGuard(
 }
 
 function redirectUnauthorized(req: NextRequest): NextResponse {
-  return NextResponse.redirect(new URL("/unauthorized", req.url));
+  return NextResponse.redirect(new URL("/dashboard/unauthorized", req.url));
 }
