@@ -36,7 +36,7 @@ export async function authGuard(
 
   // Require auth for all other routes
   if (!token) {
-    return NextResponse.redirect(new URL("/auth", req.url));
+    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
   if (normalizedPathname.startsWith("/dashboard/users")) {
