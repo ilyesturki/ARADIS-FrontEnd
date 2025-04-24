@@ -33,8 +33,8 @@ const useComments = () => {
     comments: [
       {
         active:
-          session?.user.role &&
-          ["admin", "manager"].includes(session?.user.role)
+          session?.user.userCategory &&
+          ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
             ? true
             : false,
         comment: "",
@@ -44,7 +44,7 @@ const useComments = () => {
           id: session?.user?.id || "",
           firstName: session?.user?.firstName || "",
           lastName: session?.user?.lastName || "",
-          role: session?.user?.role || "",
+          role: session?.user?.userCategory || "",
           image: session?.user?.image || "",
         },
       },
@@ -73,8 +73,8 @@ const useComments = () => {
           : [
               {
                 active:
-                  session?.user.role &&
-                  ["admin", "manager"].includes(session?.user.role)
+                session?.user.userCategory &&
+                ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
                     ? true
                     : false,
                 comment: "",
@@ -84,7 +84,7 @@ const useComments = () => {
                   id: session?.user?.id || "",
                   firstName: session?.user?.firstName || "",
                   lastName: session?.user?.lastName || "",
-                  role: session?.user?.role || "",
+                  role: session?.user?.userCategory || "",
                   image: session?.user?.image || "",
                 },
               },
@@ -106,8 +106,8 @@ const useComments = () => {
         ...(prevData.comments || []),
         {
           active:
-            session?.user.role &&
-            ["admin", "manager"].includes(session?.user.role)
+          session?.user.userCategory &&
+          ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
               ? true
               : false,
           comment: "",
@@ -117,7 +117,7 @@ const useComments = () => {
             id: session?.user?.id || "",
             firstName: session?.user?.firstName || "",
             lastName: session?.user?.lastName || "",
-            role: session?.user?.role || "",
+            role: session?.user?.userCategory || "",
             image: session?.user?.image || "",
           },
         },

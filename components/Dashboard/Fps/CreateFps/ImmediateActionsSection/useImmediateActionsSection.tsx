@@ -38,8 +38,8 @@ const useImmediateActionsSection = () => {
   const { data: session } = useSession({ required: true });
 
   const isAdminOrManager = useMemo(
-    () => ["admin", "manager"].includes(session?.user.role ?? ""),
-    [session?.user.role]
+    () => ["corporaite", "top-management"].includes(session?.user.userCategory ||""),
+    [session?.user.userCategory]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
 
