@@ -19,8 +19,8 @@ const Comments = () => {
 
   if (
     fpsData.comments.length === 1 &&
-    session?.user.role &&
-    !["admin", "manager"].includes(session?.user.role)
+    session?.user.userCategory &&
+          !["corporaite", "top-management"].includes(session?.user.userCategory ||"")
   ) {
     return (
       <div className="h-[145px] flex items-center justify-center bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
@@ -85,8 +85,8 @@ const Comments = () => {
           );
         })}
       </div>
-      {session?.user.role &&
-        ["admin", "manager"].includes(session?.user.role) && (
+      {session?.user.userCategory &&
+          ["corporaite", "top-management"].includes(session?.user.userCategory ||"") && (
           <AddSectionButton addNewSection={addNewComment} />
         )}
     </>
