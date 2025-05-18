@@ -16,6 +16,7 @@ import CustomButtons from "@/components/Common/CustomInput/CustomButtons";
 
 import { useTranslations } from "next-intl";
 import PageTitle from "@/components/Common/PageTitle";
+import TagDoneButton from "./TagDoneButton";
 
 const Tag = () => {
   const t = useTranslations("TagsPanelPage");
@@ -48,47 +49,54 @@ const Tag = () => {
     removeAction,
     handleSubmit,
     handleReset,
+    tagId,
+    currentStep,
   } = useTag();
   return (
     <div className=" grid grid-cols-1 gap-8 px-5 pb-6 bg-sidebar border rounded-md">
       <TagHeader />
       <PageTitle title={t("TagPanel.title")} />
       <TagPanel />
-      <PageTitle title={t("TagActionsSection.tagActions.title")} />
-      <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
-        <TagActions
-          setTagData={setTagData}
-          disabled={disabled}
-          tagData={tagData} 
-        /> 
+      {(currentStep == "open" || currentStep == "toDo") && (
+        <>
+          <PageTitle title={t("TagActionsSection.tagActions.title")} />
+          <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
+            <TagActions
+              setTagData={setTagData}
+              disabled={disabled}
+              tagData={tagData}
+            />
 
-        <div className="grid grid-rows-[1fr_auto] grid-cols-1 gap-4">
-          <ActionsList headers={["Service", "Category", "Date", "Actions"]}>
-            {tagData.length > 0 &&
-              tagData.map((e, i) => {
-                return (
-                  <ActionBox
-                    key={i}
-                    data={[
-                      e.userService,
-                      e.userCategory,
-                      new Date(e.quand).toDateString(),
-                    ]}
-                    editAction={editAction}
-                    removeAction={removeAction}
-                    i={i}
-                  />
-                );
-              })}
-          </ActionsList>
-          <CustomButtons
-            mainButtonOnCLick={handleSubmit}
-            secondaryButtonOnCLick={handleReset}
-            mainButtonText={t("TagActionsSection.mainButton")}
-            secondaryButtonText={t("TagActionsSection.secondaryButton")}
-          />
-        </div>
-      </div>
+            <div className="grid grid-rows-[auto_1fr_auto] grid-cols-1 gap-4">
+              <TagDoneButton id={tagId} />
+              <ActionsList headers={["Service", "Category", "Date", "Actions"]}>
+                {tagData.length > 0 &&
+                  tagData.map((e, i) => {
+                    return (
+                      <ActionBox
+                        key={i}
+                        data={[
+                          e.userService,
+                          e.userCategory,
+                          new Date(e.quand).toDateString(),
+                        ]}
+                        editAction={editAction}
+                        removeAction={removeAction}
+                        i={i}
+                      />
+                    );
+                  })}
+              </ActionsList>
+              <CustomButtons
+                mainButtonOnCLick={handleSubmit}
+                secondaryButtonOnCLick={handleReset}
+                mainButtonText={t("TagActionsSection.mainButton")}
+                secondaryButtonText={t("TagActionsSection.secondaryButton")}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

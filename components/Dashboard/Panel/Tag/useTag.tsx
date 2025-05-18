@@ -111,6 +111,8 @@ const useTag = () => {
     removeAction,
     handleSubmit,
     handleReset,
+    tagId,
+    currentStep,
   };
 };
 

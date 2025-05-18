@@ -24,7 +24,7 @@ export const columns = (t: (key: string) => string): ColumnDef<Users>[] => [
   {
     accessorKey: "select",
     id: "select",
-    header: ({ table }) => <DataTableHeaderCheckBox table={table} />,
+    header: ({ table }) => <DataTableHeaderCheckBox />,
     cell: ({ row }) => <DataTableContentCheckBox row={row} />,
   },
   {

@@ -17,8 +17,9 @@ const Notifications = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="relative flex items-center gap-1.5 px-2 py-2 bg-white dark:bg-gray-700 border rounded-md">
+      <DialogTrigger className="text-center text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 relative flex justify-center items-center gap-1.5 px-2 py-2 bg-white dark:bg-gray-700 border rounded-md">
         <MdOutlineNotificationsActive className="text-xl text-gray-600 dark:text-gray-300" />
+        <span className="md:hidden">Notifications</span>
         {unreadCount > 0 && (
           <span className="absolute -top-1 -right-1.5 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">
             {unreadCount}

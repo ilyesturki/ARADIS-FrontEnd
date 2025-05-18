@@ -141,11 +141,7 @@ export function CustomSideBar({
   ...props
 }: { session: any } & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar
-      collapsible="icon"
-      {...props}
-      className="transition-all duration-300"
-    >
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <WebsiteCustomLogo />
         <UserNav

@@ -66,10 +66,13 @@ export default function LocaleSwitcherSelect({
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative inline-block text-left">
+    <div
+      ref={dropdownRef}
+      className="max-md:w-full relative inline-block text-left"
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border rounded-md"
+        className="max-md:w-full flex max-md:justify-center items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border rounded-md"
       >
         <Image
           src={localeData[selectedLocale].flag}

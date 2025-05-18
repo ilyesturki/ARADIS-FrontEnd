@@ -17,9 +17,8 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 
-import LocaleSwitcher from "@/components/Common/LocaleSwitcher";
-import ThemeToggle from "@/components/Common/ThemeToggle/ThemeToggle";
-import Notifications from "@/components/Common/Notifications/Notifications";
+
+import CustomDropDownMenu from "@/components/Common/CustomDropDownMenu";
 
 export default async function RootLayout({
   children,
@@ -42,11 +41,7 @@ export default async function RootLayout({
               <Separator orientation="vertical" className="mr-2 h-4" />
               <BreadCrumb />
             </div>
-            <div className="flex items-center gap-2">
-              <Notifications />
-              <ThemeToggle />
-              <LocaleSwitcher />
-            </div>
+            <CustomDropDownMenu />
           </div>
         </header>
         <main className="px-9 pb-4">

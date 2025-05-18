@@ -3,28 +3,28 @@ import { FaCheck } from "react-icons/fa";
 const ProgressBox = ({
   status,
 }: {
-  status: "done" | "toDo" | "open";
+  status: "done" | "inProgress" | "notYet";
 }) => {
   return (
     <div
       className={`w-10 h-10 flex justify-center items-center ${
         status === "done"
           ? "bg-greenAccent-900 bg-opacity-60"
-          : status === "toDo"
+          : status === "inProgress"
           ? "border-2 border-greenAccent-900"
           : "bg-neutral-300"
       } rounded-full`}
     >
       <span
         className={`text-base ${
-          status === "toDo"
+          status === "inProgress"
             ? "text-greenAccent-900"
             : "text-grayscale-100"
         }  font-bold`}
       >
-        {status === "toDo" ? (
+        {status === "inProgress" ? (
           "2"
-        ) : status === "open" ? (
+        ) : status === "notYet" ? (
           "3"
         ) : (
           <FaCheck />

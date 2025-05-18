@@ -16,14 +16,18 @@ export const verifyUserValidationRules = {
     required: true,
     pattern: /\S+@\S+\.\S+/,
   },
-  phone: { required: false },
-  status: { required: false },
+  phone: {},
+  status: {},
   image: {
-    required: false,
-    customValidator: (value: string) =>
-      !["image/jpeg", "image/png", "image/gif"].includes(value)
-        ? "Please select a valid image file (JPEG, PNG, or GIF)."
-        : null,
+    customValidator: (value: string) => {
+      console.log(value);
+      if (value) {
+        return !["image/jpeg", "image/png", "image/gif"].includes(value)
+          ? "Please select a valid image file (JPEG, PNG, or GIF)."
+          : null;
+      }
+      return null;
+    },
   },
 };
 
