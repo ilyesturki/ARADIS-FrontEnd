@@ -13,7 +13,7 @@ const CustomSectionHeader = ({
 }) => {
   return (
     <div className="flex items-center justify-between px-1">
-      <span className="text-sm font-bold capitalize text-grayscale-500">
+      <span className="text-sm font-bold capitalize text-grayscale-500  dark:text-gray-300">
         {title} {i !== undefined ? `N°${i + 1}` : ""}
       </span>
       {!disabled && handleDeleteSection && (

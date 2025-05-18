@@ -69,7 +69,7 @@ export default function QRCodeScanStatisticsChart() {
   return (
     <Card className="max-sm:order-1 max-lg:-order-1 flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-[15px] text-greenAccent-900">
+        <CardTitle className="text-[15px] text-greenAccent-900  dark:text-grayscale-400">
           {t("title")}
         </CardTitle>
         <CardDescription className="text-[11px] font-semibold text-grayscale-500 text-opacity-50">

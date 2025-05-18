@@ -76,7 +76,7 @@ export function NavMain({
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     tooltip={item.title}
-                    className="!h-10 text-base text-grayscale-100 hover:!text-grayscale-500"
+  className="!h-10 text-base text-grayscale-100 hover:!text-grayscale-500 group"
                   >
                     {item.items ? (
                       <>

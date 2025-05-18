@@ -29,12 +29,12 @@ const CustomSelect = <T,>({
   return (
     <div className=" flex gap-4 items-center">
       <div
-        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 border rounded-md ${
+        className={`bg-grayscale-100 pb-2 w-full pl-4 pr-2 border dark:bg-gray-900  dark:border-gray-700 rounded-md ${
           disabled ? "bg-opacity-50 cursor-not-allowed" : ""
         } ${className}`}
       >
         <span
-          className={`text-[10px] font-semibold capitalize text-greenAccent-900 ${textColor}`}
+          className={`text-[10px] font-semibold capitalize text-greenAccent-900 dark:text-gray-300 ${textColor}`}
         >
           {label}
         </span>
@@ -55,7 +55,7 @@ const CustomSelect = <T,>({
           textColor={textColor}
           name={name}
           disabled={disabled}
-          className="bg-transparent shadow-none text-greenAccent-900 opacity-70"
+          className="bg-transparent shadow-none text-greenAccent-900 dark:text-gray-300 opacity-70"
         />
       </div>
       {children}

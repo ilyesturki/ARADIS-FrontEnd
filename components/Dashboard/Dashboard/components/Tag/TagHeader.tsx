@@ -11,7 +11,7 @@ const TagHeader = ({
   return (
     <div>
       <div className="flex justify-between items-center">
-        <span className="text-xs font-semibold text-greenAccent-900">
+        <span className="text-xs font-semibold text-greenAccent-900  dark:text-grayscale-300">
           {tagId}
         </span>
         <TagStatus status={status} />

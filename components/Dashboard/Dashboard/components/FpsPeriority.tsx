@@ -3,7 +3,7 @@ import { GoAlertFill } from "react-icons/go";
 const FpsPeriority = ({ periority }: { periority: boolean }) => {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm font-medium text-neutral-500">Periority :</span>
+      <span className="text-sm font-medium text-neutral-500 dark:text-grayscale-400">Periority :</span>
 
       <Badge
         variant={periority ? "destructive" : "default"}

@@ -16,7 +16,7 @@ const TagDetails = ({
     <div className={`${dialogMode && "grid md:grid-cols-2 gap-2 py-1.5"}`}>
       <div className="w-full px-1">
         <TagHeader tagId={tag.tagId} status={tag.status} />
-        <hr className="border-neutral-200 my-3" />
+        <hr className="border-neutral-200  dark:border-neutral-700 my-3" />
         <TagProgress status={tag.status} />
         <TagDescription
           zone={tag.zone}

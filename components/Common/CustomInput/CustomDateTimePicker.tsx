@@ -21,11 +21,11 @@ const CustomDateTimePicker = ({
   return (
     <div className=" flex gap-4 items-center">
       <div
-        className={`w-full px-4 bg-grayscale-100 border rounded-md ${
+        className={`w-full px-4 bg-grayscale-100  dark:bg-gray-900  dark:border-gray-700 border rounded-md ${
           disabled && "bg-opacity-50"
         }`}
       >
-        <span className="text-[10px] font-semibold text-greenAccent-900 capitalize ">
+        <span className="text-[10px] font-semibold text-greenAccent-900  dark:text-gray-300 capitalize ">
           {label}
         </span>
         <div className="w-full flex flex-row gap-4">

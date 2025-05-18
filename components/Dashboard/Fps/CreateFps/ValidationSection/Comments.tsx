@@ -23,8 +23,8 @@ const Comments = () => {
           !["corporaite", "top-management"].includes(session?.user.userCategory ||"")
   ) {
     return (
-      <div className="h-[145px] flex items-center justify-center bg-grayscale-100 shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
-        <h1 className="text-lg font-semibold text-grayscale-500 text-opacity-50">
+      <div className="h-[145px] flex items-center justify-center bg-grayscale-100   dark:bg-gray-900  dark:border-gray-700   shadow-[0px_0px_2px] shadow-grayscale-500  rounded-md">
+        <h1 className="text-lg font-semibold text-grayscale-500  dark:text-gray-400 text-opacity-50">
           No comments found !
         </h1>
       </div>

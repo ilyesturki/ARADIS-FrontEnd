@@ -13,7 +13,7 @@ const Pagination = <TData,>({
   isSelectPageSizes?: boolean;
 }) => {
   return (
-    <div className="flex flex-wrap items-center justify-between px-8 py-4">
+    <div className="flex flex-wrap items-center justify-between px-8 py-4  dark:text-gray-400">
       <SelectedRows table={table} />
       <div className="flex items-center gap-8">
         {isSelectPageSizes && <SelectPageSize table={table} />}

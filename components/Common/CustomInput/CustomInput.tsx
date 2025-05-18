@@ -24,11 +24,11 @@ const CustomInput = ({
   return (
     <div className=" w-full flex gap-4 items-center">
       <div
-        className={`w-full px-4 bg-grayscale-100 border rounded-md ${
+        className={`w-full px-4 bg-grayscale-100   dark:bg-gray-900  dark:border-gray-700  border rounded-md ${
           disabled && "bg-opacity-50"
         }`}
       >
-        <span className=" w-full text-[10px] font-semibold text-greenAccent-900 capitalize ">
+        <span className=" w-full text-[10px] font-semibold text-greenAccent-900  dark:text-gray-300 capitalize ">
           {label}
           {copy && <CopyButton data={value || ""} />}
         </span>
@@ -43,7 +43,7 @@ const CustomInput = ({
           placeholder={placeholder}
           onChange={onChange}
           disabled={disabled}
-          className={` w-full py-2 bg-transparent  text-sm font-medium text-grayscale-600 placeholder-greenAccent-900 placeholder-opacity-70 outline-none ${
+          className={` w-full py-2 bg-transparent  text-sm font-medium text-grayscale-600 placeholder-greenAccent-900  dark:text-gray-300 dark:placeholder-gray-400 placeholder-opacity-70 outline-none ${
             disabled && "text-opacity-50"
           }`}
         />

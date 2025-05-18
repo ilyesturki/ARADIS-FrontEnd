@@ -11,7 +11,8 @@ const Fps = ({
   isSelected?: boolean;
 }) => {
   return (
-    <div className="px-3 py-3 bg-grayscale-100 border rounded-md">
+    <div className="px-3 py-3 bg-grayscale-100  dark:bg-neutral-800/50   dark:border-neutral-700 border rounded-md">
+
       <FpsDetails fps={fps} />
       <FpsDetailsDialog fps={fps} isSelected={isSelected} />
     </div>

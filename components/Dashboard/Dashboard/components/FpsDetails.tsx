@@ -20,7 +20,7 @@ const FpsDetails = ({
           type={fps.problem.type}
           periority={fps.problem.clientRisk || fps.problem.type === "Securite"}
         />
-        <hr className="border-neutral-200 my-3" />
+        <hr className="border-neutral-200 my-3 dark:border-neutral-700"  />
         <FpsProgress status={fps.status} />
         <FpsDescription
           currentStep={fps.currentStep}

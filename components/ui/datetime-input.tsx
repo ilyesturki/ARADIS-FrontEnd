@@ -349,7 +349,7 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
       <div
         ref={ref}
         className={cn(
-          "flex h-10 w-full items-center justify-start rounded-md bg-transparent text-sm text-greenAccent-900  ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-10 w-full items-center justify-start rounded-md bg-transparent text-sm text-greenAccent-900   dark:text-gray-300  ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  disabled:cursor-not-allowed disabled:opacity-50",
           isFocused ? "outline-none ring-2 ring-ring ring-offset-2" : "",
           options.hideCalendarIcon && "ps-2",
           options.className
@@ -362,7 +362,7 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
         )}
         <input
           ref={mergeRefs(inputRef)}
-          className="font-mono flex-grow min-w-0 bg-transparent py-1 pe-2 text-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="font-mono flex-grow min-w-0 bg-transparent py-1 pe-2 text-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 "
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onClick={onClick}
@@ -375,7 +375,7 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
         />
         <div className="me-3">
           {inputValue ? (
-            <CircleCheck className="size-4 text-green-500" />
+            <CircleCheck className="size-4 text-green-500 " />
           ) : (
             <TooltipProvider>
               <Tooltip>

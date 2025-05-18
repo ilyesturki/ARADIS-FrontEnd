@@ -79,7 +79,7 @@ export default function TAGStatusChart() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0 text-center">
-        <CardTitle className="text-xl text-greenAccent-900">
+        <CardTitle className="text-xl text-greenAccent-900 dark:text-grayscale-400">
           {t("title")}
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">

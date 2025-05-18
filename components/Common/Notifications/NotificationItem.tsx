@@ -47,10 +47,10 @@ export default function NotificationItem({
           : ""
       }`}
     >
-      <Bell className="text-greenAccent-900 mt-1" />
+      <Bell className="text-greenAccent-900 mt-1 dark:text-gray-300" />
       <CardContent className="flex-1 pb-0 pl-5">
         <div className="flex justify-between items-center">
-          <h4 className="font-semibold text-greenAccent-900">{notif.title}</h4>
+          <h4 className="font-semibold text-greenAccent-900 dark:text-gray-300">{notif.title}</h4>
           <Badge
             variant={notif.priority === "High" ? "destructive" : "default"}
             className={`px-[7px] py-0.5 text-[11px] ${
@@ -67,14 +67,14 @@ export default function NotificationItem({
           <small className="text-xs text-neutral-500">
             {new Date(notif.formattedDate).toLocaleString()}
           </small>
-          <Link href={notif.actionLink}>
+          {/* <Link href={notif.actionLink}>
             <Button
               variant="link"
               className="p-0 text-xs font-medium text-greenAccent-900"
             >
               View FPS
             </Button>
-          </Link>
+          </Link> */}
         </div>
       </CardContent>
     </Card>

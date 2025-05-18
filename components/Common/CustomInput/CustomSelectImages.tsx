@@ -26,20 +26,20 @@ const CustomSelectImages = ({
   return (
     <div className="w-full flex gap-4 items-center">
       <div
-        className={`flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100 border rounded-md ${
+        className={`flex flex-col gap-2 w-full pt-2 pb-4 px-4 bg-grayscale-100   dark:bg-gray-900  dark:border-gray-700  border rounded-md ${
           disabled && "bg-opacity-50"
         }`}
       >
-        <span className="text-[10px] font-semibold text-greenAccent-900">
+        <span className="text-[10px] font-semibold text-greenAccent-900  dark:text-gray-300">
           {label}
         </span>
 
         <div className="w-full grid gap-3">
           <div
-            className={`relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 ${
+            className={`relative flex flex-col gap-4 justify-center items-center w-full aspect-1 bg-grayscale-300  dark:text-gray-300  bg-opacity-40 ${
               viewOnly
                 ? "border"
-                : "border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500"
+                : "border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500  dark:text-gray-300 "
             } rounded-sm`}
           >
             <input
@@ -65,10 +65,10 @@ const CustomSelectImages = ({
               <>
                 <FontAwesomeIcon
                   icon={faImage}
-                  className="text-5xl text-grayscale-500 opacity-50"
+                  className="text-5xl text-grayscale-500  dark:text-gray-300  opacity-50"
                 />
                 {!viewOnly && (
-                  <p className="text-sm font-medium text-grayscale-500 opacity-50">
+                  <p className="text-sm font-medium text-grayscale-500  dark:text-gray-300  opacity-50">
                     Drop your image here, or browse
                   </p>
                 )}
@@ -82,7 +82,7 @@ const CustomSelectImages = ({
                 className={`relative flex justify-center items-center w-full aspect-1 bg-grayscale-300 bg-opacity-40 ${
                   viewOnly
                     ? "border"
-                    : "border-dashed border-[1px] border-grayscale-500 shadow-[0px_0px_1px] shadow-grayscale-500"
+                    : "border-dashed border-[1px] border-grayscale-500  shadow-[0px_0px_1px] shadow-grayscale-500"
                 } rounded-sm`}
               >
                 <input
@@ -113,7 +113,7 @@ const CustomSelectImages = ({
                 ) : (
                   <FontAwesomeIcon
                     icon={faImage}
-                    className="text-xl text-grayscale-500 opacity-50"
+                    className="text-xl text-grayscale-500  dark:text-gray-300  opacity-50"
                   />
                 )}
               </div>

@@ -15,7 +15,7 @@ const ActionsList = ({
   return (
     // <div className="grid grid-rows-[auto_1fr] gap-1">
     // {/* <CustomSectionHeader title={t("title")} /> */}
-    <div className="flex flex-col gap-1 px-2 py-2 bg-sidebar border rounded-md">
+    <div className="flex flex-col gap-1 px-2 py-2 bg-sidebar border  dark:border-gray-700  rounded-md">
       {children ? (
         <>
           {headers && headers.length > 0 && (
@@ -25,14 +25,14 @@ const ActionsList = ({
                   return (
                     <span
                       key={i}
-                      className="text-[10px] font-bold text-grayscale-500"
+                      className="text-[10px] font-bold text-grayscale-500  dark:text-gray-400"
                     >
                       {e}
                     </span>
                   );
                 })}
               </div>
-              <span className="text-[10px] font-bold text-grayscale-500">
+              <span className="text-[10px] font-bold text-grayscale-500  dark:text-gray-400">
                 {headers[headers.length - 1]}
               </span>
             </div>
@@ -41,7 +41,7 @@ const ActionsList = ({
           {children}
         </>
       ) : (
-        <span className="w-full h-full flex justify-center items-center text-xl font-medium text-grayscale-500 text-opacity-20">
+        <span className="w-full h-full flex justify-center items-center text-xl font-medium text-grayscale-500   dark:text-gray-400 text-opacity-20">
           No actions yet !
         </span>
       )}

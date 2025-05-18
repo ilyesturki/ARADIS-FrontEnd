@@ -30,17 +30,17 @@ const FpsProgress = ({
         ></ProgressBox>
       </div>
       <div className="flex justify-center gap-8">
-        <span className="ml-1 text-[10px] font-bold text-greenAccent-900 text-opacity-70">
+        <span className="ml-1 text-[10px] font-bold text-greenAccent-900 dark:text-grayscale-400 text-opacity-70">
           Open
         </span>
-        <span className="ml-4 text-[10px] font-bold text-greenAccent-900 text-opacity-70">
+        <span className="ml-4 text-[10px] font-bold text-greenAccent-900 dark:text-grayscale-400 text-opacity-70">
           In progress
         </span>
         <span
           className={`text-[10px] font-bold ${
             status === "inProgress"
               ? "text-neutral-300"
-              : "text-greenAccent-900 text-opacity-70"
+              : "text-greenAccent-900 dark:text-grayscale-400 text-opacity-70"
           }`}
         >
           Resolved

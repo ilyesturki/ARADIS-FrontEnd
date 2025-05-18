@@ -27,10 +27,10 @@ const CustomSwitch = ({
 }) => {
   return (
     <div
-      className={`w-full px-4 py-3 bg-grayscale-100 border rounded-md flex items-center"
-     ${disabled && "bg-opacity-50"}`}
+      className={`w-full px-4 py-3 bg-grayscale-100   dark:bg-gray-900  dark:border-gray-700 border rounded-md flex items-center"
+      ${disabled && "bg-opacity-50"}`}
     >
-      <h2 className=" text-xs font-medium text-greenAccent-900">{title}</h2>
+      <h2 className=" text-xs font-medium text-greenAccent-900  dark:text-gray-300">{title}</h2>
       <Switch
         checked={checked}
         disabled={disabled}

@@ -18,7 +18,6 @@ const FpsPanelPage = () => {
           >
             <TfiViewListAlt className="text-md text-grayscale-100" />
           </button>
-
           <button
             onClick={() => setView("grid")}
             className={`px-4 py-2 ml-1 bg-grayscale-500 ${

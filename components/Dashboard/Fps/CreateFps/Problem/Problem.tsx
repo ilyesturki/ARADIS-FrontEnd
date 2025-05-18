@@ -137,7 +137,7 @@ const Problem = () => {
           onChange={handleClientRisk}
           disabled={isDisabled}
           checkedColor="text-redAccent-900"
-          unCheckedColor="text-greenAccent-900"
+          unCheckedColor="text-greenAccent-900  dark:text-gray-300 opacity-70"
           checkedValue={t("clientRisk.checkedValue")}
           unCheckedValue={t("clientRisk.unCheckedValue")}
         />

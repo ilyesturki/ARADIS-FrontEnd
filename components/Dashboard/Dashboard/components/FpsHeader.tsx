@@ -13,7 +13,7 @@ const FpsHeader = ({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex justify-between items-center">
-        <span className="text-xs font-semibold text-greenAccent-900">
+        <span className="text-xs font-semibold text-greenAccent-900 3 dark:text-grayscale-300">
           {fpsId}
         </span>
         <FpsStatus type={type} />

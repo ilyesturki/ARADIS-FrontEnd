@@ -22,10 +22,10 @@ const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
     : columnIds[0] || ""; // Use the first column if no match
 
   return (
-    <div className="flex items-center relative flex-1 bg-sidebar-accent border rounded-md">
+    <div className="flex items-center relative flex-1 bg-sidebar-accent border  dark:border-gray-700 rounded-md">
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
-        className="absolute left-4 w-4 h-4 text-grayscale-500"
+        className="absolute left-4 w-4 h-4 text-grayscale-500  dark:text-gray-300 "
       />
       {searchColumn && (
         <input
@@ -37,7 +37,7 @@ const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
           onChange={(event) =>
             table.getColumn(searchColumn)?.setFilterValue(event.target.value)
           }
-          className="w-full h-full px-10 py-2.5 text-sm font-normal placeholder-grayscale-500 placeholder-opacity-80 bg-transparent outline-none rounded-sm"
+          className="w-full h-full px-10 py-2.5 text-sm font-normal placeholder-grayscale-500  dark:text-gray-300 dark:placeholder-gray-400 placeholder-opacity-80 bg-transparent outline-none rounded-sm"
         />
       )}
     </div>

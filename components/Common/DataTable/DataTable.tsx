@@ -25,7 +25,7 @@ const DataTable = <TData, TValue>({
   const [table] = useDataTable({ columns, data, isSelectPageSizes });
 
   return (
-    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100 border rounded-md">
+    <div className=" flex flex-col gap-4 px-3 py-4 bg-grayscale-100  dark:bg-gray-900  dark:border-gray-700 border rounded-md">
       {title && (
         <span className="w-full px-2 text-lg font-medium text-grayscale-500 text-opacity-90 capitalize ">
           {title}
