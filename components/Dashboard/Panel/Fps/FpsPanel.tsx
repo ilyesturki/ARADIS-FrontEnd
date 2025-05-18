@@ -1,9 +1,8 @@
 "use client";
 
-
 import FpsQrCode from "./FpsQrCode";
 import FpsSelectedUsers from "./FpsSelectedUsers";
-import QRCodeScanStatisticsChart from "../Chart/Tag/QRCodeScanStatisticsChart";
+import QRCodeScanStatisticsChart from "../Chart/Fps/QRCodeScanStatisticsChart";
 import { useTranslations } from "next-intl";
 
 const FpsPanel = () => {

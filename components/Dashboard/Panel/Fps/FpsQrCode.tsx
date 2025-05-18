@@ -53,7 +53,11 @@ const FpsQrCode = () => {
         </div>
         <Avatar className="absolute -top-9 h-16 w-16 border rounded-full ">
           <AvatarImage src={fpsImage} alt="user image" />
-          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          <AvatarFallback className="rounded-lg">
+            <div className="text-center text-greenAccent-900 text-xl font-bold text-opacity-40">
+              FPS
+            </div>
+          </AvatarFallback>
         </Avatar>
         <Image
           src="/imgs/aradisTwo.png"
