@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { urlToFile } from "@/utils/UrlToFile";
 import {
   customHandleChange,
+  customHandleForTostSubmit,
   customHandleSubmit,
   customImagesChange,
   handleChangeSelect,
@@ -15,6 +16,8 @@ import { verifyUserValidationRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
 
 import { categoryData, serviceData } from "@/data/fps";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
+import { useRouter } from "@/i18n/navigation";
 
 const roleData = [
   {
@@ -38,6 +41,7 @@ const initialUserState: flexibleUserType = {
   userService: "",
 };
 const useEditUser = (id: string) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [userData, setUserData] = useState(initialUserState);
@@ -93,49 +97,68 @@ const useEditUser = (id: string) => {
     handleChangeSelect(setUserData, value, name || "");
   };
 
+  function validateAndSubmitUser(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const formImage = imageFile
+        ? imageFile
+        : await urlToFile(userData.image as string, "image.png", "image/png");
+
+      const dataToValidate: Record<string, string> = {
+        mat: userData.mat || "",
+        firstName: userData.firstName || "",
+        lastName: userData.lastName || "",
+        email: userData.email || "",
+        phone: userData.phone || "",
+        role: userData.role || "",
+        userCategory: userData.userCategory || "",
+        userService: userData.userService || "",
+        image: formImage ? formImage.type : "",
+      };
+      const newErrors = validateFormFields(
+        dataToValidate,
+        verifyUserValidationRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
+
+      customHandleForTostSubmit(
+        {
+          image: formImage,
+        },
+        {
+          mat: userData.mat,
+          role: userData.role,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          phone: userData.phone,
+          userCategory: userData.userCategory,
+          userService: userData.userService,
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(updateUser({ id, user: formData }));
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const formImage = imageFile
-      ? imageFile
-      : await urlToFile(userData.image as string, "image.png", "image/png");
-
-    const dataToValidate: Record<string, string> = {
-      mat: userData.mat || "",
-      firstName: userData.firstName || "",
-      lastName: userData.lastName || "",
-      email: userData.email || "",
-      phone: userData.phone || "",
-      role: userData.role || "",
-      userCategory: userData.userCategory || "",
-      userService: userData.userService || "",
-      image: formImage ? formImage.type : "",
-    };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      verifyUserValidationRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-
-    customHandleSubmit(
-      e,
-      {
-        image: formImage,
-      },
-      {
-        mat: userData.mat,
-        role: userData.role,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        phone: userData.phone,
-        userCategory: userData.userCategory,
-        userService: userData.userService,
-      },
-      (formData) => dispatch(updateUser({ id, user: formData })),
-      handleReset
-    );
+    e.preventDefault();
+    handleEdite();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -144,6 +167,20 @@ const useEditUser = (id: string) => {
     setImageFile(null);
     setUserData(initialUserState);
   };
+
+  const [isLoading, handleEdite] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmitUser(),
+    handleSuccess: async () => {
+      router.refresh();
+      handleReset();
+    },
+    messages: {
+      loading: "Editing user account...", // Message while the API is running
+      success: "User account edited successfully!", // Message when successful
+      error: "Failed to edite user account.", // Message on error
+    },
+  });
+
   return {
     pageTitle,
     roleData,
@@ -160,6 +197,7 @@ const useEditUser = (id: string) => {
 
     handleSubmit,
     handleReset,
+    isLoading,
   };
 };
 

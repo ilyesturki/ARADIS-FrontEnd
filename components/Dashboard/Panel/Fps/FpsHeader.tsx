@@ -29,7 +29,7 @@ const ShowFpsHeader = () => {
       </div>
 
       <div
-        className={`px-1.5 sm:px-3 sm:py-1 flex items-center rounded-full shadow-[0_0_4px] ${
+        className={`px-3 py-1 flex items-center rounded-full shadow-[0_0_4px] ${
           fps?.status === "completed"
             ? "bg-greenAccent-800 shadow-greenAccent-900"
             : fps?.status === "failed"
@@ -37,7 +37,7 @@ const ShowFpsHeader = () => {
             : "bg-orangeAccent shadow-orangeAccent"
         }`}
       >
-        <span className="text-[7px] sm:text-[10px] font-medium sm:font-bold uppercase text-grayscale-100">
+        <span className="text-[10px] font-bold uppercase text-grayscale-100">
           {fps?.status === "completed"
             ? t("completed")
             : fps?.status === "failed"

@@ -29,7 +29,7 @@ export default function TagsHeader() {
             },
             ...machineData,
           ]}
-          className="w-fit !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600"
+          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600"
         />
       </PageTitle>
     </>

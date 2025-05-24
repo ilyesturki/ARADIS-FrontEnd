@@ -30,7 +30,7 @@ const ShowTagHeader = () => {
       </div>
 
       <div
-        className={`px-1.5 sm:px-3 sm:py-1 flex items-center rounded-full shadow-[0_0_4px] ${
+        className={`px-3 py-1 flex items-center rounded-full shadow-[0_0_4px] ${
           tag?.status === "done"
             ? "bg-greenAccent-800 shadow-greenAccent-900"
             : tag?.status === "toDo"
@@ -38,7 +38,7 @@ const ShowTagHeader = () => {
             : "bg-orangeAccent shadow-orangeAccent"
         }`}
       >
-        <span className="text-[7px] sm:text-[10px] font-medium sm:font-bold uppercase text-grayscale-100">
+        <span className="text-[10px] font-bold uppercase text-grayscale-100">
           {tag?.status === "done"
             ? t("done")
             : tag?.status === "toDo"

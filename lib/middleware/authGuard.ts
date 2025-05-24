@@ -39,6 +39,20 @@ export async function authGuard(
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
+  if (["/en", "/fr"].includes(normalizedPathname)) {
+    const redirectTo =
+      role === "admin"
+        ? "/dashboard/users"
+        : ["top-management", "corporaite"].includes(userCategory || "")
+        ? "/dashboard/panel/fps-panel"
+        : "/dashboard/fps";
+    return NextResponse.redirect(new URL(redirectTo, req.url));
+  }
+  console.log(
+    "normalizedPathnamenormalizedPathnamenormalizedPathnamenormalizedPathnamenormalizedPathname"
+  );
+  console.log(normalizedPathname);
+
   if (normalizedPathname.startsWith("/dashboard/users")) {
     if (role === "admin") return;
     return redirectUnauthorized(req);

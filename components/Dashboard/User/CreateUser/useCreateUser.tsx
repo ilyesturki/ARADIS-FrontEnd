@@ -7,6 +7,7 @@ import {
   customImagesChange,
   customHandleSubmit,
   handleChangeSelect,
+  customHandleForTostSubmit,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { verifyUserValidationRules } from "@/utils/validationRules";
@@ -14,6 +15,8 @@ import { handleError } from "@/utils/handleError";
 import { createUser } from "@/redux/users/usersThunk";
 
 import { categoryData, serviceData } from "@/data/fps";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
+import { useRouter } from "@/i18n/navigation";
 
 const roleData = [
   {
@@ -39,6 +42,7 @@ const initialUserState: flexibleUserType = {
   // status: "inactive",
 };
 const useCreateUser = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [userData, setUserData] = useState<flexibleUserType>(initialUserState);
@@ -66,44 +70,75 @@ const useCreateUser = () => {
     handleChangeSelect(setUserData, value, name || "");
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const dataToValidate: Record<string, string> = {
-      mat: userData.mat || "",
-      firstName: userData.firstName || "",
-      lastName: userData.lastName || "",
-      email: userData.email || "",
-      phone: userData.phone || "",
-      role: userData.role || "",
-      userCategory: userData.userCategory || "",
-      userService: userData.userService || "",
-      image: imageFile ? imageFile.type : "",
-    };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      verifyUserValidationRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
+  function validateAndSubmitUser(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const dataToValidate: Record<string, string> = {
+        mat: userData.mat || "",
+        firstName: userData.firstName || "",
+        lastName: userData.lastName || "",
+        email: userData.email || "",
+        phone: userData.phone || "",
+        role: userData.role || "",
+        userCategory: userData.userCategory || "",
+        userService: userData.userService || "",
+        image: imageFile ? imageFile.type : "",
+      };
+      const newErrors = validateFormFields(
+        dataToValidate,
+        verifyUserValidationRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
 
-    customHandleSubmit(
-      e,
-      { image: imageFile },
-      {
-        mat: userData.mat,
-        role: userData.role,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        phone: userData.phone,
-        userCategory: userData.userCategory,
-        userService: userData.userService,
-        // status: userData.status,
-      },
-      (formData) => dispatch(createUser(formData)),
-      handleReset
-    );
+      customHandleForTostSubmit(
+        { image: imageFile },
+        {
+          mat: userData.mat,
+          role: userData.role,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          phone: userData.phone,
+          userCategory: userData.userCategory,
+          userService: userData.userService,
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(createUser(formData));
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleCreate] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmitUser(),
+    handleSuccess: async () => {
+      router.refresh();
+      handleReset();
+    },
+    messages: {
+      loading: "Creating user account...", // Message while the API is running
+      success: "User account created successfully!", // Message when successful
+      error: "Failed to create user account.", // Message on error
+    },
+  });
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleCreate();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -128,6 +163,7 @@ const useCreateUser = () => {
 
     handleSubmit,
     handleReset,
+    isLoading,
   };
 };
 

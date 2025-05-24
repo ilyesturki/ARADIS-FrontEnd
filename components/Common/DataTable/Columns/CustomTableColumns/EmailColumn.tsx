@@ -5,7 +5,7 @@ import { Users } from "../UsersColumn";
 const EmailColumn = ({
   row,
 }: {
-  row: Row<Users | FpsSelectedUsersColumn>;
+  row: Row<Users> | Row<FpsSelectedUsersColumn>;
 }) => {
   const email = row.getValue("email") as string;
   return (

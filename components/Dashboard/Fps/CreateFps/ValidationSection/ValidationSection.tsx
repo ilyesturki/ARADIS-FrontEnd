@@ -19,6 +19,7 @@ const ValidationSection = () => {
     handleSubmit,
     handleReset,
     submitBtnValue,
+    isLoading,
   } = useValidationSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[6fr_4fr] gap-10 ">
@@ -65,6 +66,7 @@ const ValidationSection = () => {
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
             secondaryButtonText={t("buttons.secondaryButtonText")}
+            isLoading={isLoading}
           />
         )}
       </div>

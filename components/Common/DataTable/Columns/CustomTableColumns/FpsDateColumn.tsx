@@ -1,4 +1,3 @@
-
 const FpsDateColumn = ({ data }: { data: any }) => {
   const rawDate = data.quand as string;
   console.log(rawDate);
@@ -14,7 +13,9 @@ const FpsDateColumn = ({ data }: { data: any }) => {
 
   return (
     <div className="flex items-center">
-      <span className="text-sm font-medium text-gray-700">{formattedDate}</span>
+      <span className="text-sm font-medium text-gray-700 dark:text-grayscale-100 dark:text-opacity-80">
+        {formattedDate}
+      </span>
     </div>
   );
 };

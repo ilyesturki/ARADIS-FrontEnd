@@ -75,8 +75,7 @@ const BreadCrumb = () => {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage className="capitalize text-greenAccent-900">
-            {" "}
-            {pathList[pathList.length - 1]}{" "}
+            {pathList[pathList.length - 1]}
           </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>

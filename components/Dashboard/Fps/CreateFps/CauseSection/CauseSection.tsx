@@ -23,6 +23,7 @@ const CauseSection = () => {
     handleSubmit,
     handleReset,
     submitBtnValue,
+    isLoading,
   } = useCauseSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
@@ -67,6 +68,7 @@ const CauseSection = () => {
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
             secondaryButtonText={t("buttons.secondaryButtonText")}
+            isLoading={isLoading}
           />
         )}
       </div>

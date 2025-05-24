@@ -2,7 +2,10 @@
 import { FpsType, editedDefensiveActionType } from "@/redux/fps/fpsSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { customHandleSubmit } from "@/utils/handlers";
+import {
+  customHandleForTostSubmit,
+  customHandleSubmit,
+} from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { FpsDefensiveActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
@@ -12,6 +15,7 @@ import { initialFpsDefensiveActions } from "@/data/fps";
 
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 
 const useDefensiveActionsSection = () => {
   const searchParams = useSearchParams();
@@ -29,7 +33,10 @@ const useDefensiveActionsSection = () => {
   const { data: session } = useSession({ required: true });
 
   const isAdminOrManager = useMemo(
-    () => ["corporaite", "top-management"].includes(session?.user.userCategory ||""),
+    () =>
+      ["corporaite", "top-management"].includes(
+        session?.user.userCategory || ""
+      ),
     [session?.user.userCategory]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
@@ -100,30 +107,63 @@ const useDefensiveActionsSection = () => {
     }
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const dataToValidate: Record<string, string> = {
-      fpsId: fpsId,
-      defensiveActions: JSON.stringify(fpsData),
-    };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      FpsDefensiveActionsRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-
-    customHandleSubmit(
-      e,
-      {},
-      {
+  function validateAndSubmit(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const dataToValidate: Record<string, string> = {
         fpsId: fpsId,
         defensiveActions: JSON.stringify(fpsData),
-      },
-      (formData) =>
-        dispatch(createFpsDefensiveActions({ id: fpsId, fps: formData }))
-    );
+      };
+      const newErrors = validateFormFields(
+        dataToValidate,
+        FpsDefensiveActionsRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
+
+      customHandleForTostSubmit(
+        {},
+        {
+          fpsId: fpsId,
+          defensiveActions: JSON.stringify(fpsData),
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(
+              createFpsDefensiveActions({ id: fpsId, fps: formData })
+            );
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleFpsTost] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmit(),
+    handleSuccess: async () => {
+      handleReset();
+    },
+    messages: {
+      loading: "Editing FPS...", // Message while the API is running
+      success: "FPS edited successfully!", // Message when successful
+      error: "Failed to edite FPS.", // Message on error
+    },
+  });
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleFpsTost();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -144,6 +184,7 @@ const useDefensiveActionsSection = () => {
     isAdminOrManager,
     isDone,
     fpsId,
+    isLoading,
   };
 };
 

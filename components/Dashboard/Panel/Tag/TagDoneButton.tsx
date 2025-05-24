@@ -20,7 +20,7 @@ const TagDoneButton = ({ id }: { id: string }) => {
       loading: "Marking tag as done...", // Localize loading message
       success: "Tag marked as done successfully!", // Localize success message
       error: "Failed to mark tag as done.", // Localize error message
-    },
+    }, 
   });
 
   return (

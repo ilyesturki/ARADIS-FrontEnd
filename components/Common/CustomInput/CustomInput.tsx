@@ -24,7 +24,7 @@ const CustomInput = ({
   return (
     <div className=" w-full flex gap-4 items-center">
       <div
-        className={`w-full px-4 bg-grayscale-100   dark:bg-gray-900  dark:border-gray-700  border rounded-md ${
+        className={`w-full px-4 bg-grayscale-100 dark:bg-gray-900 dark:border-gray-700 border rounded-md ${
           disabled && "bg-opacity-50"
         }`}
       >

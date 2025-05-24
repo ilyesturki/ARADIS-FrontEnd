@@ -21,7 +21,7 @@ const CreateUser = () => {
     customHandleChangeSelect,
 
     handleSubmit,
-    handleReset,
+    handleReset,isLoading
   } = useCreateUser();
   return (
     <>
@@ -104,6 +104,7 @@ const CreateUser = () => {
             secondaryButtonOnCLick={handleReset}
             mainButtonText={t("mainButton")}
             secondaryButtonText={t("secondaryButton")}
+            isLoading={isLoading}
           />
         </div>
       </div>

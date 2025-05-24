@@ -2,7 +2,10 @@
 import { TagType, EditedTagActionType } from "@/redux/tag/tagSlice";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { customHandleSubmit } from "@/utils/handlers";
+import {
+  customHandleForTostSubmit,
+  customHandleSubmit,
+} from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { TagActionsRules } from "@/utils/validationRules";
 import { handleError } from "@/utils/handleError";
@@ -12,9 +15,12 @@ import { initialTagActions } from "@/data/tag";
 
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
+import { useRouter } from "@/i18n/navigation";
 
 const useTag = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const dispatch = useAppDispatch();
   const [tagData, setTagData] =
@@ -75,26 +81,61 @@ const useTag = () => {
     setTagData((prevData) => prevData.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const dataToValidate: Record<string, string> = {
-      tagId: tagId,
-      tagActions: JSON.stringify(tagData),
-    };
-    const newErrors = validateFormFields(dataToValidate, TagActionsRules);
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-
-    customHandleSubmit(
-      e,
-      {},
-      {
+  function validateAndSubmit(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const dataToValidate: Record<string, string> = {
         tagId: tagId,
-        actions: JSON.stringify(tagData),
-      },
-      (formData) => dispatch(createActions({ id: tagId, tag: formData }))
-    );
+        tagActions: JSON.stringify(tagData),
+      };
+      const newErrors = validateFormFields(dataToValidate, TagActionsRules);
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
+
+      customHandleForTostSubmit(
+        {},
+        {
+          tagId: tagId,
+          actions: JSON.stringify(tagData),
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(
+              createActions({ id: tagId, tag: formData })
+            );
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleTagTost] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmit(),
+    handleSuccess: async () => {
+      router.refresh();
+      handleReset();
+    },
+    messages: {
+      loading: "Editing TAG...", // Message while the API is running
+      success: "TAG edited successfully!", // Message when successful
+      error: "Failed to edite TAG.", // Message on error
+    },
+  });
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleTagTost();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -113,6 +154,7 @@ const useTag = () => {
     handleReset,
     tagId,
     currentStep,
+    isLoading,
   };
 };
 

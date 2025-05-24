@@ -14,7 +14,7 @@ const SelectPageSize = <TData,>({ table }: { table: Table<TData> }) => {
   const t = useTranslations("DataTable");
   const pageSizeList = [5, 10, 20, 30, 40, 50];
   return (
-    <div className="flex items-center gap-2">
+    <div className="hidden sm:flex items-center gap-2">
       <p className="text-xs font-medium">{t("rowsPerPage")}</p>
       <Select
         value={`${table.getState().pagination.pageSize}`}

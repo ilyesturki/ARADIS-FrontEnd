@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   customHandleChange,
+  customHandleForTostSubmit,
   customHandleSubmit,
   handleChangeInArray,
   handleChangeInArrayObject,
@@ -20,6 +21,7 @@ import {
 
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 
 const useImmediateActionsSection = () => {
   const searchParams = useSearchParams();
@@ -38,7 +40,10 @@ const useImmediateActionsSection = () => {
   const { data: session } = useSession({ required: true });
 
   const isAdminOrManager = useMemo(
-    () => ["corporaite", "top-management"].includes(session?.user.userCategory ||""),
+    () =>
+      ["corporaite", "top-management"].includes(
+        session?.user.userCategory || ""
+      ),
     [session?.user.userCategory]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
@@ -174,36 +179,69 @@ const useImmediateActionsSection = () => {
     }
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const dataToValidate: Record<string, string> = {
-      fpsId: fpsId,
-      startSorting: fpsData.startSorting.toString() || "",
-      sortingResults: JSON.stringify(fpsData.sortingResults || []),
-      concludeFromSorting: fpsData.concludeFromSorting || "",
-      immediateActions: JSON.stringify(fpsData.immediateActions || []),
-    };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      fpsImmediateActionsValidationRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-
-    customHandleSubmit(
-      e,
-      {},
-      {
+  function validateAndSubmit(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const dataToValidate: Record<string, string> = {
         fpsId: fpsId,
         startSorting: fpsData.startSorting.toString() || "",
         sortingResults: JSON.stringify(fpsData.sortingResults || []),
         concludeFromSorting: fpsData.concludeFromSorting || "",
         immediateActions: JSON.stringify(fpsData.immediateActions || []),
-      },
-      (formData) =>
-        dispatch(createFpsImmediateActions({ id: fpsId, fps: formData }))
-    );
+      };
+      const newErrors = validateFormFields(
+        dataToValidate,
+        fpsImmediateActionsValidationRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
+
+      customHandleForTostSubmit(
+        {},
+        {
+          fpsId: fpsId,
+          startSorting: fpsData.startSorting.toString() || "",
+          sortingResults: JSON.stringify(fpsData.sortingResults || []),
+          concludeFromSorting: fpsData.concludeFromSorting || "",
+          immediateActions: JSON.stringify(fpsData.immediateActions || []),
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(
+              createFpsImmediateActions({ id: fpsId, fps: formData })
+            );
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleFpsTost] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmit(),
+    handleSuccess: async () => {
+      handleReset();
+    },
+    messages: {
+      loading: "Editing FPS...", // Message while the API is running
+      success: "FPS edited successfully!", // Message when successful
+      error: "Failed to edite FPS.", // Message on error
+    },
+  });
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleFpsTost();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -235,6 +273,7 @@ const useImmediateActionsSection = () => {
     handleChangeInArray,
     handleChangeInArrayObject,
     handleStartSorting,
+    isLoading,
   };
 };
 

@@ -16,7 +16,7 @@ export default function FpssHeader() {
     dispatch(setMachine(e));
   };
   return (
-    <>
+    <div className="w-full">
       <PageTitle title={t("pageTitle")}>
         <ComboBox
           label="Machine"
@@ -29,9 +29,9 @@ export default function FpssHeader() {
             },
             ...machineData,
           ]}
-          className="w-fit !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600"
+          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600 dark:bg-grayscale-500 dark:text-grayscale-400"
         />
       </PageTitle>
-    </>
+    </div>
   );
 }

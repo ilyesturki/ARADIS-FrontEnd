@@ -23,6 +23,7 @@ const DefensiveActionsSection = () => {
     isAdminOrManager,
     isDone,
     fpsId,
+    isLoading,
   } = useDefensiveActionsSection();
   return (
     <div className=" w-full grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-10 ">
@@ -75,6 +76,7 @@ const DefensiveActionsSection = () => {
             mainButtonOnCLick={handleSubmit}
             secondaryButtonOnCLick={handleReset}
             secondaryButtonText={t("buttons.secondaryButtonText")}
+            isLoading={isLoading}
           />
         )}
       </div>

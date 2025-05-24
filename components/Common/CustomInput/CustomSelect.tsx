@@ -55,7 +55,7 @@ const CustomSelect = <T,>({
           textColor={textColor}
           name={name}
           disabled={disabled}
-          className="bg-transparent shadow-none text-greenAccent-900 dark:text-gray-300 opacity-70"
+          className="bg-transparent shadow-none text-greenAccent-900 dark:text-gray-300 opacity-70 dark:bg-gray-900 dark:border-gray-700"
         />
       </div>
       {children}

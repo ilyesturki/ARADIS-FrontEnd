@@ -23,6 +23,7 @@ const EditUser = ({ id }: { id: string }) => {
 
     handleSubmit,
     handleReset,
+    isLoading,
   } = useEditUser(id);
 
   return (
@@ -106,6 +107,7 @@ const EditUser = ({ id }: { id: string }) => {
             secondaryButtonOnCLick={handleReset}
             mainButtonText={t("mainButton")}
             secondaryButtonText={t("secondaryButton")}
+            isLoading={isLoading}
           />
         </div>
       </div>

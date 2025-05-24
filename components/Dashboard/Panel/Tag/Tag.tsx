@@ -51,6 +51,7 @@ const Tag = () => {
     handleReset,
     tagId,
     currentStep,
+    isLoading,
   } = useTag();
   return (
     <div className=" grid grid-cols-1 gap-8 px-5 pb-6 bg-sidebar border rounded-md">
@@ -92,6 +93,7 @@ const Tag = () => {
                 secondaryButtonOnCLick={handleReset}
                 mainButtonText={t("TagActionsSection.mainButton")}
                 secondaryButtonText={t("TagActionsSection.secondaryButton")}
+                isLoading={isLoading}
               />
             </div>
           </div>

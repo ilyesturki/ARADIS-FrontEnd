@@ -22,7 +22,7 @@ const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
     : columnIds[0] || ""; // Use the first column if no match
 
   return (
-    <div className="flex items-center relative flex-1 bg-sidebar-accent border  dark:border-gray-700 rounded-md">
+    <div className="flex items-center relative flex-1 bg-sidebar-accent border dark:bg-grayscale-500 dark:bg-opacity-90 dark:border-gray-700 rounded-md">
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         className="absolute left-4 w-4 h-4 text-grayscale-500  dark:text-gray-300 "

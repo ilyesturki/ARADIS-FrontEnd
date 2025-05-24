@@ -2,7 +2,10 @@
 import { FpsCommentType } from "@/redux/fpsComments/fpsCommentsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { customHandleSubmit } from "@/utils/handlers";
+import {
+  customHandleForTostSubmit,
+  customHandleSubmit,
+} from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import {
   fpsDeleteCommentValidationRules,
@@ -22,10 +25,11 @@ import {
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { FpsType } from "@/redux/fps/fpsSlice";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 
 const useComments = () => {
   const searchParams = useSearchParams();
-  const { data: session } = useSession({ required: true }); 
+  const { data: session } = useSession({ required: true });
   const dispatch = useAppDispatch();
   const [fpsData, setFpsData] = useState<{
     comments: ({ active?: boolean } & FpsCommentType)[];
@@ -34,7 +38,9 @@ const useComments = () => {
       {
         active:
           session?.user.userCategory &&
-          ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
+          ["corporaite", "top-management"].includes(
+            session?.user.userCategory || ""
+          )
             ? true
             : false,
         comment: "",
@@ -73,8 +79,10 @@ const useComments = () => {
           : [
               {
                 active:
-                session?.user.userCategory &&
-                ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
+                  session?.user.userCategory &&
+                  ["corporaite", "top-management"].includes(
+                    session?.user.userCategory || ""
+                  )
                     ? true
                     : false,
                 comment: "",
@@ -106,8 +114,10 @@ const useComments = () => {
         ...(prevData.comments || []),
         {
           active:
-          session?.user.userCategory &&
-          ["corporaite", "top-management"].includes(session?.user.userCategory ||"")
+            session?.user.userCategory &&
+            ["corporaite", "top-management"].includes(
+              session?.user.userCategory || ""
+            )
               ? true
               : false,
           comment: "",
@@ -122,6 +132,15 @@ const useComments = () => {
           },
         },
       ],
+    }));
+  };
+
+  const handleChangeComment = (data: string, i?: number) => {
+    setFpsData((prevData) => ({
+      ...prevData,
+      comments: prevData.comments?.map((item, index) =>
+        index === i ? { ...item, comment: data } : item
+      ),
     }));
   };
 
@@ -153,14 +172,7 @@ const useComments = () => {
       );
     }
   };
-  const handleChangeComment = (data: string, i?: number) => {
-    setFpsData((prevData) => ({
-      ...prevData,
-      comments: prevData.comments?.map((item, index) =>
-        index === i ? { ...item, comment: data } : item
-      ),
-    }));
-  };
+
   const updateComment = (
     e: React.MouseEvent<HTMLButtonElement>,
     index: number
@@ -185,7 +197,7 @@ const useComments = () => {
       }
 
       customHandleSubmit(
-        e, 
+        e,
         {},
         {
           comment: selectedComment.comment,
@@ -202,38 +214,70 @@ const useComments = () => {
     }
   };
 
-  const handleSaveComment = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const lastComment = fpsData.comments[fpsData.comments.length - 1];
+  function validateAddComment(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const lastComment = fpsData.comments[fpsData.comments.length - 1];
 
-    const dataToValidate: Record<string, string> = {
-      fpsId: fpsId,
-      comment: lastComment.comment,
-      rating: lastComment.rating.toString(),
-      date: lastComment.date,
-      userId: lastComment.user.id.toString(),
-    };
-    console.log(dataToValidate);
-    const newErrors = validateFormFields(
-      dataToValidate,
-      fpsSaveCommentValidationRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-
-    customHandleSubmit(
-      e,
-      {},
-      {
+      const dataToValidate: Record<string, string> = {
+        fpsId: fpsId,
         comment: lastComment.comment,
         rating: lastComment.rating.toString(),
         date: lastComment.date,
-        userId: lastComment.user.id,
-      },
-      (formData) =>
-        dispatch(createFpsComment({ id: fpsId, fpsComment: formData }))
-    );
+        userId: lastComment.user.id.toString(),
+      };
+      console.log(dataToValidate);
+      const newErrors = validateFormFields(
+        dataToValidate,
+        fpsSaveCommentValidationRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        return;
+      }
+
+      customHandleForTostSubmit(
+        {},
+        {
+          comment: lastComment.comment,
+          rating: lastComment.rating.toString(),
+          date: lastComment.date,
+          userId: lastComment.user.id,
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(
+              createFpsComment({ id: fpsId, fpsComment: formData })
+            );
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleAddComment] = useApiCallWithToast({
+    apiCallFunction: () => validateAddComment(),
+    handleSuccess: async () => {
+      // handleReset();
+    },
+    messages: {
+      loading: "Creating Comment...", // Message while the API is running
+      success: "Comment Created successfully!", // Message when successful
+      error: "Failed to create Comment.", // Message on error
+    },
+  });
+
+  const handleSaveComment = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleAddComment();
   };
 
   return {

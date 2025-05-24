@@ -32,12 +32,12 @@ const DataTable = <TData, TValue>({
         </span>
       )}
 
-      <div className="flex items-center justify-between gap-6 px-4">
+      <div className="flex items-center justify-between gap-6 sm:px-4">
         <DataTableSearchInput table={table} />
         <DataTableViewOptions table={table} />
       </div>
-      <div className="rounded-sm">
-        <Table>
+      <div className="w-full rounded-sm">
+        <Table className="!w-full">
           <DataTableHeader table={table} />
           <DataTableBody table={table} columns={columns} />
         </Table>

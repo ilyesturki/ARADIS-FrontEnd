@@ -17,7 +17,6 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/lib/NextAuth/authOptions";
 import BreadCrumb from "@/components/Common/BreadCrumb";
 
-
 import CustomDropDownMenu from "@/components/Common/CustomDropDownMenu";
 
 export default async function RootLayout({
@@ -33,19 +32,19 @@ export default async function RootLayout({
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
       <CustomSideBar session={session} />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="w-full flex justify-between pl-4 pr-9">
+      <SidebarInset className="dark:bg-gray-900">
+        <header className="w-full flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="w-full flex justify-between items-center max-sm:px-2 sm:pl-4 sm:pr-9">
             <div className="flex items-center gap-2">
-              <SidebarTrigger className="-ml-1 text-grayscale-500" />
+              <SidebarTrigger className=" text-grayscale-500" />
               <Separator orientation="vertical" className="mr-2 h-4" />
               <BreadCrumb />
             </div>
             <CustomDropDownMenu />
           </div>
         </header>
-        <main className="px-9 pb-4">
-          <div className=" flex flex-col gap-7 bg-sidebar py-9 px-7 border rounded-md">
+        <main className="sm:px-9 pb-4">
+          <div className=" flex flex-col gap-7 bg-sidebar dark:bg-grayscale-500 dark:bg-opacity-90 py-9 px-2.5 sm:px-7 border sm:rounded-md">
             {/* <PageTitle /> */}
             {children}
           </div>

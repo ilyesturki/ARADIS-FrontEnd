@@ -7,6 +7,7 @@ import {
   customImagesChange,
   customHandleSubmit,
   handleChangeSelect,
+  customHandleForTostSubmit,
 } from "@/utils/handlers";
 import { validateFormFields } from "@/utils/validateFormFields";
 import { fpsProblemValidationRules } from "@/utils/validationRules";
@@ -24,6 +25,7 @@ import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { urlToFile } from "@/utils/UrlToFile";
 import { useSession } from "next-auth/react";
+import { useApiCallWithToast } from "@/utils/Toast/useApiCallWithToast";
 
 const useProblem = () => {
   const router = useRouter();
@@ -51,7 +53,10 @@ const useProblem = () => {
   }, [session]);
 
   const isAdminOrManager = useMemo(
-    () => ["corporaite", "top-management"].includes(session?.user.userCategory ||""),
+    () =>
+      ["corporaite", "top-management"].includes(
+        session?.user.userCategory || ""
+      ),
     [session?.user.userCategory]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
@@ -219,71 +224,106 @@ const useProblem = () => {
     }
   };
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const formImage = imageFile
-      ? imageFile
-      : fpsData.image
-      ? await urlToFile(fpsData.image as string, "image.png", "image/png")
-      : null;
-    const formImages: File[] = [];
-    for (const image of imagesFiles) {
-      if (image instanceof File) {
-        formImages.push(image);
-      } else if (typeof image === "string") {
-        formImages.push(await urlToFile(image, `image.png`, "image/jpeg"));
+  function validateAndSubmit(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const formImage = imageFile
+        ? imageFile
+        : fpsData.image
+        ? await urlToFile(fpsData.image as string, "image.png", "image/png")
+        : null;
+      const formImages: File[] = [];
+      for (const image of imagesFiles) {
+        if (image instanceof File) {
+          formImages.push(image);
+        } else if (typeof image === "string") {
+          formImages.push(await urlToFile(image, `image.png`, "image/jpeg"));
+        }
       }
-    }
-    console.log("formImage");
-    console.log(imageFile);
-    console.log(fpsData.image);
-    console.log("formImage");
-    const dataToValidate: Record<string, string> = {
-      fpsId: fpsId || "",
-      type: fpsData.type || "",
-      quoi: fpsData.quoi || "",
-      ref: fpsData.ref || "",
-      quand: fpsData.quand || "",
-      ou: fpsData.ou || "",
-      comment: fpsData.comment || "",
-      combien: fpsData.combien || "",
-      pourquoi: fpsData.pourquoi || "",
-      clientRisk: fpsData.clientRisk.toString(),
-      userCategory: fpsData.userCategory || "",
-      userService: fpsData.userService || "",
-      machine: fpsData.machine || "",
-
-      image: formImage ? formImage.type : "",
-      images: formImages.map((file) => file.type).join(","),
-    };
-    const newErrors = validateFormFields(
-      dataToValidate,
-      fpsProblemValidationRules
-    );
-    if (Object.keys(newErrors).length > 0) {
-      handleError({ customError: true, errors: newErrors });
-      return;
-    }
-    console.log(fpsData);
-    console.log(fpsId);
-    customHandleSubmit(
-      e,
-      { image: formImage, images: formImages },
-      {
-        type: fpsData.type,
-        quoi: fpsData.quoi,
-        ref: fpsData.ref,
-        quand: fpsData.quand,
-        ou: fpsData.ou,
-        comment: fpsData.comment,
-        combien: fpsData.combien,
-        pourquoi: fpsData.pourquoi,
+      console.log("formImage");
+      console.log(imageFile);
+      console.log(fpsData.image);
+      console.log("formImage");
+      const dataToValidate: Record<string, string> = {
+        fpsId: fpsId || "",
+        type: fpsData.type || "",
+        quoi: fpsData.quoi || "",
+        ref: fpsData.ref || "",
+        quand: fpsData.quand || "",
+        ou: fpsData.ou || "",
+        comment: fpsData.comment || "",
+        combien: fpsData.combien || "",
+        pourquoi: fpsData.pourquoi || "",
         clientRisk: fpsData.clientRisk.toString(),
-        userCategory: fpsData.userCategory,
-        userService: fpsData.userService,
-        machine: fpsData.machine,
-      },
-      (formData) => dispatch(createFpsProblem({ id: fpsId, fps: formData }))
-    );
+        userCategory: fpsData.userCategory || "",
+        userService: fpsData.userService || "",
+        machine: fpsData.machine || "",
+
+        image: formImage ? formImage.type : "",
+        images: formImages.map((file) => file.type).join(","),
+      };
+      const newErrors = validateFormFields(
+        dataToValidate,
+        fpsProblemValidationRules
+      );
+      if (Object.keys(newErrors).length > 0) {
+        handleError({ customError: true, errors: newErrors });
+        reject(newErrors);
+        return;
+      }
+      console.log(fpsData);
+      console.log(fpsId);
+      customHandleForTostSubmit(
+        { image: formImage, images: formImages },
+        {
+          type: fpsData.type,
+          quoi: fpsData.quoi,
+          ref: fpsData.ref,
+          quand: fpsData.quand,
+          ou: fpsData.ou,
+          comment: fpsData.comment,
+          combien: fpsData.combien,
+          pourquoi: fpsData.pourquoi,
+          clientRisk: fpsData.clientRisk.toString(),
+          userCategory: fpsData.userCategory,
+          userService: fpsData.userService,
+          machine: fpsData.machine,
+        },
+        async (formData) => {
+          try {
+            const result = await dispatch(
+              createFpsProblem({ id: fpsId, fps: formData })
+            );
+
+            // If using Redux Toolkit and createAsyncThunk
+            if (result?.meta?.requestStatus === "rejected") {
+              throw "Unknown error";
+            }
+
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }
+      );
+    });
+  }
+
+  const [isLoading, handleFpsTost] = useApiCallWithToast({
+    apiCallFunction: () => validateAndSubmit(),
+    handleSuccess: async () => {
+      router.refresh();
+      handleReset();
+    },
+    messages: {
+      loading: "Editing FPS...", // Message while the API is running
+      success: "FPS edited successfully!", // Message when successful
+      error: "Failed to edite FPS.", // Message on error
+    },
+  });
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleFpsTost();
   };
   const handleReset = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
@@ -319,6 +359,7 @@ const useProblem = () => {
     handleSubmit,
     handleReset,
     submitBtnValue,
+    isLoading,
   };
 };
 

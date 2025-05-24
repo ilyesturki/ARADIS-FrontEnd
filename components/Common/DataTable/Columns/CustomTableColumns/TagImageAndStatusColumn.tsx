@@ -1,6 +1,6 @@
 import { Row } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Tags } from "./TagsColumn";
+import { Tags } from "../TagsColumn";
 
 const TagImageAndStatusColumn = ({
   row,

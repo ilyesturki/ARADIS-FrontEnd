@@ -90,6 +90,40 @@ export const customHandleSubmit = (
   resetHandler && resetHandler(e);
 };
 
+
+export const customHandleForTostSubmit = (
+  fileFields: FileFields = {},
+  stringFields: StringFields = {},
+  dispatchAction: (formData: FormData) => void,
+) => {
+
+  const formData = new FormData();
+
+  // Append string fields to formData
+  for (const key in stringFields) {
+    if (stringFields[key] !== undefined) {
+      formData.append(key, stringFields[key]!);
+    }
+  }
+
+  // Append file fields to formData
+  for (const key in fileFields) {
+    const fileOrFiles = fileFields[key];
+    if (fileOrFiles) {
+      if (Array.isArray(fileOrFiles)) {
+        fileOrFiles.forEach((file, index) => {
+          formData.append(key, file);
+        });
+      } else {
+        formData.append(key, fileOrFiles);
+      }
+    }
+  }
+  // Dispatch the action with the form data
+  dispatchAction(formData);
+
+};
+
 export const customImagesChange = <
   T extends { images?: string[]; imageCover?: string; image?: string }
 >(

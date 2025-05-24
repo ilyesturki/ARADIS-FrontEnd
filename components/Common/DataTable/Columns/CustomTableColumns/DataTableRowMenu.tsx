@@ -38,11 +38,13 @@ const DataTableRowMenu = <T extends { id: string }>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none border-none" asChild>
-        <button className="flex items-center justify-center h-8 w-8 p-0 bg-neutral-100 shadow-[0_0_2px] shadow-grayscale-400 rounded-md">
-          <span className="sr-only">{t("openMenu")}</span>
+        <button className="flex items-center justify-center h-8 w-8 p-0 bg-neutral-100 dark:bg-grayscale-500 shadow-[0_0_2px] shadow-grayscale-400 rounded-md">
+          <span className="dark:text-grayscale-100 sr-only">
+            {t("openMenu")}
+          </span>
           <FontAwesomeIcon
             icon={faEllipsis}
-            className="h-4 w-4 text-greenAccent-900 text-opacity-80"
+            className="h-4 w-4 text-greenAccent-900 dark:text-grayscale-100 text-opacity-80"
           />
         </button>
       </DropdownMenuTrigger>
@@ -57,7 +59,7 @@ const DataTableRowMenu = <T extends { id: string }>({
         {!viewOnly && (
           <>
             <DropdownMenuSeparator />
-            <Link 
+            <Link
               href={`${paths}/${
                 paths === "/dashboard/panel/fps-panel" ||
                 paths === "/dashboard/panel/tag-panel"

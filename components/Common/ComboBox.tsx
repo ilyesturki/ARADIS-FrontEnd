@@ -66,13 +66,13 @@ const ComboBox = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`py-6 w-full justify-between text-sm font-normal text-grayscale-500 shadow-[0px_0px_2px] shadow-grayscale-500 border-none rounded-md ${className} ${textColor}`}
+          className={`py-6 max-sm:px-0 w-full justify-between text-xs font-normal text-grayscale-500 shadow-[0px_0px_2px] shadow-grayscale-500 border-none rounded-md ${className} ${textColor}`}
         >
-          {selectedLabel || `Select ${label}...`}
+          {selectedLabel || `Select ${label}`}
           {/* {selectedValue
             ? data.find((e) => e.value === value)?.label
             : `Select ${label}...`} */}
-          <ChevronsUpDown className="ml-2 h-5 w-4 shrink-0 opacity-70" />
+          <ChevronsUpDown className="ml-1 h-5 w-4 shrink-0 opacity-70" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className=" w-[200px] p-0">
