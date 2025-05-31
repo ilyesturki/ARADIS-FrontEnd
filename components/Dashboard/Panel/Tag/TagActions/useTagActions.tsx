@@ -31,22 +31,13 @@ const useTagActions = (
       handleError({ customError: true, errors: newErrors });
       return;
     }
-    console.log("//////////////////////////////////////");
-    console.log(tagData);
-    console.log(
-      tagData.map((e) => {
-        return e.edit ? { ...e, ...editedTagData, edit: false } : e;
-      })
-    );
+    
     const newTagData = tagData.some((e) => e.edit)
       ? tagData.map((e) => {
           return e.edit ? { ...e, ...editedTagData, edit: false } : e;
         })
       : [...tagData, editedTagData];
 
-    console.log(editedTagData);
-    console.log(newTagData);
-    console.log("//////////////////////////////////////");
     setTagData(newTagData);
 
     setEditedTagData({

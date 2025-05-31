@@ -35,7 +35,6 @@ const ThemeToggle = () => {
     setDropDownOpen(false);
   };
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -52,7 +51,6 @@ const ThemeToggle = () => {
   }, []);
 
   return (
-    // <div className="bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-4">
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropDown}
@@ -78,7 +76,6 @@ const ThemeToggle = () => {
         </div>
       )}
     </div>
-    // </div>
   );
 };
 

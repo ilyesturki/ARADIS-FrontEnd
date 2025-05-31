@@ -3,7 +3,6 @@ import axios from "@/utils/axios";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const fetchUsers = async (options: string = "") => {
-  console.log(apiBaseUrl);
   const response = await axios.get(`${apiBaseUrl}/users${options}`);
   return response.data.data;
 };
@@ -19,7 +18,6 @@ export const fetchMe = async () => {
 };
 
 export const fetchSelectedUsersForFps = async (id: string) => {
-  console.log(apiBaseUrl);
   const response = await axios.get(`${apiBaseUrl}/selected-users/${id}`);
   return response.data.data;
 };

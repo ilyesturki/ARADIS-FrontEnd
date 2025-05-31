@@ -46,7 +46,7 @@ export const machineData = [
   },
   {
     value: "machine2",
-    label: "Machine 2",
+    label: "Machine 2", 
   },
   {
     value: "machine3",
@@ -59,12 +59,7 @@ export const machineData = [
 ];
 
 export const initialTagActions: TagActionType[] = [
-  // {
-  //   procedure: "",
-  //   userCategory: "",
-  //   userService: "",
-  //   quand: "",
-  // },
+
 ];
 
 export const initialTagAction: TagActionType = {

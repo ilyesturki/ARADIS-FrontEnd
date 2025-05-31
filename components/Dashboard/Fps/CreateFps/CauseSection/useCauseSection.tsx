@@ -79,9 +79,6 @@ const useCauseSection = () => {
     if (fps?.cause && Object.keys(fps?.cause).length > 0) {
       const causeList = [...(fps?.cause.causeList || [])];
       const whyList = [...(fps?.cause.whyList || [])];
-      console.log("fps?.cause");
-      console.log(fps?.cause);
-      console.log("fps?.cause");
       setFpsData({
         causeList,
         whyList,
@@ -156,7 +153,6 @@ const useCauseSection = () => {
               createFpsCause({ id: fpsId, fps: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -176,9 +172,9 @@ const useCauseSection = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing FPS...", // Message while the API is running
-      success: "FPS edited successfully!", // Message when successful
-      error: "Failed to edite FPS.", // Message on error
+      loading: "Editing FPS...", 
+      success: "FPS edited successfully!", 
+      error: "Failed to edite FPS.", 
     },
   });
 

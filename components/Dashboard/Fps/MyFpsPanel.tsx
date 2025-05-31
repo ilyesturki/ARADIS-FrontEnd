@@ -13,7 +13,6 @@ const MyFpsPanel = () => {
   useEffect(() => {
     const loadFpss = async () => {
       const fpss = await fetchMyFpss();
-      console.log(fpss);
       setFpss(fpss);
     };
     loadFpss();

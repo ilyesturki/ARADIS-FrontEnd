@@ -12,7 +12,6 @@ const TagsTable = () => {
   useEffect(() => {
     const loadTags = async () => {
       const response = await fetchTags();
-      console.log(response.data);
       setTags(response.data);
     };
     loadTags();

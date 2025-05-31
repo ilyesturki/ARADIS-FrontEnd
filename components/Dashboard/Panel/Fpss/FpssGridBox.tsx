@@ -1,5 +1,4 @@
 import { FpsType } from "@/redux/fps/fpsSlice";
-// import Fps from "../../Dashboard/components/Fps";
 import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 

@@ -16,7 +16,7 @@ const TagSelectedUsers = ({
 }) => {
   const t = useTranslations("TagsPanelPage.TagPanel.TagSelectedUsers");
   const tagId = useAppSelector((state) => state.tags.tag?.tagId);
-  const [users, setUsers] = useState<any[]>([]); // Ensure type consistency
+  const [users, setUsers] = useState<any[]>([]); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,6 @@ const TagSelectedUsers = ({
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/selected-users/${tagId}`
         );
-        console.log(response);
         setUsers(response.data.data);
       } catch (error) {
         console.error("Error fetching TAG selected users:", error);

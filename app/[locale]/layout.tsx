@@ -28,6 +28,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ARADIS",
   description: "ARADIS",
+  icons: {
+    icon: "/imgs/ara.png", // Path to your icon in public directory
+  },
 };
 
 export default async function RootLayout({

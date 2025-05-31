@@ -5,7 +5,6 @@ const FpsProgress = ({
 }: {
   status: "inProgress" | "completed" | "failed";
 }) => {
-  console.log(status);
   return ( 
     <div className="flex flex-col gap-2">
       <div className="flex justify-center items-center gap-1.5 px-4">

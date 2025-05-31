@@ -1,8 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Bell } from "lucide-react";
-import Link from "next/link";
 import { markNotificationAsRead } from "@/utils/Api/fpsApi";
 import useNotifications from "./useNotifications";
 
@@ -13,9 +11,9 @@ interface FPSNotification {
   sender: string;
   fpsId: string;
   status: "unread" | "read";
-  formattedDate: string; // ISO date string
+  formattedDate: string; 
   priority: "High" | "Medium" | "Low";
-  actionLink: string; // Direct link to FPS details
+  actionLink: string;
 }
 
 export default function NotificationItem({
@@ -29,7 +27,6 @@ export default function NotificationItem({
     if (notif.status === "unread") {
       await markNotificationAsRead(notif.id);
 
-      // ✅ Update UI immediately
       setNotifications((prev) =>
         prev.map((n) => (n.id === notif.id ? { ...n, status: "read" } : n))
       );

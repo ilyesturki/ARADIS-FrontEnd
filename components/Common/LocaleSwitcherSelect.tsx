@@ -4,8 +4,6 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useState, useTransition, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import Image from "next/image";
-// import { useTranslations } from "next-intl";
-
 import { FaAngleDown } from "react-icons/fa";
 
 import {
@@ -26,7 +24,6 @@ export default function LocaleSwitcherSelect({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLocale, setSelectedLocale] =
     useState<SupportedLocale>(defaultValue);
-  // const t = useTranslations("LocaleSwitcher");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -35,9 +32,6 @@ export default function LocaleSwitcherSelect({
   function handleSelect(locale: SupportedLocale) {
     setSelectedLocale(locale);
     setIsOpen(false);
-    // startTransition(() => {
-    //   router.replace({ pathname, ...params }, { locale });
-    // });
     const query: Record<string, string> = {};
     searchParams.forEach((value, key) => {
       query[key] = value;
@@ -47,8 +41,6 @@ export default function LocaleSwitcherSelect({
       router.replace({ pathname, query, ...params }, { locale });
     });
   }
-
-  // Close when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (

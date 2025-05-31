@@ -1,12 +1,8 @@
 "use client";
-// import CustomInput from "@/components/Common/CustomInput/CustomInput";
-// import Link from "next/link";
-// import AuthButton from "../../subcomponents/AuthButton";
 
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 
-import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -63,8 +59,6 @@ const useSignIn = () => {
       return;
     }
     signIn("credentials", {
-      // redirect: true,
-      // callbackUrl: "/dashboard",
       email,
       password,
     });

@@ -1,9 +1,3 @@
-// import React from "react";
-// import TagHeader from "../TagHeader";
-// import Progress from "../TagProgress";
-// import TagDescription from "../TagDescription";
-// import TagProgress from "../TagProgress";
-// import DetailsButton from "../DetailsButton";
 import { TagType } from "@/redux/tag/tagSlice";
 import TagDetails from "./TagDetails";
 import TagDetailsDialog from "@/components/Common/Dialog/TagDetailsDialog";

@@ -81,23 +81,17 @@ const useImmediateActionsSection = () => {
   }, []);
 
   useEffect(() => {
-    console.log(fps);
     if (fps?.immediateActions && Object.keys(fps.immediateActions).length > 0) {
-      console.log(fps?.immediateActions);
       const newSortingResult = [...(fps.immediateActions.sortingResults || [])];
       const newImmediateActions = [
         ...(fps.immediateActions.immediateActions || []),
       ];
-      console.log("fps?.immediateActions");
-      console.log(fps?.immediateActions);
-      console.log("fps?.immediateActions");
       setFpsData({
         ...fps.immediateActions,
         sortingResults: newSortingResult,
         immediateActions: newImmediateActions,
       });
     }
-    console.log(fps?.currentStep);
     setCurrentStep(fps?.currentStep || null);
     setSubmitBtnValue(
       ["immediateActions", "cause", "defensiveActions", "validation"].includes(
@@ -109,9 +103,6 @@ const useImmediateActionsSection = () => {
   }, [fps]);
 
   useEffect(() => {
-    console.log("fpsData");
-    console.log(fpsData);
-    console.log("fpsData");
   }, [fpsData]);
 
   const handleChange = (
@@ -213,7 +204,6 @@ const useImmediateActionsSection = () => {
               createFpsImmediateActions({ id: fpsId, fps: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -233,9 +223,9 @@ const useImmediateActionsSection = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing FPS...", // Message while the API is running
-      success: "FPS edited successfully!", // Message when successful
-      error: "Failed to edite FPS.", // Message on error
+      loading: "Editing FPS...", 
+      success: "FPS edited successfully!", 
+      error: "Failed to edite FPS.", 
     },
   });
 

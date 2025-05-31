@@ -18,7 +18,6 @@ const TagQrCode = () => {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/qr-code/${tagId}`
         );
-        console.log(response);
         setTagImage(response.data.data.image);
         setQr(response.data.data.qrCodeUrl);
       } catch (error) {

@@ -5,7 +5,6 @@ import { editedFpsImmediateActionsType } from "@/redux/fps/fpsSlice";
 import CustomTextArea from "@/components/Common/CustomInput/CustomTextArea";
 import useImmediateAction from "./useImmediateAction";
 import CustomSelect from "@/components/Common/CustomInput/CustomSelect";
-// import ImmediateAction from "./ImmediateAction";
 
 const ImmediateAction = ({
   setFpsData,

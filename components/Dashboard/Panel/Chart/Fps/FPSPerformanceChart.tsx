@@ -61,8 +61,7 @@ export default function FPSPerformanceChart({
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/performance-stats-chart/${timeRange}?machine=${machine}`
         );
-        console.log(data);
-        setChartData(data.data); // Directly use backend-processed data
+        setChartData(data.data); 
       } catch (error) {
         console.error("Failed to fetch FPS performance stats:", error);
       }

@@ -96,7 +96,7 @@ export const machineData = [
     value: "machine2",
     label: "Machine 2",
   },
-  {
+  { 
     value: "machine3",
     label: "Machine 3",
   },

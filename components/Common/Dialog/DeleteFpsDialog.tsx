@@ -7,22 +7,10 @@ import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 const DeleteFpsDialog = ({ id }: { id: string }) => {
-  // Use useTranslations to get localized messages
   const t = useTranslations("FpssPanelPage");
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  // const deleteSuccess = useAppSelector((state) => state.fpss.deleteSuccess);
-
-  // useEffect(() => {
-  //   if (deleteSuccess) {
-  //     setIsOpen(false);
-  //   }
-  // }, [deleteSuccess, dispatch, id]);
-
-  // const handelDelete = () => {
-  //   dispatch(deleteFps(id));
-  // };
 
   const router = useRouter();
 
@@ -35,9 +23,9 @@ const DeleteFpsDialog = ({ id }: { id: string }) => {
       router.refresh();
     },
     messages: {
-      loading: t("deleteFps.loading"), // Localize loading message
-      success: t("deleteFps.success"), // Localize success message
-      error: t("deleteFps.error"), // Localize error message
+      loading: t("deleteFps.loading"), 
+      success: t("deleteFps.success"), 
+      error: t("deleteFps.error"), 
     },
   });
 

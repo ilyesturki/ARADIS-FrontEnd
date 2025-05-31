@@ -46,7 +46,6 @@ export default function QRCodeScanStatisticsChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/qr-code-scan-statistics/${fpsId}`
         );
-        console.log(data);
         setChartData({
           total: data.data.total,
           scanned: data.data.scanned,

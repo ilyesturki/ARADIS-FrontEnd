@@ -28,7 +28,6 @@ export default async function RootLayout({
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true";
 
   const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
       <CustomSideBar session={session} />

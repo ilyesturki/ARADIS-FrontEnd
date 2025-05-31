@@ -9,7 +9,6 @@ const ShowFpsHeader = () => {
   const t = useTranslations("FpssPanelPage.FpsPanel.status");
   const fps = useAppSelector((state) => state.fpss.fps);
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
-  console.log(fps);
   return (
     <div className="flex justify-between sm:px-3 pt-6">
       <div className="flex items-center gap-1 sm:gap-2">

@@ -78,9 +78,6 @@ const useDefensiveActionsSection = () => {
       fps?.defensiveActions &&
       Object.keys(fps?.defensiveActions).length > 0
     ) {
-      console.log("fps?.defensiveActions");
-      console.log(fps?.defensiveActions);
-      console.log("fps?.defensiveActions");
       setFpsData(fps?.defensiveActions);
     }
     setCurrentStep(fps?.currentStep || null);
@@ -135,7 +132,6 @@ const useDefensiveActionsSection = () => {
               createFpsDefensiveActions({ id: fpsId, fps: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -155,9 +151,9 @@ const useDefensiveActionsSection = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing FPS...", // Message while the API is running
-      success: "FPS edited successfully!", // Message when successful
-      error: "Failed to edite FPS.", // Message on error
+      loading: "Editing FPS...", 
+      success: "FPS edited successfully!", 
+      error: "Failed to edite FPS.", 
     },
   });
 

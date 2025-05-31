@@ -14,9 +14,6 @@ export const getTag = createAsyncThunk("tags/getTag", async (id: string) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/${id}`
   );
-  console.log("getTag");
-  console.log(response.data.data);
-  console.log("getTag");
   return response.data.data as TagType;
 });
 

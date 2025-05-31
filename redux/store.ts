@@ -27,4 +27,3 @@ export type AppDispatch = AppStore["dispatch"];
 type Store = ReturnType<typeof makeStore>;
 
 export const wrapper = createWrapper(makeStore);
-// export default wrapper;

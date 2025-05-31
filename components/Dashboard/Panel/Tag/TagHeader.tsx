@@ -1,5 +1,4 @@
 "use client";
-// import CreateTag from "@/components/Dashboard/Tag/CreateTag/CreateTag";
 import { Separator } from "@/components/ui/separator";
 import { useAppSelector } from "@/redux/hooks";
 import { LogOut } from "lucide-react";
@@ -10,7 +9,6 @@ const ShowTagHeader = () => {
   const t = useTranslations("TagsPanelPage.TagPanel.status");
   const tag = useAppSelector((state) => state.tags.tag);
   const tagId = useAppSelector((state) => state.tags.tag?.tagId);
-  console.log(tag);
   return (
     <div className="flex justify-between sm:px-3 pt-6">
       <div className="flex items-center gap-1 sm:gap-2">

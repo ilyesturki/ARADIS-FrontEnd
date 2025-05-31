@@ -19,13 +19,8 @@ const BreadCrumb = () => {
   const pathname = usePathname();
   const paths = useMemo(() => pathname.split("/").slice(1), [pathname]);
   const [pathList, setPathList] = useState([""]);
-  // const [pathName, setPathName] = useState(
-  //   paths[paths.length - 1]?.split("-").join(" ") || ""
-  // );
-
   useEffect(() => {
     if (user) {
-      // setPathName(`${user.firstName} ${user.lastName}`);
       setPathList((prev) => [
         ...prev.slice(0, prev.length - 1),
         `${user.firstName} ${user.lastName}`,
@@ -43,13 +38,8 @@ const BreadCrumb = () => {
     }
   }, [paths, dispatch]);
 
-  console.log(pathList);
 
   return (
-    // <div className="">
-    // {/* <h1 className=" capitalize text-3xl font-medium text-grayscale-500">
-    //   {pathName}
-    // </h1> */}
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
@@ -80,7 +70,6 @@ const BreadCrumb = () => {
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
-    // </div>
   );
 };
 

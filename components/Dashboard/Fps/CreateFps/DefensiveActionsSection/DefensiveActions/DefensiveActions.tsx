@@ -88,7 +88,6 @@ const DefensiveActions = ({
           }
           disabled={disabled}
           name="when"
-          // value ? value.toISOString() : ""
         />
       </div>
       {!disabled && (
@@ -99,34 +98,3 @@ const DefensiveActions = ({
 };
 
 export default DefensiveActions;
-
-{
-  /* <DefensiveAction
-fpsData={e}
-categoryData={categoryData}
-serviceData={serviceData}
-customProcedureChange={(
-  e: React.ChangeEvent<HTMLTextAreaElement>
-) =>
-  handleChangeInArray(setFpsData, e.target.value, "procedure", i)
-}
-customCategoryChange={(userCategory: string) =>
-  handleChangeInArray(setFpsData, userCategory, "userCategory", i)
-}
-customServiceChange={(userService: string) =>
-  handleChangeInArray(setFpsData, userService, "userService", i)
-}
-customQuandChange={(
-  value: Date | undefined,
-  name?: string | undefined
-) =>
-  handleChangeInArray(
-    setFpsData,
-    value ? value.toISOString() : "",
-    "quand",
-    i
-  )
-}
-disabled={disabled}
-/> */
-}

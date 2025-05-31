@@ -9,10 +9,9 @@ import { machineData } from "@/data/tag";
 
 export default function TagsHeader() {
   const t = useTranslations("TagsPanelPage");
-  // const [machine, setMachine] = useState("all");
   const dispatch = useAppDispatch();
   const machine = useAppSelector((state) => state.tags.machine);
-  const handleMachine = (e: string) => {
+  const handleMachine = (e: string) => { 
     dispatch(setMachine(e));
   };
   return (
@@ -29,7 +28,7 @@ export default function TagsHeader() {
             },
             ...machineData,
           ]}
-          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600"
+          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600 dark:bg-neutral-200/10 dark:text-neutral-50 dark:border-neutral-50/10"
         />
       </PageTitle>
     </>

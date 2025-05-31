@@ -57,9 +57,8 @@ export default function QrScanRadarChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/all-qr-codes-scan-statistics?machine=${machine}`
         );
-        console.log(data);
         if (data?.data && Array.isArray(data.data)) {
-          setChartData(data.data); // Already formatted!
+          setChartData(data.data); 
         }
       } catch (error) {
         console.error("Error fetching QR scan stats:", error);

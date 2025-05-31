@@ -6,7 +6,6 @@ import { DataTableColumnHeader } from "./CustomTableColumns/DataTableColumnHeade
 import DataTableRowMenu from "./CustomTableColumns/DataTableRowMenu";
 import DataTableHeaderCheckBox from "./CustomTableColumns/DataTableHeaderCheckBox";
 import DataTableContentCheckBox from "./CustomTableColumns/DataTableContentCheckBox";
-// import IconAndLabelColumn from "./CustomTableColumns/IconAndLabelColumn";
 import DeleteUserDialog from "../../Dialog/DeleteUserDialog";
 import IconAndNameColumn from "./CustomTableColumns/IconAndNameColumn";
 export type Users = {

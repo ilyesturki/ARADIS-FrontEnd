@@ -21,7 +21,6 @@ const useThemeToggle = (): [string, Dispatch<SetStateAction<string>>] => {
       } else if (localTheme === "light") {
         element.classList.remove("dark");
       } else {
-        // system
         if (darkQuery.matches) {
           element.classList.add("dark");
         } else {
@@ -60,7 +59,6 @@ const useThemeToggle = (): [string, Dispatch<SetStateAction<string>>] => {
     } else if (theme === "light") {
       element.classList.remove("dark");
     } else {
-      // system
       const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
       if (darkQuery.matches) {
         element.classList.add("dark");

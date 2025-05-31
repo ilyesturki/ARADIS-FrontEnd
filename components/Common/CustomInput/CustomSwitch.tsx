@@ -1,5 +1,4 @@
 "use client";
-// import { EmailNotificationsType } from "@/components/Account/Sections/EmailNotifications/useEmailNotifications";
 import { Switch } from "@/components/ui/switch";
 
 const CustomSwitch = ({

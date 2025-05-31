@@ -15,7 +15,6 @@ const TagsGrid = () => {
   useEffect(() => {
     const loadTags = async () => {
       const response = await fetchTags(`?page=${currentPage}&limit=9`);
-      console.log(response);
       setTags(response.data);
       if (response.pagination?.numberOfPages) {
         setNumberOfPages(response.pagination.numberOfPages);

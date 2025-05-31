@@ -1,5 +1,3 @@
-// import { useTranslations } from "next-intl";
-import React from "react";
 
 const ActionsList = ({
   headers,
@@ -8,13 +6,7 @@ const ActionsList = ({
   headers?: string[];
   children?: React.ReactNode;
 }) => {
-  // const t = useTranslations("TagsPanelPage.TagActionsSection.tagActions");
-  // console.log(children);
-  console.log(children);
-  // console.log(children);
   return (
-    // <div className="grid grid-rows-[auto_1fr] gap-1">
-    // {/* <CustomSectionHeader title={t("title")} /> */}
     <div className="flex flex-col gap-1 px-2 py-2 bg-sidebar border  dark:border-gray-700  rounded-md">
       {children ? (
         <>
@@ -46,7 +38,6 @@ const ActionsList = ({
         </span>
       )}
     </div>
-    // </div>
   );
 };
 

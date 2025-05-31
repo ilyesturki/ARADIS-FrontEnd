@@ -20,7 +20,6 @@ import {
   updateFpsComment,
 } from "@/redux/fpsComments/fpsCommentsThunk";
 
-// import { initialFpsValidation } from "@/data/fps";
 
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -71,7 +70,6 @@ const useComments = () => {
   const fpsComments = useAppSelector((state) => state.fpsComments);
 
   useEffect(() => {
-    console.log(fpsComments);
     if (fpsComments && Object.keys(fpsComments).length > 0) {
       const comments = [
         ...(fpsComments?.comments.length > 0
@@ -98,9 +96,6 @@ const useComments = () => {
               },
             ]),
       ];
-      console.log("fpsComments?.validation");
-      console.log(comments);
-      console.log("fpsComments?.validation");
       setFpsData({
         comments,
       });
@@ -178,9 +173,6 @@ const useComments = () => {
     index: number
   ) => {
     const selectedComment = fpsData.comments[index];
-    console.log("selectedComment");
-    console.log(selectedComment);
-    console.log("selectedComment");
     if (selectedComment.id) {
       const dataToValidate: Record<string, string> = {
         id: selectedComment.id.toString(),
@@ -225,7 +217,6 @@ const useComments = () => {
         date: lastComment.date,
         userId: lastComment.user.id.toString(),
       };
-      console.log(dataToValidate);
       const newErrors = validateFormFields(
         dataToValidate,
         fpsSaveCommentValidationRules
@@ -249,7 +240,6 @@ const useComments = () => {
               createFpsComment({ id: fpsId, fpsComment: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -266,12 +256,11 @@ const useComments = () => {
   const [isLoading, handleAddComment] = useApiCallWithToast({
     apiCallFunction: () => validateAddComment(),
     handleSuccess: async () => {
-      // handleReset();
     },
     messages: {
-      loading: "Creating Comment...", // Message while the API is running
-      success: "Comment Created successfully!", // Message when successful
-      error: "Failed to create Comment.", // Message on error
+      loading: "Creating Comment...", 
+      success: "Comment Created successfully!", 
+      error: "Failed to create Comment.", 
     },
   });
 

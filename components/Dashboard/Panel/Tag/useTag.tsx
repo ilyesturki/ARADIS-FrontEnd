@@ -32,7 +32,6 @@ const useTag = () => {
   const isAdminOrManager = useMemo(
     () => false,
 
-    // ["admin", "manager"].includes(session?.user.role ?? ""),
     [session?.user.role]
   );
   const [currentStep, setCurrentStep] = useState<string | null>(null);
@@ -58,9 +57,6 @@ const useTag = () => {
   const tag = useAppSelector((state) => state.tags.tag);
 
   useEffect(() => {
-    console.log("***********************");
-    console.log(tag);
-    console.log("***********************");
     if (tag?.tagActions && Object.keys(tag?.tagActions).length > 0) {
       setTagData(tag?.tagActions);
     }
@@ -106,7 +102,6 @@ const useTag = () => {
               createActions({ id: tagId, tag: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -127,9 +122,9 @@ const useTag = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing TAG...", // Message while the API is running
-      success: "TAG edited successfully!", // Message when successful
-      error: "Failed to edite TAG.", // Message on error
+      loading: "Editing TAG...", 
+      success: "TAG edited successfully!", 
+      error: "Failed to edite TAG.", 
     },
   });
 

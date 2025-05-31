@@ -80,8 +80,6 @@ const useProblem = () => {
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     let fpsId = params.get("fpsId");
-    console.log("fpsId");
-    console.log(fpsId);
     if (fpsId) {
       setFpsId(fpsId);
       return;
@@ -97,10 +95,8 @@ const useProblem = () => {
     setFpsId(fpsId);
   }, []);
 
-  // Update currentStep when fps changes
   useEffect(() => {
     if (fps?.problem && Object.keys(fps.problem).length > 0) {
-      console.log(fps.problem);
       setFpsData(fps.problem);
 
       const loadedImages = Array(5).fill(null);
@@ -141,8 +137,6 @@ const useProblem = () => {
   }, [fps]);
 
   const handleDeleteImages = (i?: number) => {
-    console.log("iii");
-    console.log(i);
     if (i !== undefined) {
       setImagesFiles((prevImages) => {
         const updatedImages = [...prevImages];
@@ -239,10 +233,6 @@ const useProblem = () => {
           formImages.push(await urlToFile(image, `image.png`, "image/jpeg"));
         }
       }
-      console.log("formImage");
-      console.log(imageFile);
-      console.log(fpsData.image);
-      console.log("formImage");
       const dataToValidate: Record<string, string> = {
         fpsId: fpsId || "",
         type: fpsData.type || "",
@@ -270,8 +260,6 @@ const useProblem = () => {
         reject(newErrors);
         return;
       }
-      console.log(fpsData);
-      console.log(fpsId);
       customHandleForTostSubmit(
         { image: formImage, images: formImages },
         {
@@ -294,7 +282,6 @@ const useProblem = () => {
               createFpsProblem({ id: fpsId, fps: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -315,9 +302,9 @@ const useProblem = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing FPS...", // Message while the API is running
-      success: "FPS edited successfully!", // Message when successful
-      error: "Failed to edite FPS.", // Message on error
+      loading: "Editing FPS...", 
+      success: "FPS edited successfully!", 
+      error: "Failed to edite FPS.", 
     },
   });
 
@@ -333,7 +320,6 @@ const useProblem = () => {
     setTypeColors({ textColor: "", className: "" });
     setImageFile(null);
     setImagesFiles([]);
-    // dispatch(getFps(fpsId));
   };
 
   return {

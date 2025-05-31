@@ -1,6 +1,4 @@
 import { Row } from "@tanstack/react-table";
-// import { Checkbox } from "@/components/ui/checkbox";
-
 const DataTableContentCheckBox = <T,>({ row }: { row: Row<T> }) => {
   return (
     <span className="pl-1 text-greenAccent-900 text-opacity-40 dark:text-grayscale-100 dark:text-opacity-80 font-bold">
@@ -11,11 +9,3 @@ const DataTableContentCheckBox = <T,>({ row }: { row: Row<T> }) => {
 
 export default DataTableContentCheckBox;
 
-{
-  /* <Checkbox
-      checked={row.getIsSelected()}
-      onCheckedChange={(value) => row.toggleSelected(!!value)}
-      aria-label="Select row"
-      className="border-greenAccent-900"
-    /> */
-}

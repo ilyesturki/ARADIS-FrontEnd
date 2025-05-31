@@ -24,7 +24,6 @@ const TagDetailsDialog = ({
 
   const closeDialog = () => {
     setIsOpen(!isOpen);
-    // router.push("/dashboard", { scroll: false }); // ✅ Remove tagId from URL when closing
   };
 
   if (

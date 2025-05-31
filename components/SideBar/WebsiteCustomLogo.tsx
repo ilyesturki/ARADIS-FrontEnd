@@ -8,8 +8,6 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 const WebsiteCustomLogo = () => {
-  // const { isMobile } = useSidebar();
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>

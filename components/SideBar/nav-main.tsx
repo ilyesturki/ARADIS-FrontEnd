@@ -42,12 +42,6 @@ export function NavMain({
 }) {
   const path = usePathname();
   const currentPath = path.split("/").join("/");
-  console.log(currentPath);
-
-  // const isAdminOrManager = useMemo(
-  //   () => ["admin", "manager"].includes(session?.user.role ?? ""),
-  //   [session?.user.role]
-  // );
 
   return (
     <SidebarGroup className="overflow-hidden">

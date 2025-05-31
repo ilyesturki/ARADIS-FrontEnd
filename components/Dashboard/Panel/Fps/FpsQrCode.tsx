@@ -17,7 +17,6 @@ const FpsQrCode = () => {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/qr-code/${fpsId}`
         );
-        console.log(response);
         setFpsImage(response.data.data.image);
         setQr(response.data.data.qrCodeUrl);
       } catch (error) {

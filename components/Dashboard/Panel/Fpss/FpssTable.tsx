@@ -15,7 +15,6 @@ const FpssTable = () => {
   useEffect(() => {
     const loadFpss = async () => {
       const response = await fetchFpss(`?machine=${machine}`);
-      console.log(response.data);
       setFpss(response.data);
     };
     loadFpss();

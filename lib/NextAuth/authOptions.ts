@@ -10,7 +10,7 @@ const authOptions: AuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 1 * 60 * 60, // 1 day
+    maxAge: 1 * 60 * 60, 
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {

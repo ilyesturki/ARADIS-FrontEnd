@@ -90,7 +90,6 @@ const commentsSlice = createSlice({
         updateFpsComment.fulfilled,
         (state, action: PayloadAction<FpsCommentType>) => {
           state.loading = false;
-          // state.comments.push(action.payload as FpsCommentType);
           state.updateSuccess = true;
           const index = state.comments.findIndex(
             (comment) => comment.id === action.payload.id

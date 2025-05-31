@@ -15,7 +15,6 @@ const CustomSelect = <T,>({
   label: string;
   value?: string;
   onChange?: (currentValue: T, name?: string) => void;
-  // onChange?: (currentValue: string, name?: string) => void;
   name?: string;
   data?: { value: string; label: string }[];
   children?: React.ReactNode;
@@ -23,9 +22,7 @@ const CustomSelect = <T,>({
   textColor?: string;
   className?: string;
 }) => {
-  console.log(value);
-  console.log(textColor);
-  console.log(className);
+ 
   return (
     <div className=" flex gap-4 items-center">
       <div
@@ -43,7 +40,6 @@ const CustomSelect = <T,>({
           data={data}
           selectedValue={value}
           onChange={(e: string, name?: string) => {
-            // e is now of type T
             if (onChange) {
               if (name) {
                 onChange(e as T, name);

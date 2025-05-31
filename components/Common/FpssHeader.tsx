@@ -9,10 +9,9 @@ import { machineData } from "@/data/fps";
 
 export default function FpssHeader() {
   const t = useTranslations("FpssPanelPage");
-  // const [machine, setMachine] = useState("all");
   const dispatch = useAppDispatch();
   const machine = useAppSelector((state) => state.fpss.machine);
-  const handleMachine = (e: string) => {
+  const handleMachine = (e: string) => { 
     dispatch(setMachine(e));
   };
   return (
@@ -29,7 +28,7 @@ export default function FpssHeader() {
             },
             ...machineData,
           ]}
-          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600 dark:bg-grayscale-500 dark:text-grayscale-400"
+          className="w-fit !px-4 !border-solid rounded-md shadow-none text-sm font-semibold text-gray-600 dark:bg-neutral-200/10 dark:text-neutral-50 dark:border-neutral-50/10"
         />
       </PageTitle>
     </div>

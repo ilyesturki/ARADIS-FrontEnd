@@ -14,9 +14,6 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/${id}`
   );
-  console.log("getFps");
-  console.log(response.data.data);
-  console.log("getFps");
   const images = response.data.data.problem.images
     ? response.data.data.problem.images.split(",")
     : [];
@@ -34,7 +31,6 @@ export const getFps = createAsyncThunk("fpss/getFps", async (id: string) => {
     problem: { ...response.data.data.problem, images },
     cause,
   };
-  console.log(fpsData);
   return fpsData as FpsType;
 });
 

@@ -18,7 +18,6 @@ const FpssGrid = () => {
       const response = await fetchFpss(
         `?machine=${machine}&page=${currentPage}&limit=9`
       );
-      console.log(response);
       setFpss(response.data);
       if (response.pagination?.numberOfPages) {
         setNumberOfPages(response.pagination.numberOfPages);

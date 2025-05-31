@@ -33,7 +33,6 @@ const useSortingResultActions = (
     const dataToValidate: Record<string, string> = {
       sortingResults: JSON.stringify(editedSortingResultData),
     };
-    console.log(dataToValidate);
     const newErrors = validateFormFields(
       dataToValidate,
       SortingResultActionRules
@@ -42,13 +41,6 @@ const useSortingResultActions = (
       handleError({ customError: true, errors: newErrors });
       return;
     }
-    console.log("//////////////////////////////////////");
-    console.log(fpsData.sortingResults);
-    console.log(
-      fpsData.sortingResults?.map((e) => {
-        return e.edit ? { ...e, ...editedSortingResultData, edit: false } : e;
-      })
-    );
     const newSortingResultData = fpsData.sortingResults?.some((e) => e.edit)
       ? fpsData.sortingResults?.map((e) => {
           return e.edit ? { ...e, ...editedSortingResultData, edit: false } : e;
@@ -58,15 +50,11 @@ const useSortingResultActions = (
           editedSortingResultData,
         ];
 
-    console.log(editedSortingResultData);
-    console.log(newSortingResultData);
-    console.log("//////////////////////////////////////");
     setFpsData({
       ...fpsData,
       sortingResults: newSortingResultData,
     });
 
-    // setSortingResultData(newSortingResultData);
 
     setEditedSortingResultData({
       product: "",

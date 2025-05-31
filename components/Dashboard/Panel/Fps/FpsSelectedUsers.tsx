@@ -16,7 +16,7 @@ const FpsSelectedUsers = ({
 }) => {
   const t = useTranslations("FpssPanelPage.FpsPanel.FpsSelectedUsers");
   const fpsId = useAppSelector((state) => state.fpss.fps?.fpsId);
-  const [users, setUsers] = useState<any[]>([]); // Ensure type consistency
+  const [users, setUsers] = useState<any[]>([]); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,6 @@ const FpsSelectedUsers = ({
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/selected-users/${fpsId}`
         );
-        console.log(response);
         setUsers(response.data.data);
       } catch (error) {
         console.error("Error fetching FPS selected users:", error);

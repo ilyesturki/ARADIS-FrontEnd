@@ -1,6 +1,5 @@
 const FpsDateColumn = ({ data }: { data: any }) => {
   const rawDate = data.quand as string;
-  console.log(rawDate);
   const formattedDate = rawDate
     ? new Intl.DateTimeFormat("en-US", {
         year: "numeric",

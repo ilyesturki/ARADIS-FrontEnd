@@ -1,4 +1,3 @@
-// lib/middleware/authGuard.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
@@ -8,19 +7,16 @@ export async function authGuard(
   const url = req.nextUrl;
   const pathname = url.pathname;
 
-  // Normalize the pathname to ignore the language prefix
   const normalizedPathname = pathname.replace(/^\/(fr|en)\//, "/");
 
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  // Safely cast token fields
   const role = typeof token?.role === "string" ? token.role : undefined;
   const userCategory =
     typeof token?.userCategory === "string" ? token.userCategory : undefined;
   const userService =
     typeof token?.userService === "string" ? token.userService : undefined;
 
-  // Public route: /auth (only for NOT logged in)
   if (normalizedPathname.startsWith("/auth")) {
     if (token) {
       const redirectTo =
@@ -34,7 +30,6 @@ export async function authGuard(
     return;
   }
 
-  // Require auth for all other routes
   if (!token) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
@@ -48,10 +43,6 @@ export async function authGuard(
         : "/dashboard/fps";
     return NextResponse.redirect(new URL(redirectTo, req.url));
   }
-  console.log(
-    "normalizedPathnamenormalizedPathnamenormalizedPathnamenormalizedPathnamenormalizedPathname"
-  );
-  console.log(normalizedPathname);
 
   if (normalizedPathname.startsWith("/dashboard/users")) {
     if (role === "admin") return;

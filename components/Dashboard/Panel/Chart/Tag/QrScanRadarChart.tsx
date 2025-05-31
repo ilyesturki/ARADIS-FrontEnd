@@ -21,7 +21,7 @@ import {
 
 import { useEffect, useState } from "react";
 
-import axios from "@/utils/axios"; 
+import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "@/redux/hooks";
 
@@ -49,16 +49,15 @@ export default function QrScanRadarChart() {
   const [chartData, setChartData] =
     useState<{ month: string; scanned: number; unscanned: number }[]>(data);
 
-    const machine = useAppSelector((state) => state.fpss.machine);
+  const machine = useAppSelector((state) => state.tags.machine);
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/all-qr-codes-scan-statistics?machine=${machine}`
         );
-        console.log(data);
         if (data?.data && Array.isArray(data.data)) {
-          setChartData(data.data); // Already formatted!
+          setChartData(data.data); 
         }
       } catch (error) {
         console.error("Error fetching QR scan stats:", error);
@@ -95,12 +94,13 @@ export default function QrScanRadarChart() {
             />
             <PolarAngleAxis dataKey="month" />
             <PolarGrid />
+            <Radar dataKey="unscanned" fill="var(--color-unscanned)" />
             <Radar
               dataKey="scanned"
               fill="var(--color-scanned)"
               fillOpacity={0.6}
             />
-            <Radar dataKey="unscanned" fill="var(--color-unscanned)" />
+
             <ChartLegend className="mt-8" content={<ChartLegendContent />} />
           </RadarChart>
         </ChartContainer>

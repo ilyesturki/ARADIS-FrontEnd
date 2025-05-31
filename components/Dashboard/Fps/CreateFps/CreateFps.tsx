@@ -12,7 +12,7 @@ import useCreateFps from "./useCreateFps";
 import ValidationTab from "./CreateFpsTabs/ValidationTab";
 import { useTranslations } from "next-intl";
 import PageTitle from "@/components/Common/PageTitle";
-// defaultValue="problem"
+
 
 const tabs = [
   {

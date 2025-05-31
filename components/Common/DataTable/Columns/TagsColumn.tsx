@@ -15,10 +15,7 @@ export type Tags = {
   machine: string;
   equipment: string;
   image: string;
-  // images: string[];
-  // qrCodeUrl: string;
   status: "open" | "toDo" | "done";
-  // closeDate: Date;
 };
 
 export const columns = (t: (key: string) => string): ColumnDef<Tags>[] => [
@@ -79,7 +76,6 @@ export const columns = (t: (key: string) => string): ColumnDef<Tags>[] => [
         {row.getValue("machine")}
       </div>
     ),
-    // cell: ({ row }) => <ImageAndTitleColumn data={row.getValue("problem")} />,
   },
   {
     accessorKey: "equipment",
@@ -97,7 +93,6 @@ export const columns = (t: (key: string) => string): ColumnDef<Tags>[] => [
         {row.getValue("equipment")}
       </div>
     ),
-    // cell: ({ row }) => <ImageAndTitleColumn data={row.getValue("problem")} />,
   },
   {
     accessorKey: "actions",

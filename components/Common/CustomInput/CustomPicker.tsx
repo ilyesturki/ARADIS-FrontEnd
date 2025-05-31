@@ -22,8 +22,6 @@ const CustomPicker = ({
     }
   };
 
-  console.log(data);
-
   return (
     <div className={`w-full px-4 bg-grayscale-100  dark:bg-gray-900  dark:border-gray-700 border rounded-md ${
       disabled && "bg-opacity-50"

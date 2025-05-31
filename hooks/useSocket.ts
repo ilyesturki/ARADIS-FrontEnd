@@ -1,9 +1,8 @@
-"use client"; // Ensure it runs only on the client side
+"use client"; 
 import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-// ✅ Fixed WebSocket URL (Removed :8000)
-const SOCKET_URL = "wss://aradis-backend.onrender.com"; // Use wss for secure WebSocket
+const SOCKET_URL = "wss://aradis-backend.onrender.com"; 
 
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -11,23 +10,20 @@ export const useSocket = () => {
 
   useEffect(() => {
     const newSocket = io(SOCKET_URL, {
-      transports: ["websocket"], // Force WebSocket (avoid polling)
+      transports: ["websocket"], 
     });
 
-    setSocket(newSocket); // ✅ Store socket in state
+    setSocket(newSocket); 
 
     newSocket.on("connect", () => {
-      console.log("✅ Connected to WebSocket server");
     });
 
-    // ✅ Updated event name to match the server
     newSocket.on("serverMessage", (data: string) => {
-      console.log("🔹 Server message:", data);
       setMessage(data);
     });
 
     return () => {
-      newSocket.disconnect(); // Cleanup on unmount
+      newSocket.disconnect(); 
     };
   }, []);
 

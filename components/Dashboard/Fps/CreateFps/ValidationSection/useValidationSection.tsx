@@ -75,29 +75,20 @@ const useValidationSection = () => {
 
   useEffect(() => {
     if (fps?.status) {
-      console.log("fps?.validation");
-      console.log(fps);
-      console.log("fps?.validation");
       setFpsData({
         status: fps.status,
       });
       setFpsCompleted(fps.status === "completed");
     }
     setCurrentStep(fps?.currentStep || null);
-    // setSubmitBtnValue(
-    //   ["validation"].includes(fps?.currentStep || "") ? "Update" : "Save"
-    // );
+
   }, [fps]);
 
   const handleStatusChange = () => {
-    console.log("fpsCompleted");
-    console.log(fpsCompleted);
-    console.log("fpsCompleted");
     setFpsData((prevData) => ({
       ...prevData,
       status: fpsCompleted ? "completed" : "failed",
     }));
-    console.log(fpsData);
     setFpsCompleted(!fpsCompleted);
   };
 
@@ -107,7 +98,6 @@ const useValidationSection = () => {
         fpsId: fpsId,
         status: fpsData.status || "",
       };
-      console.log(dataToValidate);
       const newErrors = validateFormFields(
         dataToValidate,
         fpsValidationValidationRules
@@ -130,7 +120,6 @@ const useValidationSection = () => {
               createFpsValidation({ id: fpsId, fps: formData })
             );
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -150,9 +139,9 @@ const useValidationSection = () => {
       handleReset();
     },
     messages: {
-      loading: "Editing FPS...", // Message while the API is running
-      success: "FPS edited successfully!", // Message when successful
-      error: "Failed to edite FPS.", // Message on error
+      loading: "Editing FPS...", 
+      success: "FPS edited successfully!", 
+      error: "Failed to edite FPS.", 
     },
   });
 

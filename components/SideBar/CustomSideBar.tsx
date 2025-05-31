@@ -15,10 +15,8 @@ import {
 } from "@/components/ui/sidebar";
 import SignOutButton from "./SignOutButton";
 
-// This is sample data.
 const data = {
   navMain: [
-    // users
     {
       allowedTo: [
         { role: "user", category: ["operational", "midel-management"] },
@@ -79,7 +77,6 @@ const data = {
       icon: SquareTerminal,
     },
 
-    // managers
     {
       allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Fps",
@@ -116,7 +113,6 @@ const data = {
       url: "/audit",
       icon: SquareTerminal,
     },
-    // admin
     {
       allowedTo: [{ role: "admin" }],
       title: "Users",

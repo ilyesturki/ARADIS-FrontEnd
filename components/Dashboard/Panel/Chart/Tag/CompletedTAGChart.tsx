@@ -43,14 +43,13 @@ export default function CompletedTAGChart() {
   const [chartData, setChartData] =
     useState<{ month: string; tagCount: number }[]>(data);
 
-    const machine = useAppSelector((state) => state.fpss.machine);
+    const machine = useAppSelector((state) => state.tags.machine);
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/completed-tag-chart?machine=${machine}`
         );
-        console.log(data);
         setChartData(data.data);
       } catch (error) {
         console.error("Failed to fetch completed TAG stats:", error);
@@ -110,7 +109,7 @@ export default function CompletedTAGChart() {
               <LabelList
                 position="top"
                 offset={12}
-                className="fill-foreground"
+                className="fill-foreground dark:fill-neutral-50"
                 fontSize={12}
               />
             </Line>

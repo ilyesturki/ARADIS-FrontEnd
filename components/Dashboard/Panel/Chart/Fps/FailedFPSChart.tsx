@@ -51,7 +51,6 @@ export default function FailedFPSChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/failed-fps-chart?machine=${machine}`
         );
-        console.log(data);
         setChartData(data.data);
       } catch (error) {
         console.error("Failed to fetch Failed FPS stats:", error);
@@ -111,7 +110,7 @@ export default function FailedFPSChart() {
               <LabelList
                 position="top"
                 offset={12}
-                className="fill-foreground"
+                className="fill-foreground dark:fill-neutral-50"
                 fontSize={12}
               />
             </Line>

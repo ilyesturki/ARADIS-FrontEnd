@@ -38,22 +38,12 @@ const useDefensiveActions = (
       handleError({ customError: true, errors: newErrors });
       return;
     }
-    console.log("//////////////////////////////////////");
-    console.log(defensiveData);
-    console.log(
-      defensiveData.map((e) => {
-        return e.edit ? { ...e, ...editedDefensiveData, edit: false } : e;
-      })
-    );
     const newDefensiveData = defensiveData.some((e) => e.edit)
       ? defensiveData.map((e) => {
           return e.edit ? { ...e, ...editedDefensiveData, edit: false } : e;
         })
       : [...defensiveData, editedDefensiveData];
 
-    console.log(editedDefensiveData);
-    console.log(newDefensiveData);
-    console.log("//////////////////////////////////////");
     setDefensiveData(newDefensiveData);
 
     setEditedDefensiveData({

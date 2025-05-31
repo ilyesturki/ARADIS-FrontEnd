@@ -17,9 +17,9 @@ const TagDoneButton = ({ id }: { id: string }) => {
       router.refresh();
     },
     messages: {
-      loading: "Marking tag as done...", // Localize loading message
-      success: "Tag marked as done successfully!", // Localize success message
-      error: "Failed to mark tag as done.", // Localize error message
+      loading: "Marking tag as done...", 
+      success: "Tag marked as done successfully!", 
+      error: "Failed to mark tag as done.", 
     }, 
   });
 

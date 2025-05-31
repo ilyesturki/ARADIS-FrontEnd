@@ -6,18 +6,17 @@ import { useTranslations } from "next-intl";
 import { fetchMyHelperFpss } from "@/utils/Api/fpsApi";
 import { FpsType } from "@/redux/fps/fpsSlice";
 
-import { useSearchParams } from "next/navigation"; // ✅ Get query params
+import { useSearchParams } from "next/navigation";
 
 const Dashboard = () => {
   const t = useTranslations("DashboardPage");
   const searchParams = useSearchParams();
-  const selectedFpsId = searchParams.get("fpsId"); // ✅ Get fpsId from URL
+  const selectedFpsId = searchParams.get("fpsId");
   const [fpss, setFpss] = useState([]);
 
   useEffect(() => {
     const loadFpss = async () => {
       const fpss = await fetchMyHelperFpss();
-      console.log(fpss);
       setFpss(fpss);
     };
     loadFpss();

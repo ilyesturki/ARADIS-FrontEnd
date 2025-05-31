@@ -36,7 +36,7 @@ const CustomAuthInput: React.FC<FloatingLabelInputProps> = ({
     };
 
     checkAutofill();
-    const interval = setInterval(checkAutofill, 500); // Check every 500ms
+    const interval = setInterval(checkAutofill, 500); 
 
     return () => clearInterval(interval);
   }, []);

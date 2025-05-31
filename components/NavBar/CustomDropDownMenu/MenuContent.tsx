@@ -30,22 +30,22 @@ import SignOutButton from "../../SideBar/SignOutButton";
 const mainAccountMenuContent = [
   {
     title: "Profile",
-    icon: User, // Using Lucide User icon
+    icon: User, 
     link: "/account/",
   },
   {
     title: "Address",
-    icon: Mail, // Using Lucide Mail icon (you might want to find a more suitable one)
+    icon: Mail, 
     link: "/account/address",
   },
   {
     title: "Notifications",
-    icon: MessageSquare, // Using Lucide MessageSquare icon
+    icon: MessageSquare, 
     link: "/account/notifications",
   },
   {
     title: "Security",
-    icon: Settings, // Using Lucide Settings icon
+    icon: Settings, 
     link: "/account/security",
   },
 ];
@@ -53,17 +53,17 @@ const mainAccountMenuContent = [
 const secondaryAccountMenuContent = [
   {
     title: "Orders",
-    icon: CreditCard, // Using Lucide CreditCard icon (you might want to find a more suitable one)
+    icon: CreditCard, 
     link: "/account/orders",
   },
   {
     title: "Wishlist",
-    icon: LifeBuoy, // Using Lucide LifeBuoy icon (you might want to find a more suitable one)
+    icon: LifeBuoy, 
     link: "/account/wishlist",
   },
   {
     title: "Basket",
-    icon: ShoppingBasket, // Using Lucide CreditCard icon (you might want to find a more suitable one)
+    icon: ShoppingBasket, 
     link: "/basket",
   },
 ];
@@ -71,59 +71,59 @@ const secondaryAccountMenuContent = [
 const dashboardSubMenuContent = [
   {
     title: "Customers",
-    icon: Users, // Using Lucide Users icon
+    icon: Users, 
     content: [
       {
         title: "Customers Panel",
-        icon: Settings, // Using Lucide Settings icon
+        icon: Settings, 
         link: "/dashboard/customers",
       },
       {
         title: "Create Customer",
-        icon: UserPlus, // Using Lucide UserPlus icon
+        icon: UserPlus, 
         link: "/dashboard/customers/create-customer",
       },
     ],
   },
   {
     title: "Products",
-    icon: PackageSearch, // Using Lucide Cloud icon (you might want to find a more suitable one)
+    icon: PackageSearch, 
     content: [
       {
         title: "Products Panel",
-        icon: Settings, // Using Lucide Settings icon
+        icon: Settings, 
         link: "/dashboard/products",
       },
       {
         title: "Create Product",
-        icon: PlusCircle, // Using Lucide PlusCircle icon
+        icon: PlusCircle, 
         link: "/dashboard/products/create-product",
       },
     ],
   },
   {
     title: "Categories",
-    icon: Shapes, // Using Lucide Keyboard icon (you might want to find a more suitable one)
+    icon: Shapes, 
     content: [
       {
         title: "Categories Panel",
-        icon: Settings, // Using Lucide Settings icon
+        icon: Settings, 
         link: "/dashboard/categories",
       },
       {
         title: "Create Category",
-        icon: PlusCircle, // Using Lucide PlusCircle icon
+        icon: PlusCircle, 
         link: "/dashboard/categories/create-category",
       },
     ],
   },
   {
     title: "Orders",
-    icon: ShoppingCart, // Using Lucide Github icon (you might want to find a more suitable one)
+    icon: ShoppingCart, 
     content: [
       {
         title: "Orders Panel",
-        icon: Settings, // Using Lucide Settings icon
+        icon: Settings, 
         link: "/dashboard/orders",
       },
     ],
@@ -131,7 +131,6 @@ const dashboardSubMenuContent = [
 ];
 
 const MenuContent = ({ role }: { role?: string }) => {
-  // absolute -right-5 top-2
   return (
     <DropdownMenuContent className="w-56 bg-grayscale-100 absolute top-1 -right-8 ">
       <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -33,19 +33,11 @@ const useImmediateAction = (
     const dataToValidate: Record<string, string> = {
       immediateActions: JSON.stringify(editedImmediateActionData),
     };
-    console.log(dataToValidate);
     const newErrors = validateFormFields(dataToValidate, ImmediatActionRules);
     if (Object.keys(newErrors).length > 0) {
       handleError({ customError: true, errors: newErrors });
       return;
     }
-    console.log("//////////////////////////////////////");
-    console.log(fpsData.immediateActions);
-    console.log(
-      fpsData.immediateActions?.map((e) => {
-        return e.edit ? { ...e, ...editedImmediateActionData, edit: false } : e;
-      })
-    );
     const newImmediateActionData = fpsData.immediateActions?.some((e) => e.edit)
       ? fpsData.immediateActions?.map((e) => {
           return e.edit
@@ -57,15 +49,10 @@ const useImmediateAction = (
           editedImmediateActionData,
         ];
 
-    console.log(editedImmediateActionData);
-    console.log(newImmediateActionData);
-    console.log("//////////////////////////////////////");
     setFpsData({
       ...fpsData,
       immediateActions: newImmediateActionData,
     });
-
-    // setImmediateActionData(newImmediateActionData);
 
     setEditedImmediateActionData({
       description: "",

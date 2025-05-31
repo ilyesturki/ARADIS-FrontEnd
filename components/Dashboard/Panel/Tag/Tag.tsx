@@ -1,5 +1,4 @@
 "use client";
-// import CreateTag from "@/components/Dashboard/Tag/CreateTag/CreateTag";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { getTag } from "@/redux/tag/tagThunk";
@@ -27,14 +26,11 @@ const Tag = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      console.log("searchParams");
       const params = new URLSearchParams(searchParams.toString());
       const tagId = params.get("tagId");
       if (tagId) {
-        console.log("getTag");
         await dispatch(getTag(tagId));
       } else {
-        console.log("resetTag");
         await dispatch(resetTag());
       }
     };

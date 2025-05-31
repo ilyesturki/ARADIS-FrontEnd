@@ -35,7 +35,6 @@ type DateTimeInputProps = {
   onCalendarClick?: () => void;
 };
 
-// https://date-fns.org/v4.1.0/docs/format
 type SegmentType =
   | "year"
   | "month"
@@ -113,7 +112,6 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
       }
     }, [form?.formState.isSubmitted]);
     useEffect(() => {
-      // console.error('valueChanged', {formatStr, inputStr, value});
       setSegments(parseFormat(formatStr, value));
     }, [formatStr, value]);
 
@@ -159,7 +157,6 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
         value || new TZDate(new Date(), timezone)
       );
       const year = getYear(date);
-      // console.log('inputValue', {allHasValue, validSegments, inputStr, formatStr, date, year});
       if (isValid(date) && year > 1900 && year < 2100) {
         return date;
       }
@@ -167,7 +164,6 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
     useEffect(() => {
       if (!inputValue) return;
       if (value?.getTime() !== inputValue.getTime()) {
-        // console.log('inputValueChanged', {formatStr, inputStr, value, inputValue, });
         options.onChange?.(inputValue);
       }
     }, [inputValue]);
@@ -321,11 +317,7 @@ const DateTimeInput = React.forwardRef<HTMLInputElement, DateTimeInputProps>(
             onSegmentChange(key === "ArrowRight" ? "right" : "left");
             event.preventDefault();
             break;
-          // case 'ArrowUp':
-          // case 'ArrowDown':
-          //   // onSegmentValueChange?.(event);
-          //   event.preventDefault();
-          //   break;
+       
           case "Backspace":
             onSegmentValueRemove();
             event.preventDefault();

@@ -17,7 +17,6 @@ const useCreateFps = () => {
     [session?.user.userCategory]
   );
 
-  //   const router = useRouter();
   const [currentTab, setCurrentTab] = useState("problem");
   const [currentStep, setCurrentStep] = useState<string | null>(null);
   const [validTabs, setValidTabs] = useState<string[]>([]);
@@ -26,14 +25,11 @@ const useCreateFps = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      console.log("searchParams");
       const params = new URLSearchParams(searchParams.toString());
       const fpsId = params.get("fpsId");
       if (fpsId) {
-        console.log("getFps");
         await dispatch(getFps(fpsId));
       } else {
-        console.log("resetFps");
         await dispatch(resetFps());
 
         setCurrentStep(null);
@@ -46,10 +42,7 @@ const useCreateFps = () => {
 
   const fps = useAppSelector((state) => state.fpss.fps);
 
-  // Update currentStep when fps changes
   useEffect(() => {
-    console.log("fps");
-    console.log(fps);
     if (fps?.currentStep === currentStep) {
       const tabsOrder = [
         "problem",
@@ -73,7 +66,6 @@ const useCreateFps = () => {
   const fpsUpdateSuccess = useAppSelector((state) => state.fpss.updateSuccess);
 
   useEffect(() => {
-    console.log("updated");
     const params = new URLSearchParams(searchParams.toString());
     const fpsId = params.get("fpsId");
     if (fpsId && fpsUpdateSuccess) {
@@ -81,9 +73,7 @@ const useCreateFps = () => {
     }
   }, [fpsUpdateSuccess]);
 
-  // Handle tab change after currentStep is updated
   useEffect(() => {
-    console.log("currentStep");
     if (currentStep) {
       const tabsOrder = [
         "problem",
@@ -98,34 +88,17 @@ const useCreateFps = () => {
           ? tabsOrder.indexOf(currentStep)
           : tabsOrder.indexOf(currentStep) + 1;
 
-      // handleTabChange(tabsOrder[nextTabIndex]);
       handleTabChange(
         isAdminOrManager ? "validation" : tabsOrder[nextTabIndex]
       );
     }
   }, [currentStep]);
 
-  //   const basketItems = useAppSelector((state) => state.basket.basket?.items);
-
-  //   const [isLoading, executeCreateOrder] = useApiCallWithToast({
-  //     apiCallFunction: () => dispatch(createOrder({ paymentType: "onDelivery" })),
-  //     handleSuccess: () => {
-  //       router.push("/account/orders");
-  //     },
-  //     messages: {
-  //       loading: "Creating order...",
-  //       success: "Order created successfully!",
-  //       error: "Could not create order.",
-  //     },
-  //   });
 
   const validateTab = (tab: string = currentTab) => {
-    console.log("currentStep !!!!!!!!!");
-    console.log(currentStep);
     switch (tab) {
       case "problem":
         if (currentStep) {
-          console.log("pass");
           return true;
         }
         setValidTabs([]);

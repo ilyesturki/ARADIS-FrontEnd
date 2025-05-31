@@ -61,7 +61,6 @@ export const columns = (
           column={column}
           title={t("columns.scanStatus")}
           options={{ up: true, down: true, hide: true }}
-          // className="justify-center"
         />
       </div>
     ),
@@ -76,7 +75,6 @@ export const columns = (
     header: ({ column }) => (
       <div className="hidden md:table-cell min-w-[100px]">
         <DataTableColumnHeader
-          // className="flex justify-center"
           column={column}
           title={t("columns.email")}
           options={{ up: true, down: true, hide: true }}

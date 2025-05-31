@@ -5,7 +5,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import {
   customHandleChange,
   customImagesChange,
-  customHandleSubmit,
   handleChangeSelect,
   customHandleForTostSubmit,
 } from "@/utils/handlers";
@@ -39,7 +38,6 @@ const initialUserState: flexibleUserType = {
   image: "",
   userCategory: "",
   userService: "",
-  // status: "inactive",
 };
 const useCreateUser = () => {
   const router = useRouter();
@@ -109,7 +107,6 @@ const useCreateUser = () => {
           try {
             const result = await dispatch(createUser(formData));
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -130,9 +127,9 @@ const useCreateUser = () => {
       handleReset();
     },
     messages: {
-      loading: "Creating user account...", // Message while the API is running
-      success: "User account created successfully!", // Message when successful
-      error: "Failed to create user account.", // Message on error
+      loading: "Creating user account...", 
+      success: "User account created successfully!", 
+      error: "Failed to create user account.",
     },
   });
 

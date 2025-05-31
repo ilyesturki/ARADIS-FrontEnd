@@ -30,7 +30,7 @@ const DataTableRowMenu = <T extends { id: string }>({
   id?: string;
   viewOnly?: boolean;
 }) => {
-  const t = useTranslations("DataTable"); // Use translation for the menu
+  const t = useTranslations("DataTable"); 
   const paths = usePathname();
 
   const copyId = id ? id : row.original.id;

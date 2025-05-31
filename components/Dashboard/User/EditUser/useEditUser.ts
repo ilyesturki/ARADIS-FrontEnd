@@ -142,7 +142,6 @@ const useEditUser = (id: string) => {
           try {
             const result = await dispatch(updateUser({ id, user: formData }));
 
-            // If using Redux Toolkit and createAsyncThunk
             if (result?.meta?.requestStatus === "rejected") {
               throw "Unknown error";
             }
@@ -175,9 +174,9 @@ const useEditUser = (id: string) => {
       handleReset();
     },
     messages: {
-      loading: "Editing user account...", // Message while the API is running
-      success: "User account edited successfully!", // Message when successful
-      error: "Failed to edite user account.", // Message on error
+      loading: "Editing user account...", 
+      success: "User account edited successfully!", 
+      error: "Failed to edite user account.", 
     },
   });
 

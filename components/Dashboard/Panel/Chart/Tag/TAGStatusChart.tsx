@@ -23,11 +23,6 @@ import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "@/redux/hooks";
 
-// const data = [
-//   { status: "Done", count: 155, fill: "hsl(var(--chart-5))" },
-//   { status: "ToDo", count: 70, fill: "hsl(var(--chart-2))" },
-//   { status: "Pending", count: 110, fill: "hsl(var(--chart-1))" },
-// ];
 
 const chartConfig = {
   open: {
@@ -53,7 +48,7 @@ export default function TAGStatusChart() {
     total: 0,
   });
 
-  const machine = useAppSelector((state) => state.fpss.machine);
+  const machine = useAppSelector((state) => state.tags.machine);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +56,6 @@ export default function TAGStatusChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/tag/status-overview-chart?machine=${machine}`
         );
-        console.log(data);
         setChartData({
           open: data.data.open,
           done: data.data.done,
@@ -132,14 +126,14 @@ export default function TAGStatusChart() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-greenAccent-900 text-[28px] font-bold"
+                          className="fill-greenAccent-900 dark:fill-greenAccent-800 text-[28px] font-bold"
                         >
                           {chartData.total}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-grayscale-500 font-medium"
+                          className="fill-grayscale-500 dark:fill-greenAccent-700 dark:opacity-60 font-medium"
                         >
                           TAG
                         </tspan>

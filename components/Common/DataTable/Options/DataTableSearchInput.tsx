@@ -8,18 +8,15 @@ import { Table } from "@tanstack/react-table";
 const DataTableSearchInput = <TData,>({ table }: { table: Table<TData> }) => {
   const t = useTranslations("DataTable");
 
-  // Get available column IDs
   const columnIds = table.getAllColumns().map((col) => col.id);
-  console.log("Available columns:", columnIds);
 
-  // Prioritize filtering by email, mat, or fpsId
   const searchColumn = columnIds.includes("email")
     ? "email"
     : columnIds.includes("mat")
     ? "mat"
     : columnIds.includes("fpsId")
     ? "fpsId"
-    : columnIds[0] || ""; // Use the first column if no match
+    : columnIds[0] || ""; 
 
   return (
     <div className="flex items-center relative flex-1 bg-sidebar-accent border dark:bg-grayscale-500 dark:bg-opacity-90 dark:border-gray-700 rounded-md">

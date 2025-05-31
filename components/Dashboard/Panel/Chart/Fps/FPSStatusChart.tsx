@@ -17,17 +17,12 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "@/utils/axios";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "@/redux/hooks";
 
-// const data = [
-//   { status: "Completed", count: 155, fill: "hsl(var(--chart-5))" },
-//   { status: "Failed", count: 70, fill: "hsl(var(--chart-2))" },
-//   { status: "Pending", count: 110, fill: "hsl(var(--chart-1))" },
-// ];
 
 const chartConfig = {
   inProgress: {
@@ -61,7 +56,6 @@ export default function FPSStatusChart() {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/fps/status-overview-chart?machine=${machine}`
         );
-        console.log(data);
         setChartData({
           inProgress: data.data.inProgress,
           completed: data.data.completed,
@@ -80,10 +74,10 @@ export default function FPSStatusChart() {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0 text-center">
         <CardTitle className="text-xl text-greenAccent-900 dark:text-grayscale-400">
-        {t("title")}
+          {t("title")}
         </CardTitle>
         <CardDescription className="text-xs font-semibold text-grayscale-500 text-opacity-50">
-        {t("description")}
+          {t("description")}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -132,14 +126,14 @@ export default function FPSStatusChart() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-greenAccent-900 text-[28px] font-bold"
+                          className="fill-greenAccent-900 dark:fill-greenAccent-800 text-[28px] font-bold"
                         >
                           {chartData.total}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-grayscale-500 font-medium"
+                          className="fill-grayscale-500 dark:fill-greenAccent-700 dark:opacity-60 font-medium"
                         >
                           FPS
                         </tspan>

@@ -1,7 +1,7 @@
 export const credentialsSignInValidationRules = {
   email: {
     required: true,
-    pattern: /\S+@\S+\.\S+/, // Basic email pattern
+    pattern: /\S+@\S+\.\S+/, 
   },
   password: {
     required: true,
@@ -20,7 +20,6 @@ export const verifyUserValidationRules = {
   status: {},
   image: {
     customValidator: (value: string) => {
-      console.log(value);
       if (value) {
         return !["image/jpeg", "image/png", "image/gif"].includes(value)
           ? "Please select a valid image file (JPEG, PNG, or GIF)."
@@ -103,7 +102,6 @@ export const fpsProblemValidationRules = {
   machine: { required: true },
   image: {
     customValidator: (value: string) => {
-      console.log(value);
       if (value) {
         return !["image/jpeg", "image/png", "image/gif"].includes(value)
           ? "Please select a valid image file (JPEG, PNG, or GIF)."
@@ -116,8 +114,6 @@ export const fpsProblemValidationRules = {
     customValidator: (value: string) => {
       if (value) {
         const imagesFiles = value.split(",");
-        console.log(value);
-        console.log(imagesFiles);
         for (let i = 0; i < imagesFiles.length; i++) {
           if (
             !["image/jpeg", "image/png", "image/gif"].includes(imagesFiles[i])
@@ -149,7 +145,6 @@ export const fpsImmediateActionsValidationRules = {
           ) {
             return "Please fill in all required fields for all sorting results.";
           }
-          console.log(sortingResults[i]);
         }
       }
       return null;

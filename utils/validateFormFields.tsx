@@ -31,10 +31,6 @@ interface FieldValidationRules {
     for (const fieldName in validationRules) {
       const value = formData[fieldName];
       const rules = validationRules[fieldName];
-      console.log(fieldName);
-      console.log(value);
-      console.log(rules);
-      console.log(!Object.keys(formData).includes(fieldName));
       if (!Object.keys(formData).includes(fieldName)) {
         continue;
       }

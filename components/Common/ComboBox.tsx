@@ -32,7 +32,6 @@ const ComboBox = ({
   label: string;
   selectedValue?: string;
   onChange?: (currentValue: string, name?: string) => void;
-  // onChange?: (currentValue: string, name?: string) => void;
   data: { value: string; label: string; color?: string }[];
   className?: string;
   name?: string;
@@ -50,13 +49,6 @@ const ComboBox = ({
 
   const selectedLabel = data.find((e) => e.value === value)?.label;
 
-  // React.useEffect(() => {
-  //   console.log(selectedValue);
-  //   console.log(value);
-  //   if (selectedValue) {
-  //     setValue(selectedValue);
-  //   }
-  // }, [selectedValue]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -69,9 +61,6 @@ const ComboBox = ({
           className={`py-6 max-sm:px-0 w-full justify-between text-xs font-normal text-grayscale-500 shadow-[0px_0px_2px] shadow-grayscale-500 border-none rounded-md ${className} ${textColor}`}
         >
           {selectedLabel || `Select ${label}`}
-          {/* {selectedValue
-            ? data.find((e) => e.value === value)?.label
-            : `Select ${label}...`} */}
           <ChevronsUpDown className="ml-1 h-5 w-4 shrink-0 opacity-70" />
         </Button>
       </PopoverTrigger>

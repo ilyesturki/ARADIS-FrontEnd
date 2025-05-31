@@ -69,7 +69,6 @@ const Comments = () => {
                     ? (e) => removeComment(e, i)
                     : undefined
                 }
-                // handleSaveComment={handleSaveComment}
                 handleSaveComment={
                   e.user.id === session?.user?.id && e.active === undefined
                     ? (e) => updateComment(e, i)
