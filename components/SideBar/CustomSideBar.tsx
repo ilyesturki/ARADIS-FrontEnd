@@ -17,22 +17,22 @@ import SignOutButton from "./SignOutButton";
 
 const data = {
   navMain: [
-    {
-      allowedTo: [
-        { role: "user", category: ["operational", "midel-management"] },
-      ],
-      title: "Auto MTCE",
-      url: "/auto-mtce",
-      icon: SquareTerminal,
-    },
-    {
-      allowedTo: [
-        { role: "user", category: ["operational", "midel-management"] },
-      ],
-      title: "Diag MTCE",
-      url: "/diag-mtce",
-      icon: SquareTerminal,
-    },
+    // {
+    //   allowedTo: [
+    //     { role: "user", category: ["operational", "midel-management"] },
+    //   ],
+    //   title: "Auto MTCE",
+    //   url: "/auto-mtce",
+    //   icon: SquareTerminal,
+    // },
+    // {
+    //   allowedTo: [
+    //     { role: "user", category: ["operational", "midel-management"] },
+    //   ],
+    //   title: "Diag MTCE",
+    //   url: "/diag-mtce",
+    //   icon: SquareTerminal,
+    // },
     {
       allowedTo: [
         { role: "user", category: ["operational", "midel-management"] },
@@ -52,30 +52,30 @@ const data = {
         },
       ],
     },
-    {
-      allowedTo: [
-        { role: "user", category: ["operational", "midel-management"] },
-      ],
-      title: "Audit",
-      url: "/audit",
-      icon: SquareTerminal,
-    },
-    {
-      allowedTo: [
-        { role: "user", category: ["operational", "midel-management"] },
-      ],
-      title: "Planing",
-      url: "/planing",
-      icon: SquareTerminal,
-    },
-    {
-      allowedTo: [
-        { role: "user", category: ["operational", "midel-management"] },
-      ],
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: SquareTerminal,
-    },
+    // {
+    //   allowedTo: [
+    //     { role: "user", category: ["operational", "midel-management"] },
+    //   ],
+    //   title: "Audit",
+    //   url: "/audit",
+    //   icon: SquareTerminal,
+    // },
+    // {
+    //   allowedTo: [
+    //     { role: "user", category: ["operational", "midel-management"] },
+    //   ],
+    //   title: "Planing",
+    //   url: "/planing",
+    //   icon: SquareTerminal,
+    // },
+    // {
+    //   allowedTo: [
+    //     { role: "user", category: ["operational", "midel-management"] },
+    //   ],
+    //   title: "Dashboard",
+    //   url: "/dashboard",
+    //   icon: SquareTerminal,
+    // },
 
     {
       allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
@@ -83,36 +83,36 @@ const data = {
       url: "/dashboard/panel/fps-panel",
       icon: SquareTerminal,
     },
-    {
-      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
-      title: "Auto-MTCE",
-      url: "/dashboard/panel/auto-mtce",
-      icon: SquareTerminal,
-    },
+    // {
+    //   allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
+    //   title: "Auto-MTCE",
+    //   url: "/dashboard/panel/auto-mtce",
+    //   icon: SquareTerminal,
+    // },
     {
       allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
       title: "Tag",
       url: "/dashboard/panel/tag-panel",
       icon: SquareTerminal,
     },
-    {
-      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: SquareTerminal,
-    },
-    {
-      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
-      title: "Planing",
-      url: "/planing",
-      icon: SquareTerminal,
-    },
-    {
-      allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
-      title: "Audit",
-      url: "/audit",
-      icon: SquareTerminal,
-    },
+    // {
+    //   allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
+    //   title: "Dashboard",
+    //   url: "/dashboard",
+    //   icon: SquareTerminal,
+    // },
+    // {
+    //   allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
+    //   title: "Planing",
+    //   url: "/planing",
+    //   icon: SquareTerminal,
+    // },
+    // {
+    //   allowedTo: [{ role: "user", category: ["top-management", "corporaite"] }],
+    //   title: "Audit",
+    //   url: "/audit",
+    //   icon: SquareTerminal,
+    // },
     {
       allowedTo: [{ role: "admin" }],
       title: "Users",
